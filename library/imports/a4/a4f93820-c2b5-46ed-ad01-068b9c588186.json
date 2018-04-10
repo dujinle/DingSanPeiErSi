@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "displayTxtBoar",
+    "texture": "8d5b1848-2dd5-4d8f-859a-49f15c526a75",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      854,
+      55
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      854,
+      55
+    ]
+  }
+}

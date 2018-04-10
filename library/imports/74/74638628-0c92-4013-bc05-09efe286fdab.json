@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "zhuang_score",
+    "texture": "4215d21b-a53f-4dcd-ad10-bfe2d4c4ee13",
+    "atlas": "",
+    "rect": [
+      4,
+      9,
+      83,
+      36
+    ],
+    "offset": [
+      0.5,
+      -2
+    ],
+    "originalSize": [
+      90,
+      50
+    ]
+  }
+}

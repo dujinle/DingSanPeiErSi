@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "settingBack_closeButton",
+    "texture": "45a94e2f-0266-4b8e-8415-1cfabdc54a63",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      55,
+      56
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      55,
+      56
+    ]
+  }
+}

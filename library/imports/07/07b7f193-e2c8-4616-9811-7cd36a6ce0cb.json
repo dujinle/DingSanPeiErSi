@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "button_buchu",
+    "texture": "e2581bb2-61fe-490c-87e2-0901be43caf6",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      130,
+      74
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      130,
+      74
+    ]
+  }
+}

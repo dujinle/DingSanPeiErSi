@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "chatHistoryItem2",
+    "texture": "23644303-449c-4d62-ae08-1e9d0f756168",
+    "atlas": "",
+    "rect": [
+      26,
+      15,
+      68,
+      32
+    ],
+    "offset": [
+      -2.5,
+      1
+    ],
+    "originalSize": [
+      125,
+      64
+    ]
+  }
+}

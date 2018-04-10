@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "chatTextBackgroundMid",
+    "texture": "c2175de3-30ce-4328-be9a-bed0234fc667",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      181,
+      54
+    ],
+    "offset": [
+      0,
+      4.5
+    ],
+    "originalSize": [
+      181,
+      63
+    ]
+  }
+}

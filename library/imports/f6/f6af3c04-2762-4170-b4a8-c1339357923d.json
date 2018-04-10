@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "deskbg",
+    "texture": "14810fc1-f330-4f8a-8226-97fba79874d2",
+    "atlas": "",
+    "rect": [
+      3,
+      1,
+      1163,
+      649
+    ],
+    "offset": [
+      0,
+      -0.5
+    ],
+    "originalSize": [
+      1169,
+      650
+    ]
+  }
+}

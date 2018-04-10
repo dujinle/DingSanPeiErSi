@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "zongzhu",
+    "texture": "b6d7e231-87ae-4820-8d95-15803b16853e",
+    "atlas": "",
+    "rect": [
+      4,
+      9,
+      81,
+      36
+    ],
+    "offset": [
+      -0.5,
+      -2
+    ],
+    "originalSize": [
+      90,
+      50
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "inputTxtBoarWorldChannel",
+    "texture": "e500908f-ca49-4570-b7a4-f7d2d93ed8e9",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      1178,
+      56
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      1178,
+      56
+    ]
+  }
+}

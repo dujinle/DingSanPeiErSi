@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "inputTxtBackground",
+    "texture": "d374d14a-5ac7-4c9c-84f1-03923aa5dea1",
+    "atlas": "",
+    "rect": [
+      1,
+      0,
+      321,
+      64
+    ],
+    "offset": [
+      0.5,
+      1
+    ],
+    "originalSize": [
+      322,
+      66
+    ]
+  }
+}

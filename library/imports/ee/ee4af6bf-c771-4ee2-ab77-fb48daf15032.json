@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "tdk_2",
+    "texture": "24588d91-4261-465e-bb6e-553ff7c3bdb5",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      30,
+      60
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      30,
+      60
+    ]
+  }
+}

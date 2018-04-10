@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "tiandakeng",
+    "texture": "b61f96bb-f1cd-4ce3-9efd-827c6ba1616d",
+    "atlas": "",
+    "rect": [
+      2,
+      0,
+      346,
+      401
+    ],
+    "offset": [
+      0,
+      2
+    ],
+    "originalSize": [
+      350,
+      405
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "menuComeInChat",
+    "texture": "3e2655f7-6d00-4bed-bc42-2a04107f5fa6",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      56,
+      50
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      56,
+      50
+    ]
+  }
+}

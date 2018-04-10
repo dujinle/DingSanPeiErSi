@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "kiss22",
+    "texture": "a46bc53f-03f6-4a75-862b-c27fc27caed8",
+    "atlas": "",
+    "rect": [
+      29,
+      12,
+      71,
+      84
+    ],
+    "offset": [
+      9.5,
+      13
+    ],
+    "originalSize": [
+      110,
+      134
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "button_jiefeng",
+    "texture": "7a3f102c-c0c0-4106-8b41-42ac3e230154",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      130,
+      74
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      130,
+      74
+    ]
+  }
+}

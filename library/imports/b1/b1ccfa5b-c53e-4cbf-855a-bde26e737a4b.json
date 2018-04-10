@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "heat1",
+    "texture": "7b663e57-763b-452f-b74e-78774f48ade2",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      260,
+      221
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      260,
+      221
+    ]
+  }
+}

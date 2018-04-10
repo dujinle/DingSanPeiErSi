@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "titleBoar",
+    "texture": "ea7abbdf-d4bd-43ef-9dbf-dd1b2410d4ae",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      1070,
+      86
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      1070,
+      86
+    ]
+  }
+}

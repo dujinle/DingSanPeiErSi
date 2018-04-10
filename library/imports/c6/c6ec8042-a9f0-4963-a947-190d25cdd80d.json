@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "chipsProhibit",
+    "texture": "23f85f37-eec8-4d81-ab0f-d64da012cd75",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      96,
+      100
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      96,
+      100
+    ]
+  }
+}

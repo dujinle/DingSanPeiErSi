@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "buyDiamondBackground",
+    "texture": "ffb65c4c-4e2d-472a-a7e3-c0c4e4665f19",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      860,
+      530
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      860,
+      530
+    ]
+  }
+}

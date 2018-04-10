@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "cheers7",
+    "texture": "3f439764-575a-417d-9395-4601b59d3f89",
+    "atlas": "",
+    "rect": [
+      4,
+      5,
+      101,
+      101
+    ],
+    "offset": [
+      -0.5,
+      -0.5
+    ],
+    "originalSize": [
+      110,
+      110
+    ]
+  }
+}

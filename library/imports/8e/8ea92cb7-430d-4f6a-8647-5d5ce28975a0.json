@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "chuJiString2",
+    "texture": "0847da59-2cd3-4491-9316-aeef0d54563b",
+    "atlas": "",
+    "rect": [
+      8,
+      1,
+      48,
+      24
+    ],
+    "offset": [
+      0,
+      -0.5
+    ],
+    "originalSize": [
+      64,
+      25
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "fanghao",
+    "texture": "cd4823ee-686b-44c2-a108-ce5122bcd0b6",
+    "atlas": "",
+    "rect": [
+      0,
+      2,
+      85,
+      42
+    ],
+    "offset": [
+      -2.5,
+      2
+    ],
+    "originalSize": [
+      90,
+      50
+    ]
+  }
+}

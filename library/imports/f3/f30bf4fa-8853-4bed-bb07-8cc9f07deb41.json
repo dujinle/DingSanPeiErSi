@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "diaToCoinBg",
+    "texture": "92a77c71-6037-480a-921c-70625fc6dda9",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      682,
+      496
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      682,
+      496
+    ]
+  }
+}

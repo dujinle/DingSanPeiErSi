@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "settingBack_flowerLeft",
+    "texture": "15997573-3744-4d5a-b6ff-131aa0f45e23",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      86,
+      44
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      86,
+      44
+    ]
+  }
+}

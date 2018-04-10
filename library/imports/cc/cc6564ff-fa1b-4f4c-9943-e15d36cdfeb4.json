@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "fangzhu",
+    "texture": "199eae9d-0c4d-492e-8205-f3e977b28119",
+    "atlas": "",
+    "rect": [
+      2,
+      3,
+      82,
+      40
+    ],
+    "offset": [
+      -2,
+      2
+    ],
+    "originalSize": [
+      90,
+      50
+    ]
+  }
+}

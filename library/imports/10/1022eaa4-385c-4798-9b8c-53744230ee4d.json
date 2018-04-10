@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "vsBack",
+    "texture": "ea9379b8-e8a6-46b4-9689-652ab0ed3205",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      450,
+      279
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      450,
+      279
+    ]
+  }
+}

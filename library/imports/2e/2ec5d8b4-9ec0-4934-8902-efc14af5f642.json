@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "shoe4",
+    "texture": "da073744-abb9-474d-ab30-2f1b59e128df",
+    "atlas": "",
+    "rect": [
+      16,
+      29,
+      119,
+      100
+    ],
+    "offset": [
+      0.5,
+      5
+    ],
+    "originalSize": [
+      150,
+      168
+    ]
+  }
+}

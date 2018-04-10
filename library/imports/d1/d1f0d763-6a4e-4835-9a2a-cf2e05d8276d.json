@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "kiss10",
+    "texture": "68bb4e59-38ca-4d15-808d-815d6cc6827a",
+    "atlas": "",
+    "rect": [
+      7,
+      30,
+      96,
+      97
+    ],
+    "offset": [
+      0,
+      -11.5
+    ],
+    "originalSize": [
+      110,
+      134
+    ]
+  }
+}

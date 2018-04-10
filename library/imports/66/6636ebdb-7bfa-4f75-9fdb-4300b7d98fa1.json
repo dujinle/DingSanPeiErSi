@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "diamond",
+    "texture": "d8bbe9cd-68ae-41ef-b70d-8b4dfa17a820",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      50,
+      42
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      50,
+      42
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "button_kaishi1",
+    "texture": "e5081eb6-42fc-4025-a08e-5357eed52436",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      130,
+      74
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      130,
+      74
+    ]
+  }
+}

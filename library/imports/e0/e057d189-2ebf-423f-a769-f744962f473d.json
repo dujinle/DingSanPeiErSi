@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "taskSelected",
+    "texture": "8b76c10c-c55a-4348-9b68-467058639088",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      93,
+      213
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      93,
+      213
+    ]
+  }
+}

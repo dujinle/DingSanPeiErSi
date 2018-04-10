@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "button_tianxuan",
+    "texture": "df5b15e9-6039-470c-a8d9-0e77d919eba5",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      170,
+      74
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      170,
+      74
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "kaipai1",
+    "texture": "47f8f58e-48c2-4a03-bb08-4264b7b0cfc0",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      150,
+      74
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      150,
+      74
+    ]
+  }
+}

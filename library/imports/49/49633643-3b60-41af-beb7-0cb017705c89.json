@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "logo_girl",
+    "texture": "b7d789e8-36d1-4e45-a9b8-4d771f368131",
+    "atlas": "",
+    "rect": [
+      8,
+      61,
+      284,
+      79
+    ],
+    "offset": [
+      0,
+      -0.5
+    ],
+    "originalSize": [
+      300,
+      200
+    ]
+  }
+}

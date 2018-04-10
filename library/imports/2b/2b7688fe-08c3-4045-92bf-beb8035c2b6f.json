@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "zhuoheiqiang",
+    "texture": "5191f095-916a-48cd-9e98-3c15a7f397a3",
+    "atlas": "",
+    "rect": [
+      2,
+      0,
+      346,
+      401
+    ],
+    "offset": [
+      0,
+      2
+    ],
+    "originalSize": [
+      350,
+      405
+    ]
+  }
+}

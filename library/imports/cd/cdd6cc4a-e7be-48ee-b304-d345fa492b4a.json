@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "button_lianga",
+    "texture": "ae8eb6d3-88db-449b-99c1-ea63d78eba3e",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      130,
+      74
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      130,
+      74
+    ]
+  }
+}

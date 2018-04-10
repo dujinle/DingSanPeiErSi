@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "genzhu1",
+    "texture": "02501d2c-0f89-4bd1-82be-affadc6853eb",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      150,
+      74
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      150,
+      74
+    ]
+  }
+}
