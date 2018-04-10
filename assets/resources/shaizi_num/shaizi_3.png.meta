@@ -1,14 +1,14 @@
 {
   "ver": "1.0.0",
-  "uuid": "922a3a8f-abe0-464c-92f8-9db6787446ea",
+  "uuid": "b49ef339-fa16-44e3-8ed3-7427c2063c09",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "subMetas": {
-    "shaizi_2": {
+    "shaizi_3": {
       "ver": "1.0.3",
-      "uuid": "92ba3fc0-8ee0-4388-b7db-8a075ff53e66",
-      "rawTextureUuid": "922a3a8f-abe0-464c-92f8-9db6787446ea",
+      "uuid": "33359512-8c7d-494e-94de-d5ac999d1537",
+      "rawTextureUuid": "b49ef339-fa16-44e3-8ed3-7427c2063c09",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
