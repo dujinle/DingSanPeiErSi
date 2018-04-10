@@ -40,6 +40,7 @@ var g_dealCardBack = null;
 //var g_recordMax=15;
 
 //房间中玩家存储数据
+var g_zhuang_serverPosition = 0;
 var g_players_noPower = new Array();
 var g_players = new Array();
 var g_myselfPlayerPos = -1;

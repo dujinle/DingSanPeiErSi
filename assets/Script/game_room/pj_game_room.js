@@ -9,8 +9,8 @@ cc.Class({
 		roomState:0,
 		master_name:null,
 		total_count:0,
-		currentGetPowerPlayerPosition:0,
 		zhuang_serverPosition:0,
+		currentGetPowerPlayerPosition:0,
 		//head label info
 		master_label:cc.Label,
 		room_num_label:cc.Label,
@@ -18,6 +18,8 @@ cc.Class({
 		huihe_label:cc.Label,
 		msage_scroll:cc.Node,
 		//buttons for game
+		button_layout:cc.Node,
+		button2_layout:cc.Node,
 		zhunbei_button:cc.Node,
 		qiangzhang_button:cc.Node,
 		kaipai_button:cc.Node,
@@ -101,6 +103,8 @@ cc.Class({
 		*/
 	},
 	initButtonEnableAfterComeInRoom(){
+		this.button_layout.active = true;
+		this.button2_layout.active = false;
 		this.zhunbei_button.active = true;
 		this.qiangzhang_button.active = false;
 		this.zhunbei_button.getComponent(cc.Button).interactable = true;
@@ -416,13 +420,16 @@ cc.Class({
 	},
 	onGetzhuang_function(data){
 		cc.log("pomelo onGetzhuang_function:" + data.location);
+		var self = this;
 		var size = cc.director.getWinSize();
 		this.zhuang_serverPosition = data.location;
 		this.yao_shaizi = cc.instantiate(g_assets["yaoshaizi"]);
 		var yao_shaizi_com = this.yao_shaizi.getComponent("shai_zhong_active");
-		yao_shaizi_com.init_start(this.yaoshaizi_callback,3,2);
+		yao_shaizi_com.init_start(null,3,2);
 		this.node.addChild(this.yao_shaizi);
 		this.yao_shaizi.setPosition(this.node.convertToNodeSpaceAR(cc.p(size.width/2,size.height/2)));
+		var call_back_function = cc.callFunc(this.getzhuang_callback,this);
+		this.node.runAction(cc.sequence(cc.delayTime(2.5),call_back_function));
 	},
 	onAdd_function(data){
 		cc.log("onAdd:" + JSON.stringify(data));
@@ -1280,17 +1287,38 @@ cc.Class({
 			});
 		}
 	},
-	yaoshaizi_callback(){
-		cc.log("yaoshaizi_callback");
+	getzhuang_callback(){
+		cc.log("getzhuang_callback");
+		var next_position = this.zhuang_serverPosition;
+		var men_idx = 0;
+		var mens = ["zhuang","chumen","tianmen","momen"];
 		for(var i = 0;i < g_players.length;i++){
 			var player = g_players[i];
 			var player_com = player.getComponent("tdk_player");
 			if(player_com.position_server == this.zhuang_serverPosition){
 				player_com.is_power = 1;
-				player_com.setSpriteStatus("zhuang");
+				player_com.setSpriteStatus(mens[men_idx]);
+				player_com.resetMoneyLabel(this.sumBet);
+				next_position = next_position + 1;
+				men_idx = men_idx + 1;
 				break;
 			}
 		}
+		for(var i = 0;i < g_players.length;i++){
+			var player = g_players[i];
+			var player_com = player.getComponent("tdk_player");
+			if(next_position == 5){
+				next_position = 1;
+			}
+			if(player_com.position_server == next_position){
+				player_com.is_power = 1;
+				player_com.setSpriteStatus(mens[men_idx]);
+				next_position = next_position + 1;
+				men_idx = men_idx + 1;
+			}
+		}
+		this.button_layout.active = false;
+		this.button2_layout.active = true;
 	},
 	pomelo_removeListener(){
 		cc.log("remove listener");
