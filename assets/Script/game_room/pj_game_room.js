@@ -27,11 +27,8 @@ cc.Class({
 		xiazhu_button:cc.Node,
 		queding_button:cc.Node,
 		peipai_button:cc.Node,
-		
 		kaipai_button:cc.Node,
-		qipai_button:cc.Node,
-		genzhu_button:cc.Node,
-		jiazhu_button:cc.Node,
+		
 		players:{
 			type:cc.Node,
 			default:[],
@@ -115,6 +112,7 @@ cc.Class({
 		this.zhunbei_button.active = true;
 		this.qiangzhang_button.active = false;
 		this.peipai_button.active = false;
+		this.kaipai_button.active = false;
 		this.zhunbei_button.getComponent(cc.Button).interactable = true;
     },
     initPlayersAndPlayer_noPower(){
@@ -305,6 +303,20 @@ cc.Class({
 		this.onPeipai_function(g_peipai_data2);
 		this.onPeipai_function(g_peipai_data3);
 		this.onPeipai_function(g_peipai_data4);
+	},
+	callback_kaipai(){
+		this.kaipai_button.active = false;
+		/*
+		pomelo.request(util.getGameRoute(),{
+			process:"ready",
+			location:g_myselfPlayerPos
+		},function(data){
+			cc.log(data.msg);
+		});
+		*/
+		//for test
+		this.onEndPai_function(g_endpai_data);
+		//this.onEnd_function(g_peipai_data);
 	},
 	callback_setting(){
 		var self = this;
@@ -557,6 +569,9 @@ cc.Class({
 		cc.log("onPeipai_function:" + JSON.stringify(data));
 		var player_position = data.location;
 		var card_select_ids = data.select;
+		if(data.unpei == 0){
+			this.kaipai_button.active = true;
+		}
 		for(var m = 0;m < g_players.length;m++){
 			var player = g_players[m];
 			var player_com = player.getComponent("tdk_player");
@@ -594,89 +609,7 @@ cc.Class({
 			}
 		}
 	},
-	onOpen_function(data){
-		cc.log("onOpen:" + JSON.stringify(data));
-		var all_players = g_players.concat(g_players_noPower);
-		var playerName = data["user"];
-		for(var i = 0;i < all_players.length;i++){
-			var player_com = all_players[i].getComponent("tdk_player");
-			if(player_com.id == playerName){
-				player_com.check_card = true;
-				if(player_com.position_server == g_myselfPlayerPos){
-					//如果是自己则执行翻牌动作
-					for(var j = 0;j < 3;j++){
-						var backCardSeq = cc.sequence(cc.delayTime(0.45),cc.hide());
-						var backCamera = cc.rotateBy(0.45,0,-90);
-						var backSpawn = cc.spawn(backCardSeq,backCamera);
-						var frontSeq = cc.sequence(cc.delayTime(0.45),cc.show());
-						var frontCamera = cc.rotateBy(0.6,0,-360);
-						var frontSpawn = cc.spawn(frontSeq,frontCamera);
-						var card = player_com.my_cards[j].getComponent("pj_card");
-						card.sprite_back.node.runAction(backSpawn);
-						card.sprite.runAction(frontSpawn);
-					}
-				}
-				//重置定时器
-				if(player_com.position_server == this.currentGetPowerPlayerPosition){
-					player_com.stop_timer();
-					player_com.start_timer();
-				}
-				player_com.setSpriteStatus("kan");
-				break;
-			}
-		}
-	},
-	onThrow_function(data){
-		cc.log("onThrow:" + JSON.stringify(data));
-		var all_players = g_players.concat(g_players_noPower);
-		var playerName = data["user"];
-		for(var i = 0;i < all_players.length;i++){
-			var player = all_players[i];
-			var player_com = player.getComponent("tdk_player");
-			if(player_com.id == playerName){
-				player_com.abandon = true;
-				if(player_com.position_server == g_myselfPlayerPos){
-					this.initButtonEnableAfterThrow();
-				}
-				player_com.setSpriteStatus("qi");
-				//将玩家移到player_noPower数组
-				g_players_noPower.push(player);
-				g_players.splice(i,1);
-				break;
-			}
-		}
-	},
-	onFollow_function(data){
-		cc.log("onFollow:" + JSON.stringify(data));
-		var m_playerId = data["player_id"];
-		this.sumBet = data["all_chip"];
-		var all_players = g_players.concat(g_players_noPower);
-		for(var i=0;i < all_players.length;i++){
-			var player = all_players[i];
-			var player_com = player.getComponent("tdk_player");
-			if(player_com.id == m_playerId){
-				player_com.resetMoneyLabel(parseInt(data["my_gold"]));
-				this.actionFollowBet(player.getPosition(),player_com.check_card);
-				break;
-			}
-		}
-	},
-	onAddChip_function(data){
-		console.log("onAddChip:" + JSON.stringify(data));
-		var m_playerId = data["player_id"];
-		this.bet = data["current_chip"];
-		this.sumBet = data["all_chip"];
-		var all_players = g_players.concat(g_players_noPower);
-		for(var i=0;i < all_players.length;i++){
-			var player = all_players[i];
-			var player_com = player.getComponent("tdk_player");
-			if(player_com.id == m_playerId){
-				player_com.resetMoneyLabel(parseInt(data["my_gold"]));
-				this.actionFollowBet(player.getPosition(),player_com.check_card);
-				break;
-			}
-		}
-	},
+	
 	onLeave_function(data){
 		cc.log("onLeave:" + JSON.stringify(data));
 		var playerName = data["user"];
@@ -708,94 +641,6 @@ cc.Class({
 			}
 		}
 		this.playerNum--;
-	},
-	onChangePlayer_function(data){
-		cc.log("onChangePlayer:" + JSON.stringify(data));
-		var rotationPlayerPositionServer = data["location"];
-		//暂停当前玩家定时器,并初始化玩家按钮定时器
-		var tmp_allplayers = g_players_noPower.concat(g_players);
-		for(var i=0;i < tmp_allplayers.length;i++){
-			var player_com = tmp_allplayers[i].getComponent("tdk_player");
-			if(player_com.position_server == this.currentGetPowerPlayerPosition){
-				player_com.stop_timer();
-				if(this.currentGetPowerPlayerPosition == g_myselfPlayerPos){
-					this.bipai_button.getComponent(cc.Button).interactable = false;
-					this.genzhu_button.getComponent(cc.Button).interactable = false;
-					this.jiazhu_button.getComponent(cc.Button).interactable = false;
-				}
-				break;
-			}
-		}
-		//开启轮换到的玩家
-		if(g_players.length >= 2) {
-			this.currentGetPowerPlayerPosition = rotationPlayerPositionServer;
-			for (var i = 0; i < g_players.length; i++) {
-				var player_com = g_players[i].getComponent("tdk_player");
-				if (player_com.position_server == rotationPlayerPositionServer) {
-					player_com.start_timer();
-					if (rotationPlayerPositionServer == g_myselfPlayerPos) {
-						this.bipai_button.getComponent(cc.Button).interactable = true;
-						this.genzhu_button.getComponent(cc.Button).interactable = true;
-						this.jiazhu_button.getComponent(cc.Button).interactable = true;
-					}
-					break;
-				}
-			}
-		}
-	},
-	onBipai_function(data){
-		cc.log("onBipai:" + JSON.stringify(data));
-		var winnerPositionServer = data["winner"];
-		this.sumBet = data["all_chip"];
-		var playerPositionServer1 = data["position1"];
-		var playerPositionServer2 = data["position2"];
-
-		var loserPositionServer=null;
-		if(playerPositionServer1 == winnerPositionServer){
-			loserPositionServer = playerPositionServer2;
-		}else{
-			loserPositionServer = playerPositionServer1;
-		}
-		cc.log("loserPositionServer:" + loserPositionServer);
-
-		//置房间状态为比牌状态并定时重置回来
-		this.comparableState=true;
-		var delayCompare = new cc.DelayTime(4.8);
-		var callbackSetRoomStateCompare = cc.callFunc(this.setRoomStateCompare,this);
-		this.node.runAction(cc.sequence(delayCompare,callbackSetRoomStateCompare));
-
-		//停止当前定时器进度条
-		var tmp_allplayers = g_players_noPower.concat(g_players);
-		for(var i = 0;i < tmp_allplayers.length;i++){
-			var player_com = tmp_allplayers[i].getComponent("tdk_player");
-			if(player_com.position_server == this.currentGetPowerPlayerPosition){
-				player_com.stop_timer();
-				break;
-			}
-		}
-
-		//和自己相关的比牌时，为避免影响比牌的动作动画，先关闭开牌和弃牌按钮，比牌完毕再回复
-		if(playerPositionServer1 == g_myselfPlayerPos ||playerPositionServer2 == g_myselfPlayerPos){
-			this.bipai_button.getComponent(cc.Button).interactable = false;
-			this.jiazhu_button.getComponent(cc.Button).interactable = false;
-			this.genzhu_button.getComponent(cc.Button).interactable = false;
-			this.qipai_button.getComponent(cc.Button).interactable = false;
-			this.kaipai_button.getComponent(cc.Button).interactable = false;
-		}
-
-		//发起比牌的玩家执行跟注动作
-		cc.log("start 发起比牌的玩家执行跟注动作" + tmp_allplayers.length);
-		for(var i = 0;i < tmp_allplayers.length;i++){
-			var player = tmp_allplayers[i];
-			var player_com = player.getComponent("tdk_player");
-			if(player_com.position_server == playerPositionServer1){
-				player_com.resetMoneyLabel(parseInt(data["my_gold"]));
-				this.actionFollowBet(player.getPosition(),player_com.check_card);
-				break;
-			}
-		}
-		//执行比牌动画
-		this.actionBiPai(playerPositionServer1,playerPositionServer2,loserPositionServer);
 	},
 	onEnd_function(data){
 		cc.log("onEnd:" + JSON.stringify(data));
@@ -834,12 +679,12 @@ cc.Class({
 	onEndPai_function(data){
 		cc.log("onEndPai:"+JSON.stringify(data));
 		//获胜者的牌型
-		var winnerCardType = data["winner_pai"];
-		var tmp_allplayers = g_players_noPower.concat(g_players);
+		var winners = data["winners"];
+		var losers = data["losers"];
 		//位置1的牌型
-		for(i = 1; i < 6; i++){
+		for(i = 1; i < 5; i++){
 			var cardString = data["location" + i];
-			if(cardString != null&& cardString !="null" && g_myselfPlayerPos != i){
+			if(g_myselfPlayerPos != i){
 				console.log("location:num:" + i);
 				cardString=JSON.parse(cardString);
 				var tmp_card = new Array();
@@ -850,11 +695,13 @@ cc.Class({
 				var rank2=cardString["p2"];
 				var suit3=cardString["s3"];
 				var rank3=cardString["p3"];
-				for(var j = 0;j < tmp_allplayers.length;j++){
-					var player = tmp_allplayers[j];
+				var suit4=cardString["s4"];
+				var rank4=cardString["p4"];
+				for(var j = 0;j < g_players.length;j++){
+					var player = g_players[j];
 					var player_com = player.getComponent("tdk_player");
 					if(player_com.position_server == i){
-						for(var m = 0;m < 3;m++){
+						for(var m = 0;m < 4;m++){
 							var card = player_com.my_cards[m].getComponent("pj_card");
 							card.initCardSprite(parseInt(cardString["s" + (m + 1)]),parseInt(cardString["p" + (m + 1)]));
 						}
@@ -864,21 +711,7 @@ cc.Class({
 			}
 		}
 		/*打开所有牌的*/
-		//如果房间属于比牌状态，需要等到比牌动作完成才执行打开所有牌的动作
-		if(this.comparableState == true){
-			if(this.bipai_ui.isValid == true){
-				var compareTime = 1.5 + 4.8 - this.bipai_ui.getComponent("zjh_compare").get_cur_time();
-				var waitGetBetTime=new cc.DelayTime(compareTime);
-				var callbackOpenAllCard = cc.callFunc(this.openAllCard,this,winnerCardType);
-				this.runAction(cc.sequence(waitGetBetTime,callbackOpenAllCard));
-				console.log("compareTime:"+compareTime);
-			}else{
-				this.openAllCard(null,winnerCardType);
-			}
-			console.log("room is comparing...........................................");
-		}else{
-			this.openAllCard(null,winnerCardType);
-		}
+		this.openAllCard(winners,losers);
 	},
 	onUserBroadcast_function(data){
 		console.log("onUserBroadcast:"+JSON.stringify(data));
@@ -1030,70 +863,6 @@ cc.Class({
 			this.actionFaPai();
 		}
     },
-	actionBiPai(playerPositionServer1,playerPositionServer2,loserPositionServer){
-		cc.log("go into actionBiPai .......");
-    	var size = cc.director.getWinSize();
-		var left_player = null;
-		var right_player = null;
-		
-		for(var i = 0;i < g_players.length;i++){
-			var player_com = g_players[i].getComponent("tdk_player");
-			if(player_com.position_server == playerPositionServer1){
-				left_player = g_players[i];
-			}
-			if(player_com.position_server == playerPositionServer2){
-				right_player = g_players[i];
-			}
-		}
-		//获取三张牌的位置，供以后用
-    	var cardPosition = new Array(3);
-		var left_player_com = left_player.getComponent("tdk_player");
-    	cardPosition[0] = left_player_com.my_cards[0].getPosition();
-    	cardPosition[1] = left_player_com.my_cards[1].getPosition();
-    	cardPosition[2] = left_player_com.my_cards[2].getPosition();
-    	var cardPositionOther = new Array(3);
-		var right_player_com = right_player.getComponent("tdk_player");
-    	cardPositionOther[0] = right_player_com.my_cards[0].getPosition();
-    	cardPositionOther[1] = right_player_com.my_cards[1].getPosition();
-    	cardPositionOther[2] = right_player_com.my_cards[2].getPosition();
-		
-		
-		//添加比牌背景UI
-		this.bipai_ui = cc.instantiate(g_assets["zjhbipai_scene"]);
-		var bipai_ui_com = this.bipai_ui.getComponent("zjh_compare");
-		bipai_ui_com.init_info(left_player_com.nick_name,right_player_com.nick_name);
-		this.node.addChild(this.bipai_ui);
-		this.bipai_ui.setPosition(this.node.convertToNodeSpaceAR(cc.p(size.width/2,size.height/2)));
-		//左面的牌动作
-		for(var j = 0;j < 3;j++){
-			//移动到比牌位置动作
-			var card_pos = bipai_ui_com.get_card_position(bipai_ui_com.left_cards[j]);
-			var bipai_position = cc.p(size.width/2 + card_pos.x,size.height/2 + card_pos.y);
-			var moveToBiPaiPosition = cc.moveTo(1.5,card_pos);
-			//移动到原来的位置
-			var moveToOriginPosition = cc.moveTo(1.5,cardPosition[j]);
-			var _seqBack=cc.sequence(moveToBiPaiPosition,cc.delayTime(2),moveToOriginPosition);
-			left_player_com.my_cards[j].runAction(_seqBack);
-		}
-		//右面的牌动作
-		for(var j = 0;j < 3;j++){
-			//移动到比牌位置动作
-			var card_pos = bipai_ui_com.get_card_position(bipai_ui_com.right_cards[j]);
-			var bipai_position = cc.p(size.width/2 + card_pos.x,size.height/2 + card_pos.y);
-			var moveToBiPaiPosition = cc.moveTo(1.5,card_pos);
-			//移动到原来的位置
-			var moveToOriginPosition = cc.moveTo(1.5,cardPositionOther[j]);
-			var _seqBack=cc.sequence(moveToBiPaiPosition,cc.delayTime(2),moveToOriginPosition);
-			right_player_com.my_cards[j].runAction(_seqBack);
-		}
-    	bipai_ui_com.bipai_start(1.5);
-    	/*回调提示比牌失败者*/
-		cc.log("start go into displayLoser .......");
-    	var displayWaitTime = new cc.DelayTime(4.8);
-    	var setDisplayLoserCallback = cc.callFunc(this.displayLoser,this,loserPositionServer);
-    	this.node.runAction(cc.sequence(displayWaitTime,setDisplayLoserCallback));
-		cc.log("end go into displayLoser .......");
-    },
 	actionBottomBet(player_position){
        var size=cc.director.getVisibleSize();
        var countNumber=-1;
@@ -1177,36 +946,14 @@ cc.Class({
 		this.qiangzhang_button.active = false;
 		this.peipai_button.active = true;
 	},
-	openAllCard:function(mythis,winnerCardType){
+	openAllCard(winners,losers){
         //打开自己的牌
-		var tmp_allplayers = g_players_noPower.concat(g_players);
-		for(var i=0;i<tmp_allplayers.length;i++){
-			var player = tmp_allplayers[i];
+		for(var i=0;i<g_players.length;i++){
+			var player = g_players[i];
 			var player_com = player.getComponent("tdk_player");
-			if(player_com.position_server == g_myselfPlayerPos){
-				if(player_com.check_card == false && player.is_power == 2){
-                    for(var j=0;j<3;j++){
-						var backCardSeq = cc.sequence(cc.delayTime(0.45),cc.hide());
-						var backCamera = cc.rotateBy(0.45,0,-90);
-						var backSpawn = cc.spawn(backCardSeq,backCamera);
-						var frontSeq = cc.sequence(cc.delayTime(0.45),cc.show());
-						var frontCamera = cc.rotateBy(0.6,0,-360);
-						var frontSpawn = cc.spawn(frontSeq,frontCamera);
-						var card = player_com.my_cards[j].getComponent("pj_card");
-                        card.sprite_back.node.runAction(backSpawn);
-                        card.sprite.runAction(frontSpawn);
-                    }
-                }
-                break;
-            }
-        }
-
-        for(var i=0;i<tmp_allplayers.length;i++){
-			var player = tmp_allplayers[i];
-			var player_com = player.getComponent("tdk_player");
-            if(player_com.position_server != g_myselfPlayerPos && player_com.is_power == 2){
-            	for(var j=0;j<3;j++){
-            		var backCardSeq = cc.sequence(cc.delayTime(0.45),cc.hide());
+			if(player_com.position_server != g_myselfPlayerPos){
+				for(var j = 0;j < 4;j++){
+					var backCardSeq = cc.sequence(cc.delayTime(0.45),cc.hide());
 					var backCamera = cc.rotateBy(0.45,0,-90);
 					var backSpawn = cc.spawn(backCardSeq,backCamera);
 					var frontSeq = cc.sequence(cc.delayTime(0.45),cc.show());
@@ -1215,7 +962,7 @@ cc.Class({
 					var card = player_com.my_cards[j].getComponent("pj_card");
 					card.sprite_back.node.runAction(backSpawn);
 					card.sprite.runAction(frontSpawn);
-            	}
+				}
             }
         }
     },
@@ -1291,7 +1038,35 @@ cc.Class({
 		cc.log("calc player_com:" + player_com.player_position +"x:" + x + " y:" + y);
 		return cc.p(x,y);
 	},
-	calc_width_card_position(player,m){
+	calc_hpeipai_position(player,m){
+		var player_com = player.getComponent("tdk_player");
+		var x = 0;
+		var y = 0;
+		var chip_label_x = 0;
+		var chip_label_y = 0;
+		if(player_com.chips_label != null){
+			chip_label_x = player_com.chips_label.getPositionX() + player_com.chips_label.getContentSize().width/2;
+			chip_label_y = player_com.chips_label.getPositionY() + player_com.chips_label.getContentSize().height/2;
+		}else{
+			chip_label_x = player.getPositionX() + player_com.mobile_sprite.node.getContentSize().width/2 + this.pai_back_sprite.node.getContentSize().width;
+			chip_label_y = player.getPositionY() + player_com.mobile_sprite.node.getContentSize().height/2;
+		}
+		if(player_com.player_position == 1 || player_com.player_position == 3){
+			x = chip_label_x + this.pai_back_sprite.node.getContentSize().width / 2 + (this.pai_back_sprite.node.getContentSize().width + 2) * m;
+			y = player.getPositionY();
+		}else if(player_com.player_position == 4){
+			x = player.getPositionX() - player_com.mobile_sprite.node.getContentSize().width/2 + this.pai_back_sprite.node.getContentSize().width/2 + 
+				(this.pai_back_sprite.node.getContentSize().width + 2) * m;
+			y = chip_label_y + this.pai_back_sprite.node.getContentSize().height/2 + 5;
+		}else if(player_com.player_position == 2){
+			x = player.getPositionX() - player_com.mobile_sprite.node.getContentSize().width/2 + this.pai_back_sprite.node.getContentSize().width/2 + 
+				(this.pai_back_sprite.node.getContentSize().width + 2) * (3 - m) + 5;
+			y = chip_label_y + this.pai_back_sprite.node.getContentSize().height/2 + 5;
+		}
+		cc.log("calc player_com:" + player_com.player_position +"x:" + x + " y:" + y);
+		return cc.p(x,y);
+	},
+	calc_wpeipai_position(player,m){
 		var player_com = player.getComponent("tdk_player");
 		var x = 0;
 		var y = 0;
@@ -1312,9 +1087,17 @@ cc.Class({
 			}else{
 				y = player.getPositionY() - this.pai_back_sprite.node.getContentSize().width/2 - 2;
 			}
-		}else if(player_com.player_position == 2 || player_com.player_position == 4){
+		}else if(player_com.player_position == 4){
 			x = player.getPositionX() - player_com.mobile_sprite.node.getContentSize().width/2 + 2 +
 				this.pai_back_sprite.node.getContentSize().width + (this.pai_back_sprite.node.getContentSize().width + 2) +
+				this.pai_back_sprite.node.getContentSize().height/2;
+			if(m == 0){
+				y = chip_label_y + this.pai_back_sprite.node.getContentSize().height/2 + this.pai_back_sprite.node.getContentSize().width/2 + 6;
+			}else{
+				y = chip_label_y + this.pai_back_sprite.node.getContentSize().height/2 - this.pai_back_sprite.node.getContentSize().width/2 + 2;
+			}
+		}else if(player_com.player_position == 2){
+			x = player.getPositionX() - player_com.mobile_sprite.node.getContentSize().width/2 +
 				this.pai_back_sprite.node.getContentSize().height/2;
 			if(m == 0){
 				y = chip_label_y + this.pai_back_sprite.node.getContentSize().height/2 + this.pai_back_sprite.node.getContentSize().width/2 + 6;
@@ -1418,7 +1201,7 @@ cc.Class({
 		cc.log("set_cards_w:" + cards.length);
 		for(var i = 0;i < cards.length;i++){
 			var card = cards[i];
-			var pos = this.calc_width_card_position(player,i);
+			var pos = this.calc_wpeipai_position(player,i);
 			var acMoveTo = cc.moveTo(0.45,pos);
 			var acrotateBy = cc.rotateBy(0.45,90,90);
 			var action_spawn = cc.spawn(acMoveTo,acrotateBy);
@@ -1429,7 +1212,7 @@ cc.Class({
 		cc.log("set_cards_h:" + cards.length);
 		for(var i = 0;i < cards.length;i++){
 			var card = cards[i];
-			var pos = this.calc_player_card_position(player,i);
+			var pos = this.calc_hpeipai_position(player,i);
 			var acMoveTo = cc.moveTo(0.45,pos);
 			card.runAction(acMoveTo);
 		}

@@ -34,20 +34,68 @@ var g_paixing = {
 var g_peipai_data1 = {
 	"location":1,
 	"first":true,
-	"select":[1,2]
+	"select":[1,2],
+	"unpei":3,
 };
 var g_peipai_data2 = {
 	"location":2,
 	"first":true,
-	"select":[1,2]
+	"select":[1,2],
+	"unpei":2,
 };
 var g_peipai_data3 = {
 	"location":3,
 	"first":true,
-	"select":[1,2]
+	"select":[1,2],
+	"unpei":1,
 };
 var g_peipai_data4 = {
 	"location":4,
 	"first":true,
-	"select":[1,2]
+	"select":[1,2],
+	"unpei":0,
 };
+g_endpai_data = {
+	"winners":[],
+	"losers":[2,3,4],
+	"location1":{
+		"s1":1,
+		"p1":2,
+		"s2":1,
+		"p2":3,
+		"s3":1,
+		"p3":4,
+		"s4":1,
+		"p4":5
+	},
+	"location2":{
+		"s1":1,
+		"p1":2,
+		"s2":1,
+		"p2":3,
+		"s3":1,
+		"p3":4,
+		"s4":1,
+		"p4":5
+	},
+	"location3":{
+		"s1":1,
+		"p1":2,
+		"s2":1,
+		"p2":3,
+		"s3":1,
+		"p3":4,
+		"s4":1,
+		"p4":5
+	},
+	"location4":{
+		"s1":1,
+		"p1":2,
+		"s2":1,
+		"p2":3,
+		"s3":1,
+		"p3":4,
+		"s4":1,
+		"p4":5
+	}
+}
