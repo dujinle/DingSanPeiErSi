@@ -21,7 +21,7 @@
     "_active": true,
     "_components": [],
     "_prefab": null,
-    "_id": "37e1b94c-4107-493c-9fa4-ea8c9219d802",
+    "_id": "1febb1d3-dbb1-45fc-a524-410a00efcc80",
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
@@ -53,16 +53,16 @@
     "_parent": {
       "__id__": 1
     },
-    "_id": "f8JsJWHQ1LV4fP7G2OsPj8",
+    "_id": "04dW1+uBNO/I1n7ingfe6V",
     "_prefab": {
       "__id__": 3
     },
-    "_name": "chip_800",
+    "_name": "pj_card",
     "_active": true,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 39,
-      "y": 40
+      "x": 20,
+      "y": 42.5
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -75,9 +75,9 @@
       "__id__": 2
     },
     "asset": {
-      "__uuid__": "54ab89ce-8e15-4bbe-a350-9b23d50316d0"
+      "__uuid__": "fa412c09-821a-4574-9d53-51344b4e47ae"
     },
-    "fileId": "f8JsJWHQ1LV4fP7G2OsPj8",
+    "fileId": "04dW1+uBNO/I1n7ingfe6V",
     "sync": true
   }
 ]

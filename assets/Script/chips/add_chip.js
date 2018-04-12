@@ -2,12 +2,12 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-		callback:null,
+		silder_num1:0,
+		silder_num2:0,
     },
     onLoad () {
 		cc.log("start go into pop add chip js");
 		var self = this;
-		self.node.on("pressed", self.switchRadio, self);
         cc.eventManager.addListener({
             event: cc.EventListener.TOUCH_ONE_BY_ONE,
             swallowTouches: true,
@@ -31,14 +31,12 @@ cc.Class({
 			}
          }, this.node);
 	},
-	set_callback(callback){
-		this.callback = callback;
+	silder1_callback(slider, customEventData){
+		this.silder_num1 = slider.progress;
+		cc.log("silder1:" + this.silder_num1);
 	},
-	switchRadio(event) {
-        var index = event.target.getComponent("one_choice").index;
-		var type = event.target.getComponent("one_choice").type;
-		cc.log("switchRadio : index:" + index + " type:" + type);
-		this.callback(index);
-		this.node.destroy();
-    },
+	silder2_callback(slider, customEventData){
+		this.silder_num2 = slider.progress;
+		cc.log("silder1:" + this.silder_num2);
+	},
 });

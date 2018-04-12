@@ -5,23 +5,27 @@ cc.Class({
 		id:0,
 		nick_name:null,
 		my_gold:0,
-		my_scole:0,
+		my_chip1:0,
+		my_chip2:0,
 		position_server:0,
-		statusTag:null,
 		player_position:0,
 		check_card:false,
 		is_power:0,
-		abandon:false,
 		mobile_sprite:cc.Sprite,
 		counter_timer:cc.Node,
 		status_sprite:cc.Sprite,
+		game_sprite:cc.Sprite,
 		nick_name_label:cc.Label,
+		chips_label:cc.Node,
 		gold_label:cc.Label,
-		equalCard:null,
 		my_cards:{
 			type:cc.Node,
 			default:[]
 		},
+		selected_cards:{
+			type:cc.Node,
+			default:[]
+		}
     },
 	init(params){
 		cc.log("tdk_player init: " + JSON.stringify(params));
@@ -32,7 +36,6 @@ cc.Class({
 		this.my_gold = params[4];
 		this.nick_name_label.getComponent(cc.Label).string = this.nick_name;
 		this.gold_label.getComponent(cc.Label).string = this.my_gold;
-		this.init_cards_info(params[6]);
 	},
 	start_timer(){
 		var count_timer = this.counter_timer.getComponent("count_timer");
@@ -44,57 +47,68 @@ cc.Class({
 	},
     setSpriteStatus(status){
 		console.log("zjh_player setSpriteStatus:" + status);
-		this.statusTag = status;
 		this.status_sprite.spriteFrame = g_assets[status];
 		this.status_sprite.node.active = true;
 	},
-	
-	init_cards_info(paiXing){
-        this.my_cards = new Array();
-		if(paiXing != null && paiXing != "null"){
-			for(var i = 1;i < 6;i++){
-				var p = paiXing["p" + i];
-				var s = paiXing["s" + i];
-				console.log("p:" + p + " s:" + s);
-				if(p){
-					var card = cc.instantiate(g_assets["zjh_card"]);
-					var card_com = card.getComponent("zjh_card");
-					card_com.initCardSprite(parseInt(s),parseInt(p));
-					this.node.parent.addChild(card);
-					this.my_cards.push(card);
-				}else{
+	install_chip_label(){
+		cc.log("install_chip_label");
+		if(this.player_position == 2 || this.player_position == 4){
+			cc.log("install chips_label w");
+			this.chips_label = cc.instantiate(g_assets["chips_label_w"]);
+		}else if(this.player_position == 1 || this.player_position == 3){
+			cc.log("install chips_label h");
+			this.chips_label = cc.instantiate(g_assets["chips_label_h"]);
+		}
+		this.node.parent.addChild(this.chips_label);
+		var label_1 = this.chips_label.getChildByName("zhu1");
+		label_1.getComponent(cc.Label).string = 0;
+		var label_2 = this.chips_label.getChildByName("zhu2");
+		label_2.getComponent(cc.Label).string = 0;
+	},
+	set_chips(idx,chip){
+		cc.log("set_chips idx:" + idx + " chip:" + chip);
+		if(idx == 1){
+			var label_1 = this.chips_label.getChildByName("zhu1");
+			label_1.getComponent(cc.Label).string = chip;
+			this.my_chip1 = chip;
+		}else if(idx == 2){
+			var label_2 = this.chips_label.getChildByName("zhu2");
+			label_2.getComponent(cc.Label).string = chip;
+			this.my_chip2 = chip;
+		}
+	},
+	remove_select_cards(){
+		for(var i = 0;i < this.selected_cards.length;i++){
+			var selectCard = this.selected_cards[i];
+			for(var j = 0;j < this.my_cards.length;j++){
+				if(selectCard == this.my_cards[j]){
+					this.my_cards.splice(j,1);
 					break;
 				}
 			}
 		}
-    },
+		this.selected_cards.splice(0,this.selected_cards.length);
+	},
+	resetSelectCard(){
+		for(var i = 0;i < this.selected_cards.length;i++){
+			var card_t = this.selected_cards[i];
+			var card_com = card_t.getComponent("zhq_card");
+			card_com.menuCallbackButton();
+		}
+		this.selected_cards.splice(0,this.selected_cards.length);
+	},
 	addPlayerCard(){
-		var card = cc.instantiate(g_assets["zjh_card"]);
+		var card = cc.instantiate(g_assets["pj_card"]);
+		var card_com = card.getComponent("pj_card");
+		card_com.id = this.my_cards.length;
 		this.node.parent.addChild(card);
 		this.my_cards.push(card);
+		return card;
 	},
-	addEqualCard(){
-		this.equalCard = cc.instantiate(g_assets["zjh_card"]);
-		this.node.parent.addChild(this.equalCard);
-		return this.equalCard;
-	},
-	init_cards(card_num){
-		for(var i = 0;i < card_num;i++){
-			var card = cc.instantiate(g_assets["zjh_card"]);
-			this.node.parent.addChild(card);
-			this.my_cards.push(card);
-		}
-    },
 	set_card_sprite(idx,suit,rank){
-		var card = this.my_cards[idx].getComponent("zjh_card");
+		cc.log("set_card_sprite: idx" + idx + " suit:" + suit + " rank:" + rank);
+		var card = this.my_cards[idx].getComponent("pj_card");
 		card.initCardSprite(suit,rank);
-	},
-	get_last_card(){
-		var last_card = null;
-		for(var i = 0;i < this.my_cards.length;i++){
-			last_card = this.my_cards[i];
-		}
-		return last_card;
 	},
 	remove_cards(){
 		for(var i = 0;i < this.my_cards.length;i++){
@@ -105,6 +119,9 @@ cc.Class({
 	},
 	hide_status_sprite(){
 		this.status_sprite.node.active = false;
+	},
+	hide_game_sprite(){
+		this.game_sprite.node.active = false;
 	},
 	resetMoneyLabel(money){
 		this.my_gold = money;
