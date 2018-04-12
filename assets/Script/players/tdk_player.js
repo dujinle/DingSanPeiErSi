@@ -50,6 +50,11 @@ cc.Class({
 		this.status_sprite.spriteFrame = g_assets[status];
 		this.status_sprite.node.active = true;
 	},
+	setGameStatus(status){
+		console.log("zjh_player setSpriteStatus:" + status);
+		this.game_sprite.spriteFrame = g_assets[status];
+		this.game_sprite.node.active = true;
+	},
 	install_chip_label(){
 		cc.log("install_chip_label");
 		if(this.player_position == 2 || this.player_position == 4){

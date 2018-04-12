@@ -316,7 +316,7 @@ cc.Class({
 		*/
 		//for test
 		this.onEndPai_function(g_endpai_data);
-		//this.onEnd_function(g_peipai_data);
+		this.onEnd_function(g_end_data);
 	},
 	callback_setting(){
 		var self = this;
@@ -644,49 +644,39 @@ cc.Class({
 	},
 	onEnd_function(data){
 		cc.log("onEnd:" + JSON.stringify(data));
-		var all_players = g_players.concat(g_players_noPower);
-		var playerPositionServer = data["winner"];
-		for(var i = 0;i < all_players.length;i++){
-			var player = all_players[i];
+		//获胜者的牌型
+		var winners = data["winners"];
+		var losers = data["losers"];
+		for(var i = 0;i < g_players.length;i++){
+			var player = g_players[i];
 			var player_com = player.getComponent("tdk_player");
-			if(player_com.position_server == playerPositionServer){
-				//如果房间属于比牌状态，需要等到比牌动作完成才执行获取金币动作
-				if(this.comparableState == true){
-					if(this.bipai_ui.isValid == true){
-						var compareTime = 4.8 - this.bipai_ui.getComponent("zjh_compare").get_cur_time();
-
-						var waitGetBetTime=new cc.DelayTime(compareTime);
-						var callBackWinnerGetBet= cc.callFunc(
-							this.actionWinnerGetBet,this,player.getPosition());
-						this.runAction(cc.sequence(waitGetBetTime,callBackWinnerGetBet));
-						cc.log("compareTime:" + compareTime);
-					}else{
-						this.actionWinnerGetBet(this,player.getPosition());
-					}
-				}else{
-					this.actionWinnerGetBet(this,player.getPosition());
+			for(var j = 0;j < winners.length;j++){
+				if(player_com.position_server == winners[j]){
+					player_com.setGameStatus("winner");
 				}
-				player_com.resetMoneyLabel(player_com.my_gold + parseInt(data["all_chip"]));
-				break;
 			}
+			for(var j = 0;j < losers.length;j++){
+				if(player_com.position_server == losers[j]){
+					player_com.setGameStatus("loser");
+				}
+			}
+			//this.actionWinnerGetBet(this,player.getPosition());
+			//player_com.resetMoneyLabel(player_com.my_gold + parseInt(data["all_chip"]));
 		}
-		/* 结束则把玩家放入noPower中*/
+		/* 结束则把玩家放入noPower中
 		for(var i = 0;i < g_players.length;i++){
 			g_players_noPower.push(g_players[i]);
 		}
 		g_players.splice(0,g_players.length);
+		*/
 	},
 	onEndPai_function(data){
 		cc.log("onEndPai:"+JSON.stringify(data));
-		//获胜者的牌型
-		var winners = data["winners"];
-		var losers = data["losers"];
 		//位置1的牌型
 		for(i = 1; i < 5; i++){
 			var cardString = data["location" + i];
 			if(g_myselfPlayerPos != i){
 				console.log("location:num:" + i);
-				cardString=JSON.parse(cardString);
 				var tmp_card = new Array();
 				
 				var suit1=cardString["s1"];
@@ -711,7 +701,7 @@ cc.Class({
 			}
 		}
 		/*打开所有牌的*/
-		this.openAllCard(winners,losers);
+		this.openAllCard();
 	},
 	onUserBroadcast_function(data){
 		console.log("onUserBroadcast:"+JSON.stringify(data));
@@ -946,7 +936,7 @@ cc.Class({
 		this.qiangzhang_button.active = false;
 		this.peipai_button.active = true;
 	},
-	openAllCard(winners,losers){
+	openAllCard(){
         //打开自己的牌
 		for(var i=0;i<g_players.length;i++){
 			var player = g_players[i];

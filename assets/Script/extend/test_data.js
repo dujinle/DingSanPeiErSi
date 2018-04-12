@@ -53,21 +53,14 @@ var g_peipai_data4 = {
 	"location":4,
 	"first":true,
 	"select":[1,2],
-	"unpei":0,
+	"unpei":0
 };
+
 g_endpai_data = {
 	"winners":[],
 	"losers":[2,3,4],
-	"location1":{
-		"s1":1,
-		"p1":2,
-		"s2":1,
-		"p2":3,
-		"s3":1,
-		"p3":4,
-		"s4":1,
-		"p4":5
-	},
+	"location1":"s1:1,p1:2,s2:1,p2:3,s3:1,p3:4,s4:1,p4:5",
+	"location1":"s1:1,p1:2,s2:1,p2:3,s3:1,p3:4,s4:1,p4:5",
 	"location2":{
 		"s1":1,
 		"p1":2,
@@ -98,4 +91,9 @@ g_endpai_data = {
 		"s4":1,
 		"p4":5
 	}
-}
+};
+
+g_end_data = {
+	"winners":[],
+	"losers":[2,3,4]
+};
