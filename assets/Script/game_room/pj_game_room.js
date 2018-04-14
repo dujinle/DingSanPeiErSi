@@ -989,17 +989,17 @@ cc.Class({
 		var x = 0;
 		var y = 0;
 		if(player_com.player_position == 1){
-			x = player.getPositionX() + player_com.mobile_sprite.node.getContentSize().width/2 + 30;
+			x = player.getPositionX() + player_com.mobile_sprite.node.getContentSize().width/2 + player_com.chips_label.getContentSize().width /2 + 10;
 			y = player.getPositionY();
 		}else if(player_com.player_position == 2){
 			x = player.getPositionX();
-			y = player.getPositionY() + player_com.mobile_sprite.node.height/2 + 30;
+			y = player.getPositionY() + player_com.mobile_sprite.node.height/2 + player_com.chips_label.getContentSize().height /2 + 10;
 		}else if(player_com.player_position == 3){
-			x = player.getPositionX() + player_com.mobile_sprite.node.getContentSize().width/2 + 30;
+			x = player.getPositionX() + player_com.mobile_sprite.node.getContentSize().width/2 + player_com.chips_label.getContentSize().width /2 + 10;
 			y = player.getPositionY();
 		}else if(player_com.player_position == 4){
 			x = player.getPositionX();
-			y = player.getPositionY() + player_com.mobile_sprite.node.height/2 + 30;
+			y = player.getPositionY() + player_com.mobile_sprite.node.height/2 + player_com.chips_label.getContentSize().height /2 + 10;
 		}
 		cc.log("calc x:" + x + " y:" + y);
 		return cc.p(x,y);
@@ -1142,9 +1142,6 @@ cc.Class({
                 break;
             }
         }
-    },
-	setRoomStateCompare(){
-        this.comparableState=false;
     },
 	actionWinnerGetBet(my_this,playerPosition){
         for(var j in this.betPhotoArray){
