@@ -47,7 +47,6 @@ cc.Class({
 		this.startDealCardPosition = 0;
 		this.myselfCards = new Array();
 		this.init_head_info();
-		this.chip_layout.active = false;
 		this.initButtonEnableAfterComeInRoom();
 		this.initPlayersAndPlayer_noPower();
 		this.schedule(this.showRoomMessageUpdate,1.0/60,cc.REPEAT_FOREVER,0);
@@ -222,7 +221,23 @@ cc.Class({
     },
 	callback_xiazhu(){
 		this.xiazhu_button.getComponent(cc.Button).interactable = false;
-		this.chip_layout.active = true;
+		//find myself player
+		this.chip_layout = cc.instantiate(g_assets["pop_add_chip"]);
+		var chip_layout_com = this.chip_layout.getComponent("add_chip");
+		chip_layout_com.init_callback(this,this.silder_callback);
+		this.node.addChild(this.chip_layout);
+		
+		for(var i = 0;i < g_players.length;i++){
+			var player = g_players[i];
+			var player_com = player.getComponent("tdk_player");
+			if(player_com.position_server == g_myselfPlayerPos){
+				var x = 0;
+				var y = this.button_layout.getPositionY() + this.button_layout.getContentSize().height/2 + 10 + this.chip_layout.getContentSize().height/2;
+				this.chip_layout.setPosition(cc.p(x,y));
+				break;
+			}
+		}
+		
 		//this.qiangzhang_button.active = true;
 		/*
 		pomelo.request(util.getGameRoute(),{
@@ -1216,6 +1231,9 @@ cc.Class({
 				player_com.is_power = 1;
 				player_com.setSpriteStatus(mens[men_idx]);
 				player_com.resetMoneyLabel(this.sumBet);
+				player_com.install_chip_label(true);
+				var pos = this.calc_player_chip_position(player);
+				player_com.chips_label.setPosition(pos);
 				next_position = next_position + 1;
 				men_idx = men_idx + 1;
 				break;
@@ -1232,7 +1250,7 @@ cc.Class({
 				player_com.setSpriteStatus(mens[men_idx]);
 				next_position = next_position + 1;
 				men_idx = men_idx + 1;
-				player_com.install_chip_label();
+				player_com.install_chip_label(false);
 				var pos = this.calc_player_chip_position(player);
 				player_com.chips_label.setPosition(pos);
 			}
@@ -1240,25 +1258,14 @@ cc.Class({
 		this.button_layout.active = false;
 		this.button2_layout.active = true;
 	},
-	silder1_callback(slider, customEventData){
-		var chip = Math.floor(slider.progress * this.sumBet);
-		cc.log("silder1:" + chip);
+	silder_callback(pthis,idx,silder_progress){
+		var chip = Math.floor(silder_progress * pthis.sumBet);
+		cc.log("pj_game_scene silder1:" + chip);
 		for(var i = 0;i < g_players.length;i++){
 			var player = g_players[i];
 			var player_com = player.getComponent("tdk_player");
-			if(player_com.position_server != this.zhuang_serverPosition){
-				player_com.set_chips(1,chip);
-			}
-		}
-	},
-	silder2_callback(slider, customEventData){
-		var chip = Math.floor(slider.progress * this.sumBet);
-		cc.log("silder1:" + chip);
-		for(var i = 0;i < g_players.length;i++){
-			var player = g_players[i];
-			var player_com = player.getComponent("tdk_player");
-			if(player_com.position_server != this.zhuang_serverPosition){
-				player_com.set_chips(2,chip);
+			if(player_com.position_server != pthis.zhuang_serverPosition){
+				player_com.set_chips(idx,chip);
 			}
 		}
 	},

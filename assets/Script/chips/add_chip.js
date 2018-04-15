@@ -4,6 +4,8 @@ cc.Class({
     properties: {
 		silder_num1:0,
 		silder_num2:0,
+		callback:null,
+		pthis:null,
     },
     onLoad () {
 		cc.log("start go into pop add chip js");
@@ -31,12 +33,18 @@ cc.Class({
 			}
          }, this.node);
 	},
+	init_callback(pthis,callback){
+		this.pthis = pthis;
+		this.callback = callback;
+	},
 	silder1_callback(slider, customEventData){
 		this.silder_num1 = slider.progress;
 		cc.log("silder1:" + this.silder_num1);
+		this.callback(this.pthis,1,this.silder_num1);
 	},
 	silder2_callback(slider, customEventData){
 		this.silder_num2 = slider.progress;
 		cc.log("silder1:" + this.silder_num2);
+		this.callback(this.pthis,2,this.silder_num2);
 	},
 });

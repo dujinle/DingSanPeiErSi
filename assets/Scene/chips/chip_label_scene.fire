@@ -66,13 +66,16 @@
       },
       {
         "__id__": 9
+      },
+      {
+        "__id__": 11
       }
     ],
     "_tag": -1,
     "_active": true,
     "_components": [
       {
-        "__id__": 11
+        "__id__": 13
       }
     ],
     "_prefab": null,
@@ -242,6 +245,39 @@
       "__uuid__": "f891a071-7083-4190-ac49-a3d34672425f"
     },
     "fileId": "6eEu2v0bpID7oW1lCDaTTk",
+    "sync": true
+  },
+  {
+    "__type__": "cc.Node",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 2
+    },
+    "_id": "adSIEBp0pGIrQKFvL48812",
+    "_prefab": {
+      "__id__": 12
+    },
+    "_name": "chip_bg_zhuang",
+    "_active": true,
+    "_position": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_rotationX": 0,
+    "_rotationY": 0,
+    "_localZOrder": 0,
+    "_globalZOrder": 0
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 11
+    },
+    "asset": {
+      "__uuid__": "d681cfcb-3824-4b41-b860-cbbeba9384ac"
+    },
+    "fileId": "adSIEBp0pGIrQKFvL48812",
     "sync": true
   },
   {

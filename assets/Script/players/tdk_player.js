@@ -55,9 +55,12 @@ cc.Class({
 		this.game_sprite.spriteFrame = g_assets[status];
 		this.game_sprite.node.active = true;
 	},
-	install_chip_label(){
+	install_chip_label(flag){
 		cc.log("install_chip_label");
-		if(this.player_position == 1){
+		if(flag == true){
+			cc.log("install chips_label zhuang");
+			this.chips_label = cc.instantiate(g_assets["chip_bg_zhuang"]);
+		}else if(this.player_position == 1){
 			cc.log("install chips_label 1");
 			this.chips_label = cc.instantiate(g_assets["chip_bg_1"]);
 		}else if(this.player_position == 2){
@@ -70,11 +73,14 @@ cc.Class({
 			cc.log("install chips_label 4");
 			this.chips_label = cc.instantiate(g_assets["chip_bg_4"]);
 		}
+
 		this.node.parent.addChild(this.chips_label);
-		var label_1 = this.chips_label.getChildByName("chip_up");
-		label_1.getComponent(cc.Label).string = 0;
-		var label_2 = this.chips_label.getChildByName("chip_down");
-		label_2.getComponent(cc.Label).string = 0;
+		if(flag == false){
+			var label_1 = this.chips_label.getChildByName("chip_up");
+			label_1.getComponent(cc.Label).string = 0;
+			var label_2 = this.chips_label.getChildByName("chip_down");
+			label_2.getComponent(cc.Label).string = 0;
+		}
 	},
 	set_chips(idx,chip){
 		cc.log("set_chips idx:" + idx + " chip:" + chip);
