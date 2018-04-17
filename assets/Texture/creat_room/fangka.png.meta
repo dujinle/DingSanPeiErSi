@@ -1,14 +1,14 @@
 {
   "ver": "1.0.0",
-  "uuid": "1ace19d7-2ac5-4e53-be0f-6e0c931d7d07",
+  "uuid": "f11bf3ed-230a-4b0a-998b-7041e2417ba0",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "subMetas": {
-    "zjh_room_bg": {
+    "fangka": {
       "ver": "1.0.3",
-      "uuid": "8476af36-3729-4156-9f93-f144fe845125",
-      "rawTextureUuid": "1ace19d7-2ac5-4e53-be0f-6e0c931d7d07",
+      "uuid": "44f27446-b50d-4e6b-8b35-82cc8e14f690",
+      "rawTextureUuid": "f11bf3ed-230a-4b0a-998b-7041e2417ba0",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -16,10 +16,10 @@
       "offsetY": 0,
       "trimX": 0,
       "trimY": 0,
-      "width": 720,
-      "height": 589,
-      "rawWidth": 720,
-      "rawHeight": 589,
+      "width": 40,
+      "height": 26,
+      "rawWidth": 40,
+      "rawHeight": 26,
       "borderTop": 0,
       "borderBottom": 0,
       "borderLeft": 0,
