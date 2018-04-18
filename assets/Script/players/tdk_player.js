@@ -5,6 +5,7 @@ cc.Class({
 		id:0,
 		nick_name:null,
 		my_gold:0,
+		start_gold:0,
 		my_chip1:0,
 		my_chip2:0,
 		position_server:0,

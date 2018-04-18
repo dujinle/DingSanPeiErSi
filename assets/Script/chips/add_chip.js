@@ -9,6 +9,7 @@ cc.Class({
     },
     onLoad () {
 		cc.log("start go into pop add chip js");
+		/*
 		var self = this;
         cc.eventManager.addListener({
             event: cc.EventListener.TOUCH_ONE_BY_ONE,
@@ -28,10 +29,10 @@ cc.Class({
 					cc.log("ok touch in the region......");
 				}else{
 					cc.log("touch remove from parent");
-					self.node.active = false;
 				}
 			}
          }, this.node);
+		 */
 	},
 	init_callback(pthis,callback){
 		this.pthis = pthis;

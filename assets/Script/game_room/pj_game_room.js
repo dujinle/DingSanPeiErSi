@@ -21,7 +21,6 @@ cc.Class({
 		chip_layout:cc.Node,
 		//buttons for game
 		button_layout:cc.Node,
-		button2_layout:cc.Node,
 		zhunbei_button:cc.Node,
 		qiangzhang_button:cc.Node,
 		xiazhu_button:cc.Node,
@@ -106,13 +105,7 @@ cc.Class({
 		*/
 	},
 	initButtonEnableAfterComeInRoom(){
-		this.button_layout.active = true;
-		this.button2_layout.active = false;
-		this.zhunbei_button.active = true;
-		this.qiangzhang_button.active = false;
-		this.peipai_button.active = false;
-		this.kaipai_button.active = false;
-		this.zhunbei_button.getComponent(cc.Button).interactable = true;
+		this.get_one_button("ready",true);
     },
     initPlayersAndPlayer_noPower(){
 		cc.log("initPlayersAndPlayer_noPower" + JSON.stringify(g_playerData));
@@ -180,10 +173,36 @@ cc.Class({
         }
 	},
 	
+	get_one_button(status,flag = false){
+		this.button_layout.active = true;
+		this.zhunbei_button.active = false;
+		this.qiangzhang_button.active = false;
+		this.peipai_button.active = false;
+		this.kaipai_button.active = false;
+		this.queding_button.active = false;
+		this.xiazhu_button.active = false;
+		var my_button = this.zhunbei_button;
+		
+		if(status == "ready"){
+			my_button = this.zhunbei_button;
+		}else if(status == "qiang"){
+			my_button = this.qiangzhang_button;
+		}else if(status == "peipai"){
+			my_button = this.peipai_button;
+		}else if(status == "kaipai"){
+			my_button = this.kaipai_button;
+		}else if(status == "queding"){
+			my_button = this.queding_button;
+		}else if(status == "xiazhu"){
+			my_button = this.xiazhu_button;
+		}
+		
+		my_button.active = true;
+		my_button.getComponent(cc.Button).interactable = flag;
+	},
 	//按钮回调函数
 	callback_zhunbei(){
 		this.zhunbei_button.active = false;
-		this.qiangzhang_button.active = true;
 		/*
 		pomelo.request(util.getGameRoute(),{
 			process:"ready",
@@ -199,6 +218,7 @@ cc.Class({
 			for(var i = 1;i < 4;i++){
 				self.onReady_function({'location':i + 1});
 			}
+			self.get_one_button("qiang",true);
 		})));
     },
 	callback_qiangzhuang(){
@@ -237,7 +257,7 @@ cc.Class({
 				break;
 			}
 		}
-		
+		this.get_one_button("queding",false);
 		//this.qiangzhang_button.active = true;
 		/*
 		pomelo.request(util.getGameRoute(),{
@@ -252,8 +272,7 @@ cc.Class({
 	callback_queding(){
 		//this.xiazhu_button.active = false
 		this.chip_layout.active = false;
-		this.button2_layout.active = false;
-		//this.queding_button
+		this.queding_button.active = false;
 		//this.qiangzhang_button.active = true;
 		/*
 		pomelo.request(util.getGameRoute(),{
@@ -1023,22 +1042,20 @@ cc.Class({
 		var player_com = player.getComponent("tdk_player");
 		var x = 0;
 		var y = 0;
-		var chip_label_x = 0;
-		var chip_label_y = 0;
-		if(player_com.chips_label != null){
-			chip_label_x = player_com.chips_label.getPositionX() + player_com.chips_label.getContentSize().width/2;
-			chip_label_y = player_com.chips_label.getPositionY() + player_com.chips_label.getContentSize().height/2;
-		}else{
-			chip_label_x = player.getPositionX() + player_com.mobile_sprite.node.getContentSize().width/2 + this.pai_back_sprite.node.getContentSize().width;
-			chip_label_y = player.getPositionY() + player_com.mobile_sprite.node.getContentSize().height/2;
+		var extend = 0;
+		if(player_com.position_server == this.zhuang_serverPosition){
+			extend = -this.pai_back_sprite.node.getContentSize().width;
 		}
 		if(player_com.player_position == 1 || player_com.player_position == 3){
-			x = chip_label_x + this.pai_back_sprite.node.getContentSize().width / 2 + (this.pai_back_sprite.node.getContentSize().width + 2) * m;
-			y = player.getPositionY();
-		}else if(player_com.player_position == 2 || player_com.player_position == 4){
-			x = player.getPositionX() - player_com.mobile_sprite.node.getContentSize().width/2 + this.pai_back_sprite.node.getContentSize().width/2 + 
+			x = player_com.chips_label.getPositionX() - player_com.chips_label.getContentSize().width/2 +
+				this.pai_back_sprite.node.getContentSize().width/2 + 60 + extend +
 				(this.pai_back_sprite.node.getContentSize().width + 2) * m;
-			y = chip_label_y + this.pai_back_sprite.node.getContentSize().height/2 + 5;
+			y = player_com.chips_label.getPositionY();
+		}else if(player_com.player_position == 2 || player_com.player_position == 4){
+			x = player_com.chips_label.getPositionX() - player_com.chips_label.getContentSize().width/2 +
+				this.pai_back_sprite.node.getContentSize().width +
+				(this.pai_back_sprite.node.getContentSize().width + 2) * m;
+			y = player_com.chips_label.getPositionY() + this.pai_back_sprite.node.getContentSize().width / 2 + extend;
 		}
 		cc.log("calc player_com:" + player_com.player_position +"x:" + x + " y:" + y);
 		return cc.p(x,y);
@@ -1047,26 +1064,25 @@ cc.Class({
 		var player_com = player.getComponent("tdk_player");
 		var x = 0;
 		var y = 0;
-		var chip_label_x = 0;
-		var chip_label_y = 0;
-		if(player_com.chips_label != null){
-			chip_label_x = player_com.chips_label.getPositionX() + player_com.chips_label.getContentSize().width/2;
-			chip_label_y = player_com.chips_label.getPositionY() + player_com.chips_label.getContentSize().height/2;
-		}else{
-			chip_label_x = player.getPositionX() + player_com.mobile_sprite.node.getContentSize().width/2 + this.pai_back_sprite.node.getContentSize().width;
-			chip_label_y = player.getPositionY() + player_com.mobile_sprite.node.getContentSize().height/2;
+		var extend = 0;
+		if(player_com.position_server == this.zhuang_serverPosition){
+			extend = -this.pai_back_sprite.node.getContentSize().width;
 		}
 		if(player_com.player_position == 1 || player_com.player_position == 3){
-			x = chip_label_x + this.pai_back_sprite.node.getContentSize().width / 2 + (this.pai_back_sprite.node.getContentSize().width + 2) * m;
-			y = player.getPositionY();
-		}else if(player_com.player_position == 4){
-			x = player.getPositionX() - player_com.mobile_sprite.node.getContentSize().width/2 + this.pai_back_sprite.node.getContentSize().width/2 + 
+			x = player_com.chips_label.getPositionX() - player_com.chips_label.getContentSize().width/2 +
+				this.pai_back_sprite.node.getContentSize().width/2 + 60 + extend +
 				(this.pai_back_sprite.node.getContentSize().width + 2) * m;
-			y = chip_label_y + this.pai_back_sprite.node.getContentSize().height/2 + 5;
+			y = player_com.chips_label.getPositionY();
 		}else if(player_com.player_position == 2){
-			x = player.getPositionX() - player_com.mobile_sprite.node.getContentSize().width/2 + this.pai_back_sprite.node.getContentSize().width/2 + 
-				(this.pai_back_sprite.node.getContentSize().width + 2) * (3 - m) + 5;
-			y = chip_label_y + this.pai_back_sprite.node.getContentSize().height/2 + 5;
+			x = player_com.chips_label.getPositionX() - player_com.chips_label.getContentSize().width/2 +
+				this.pai_back_sprite.node.getContentSize().width +
+				(this.pai_back_sprite.node.getContentSize().width + 2) * (m + 2);
+			y = player_com.chips_label.getPositionY() + this.pai_back_sprite.node.getContentSize().width / 2 + extend;
+		}else if(player_com.player_position == 4){
+			x = player_com.chips_label.getPositionX() - player_com.chips_label.getContentSize().width/2 +
+				this.pai_back_sprite.node.getContentSize().width +
+				(this.pai_back_sprite.node.getContentSize().width + 2) * m;
+			y = player_com.chips_label.getPositionY() + this.pai_back_sprite.node.getContentSize().width / 2 + extend;
 		}
 		cc.log("calc player_com:" + player_com.player_position +"x:" + x + " y:" + y);
 		return cc.p(x,y);
@@ -1075,60 +1091,42 @@ cc.Class({
 		var player_com = player.getComponent("tdk_player");
 		var x = 0;
 		var y = 0;
-		var chip_label_x = 0;
-		var chip_label_y = 0;
-		if(player_com.chips_label != null){
-			chip_label_x = player_com.chips_label.getPositionX() + player_com.chips_label.getContentSize().width/2;
-			chip_label_y = player_com.chips_label.getPositionY() + player_com.chips_label.getContentSize().height/2;
-		}else{
-			chip_label_x = player.getPositionX() + player_com.mobile_sprite.node.getContentSize().width/2 + this.pai_back_sprite.node.getContentSize().width;
-			chip_label_y = player.getPositionY() + player_com.mobile_sprite.node.getContentSize().height/2;
+		var extend = 0;
+		if(player_com.position_server == this.zhuang_serverPosition){
+			extend = -this.pai_back_sprite.node.getContentSize().width;
 		}
 		if(player_com.player_position == 1 || player_com.player_position == 3){
-			x = chip_label_x + this.pai_back_sprite.node.getContentSize().width + (this.pai_back_sprite.node.getContentSize().width + 2) +
-				this.pai_back_sprite.node.getContentSize().height/2 + 2;
+			x = player_com.chips_label.getPositionX() - player_com.chips_label.getContentSize().width/2 +
+				this.pai_back_sprite.node.getContentSize().width + 60 + extend +
+				(this.pai_back_sprite.node.getContentSize().width + 2) + this.pai_back_sprite.node.getContentSize().height/2 + 2;
 			if(m == 0){
-				y = player.getPositionY() + this.pai_back_sprite.node.getContentSize().width/2 + 2;
+				y = player_com.chips_label.getPositionY() + this.pai_back_sprite.node.getContentSize().width/2 + 2;
 			}else{
-				y = player.getPositionY() - this.pai_back_sprite.node.getContentSize().width/2 - 2;
+				y = player_com.chips_label.getPositionY() - this.pai_back_sprite.node.getContentSize().width/2 - 2;
 			}
 		}else if(player_com.player_position == 4){
-			x = player.getPositionX() - player_com.mobile_sprite.node.getContentSize().width/2 + 2 +
-				this.pai_back_sprite.node.getContentSize().width + (this.pai_back_sprite.node.getContentSize().width + 2) +
-				this.pai_back_sprite.node.getContentSize().height/2;
+			x = player_com.chips_label.getPositionX() - player_com.chips_label.getContentSize().width/2 +
+				this.pai_back_sprite.node.getContentSize().width + this.pai_back_sprite.node.getContentSize().width/2 +
+				this.pai_back_sprite.node.getContentSize().height/2 + 2 +
+				(this.pai_back_sprite.node.getContentSize().width + 2) ;
 			if(m == 0){
-				y = chip_label_y + this.pai_back_sprite.node.getContentSize().height/2 + this.pai_back_sprite.node.getContentSize().width/2 + 6;
+				y = player_com.chips_label.getPositionY() + this.pai_back_sprite.node.getContentSize().width / 2 + extend + this.pai_back_sprite.node.getContentSize().width/2 + 2;
 			}else{
-				y = chip_label_y + this.pai_back_sprite.node.getContentSize().height/2 - this.pai_back_sprite.node.getContentSize().width/2 + 2;
+				y = player_com.chips_label.getPositionY() + this.pai_back_sprite.node.getContentSize().width / 2 + extend - this.pai_back_sprite.node.getContentSize().width/2 - 2;
 			}
 		}else if(player_com.player_position == 2){
-			x = player.getPositionX() - player_com.mobile_sprite.node.getContentSize().width/2 +
-				this.pai_back_sprite.node.getContentSize().height/2;
+			x = player_com.chips_label.getPositionX() - player_com.chips_label.getContentSize().width/2 +
+				this.pai_back_sprite.node.getContentSize().width /4 + this.pai_back_sprite.node.getContentSize().height/2 + 2;
 			if(m == 0){
-				y = chip_label_y + this.pai_back_sprite.node.getContentSize().height/2 + this.pai_back_sprite.node.getContentSize().width/2 + 6;
+				y = player_com.chips_label.getPositionY() + this.pai_back_sprite.node.getContentSize().width / 2 + extend + this.pai_back_sprite.node.getContentSize().width/2 + 2;
 			}else{
-				y = chip_label_y + this.pai_back_sprite.node.getContentSize().height/2 - this.pai_back_sprite.node.getContentSize().width/2 + 2;
+				y = player_com.chips_label.getPositionY() + this.pai_back_sprite.node.getContentSize().width / 2 + extend - this.pai_back_sprite.node.getContentSize().width/2 - 2;
 			}
 		}
 		cc.log("calc x:" + x + " y:" + y);
 		return cc.p(x,y);
 	},
-	setPlayerCardsPosition:function(player,card_len){
-		var player_com = player.getComponent("tdk_player");
-		for(var m = 0;m < card_len;m++){
-			var position = this.calc_player_card_position(player,m);
-			var card = player_com.my_cards[m];
-			card.setPosition(position);
-		}
-	},
-	setPlayerCardsBackPosition:function(player,card_len){
-		var player_com = player.getComponent("tdk_player");
-		for(var m = 0;m < card_len;m++){
-			var position = this.calc_player_card_position(player,m);
-			var card = player_com.my_cards[m].getComponent("pj_card");
-			card.sprite_back.node.setPosition(this.node.convertToNodeSpaceAR(position));
-		}
-	},
+
 	startFirstRotationPosition:function (){
     	var rotationPlayerIndexOf=-1;
     	for(var i=0;i<g_players.length;i++){
@@ -1255,8 +1253,7 @@ cc.Class({
 				player_com.chips_label.setPosition(pos);
 			}
 		}
-		this.button_layout.active = false;
-		this.button2_layout.active = true;
+		this.get_one_button("xiazhu",true);
 	},
 	silder_callback(pthis,idx,silder_progress){
 		var chip = Math.floor(silder_progress * pthis.sumBet);
@@ -1268,6 +1265,7 @@ cc.Class({
 				player_com.set_chips(idx,chip);
 			}
 		}
+		pthis.get_one_button("queding",true);
 	},
 	pomelo_removeListener(){
 		cc.log("remove listener");
