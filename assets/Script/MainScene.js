@@ -2,25 +2,35 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
+		user_info:cc.Node,
         username_label:cc.Label,
         fangka_label:cc.Label,
-        diamond_label:cc.Label,
         sex_sprite:cc.Sprite,
-        entergame_layout:cc.Node,
     },
 
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
         cc.log("on load main scene.....");
-		window.g_game_type = "ZJH";
-		var self = this;
-		self.username_label.string = g_user.nickName;
-        self.fangka_label.string = g_user.fangka;
-        self.diamond_label.string = g_user.diamond;
+		this.node.on("pressed", this.buy_fangka_scene, this);
+		this.username_label.string = g_user.nickName;
+        this.fangka_label.string = g_user.fangka;
 		if(g_user.gender == 1){
-			self.sex_sprite.spriteFrame = g_assets["gender1"];
+			this.sex_sprite.spriteFrame = g_assets["gender1"];
         }
+		//test for 
+		cc.loader.loadResDir("",cc.SpriteFrame,function (err, assets) {
+			for(var i = 0;i < assets.length;i++){
+				g_assets[assets[i].name] = assets[i];
+				cc.log("load res :" + assets[i].name);
+			}
+		});
+		cc.loader.loadResDir("prefab",function (err, assets) {
+			for(var i = 0;i < assets.length;i++){
+				g_assets[assets[i].name] = assets[i];
+				cc.log("load res :" + assets[i].name);
+			}
+		});
     },
     popUserLayer(){
         cc.log("start init pop user layer info");
@@ -31,39 +41,13 @@ cc.Class({
 		this.user_layer.setPosition(this.node.convertToNodeSpaceAR(cc.p(size.width/2,size.height/2)));
 		user_layer_com.show();
     },
-    enterGameLayer(event,customEventData){
-        cc.log("enterGameLayer type:" + customEventData);
-		g_game_type = customEventData;
-		this.game_layout.getComponent("game_scene").hide();
-        this.entergame_layout.getComponent("enter_game_scene").show();
-    },
-    enterGameBack(){
-        this.game_layout.getComponent("game_scene").show();
-		this.entergame_layout.getComponent("enter_game_scene").hide();
-    },
-    popCreateGameLayer(){
-        cc.log("got info createGameLayer......");
+	buy_fangka_scene(){
 		var size = cc.director.getWinSize();
-		if(g_game_type == "ZJH"){
-			this.pop_game_layer = cc.instantiate(g_assets["pop_creat_zjh_game"]);
-			this.node.addChild(this.pop_game_layer);
-			this.pop_game_layer.setPosition(this.node.convertToNodeSpaceAR(cc.p(size.width/2,size.height/2)));
-		}else if(g_game_type == "TDK"){
-			this.pop_game_layer = cc.instantiate(g_assets["pop_creat_tdk_game"]);
-			this.node.addChild(this.pop_game_layer);
-			this.pop_game_layer.setPosition(this.node.convertToNodeSpaceAR(cc.p(size.width/2,size.height/2)));
-		}else if(g_game_type == "ZHQ"){
-			this.pop_game_layer = cc.instantiate(g_assets["pop_creat_zhq_game"]);
-			this.node.addChild(this.pop_game_layer);
-			this.pop_game_layer.setPosition(this.node.convertToNodeSpaceAR(cc.p(size.width/2,size.height/2)));
-		}
-    },
-	popEnterGameLayer(){
-		cc.log("go into popEnterGameLayer......");
-		var size = cc.director.getWinSize();
-		this.pop_enter_game_layer = cc.instantiate(g_assets["pop_enter_game"]);
-		this.node.addChild(this.pop_enter_game_layer);
-		this.pop_enter_game_layer.setPosition(this.node.convertToNodeSpaceAR(cc.p(size.width/2,size.height/2)));
+		this.pop_buyfangka = cc.instantiate(g_assets["PopBuyFangKaScene"]);
+		var pop_buyfangka_com = this.pop_buyfangka.getComponent("buy_fangka");
+		pop_buyfangka_com.init(g_buy_fangka_data);
+		this.node.addChild(this.pop_buyfangka);
+		this.pop_buyfangka.setPosition(this.node.convertToNodeSpaceAR(cc.p(size.width/2,size.height/2)));
 	},
 	store_scene(){
 		cc.director.loadScene("StoreScene");

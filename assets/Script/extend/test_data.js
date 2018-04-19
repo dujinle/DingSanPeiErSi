@@ -15,7 +15,6 @@ for(var i = 0;i < 4;i++){
 var g_user = {
 	'nickName':'player0',
 	'fangka':10,
-	'diamond':10,
 	'gender':1,
 	'playerId':1
 };
@@ -54,6 +53,10 @@ var g_peipai_data4 = {
 	"first":true,
 	"select":[1,2],
 	"unpei":0
+};
+
+g_buy_fangka_data = {
+	"dianjia":2
 };
 
 g_endpai_data = {
