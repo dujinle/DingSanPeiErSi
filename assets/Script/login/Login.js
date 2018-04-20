@@ -3,6 +3,7 @@ cc.Class({
 
     properties: {
 		version_label:cc.Node,
+		login_flag:false,
 		login_type:null,
     },
 	onLogin(){
@@ -43,22 +44,14 @@ cc.Class({
     },
 	wxLogin(){
 		cc.log("wxLogin");
-		this.testUser();
-		this.login_type = "weixin";
-		cc.director.loadScene("MainScene");
+		this.login_flag = true;
+		jsb.reflection.callStaticMethod("org/cocos2dx/javascript/AppActivity","loginByWeiXin","(I)V",123456);
+		//cc.director.loadScene("MainScene");
 	},
     onLoad () {
 		this.login_type = Storage.getLoginType();
 		if(this.login_type == "weixin"){
 			this.onLogin();
 		}
-	},
-	testUser(){
-		g_user = {
-			'nickName':'dujinle',
-			'fangka':10,
-			'diamond':10,
-			'gender':1
-		};
 	},
 });
