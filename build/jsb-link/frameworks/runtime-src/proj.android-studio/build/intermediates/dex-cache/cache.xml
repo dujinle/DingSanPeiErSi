@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="E:\CocosCreator\resources\cocos2d-x\cocos\platform\android\libcocos2dx\build\intermediates\intermediate-jars\release\classes.jar"
+        jumboMode="false"
+        min-sdk-version="10"
+        optimize="true"
+        revision="26.0.2"
+        sha1="fc0f90ee03c235b133ec3973797f5212d5428e56">
+        <dex dex="F:\gitdata\xx_cc_g\build\jsb-link\frameworks\runtime-src\proj.android-studio\app\build\intermediates\transforms\preDex\release\5.jar" />
+    </item>
+
+</items>
