@@ -56,7 +56,7 @@ var g_peipai_data4 = {
 };
 
 g_buy_fangka_data = {
-	"dianjia":2
+	"danjia":2
 };
 
 g_endpai_data = {

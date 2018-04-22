@@ -34,10 +34,10 @@ cc.Class({
 				}else{
 					cc.log("touch remove from parent");
 					self.node.active = false;
+					self.node.destroy();
 				}
 			}
          }, this.game_sprite);
-		 this.init({"danjia":2});
 	},
 	init(data){
 		this.danjia = data["danjia"];
@@ -70,11 +70,15 @@ cc.Class({
         //这里 editbox 是一个 cc.EditBox 对象
         //这里的 customEventData 参数就等于你之前设置的 "foobar"
     },
-	switchRadio(){
-		this.fangka_num = parseInt(this.fangka_num) + 1;	
-		this.num_label.getComponent("cc.EditBox").string = this.fangka_num;
-		this.zongjia = this.danjia * this.fangka_num;
-		this.zongjia_label.string = this.zongjia + "元";
+	switchRadio(event){
+		var index = event.target.getComponent("one_choice").index;
+		var type = event.target.getComponent("one_choice").type;
+		if(type == 2 && index == 0){
+			this.fangka_num = parseInt(this.fangka_num) + 1;	
+			this.num_label.getComponent("cc.EditBox").string = this.fangka_num;
+			this.zongjia = this.danjia * this.fangka_num;
+			this.zongjia_label.string = this.zongjia + "元";
+		}
 	},
     // update (dt) {},
 });

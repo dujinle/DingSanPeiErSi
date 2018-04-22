@@ -2,7 +2,7 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-		user_info:cc.Node,
+		touxiang_sprite:cc.Sprite,
         username_label:cc.Label,
         fangka_label:cc.Label,
         sex_sprite:cc.Sprite,
@@ -12,25 +12,38 @@ cc.Class({
 
     onLoad () {
         cc.log("on load main scene.....");
-		this.node.on("pressed", this.buy_fangka_scene, this);
-		this.username_label.string = g_user.nickName;
-        this.fangka_label.string = g_user.fangka;
-		if(g_user.gender == 1){
-			this.sex_sprite.spriteFrame = g_assets["gender1"];
-        }
-		//test for 
+
 		cc.loader.loadResDir("",cc.SpriteFrame,function (err, assets) {
 			for(var i = 0;i < assets.length;i++){
 				g_assets[assets[i].name] = assets[i];
+				self.rate = self.rate + 1;
 				cc.log("load res :" + assets[i].name);
 			}
 		});
 		cc.loader.loadResDir("prefab",function (err, assets) {
 			for(var i = 0;i < assets.length;i++){
 				g_assets[assets[i].name] = assets[i];
+				self.rate = self.rate + 1;
 				cc.log("load res :" + assets[i].name);
 			}
 		});
+
+		var self = this;
+		//this.node.on("pressed", this.buy_fangka_scene, this);
+		this.username_label.string = g_user.nickName;
+        this.fangka_label.string = g_user.fangka;
+		if(g_user.gender == 1){
+			this.sex_sprite.spriteFrame = g_assets["gender1"];
+        }
+		if(g_user.headimgurl != null){
+			cc.loader.load({url:g_user.headimgurl,type:'png'},function (err, texture) {
+				 var frame = new cc.SpriteFrame(texture);
+				 g_assets["headimg"] = frame;
+				 self.touxiang_sprite.spriteFrame = frame;
+			});
+		}else{
+			g_assets["headimg"] = self.touxiang_sprite.spriteFrame;
+		}
     },
     popUserLayer(){
         cc.log("start init pop user layer info");
@@ -48,6 +61,18 @@ cc.Class({
 		pop_buyfangka_com.init(g_buy_fangka_data);
 		this.node.addChild(this.pop_buyfangka);
 		this.pop_buyfangka.setPosition(this.node.convertToNodeSpaceAR(cc.p(size.width/2,size.height/2)));
+	},
+	popCreatScene(){
+		var size = cc.director.getWinSize();
+		this.pop_creat_scene = cc.instantiate(g_assets["PopCreatRoomScene"]);
+		this.node.addChild(this.pop_creat_scene);
+		this.pop_creat_scene.setPosition(this.node.convertToNodeSpaceAR(cc.p(size.width/2,size.height/2)));
+	},
+	popEnterScene(){
+		var size = cc.director.getWinSize();
+		this.pop_enter_scene = cc.instantiate(g_assets["PopEnterRoomScene"]);
+		this.node.addChild(this.pop_enter_scene);
+		this.pop_enter_scene.setPosition(this.node.convertToNodeSpaceAR(cc.p(size.width/2,size.height/2)));
 	},
 	store_scene(){
 		cc.director.loadScene("StoreScene");
