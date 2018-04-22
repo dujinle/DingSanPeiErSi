@@ -33,20 +33,9 @@ cc.Class({
 		});
 		*/
 	},
-	saveUserInfo(data){
-		g_user = data.initdata.player;
-		Storage.setPhoneNumber(g_user.phone_num);
-        Storage.setPassword(g_user.password);
-		Storage.setLoginType(this.login_type);
-		Storage.setAutoLoginFlag(this.auto_login);
-		Storage.setPasswordFlag(this.retain_pwd);
-        console.log("start saveUserInfo......"+ JSON.stringify(g_user));
-		cc.director.loadScene("MainScene");
-    },
 	wxLogin(){
 		cc.log("wxLogin");
 		this.debug_label.string = "wxLogin.......";
-		//util.get("https://www.baidu.com",null,this.get_access_token);
 		jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "WxLogin", "()V");
 		//cc.director.loadScene("MainScene");
 		this.login_flag = true;
@@ -62,6 +51,8 @@ cc.Class({
 			this.debug_label.string = "appid:" + app_id + " app_secret:" + app_secret + " wx_code:" + wx_code;
 
 			if(wx_code != null && wx_code != "null"){
+				Storage.setData("app_id",app_id);
+				Storage.setData("app_secret",app_secret);
 				this.callback = this.get_access_token;
 				this.debug_label.string = "wx_code:" + wx_code;
 				util.get("https://api.weixin.qq.com/sns/oauth2/access_token",
@@ -75,22 +66,52 @@ cc.Class({
 		cc.log("get_access_token:" + data);
 		this.debug_label.string = "access_token:" + JSON.stringify(data);
 		if(data.access_token != null && data.openid != null){
+			/*保存信息下次直接登录不用授权*/
+			Storage.setData("access_token",data.access_token);
+			Storage.setData("openid",data.openid);
+			Storage.setData("unionid",data.unionid);
+			Storage.setData("refresh_token",data.refresh_token);
 			this.callback = this.get_wxuser_info;
 			util.get("https://api.weixin.qq.com/sns/userinfo","access_token=" + data.access_token + "&openid=" + data.openid,this);
+		}else{
+			this.error_code(data);
 		}
 	},
 	get_wxuser_info(data){
 		cc.log("get_wxuser_info:" + JSON.stringify(data));
-		this.debug_label.string = "get_wxuser_info:" + JSON.stringify(data);
+		if(data.openid != null){
+			this.debug_label.string = "get_wxuser_info:" + JSON.stringify(data);
+			g_user['nickName'] = data.nickname;
+			g_user['fangka'] = 10;
+			g_user['gender'] = data.sex;
+			g_user['playerId'] = data.unionid;
+			g_user['headimgurl'] = data.headimgurl;
+			cc.director.loadScene("MainScene");
+		}else{
+			this.error_code(data);
+		}
 	},
     onLoad () {
     	cc.log("onLoad" + this.login_flag);
     	this.login_flag = false;
-    	/*
-		this.login_type = Storage.getLoginType();
-		if(this.login_type == "weixin"){
-			this.onLogin();
+		var refresh_token = Storage.getData("refresh_token");
+		var app_id = Storage.getData("app_id");
+		if(refresh_token == null){
+			return false;
+		}else{
+			this.callback = this.get_access_token;
+			/*刷新refresh_token 获取最新的access_token*/
+			util.get("https://api.weixin.qq.com/sns/oauth2/refresh_token","appid=" + app_id + "&grant_type=refresh_token&refresh_token=" + refresh_token,this);
 		}
-		*/
+	},
+	error_code(data){
+		var size = cc.director.getVisibleSize();
+		if(data.errcode == 40029){
+			util.show_error_info(this,size,"无效的code请重新登录");
+		}else if(data.errcode == 40030){
+			util.show_error_info(this,size,"无效的refresh_token请重新登录");
+		}else if(data.errcode == 40003){
+			util.show_error_info(this,size,"无效的openid请重新登录");
+		}
 	},
 });
