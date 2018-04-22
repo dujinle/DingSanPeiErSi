@@ -4,7 +4,8 @@ cc.Class({
     properties: {
 		version_label:cc.Node,
 		login_flag:false,
-		login_type:null,
+		debug_label:cc.Label,
+		callback:null,
     },
 	onLogin(){
 		var self = this;
@@ -44,14 +45,52 @@ cc.Class({
     },
 	wxLogin(){
 		cc.log("wxLogin");
-		this.login_flag = true;
-		jsb.reflection.callStaticMethod("org/cocos2dx/javascript/AppActivity","loginByWeiXin","(I)V",123456);
+		this.debug_label.string = "wxLogin.......";
+		//util.get("https://www.baidu.com",null,this.get_access_token);
+		jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "WxLogin", "()V");
 		//cc.director.loadScene("MainScene");
+		this.login_flag = true;
+	},
+	update(){
+		cc.log("update" + this.login_flag);
+		if(this.login_flag == true){
+			this.login_flag = false;
+			var size = cc.director.getVisibleSize();
+			var app_id = jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "getAppId", "()Ljava/lang/String;");
+			var app_secret = jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "getAppSecret", "()Ljava/lang/String;");
+			var wx_code = jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "getWXCode", "()Ljava/lang/String;");
+			this.debug_label.string = "appid:" + app_id + " app_secret:" + app_secret + " wx_code:" + wx_code;
+
+			if(wx_code != null && wx_code != "null"){
+				this.callback = this.get_access_token;
+				this.debug_label.string = "wx_code:" + wx_code;
+				util.get("https://api.weixin.qq.com/sns/oauth2/access_token",
+					"appid=" + app_id + "&secret=" + app_secret + "&code=" + wx_code + "&grant_type=authorization_code",this);
+			}else{
+				this.login_flag = true;
+			}
+		}
+	},
+	get_access_token(data){
+		cc.log("get_access_token:" + data);
+		this.debug_label.string = "access_token:" + JSON.stringify(data);
+		if(data.access_token != null && data.openid != null){
+			this.callback = this.get_wxuser_info;
+			util.get("https://api.weixin.qq.com/sns/userinfo","access_token=" + data.access_token + "&openid=" + data.openid,this);
+		}
+	},
+	get_wxuser_info(data){
+		cc.log("get_wxuser_info:" + JSON.stringify(data));
+		this.debug_label.string = "get_wxuser_info:" + JSON.stringify(data);
 	},
     onLoad () {
+    	cc.log("onLoad" + this.login_flag);
+    	this.login_flag = false;
+    	/*
 		this.login_type = Storage.getLoginType();
 		if(this.login_type == "weixin"){
 			this.onLogin();
 		}
+		*/
 	},
 });
