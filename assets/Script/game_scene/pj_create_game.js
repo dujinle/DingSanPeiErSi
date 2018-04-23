@@ -3,9 +3,10 @@ cc.Class({
 
     properties: {
     	game_bg:cc.Node,
-    	model:1,
     	max_type:1,
 		fangka:1,
+		wait_time:1,
+		renshu:2,
 		game_type:"PJ",
 		choice_radios:{
 			type:cc.Node,
@@ -49,20 +50,24 @@ cc.Class({
 		cc.log("switchRadio : index:" + index + " type:" + type);
         for(let i = 0; i < this.choice_radios.length; i++){
 			var item = this.choice_radios[i].getComponent("one_choice");
-            if(item.index == index){
-            	if(index == 0){
-            		this.model = type;
-            	}else if(index == 1){
-            		this.max_type = type;
+            if(item.type == type){
+            	if(type == 0){
+            		this.renshu = index;
+            	}else if(type == 1){
+            		this.max_type = index;
+            	}else if(type == 2){
+            		this.wait_time = index;
+            	}else if(type == 3){
+            		this.fangka = index;
             	}
-            	if(item.type == type){
+            	if(item.index == index){
             		item.pitchOn();
             	}else{
             		item.lifeUp();
             	}
             }
         }
-		cc.log("select model" + this.model + " fangka:" + this.fangka + " zuida:" + this.max_type);
+		cc.log("select renshu" + this.renshu + " fangka:" + this.fangka + " zuida:" + this.max_type + " wait_time:" + this.wait_time);
     },
 	create_game(){
 		var self = this;

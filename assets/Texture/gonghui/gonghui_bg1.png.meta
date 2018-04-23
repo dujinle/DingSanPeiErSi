@@ -1,14 +1,14 @@
 {
   "ver": "1.0.0",
-  "uuid": "35ab99d7-1ef6-4c6c-b1f2-8232f20e77ff",
+  "uuid": "a6650b90-7c38-4c3c-9f7e-5401b302ced4",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "subMetas": {
-    "faceValueMenu": {
+    "gonghui_bg1": {
       "ver": "1.0.3",
-      "uuid": "9d9128b7-34f5-4218-af66-a9d4752ca3a7",
-      "rawTextureUuid": "35ab99d7-1ef6-4c6c-b1f2-8232f20e77ff",
+      "uuid": "1f3e16dd-d51e-42a6-a082-5be978b7e61f",
+      "rawTextureUuid": "a6650b90-7c38-4c3c-9f7e-5401b302ced4",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -16,10 +16,10 @@
       "offsetY": 0,
       "trimX": 0,
       "trimY": 0,
-      "width": 102,
-      "height": 56,
-      "rawWidth": 102,
-      "rawHeight": 56,
+      "width": 720,
+      "height": 571,
+      "rawWidth": 720,
+      "rawHeight": 571,
       "borderTop": 0,
       "borderBottom": 0,
       "borderLeft": 0,

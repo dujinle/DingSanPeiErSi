@@ -1,14 +1,14 @@
 {
   "ver": "1.0.0",
-  "uuid": "ffb65c4c-4e2d-472a-a7e3-c0c4e4665f19",
+  "uuid": "35e7ed1e-b932-47cf-8e2d-7b4cda45a799",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "subMetas": {
-    "buyDiamondBackground": {
+    "add_gonghui_un": {
       "ver": "1.0.3",
-      "uuid": "b69d637d-fddd-4b91-b20e-e065c7dd226b",
-      "rawTextureUuid": "ffb65c4c-4e2d-472a-a7e3-c0c4e4665f19",
+      "uuid": "c54522aa-1f8e-44e1-9e81-ebf8806ce6ea",
+      "rawTextureUuid": "35e7ed1e-b932-47cf-8e2d-7b4cda45a799",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -16,10 +16,10 @@
       "offsetY": 0,
       "trimX": 0,
       "trimY": 0,
-      "width": 860,
-      "height": 530,
-      "rawWidth": 860,
-      "rawHeight": 530,
+      "width": 60,
+      "height": 30,
+      "rawWidth": 60,
+      "rawHeight": 30,
       "borderTop": 0,
       "borderBottom": 0,
       "borderLeft": 0,
