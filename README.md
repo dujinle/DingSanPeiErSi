@@ -3,6 +3,7 @@ Hello world new project template.
 
 构建原生应用
 android端 修改如下：
+
 	1，用android studio 打开 build\jsb-link\frameworks\runtime-src\proj.android-studio项目。
 	2，在build.gradle 的dependencies  中加入 compile 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
 	3，在 AppActivity.java 中修改如下：
