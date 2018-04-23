@@ -3,10 +3,17 @@ cc.Class({
 
     properties: {
 		game_sprite:cc.Node,
-		game_layout:cc.Layout,
+		items:{
+			type:cc.Node,
+			default:[]
+		},
     },
     onLoad () {
 		cc.log("start go into pop game finish js");
+		for(var i = 0;i < this.items.length;i++){
+			var item = this.items[i];
+			item.active = false;
+		}
 		var self = this;
         cc.eventManager.addListener({
             event: cc.EventListener.TOUCH_ONE_BY_ONE,
@@ -31,40 +38,27 @@ cc.Class({
 				}
 			}
          }, self.game_sprite);
-		 //this.test_t();
 	},
 	init_info(players){
 		for(var i = 0;i < players.length;i++){
 			var player = players[i];
-			var item = cc.instantiate(g_assets["game_player_item"]);
-			var item_com = item.getComponent("game_player_item");
-			item_com.set_player_info(player);
-			this.game_layout.node.addChild(item);
+			var player_com = player.getComponent("tdk_player");
+			var item = this.items[i];
+			this.set_item_info(item,player_com);
+			item.active = true;
 		}
 	},
-	test_t(){
-		var self = this;
-		cc.loader.loadResDir("",cc.SpriteFrame,function (err, assets) {
-			for(var i = 0;i < assets.length;i++){
-				g_assets[assets[i].name] = assets[i];
-				cc.log("load res :" + assets[i].name);
-			}
-			cc.loader.loadResDir("prefab",function (err, assets) {
-				for(var i = 0;i < assets.length;i++){
-					g_assets[assets[i].name] = assets[i];
-					cc.log("load res :" + assets[i].name);
-				}
-				var players = new Array();
-				for(var i = 0;i < 3;i++){
-					var player = new Array();
-					player.push("player" + i);
-					player.push("10000");
-					player.push("2000");
-					player.push("8000");
-					players.push(player);
-				}
-				self.init_info(players);
-			});
-		});
+	set_item_info(item,player_com){
+		var user_layout = item.getChildByName("user_layout");
+		var user_sprite = user_layout.getChildByName("user_sprite");
+		var user_label = user_layout.getChildByName("user_label");
+		var slabel = item.getChildByName("slabel");
+		var elabel = item.getChildByName("elabel");
+		var dlabel = item.getChildByName("dlabel");
+		slabel.string = player_com.start_gold;
+		elabel.string = player_com.my_gold;
+		dlabel.string = player_com.my_gold - player_com.start_gold;
+		user_label.string = player_com.nick_name;
+		user_sprite.SpriteFrame = player_com.mobile_sprite.getChildByName("man").SpriteFrame;
 	},
 });

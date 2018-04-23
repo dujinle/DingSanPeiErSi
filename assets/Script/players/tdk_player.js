@@ -5,6 +5,7 @@ cc.Class({
 		id:0,
 		nick_name:null,
 		my_gold:0,
+		start_gold:0,
 		my_chip1:0,
 		my_chip2:0,
 		position_server:0,
@@ -25,7 +26,7 @@ cc.Class({
 		selected_cards:{
 			type:cc.Node,
 			default:[]
-		}
+		},
     },
 	init(params){
 		cc.log("tdk_player init: " + JSON.stringify(params));
@@ -55,29 +56,41 @@ cc.Class({
 		this.game_sprite.spriteFrame = g_assets[status];
 		this.game_sprite.node.active = true;
 	},
-	install_chip_label(){
+	install_chip_label(flag){
 		cc.log("install_chip_label");
-		if(this.player_position == 2 || this.player_position == 4){
-			cc.log("install chips_label w");
-			this.chips_label = cc.instantiate(g_assets["chips_label_w"]);
-		}else if(this.player_position == 1 || this.player_position == 3){
-			cc.log("install chips_label h");
-			this.chips_label = cc.instantiate(g_assets["chips_label_h"]);
+		if(flag == true){
+			cc.log("install chips_label zhuang");
+			this.chips_label = cc.instantiate(g_assets["chip_bg_zhuang"]);
+		}else if(this.player_position == 1){
+			cc.log("install chips_label 1");
+			this.chips_label = cc.instantiate(g_assets["chip_bg_1"]);
+		}else if(this.player_position == 2){
+			cc.log("install chips_label 2");
+			this.chips_label = cc.instantiate(g_assets["chip_bg_2"]);
+		}else if(this.player_position == 3){
+			cc.log("install chips_label 3");
+			this.chips_label = cc.instantiate(g_assets["chip_bg_3"]);
+		}else if(this.player_position == 4){
+			cc.log("install chips_label 4");
+			this.chips_label = cc.instantiate(g_assets["chip_bg_4"]);
 		}
+
 		this.node.parent.addChild(this.chips_label);
-		var label_1 = this.chips_label.getChildByName("zhu1");
-		label_1.getComponent(cc.Label).string = 0;
-		var label_2 = this.chips_label.getChildByName("zhu2");
-		label_2.getComponent(cc.Label).string = 0;
+		if(flag == false){
+			var label_1 = this.chips_label.getChildByName("chip_up");
+			label_1.getComponent(cc.Label).string = 0;
+			var label_2 = this.chips_label.getChildByName("chip_down");
+			label_2.getComponent(cc.Label).string = 0;
+		}
 	},
 	set_chips(idx,chip){
 		cc.log("set_chips idx:" + idx + " chip:" + chip);
 		if(idx == 1){
-			var label_1 = this.chips_label.getChildByName("zhu1");
+			var label_1 = this.chips_label.getChildByName("chip_up");
 			label_1.getComponent(cc.Label).string = chip;
 			this.my_chip1 = chip;
 		}else if(idx == 2){
-			var label_2 = this.chips_label.getChildByName("zhu2");
+			var label_2 = this.chips_label.getChildByName("chip_down");
 			label_2.getComponent(cc.Label).string = chip;
 			this.my_chip2 = chip;
 		}

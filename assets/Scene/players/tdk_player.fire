@@ -21,7 +21,7 @@
     "_active": true,
     "_components": [],
     "_prefab": null,
-    "_id": "d08eba4d-ebb9-4aae-bb9b-637957dff2b6",
+    "_id": "2688c90a-b850-498d-9b12-58f1e2221ebb",
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
@@ -45,7 +45,7 @@
     "_globalZOrder": 0,
     "_opacityModifyRGB": false,
     "groupIndex": 0,
-    "autoReleaseAssets": null
+    "autoReleaseAssets": false
   },
   {
     "__type__": "cc.Node",
@@ -1042,7 +1042,7 @@
     "_atlas": null
   },
   {
-    "__type__": "98d9cXwuKVK24eAAT+j6zVN",
+    "__type__": "028ffRybvBD86qaxXFtjPlE",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -1052,11 +1052,12 @@
     "id": 0,
     "nick_name": null,
     "my_gold": 0,
+    "my_chip1": 0,
+    "my_chip2": 0,
     "position_server": 0,
     "player_position": 0,
     "check_card": false,
     "is_power": 0,
-    "abandon": false,
     "mobile_sprite": {
       "__id__": 27
     },
@@ -1066,12 +1067,15 @@
     "status_sprite": {
       "__id__": 26
     },
+    "game_sprite": null,
     "nick_name_label": {
       "__id__": 22
     },
+    "chips_label": null,
     "gold_label": {
       "__id__": 24
     },
-    "my_cards": []
+    "my_cards": [],
+    "selected_cards": []
   }
 ]
