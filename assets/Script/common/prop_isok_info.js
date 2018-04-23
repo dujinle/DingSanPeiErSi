@@ -8,7 +8,6 @@ cc.Class({
 		flag:false,
     },
     onLoad () {
-		var self = this;
         cc.eventManager.addListener({
             event: cc.EventListener.TOUCH_ONE_BY_ONE,
             swallowTouches: true,

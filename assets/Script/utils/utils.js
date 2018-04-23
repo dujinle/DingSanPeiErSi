@@ -75,19 +75,17 @@ util.show_error_info = function(pp,size,msg){
     error_tip_com.show_error_info(msg);
     var root_node = cc.director.getScene().getChildByName('RootNode');
 	root_node.addChild(error_tip);
-	error_tip.setPosition(root_node.convertToNodeSpace(size.width/2,size.height/2));
+	error_tip.setPosition(root_node.convertToNodeSpaceAR(cc.p(size.width/2,size.height/2)));
 }
 
-util.show_isok_info = function(pp,callback,msg){
-	if(pp.debug_label != null){
-		pp.debug_label.string = "go into show_isok_info ......";
-	}
+util.show_isok_info = function(callback,msg){
 	var size = cc.director.getVisibleSize();
 	var error_tip = cc.instantiate(g_assets["pop_isok_scene"]);
 	var error_tip_com = error_tip.getComponent("prop_isok_info");
 	error_tip_com.init(callback);
-	pp.node.addChild(error_tip);
-	error_tip.setPosition(pp.node.convertToNodeSpace(size.width/2,size.height/2));
+	var root_node = cc.director.getScene().getChildByName('RootNode');
+	root_node.addChild(error_tip);
+	error_tip.setPosition(root_node.convertToNodeSpaceAR(cc.p(size.width/2,size.height/2)));
 	error_tip_com.show_error_info(msg);
 }
 

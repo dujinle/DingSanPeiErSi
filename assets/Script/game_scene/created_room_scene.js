@@ -2,6 +2,7 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
+		fangka_label:cc.Label,
 		room_num_node:cc.Node,
 		fangzhu_node:cc.Node,
 		max_pai_node:cc.Node,
@@ -22,9 +23,11 @@ cc.Class({
 
     onLoad () {
 		cc.log("start gointo created room scene......");
+
 		this.node.on("pressed", this.switchRadio, this);
 		this.wait_flag = true;
 		this.player_num = g_room_data["real_num"];
+		this.fangka_label.string = g_user["fangka_num"];
 		this.init_data();
 		this.init_room_pos();
 		var now_time = Date.now();
@@ -32,6 +35,7 @@ cc.Class({
 		this.left_time = parseInt(g_room_data["wait_time"]) * 60 - cost_time;
 		this.pomelo_on();
 		this.schedule(this.wait_time_cb,1);
+
 	},
 	init_data(){
 		this.room_num_node.getComponent("cc.Label").string = g_room_data["room_num"];
@@ -65,7 +69,7 @@ cc.Class({
 				var player_id = location.split("*")[0];
 				Servers.userInfoProcess("get_player",{player_id:player_id},function(data){
 					if(data.code == 200){
-						cc.loader.load({url:data.msg.headimgurl,type:'png'},function (err, texture) {
+						cc.loader.load({url:data.msg.head_img_url,type:'png'},function (err, texture) {
 							var frame = new cc.SpriteFrame(texture);
 							self.choice_sprite[i].getComponent("cc.Sprite").spriteFrame = frame;
 							item.set_flag(true);
@@ -73,7 +77,7 @@ cc.Class({
 					}
 				});
 			}
-			if(g_room_data["player_num"] == g_room_data["real_num"]){
+			if(g_room_data["player_num"] >= g_room_data["real_num"]){
 				item.set_flag(true);
 			}
 		}
@@ -97,13 +101,29 @@ cc.Class({
 		var item = this.choice_sprite[location - 1];
 		var item_com = item.getComponent("player_select");
 		item_com.set_data(player);
-		Servers.userInfoProcess("get_player",{id:player.id},function(data){
+		Servers.userInfoProcess("get_player",{player_id:player.id},function(data){
 			if(data.code == 200){
-				cc.loader.load({url:data.msg.headimgurl,type:'png'},function (err, texture) {
+				cc.loader.load({url:data.msg.head_img_url,type:'png'},function (err, texture) {
 					var frame = new cc.SpriteFrame(texture);
 					item.getComponent("cc.Sprite").spriteFrame = frame;
 					self.player_num = self.player_num + 1;
+					//判断是否是自己，如果是自己则取消点击事件。
+					if(player.id == g_user["id"]){
+						g_user["fangka_num"] = player.fangka_num;
+						for(let i = 0; i < this.choice_sprite.length; i++){
+							var item = this.choice_sprite[i].getComponent("player_select");
+							item.set_flag(true);
+						}
+					}
+					if(self.player_num >= g_room_data["player_num"]){
+						for(let i = 0; i < this.choice_sprite.length; i++){
+							var item = this.choice_sprite[i].getComponent("player_select");
+							item.set_flag(true);
+						}
+						self.start_game();
+					}
 				});
+				
 			}
 		});
 	},
@@ -129,7 +149,7 @@ cc.Class({
     
 	game_back(){
 		var self = this;
-		show_isok_info(function(flag){
+		util.show_isok_info(function(flag){
 			if(flag == true){
 				self.onDissolveRoom_function(g_room_data["rid"]);
 			}
@@ -137,6 +157,7 @@ cc.Class({
 	},
 	
 	wait_time_cb(){
+		this.fangka_label.string = g_user["fangka_num"];
 		var self = this;
 		if(this.wait_flag == true){
 			if(this.left_time > 0){
@@ -145,10 +166,10 @@ cc.Class({
 			this.left_time_node.getComponent("cc.Label").string = this.left_time;
 			if(this.left_time <= 0){
 				this.wait_flag = false;
-				this.debug_label.string = "时间已经消耗完毕，请继续操作，增加时间";
+				//this.debug_label.string = "时间已经消耗完毕，请继续操作，增加时间";
 				if(g_room_data["fangzhu_id"] == g_user["id"]){
 					if(this.player_num >= 2){
-						show_isok_info(function(flag){
+						util.show_isok_info(function(flag){
 							if(flag == false){
 								self.start_game();
 							}else{
@@ -156,7 +177,7 @@ cc.Class({
 							}
 						},"是否进行延迟等待，点击确定延迟等待，点击取消则进入游戏。");
 					}else{
-						show_isok_info(function(flag){
+						util.show_isok_info(function(flag){
 							if(flag == false){
 								self.goout_game();
 							}else{
@@ -167,15 +188,6 @@ cc.Class({
 				}
 			}
 		}
-	},
-	show_isok_info(cb,msg){
-		var size = cc.director.getVisibleSize();
-		var error_tip = cc.instantiate(g_assets["pop_isok_scene"]);
-		var error_tip_com = error_tip.getComponent("prop_isok_info");
-		error_tip_com.init(cb);
-		this.node.addChild(error_tip);
-		error_tip.setPosition(this.node.convertToNodeSpace(size.width/2,size.height/2));
-		error_tip_com.show_error_info(msg);
 	},
 	start_game(){
 		//进入游戏房间，发送公告告诉准备的玩家进入游戏
@@ -195,7 +207,8 @@ cc.Class({
 	goout_game(){
 		//解散游戏取消channel 并且清除房间数据
 		var param = {
-			rid:g_room_data["rid"]
+			rid:g_room_data["rid"],
+			player_id:g_user["id"]
 		};
 		pomelo.request(util.getDissolveRoomRoute(), param, function(data) {
 			cc.log(JSON.stringify(data));
