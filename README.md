@@ -3,10 +3,11 @@ Hello world new project template.
 
 构建原生应用
 android端 修改如下：
+
 	1，用android studio 打开 build\jsb-link\frameworks\runtime-src\proj.android-studio项目。
 	2，在build.gradle 的dependencies  中加入 compile 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
 	3，在 AppActivity.java 中修改如下：
-	    public static IWXAPI wxapi;
+	public static IWXAPI wxapi;
 		private static final String APP_ID = "wx6c145967bc25e278";
 		private static final String APP_SECRET = "58e5b95e019569937536d937d4f680f5";
 		private static String WXCode = "null";
@@ -48,6 +49,7 @@ android端 修改如下：
 		public static void setWXCode(String wxCode){
 			AppActivity.WXCode = wxCode;
 		}
+	}
 	4，添加 org\cocos2d\enjoypuke\wxapi目录并创建WXEntryActivity.java 类。
 	5，WXEntryActivity.java 内容如下：
 	package org.cocos2d.enjoypuke.wxapi;
