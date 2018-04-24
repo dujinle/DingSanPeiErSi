@@ -60,6 +60,10 @@ util.getEnterRoute = function(){
 	return "connector.entryHandler.enter";
 }
 
+util.getStartGameRoute = function(){
+	return "connector.entryHandler.start_game";
+}
+
 util.getDelayWaitTimeRoute = function(){
 	return "connector.entryHandler.delay_wait_time";
 }

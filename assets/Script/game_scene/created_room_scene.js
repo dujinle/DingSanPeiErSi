@@ -88,6 +88,7 @@ cc.Class({
 		}
 	},
 	pomelo_on(){
+		pomelo.on('onStartGame',this.onStartGame_function.bind(this));
     	pomelo.on('onEnterRoom',this.onEnterRoom_function.bind(this));
 		pomelo.on('onDelayWaitTime',this.onDelayWaitTime_function.bind(this));
 		pomelo.on('onDissolveRoom',this.onDissolveRoom_function.bind(this));
@@ -146,6 +147,11 @@ cc.Class({
 		g_room_data = null;
 		cc.director.loadScene("MainScene");
 	},
+	onStartGame_function(data){
+		cc.log("pomelo on onStartGame_function:" + JSON.stringify(data));
+		g_room_data["is_gaming"] = data.is_gaming;
+		cc.director.loadScene("PJRoomScene");
+	},
     
 	game_back(){
 		var self = this;
@@ -194,7 +200,8 @@ cc.Class({
 		this.start_button.getComponent("cc.Button").interactable = false;
 		if(this.player_num >= 2){
 			var param = {
-				rid:g_room_data["rid"]
+				rid:g_room_data["rid"],
+				player_id:g_room_data["fangzhu_id"]
 			};
 			pomelo.request(util.getStartGameRoute(), param, function(data) {
 				cc.log(JSON.stringify(data));
@@ -211,6 +218,16 @@ cc.Class({
 			player_id:g_user["id"]
 		};
 		pomelo.request(util.getDissolveRoomRoute(), param, function(data) {
+			cc.log(JSON.stringify(data));
+		});
+	},
+	leave_room(){
+		//离开游戏房间
+		var param = {
+			rid:g_room_data["rid"],
+			player_id:g_user["id"]
+		};
+		pomelo.request(util.getLeaveRoomRoute(), param, function(data) {
 			cc.log(JSON.stringify(data));
 		});
 	},
