@@ -1,14 +1,14 @@
 {
   "ver": "1.0.0",
-  "uuid": "755a3a09-380f-4308-ac34-181ce9a540e2",
+  "uuid": "54f5dc7e-364f-455b-88ee-b9a84a4194c9",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "subMetas": {
-    "my_gonghui": {
+    "zhanji_button": {
       "ver": "1.0.3",
-      "uuid": "43c54cd0-6cc9-4d57-bb6e-5b73ab7ef451",
-      "rawTextureUuid": "755a3a09-380f-4308-ac34-181ce9a540e2",
+      "uuid": "f4fa0b21-dc74-4c6a-b7a5-4c5dc4a18251",
+      "rawTextureUuid": "54f5dc7e-364f-455b-88ee-b9a84a4194c9",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

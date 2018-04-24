@@ -18,13 +18,16 @@
       },
       {
         "__id__": 4
+      },
+      {
+        "__id__": 6
       }
     ],
     "_tag": -1,
     "_active": true,
     "_components": [],
     "_prefab": null,
-    "_id": "1b608e27-f6be-458f-8410-f0a109403710",
+    "_id": "258bd7db-b304-45e5-96dd-72036176f687",
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
@@ -56,11 +59,11 @@
     "_parent": {
       "__id__": 1
     },
-    "_id": "12wZiy475AdZycm80MyAJo",
+    "_id": "809QGDopJEuqa3W/9HhW5x",
     "_prefab": {
       "__id__": 3
     },
-    "_name": "PopBuyFangKaScene",
+    "_name": "PopGameInfoScene",
     "_active": true,
     "_position": {
       "__type__": "cc.Vec2",
@@ -78,9 +81,9 @@
       "__id__": 2
     },
     "asset": {
-      "__uuid__": "867dd157-15d4-4fa2-8442-f9241b40266a"
+      "__uuid__": "5bbe8e86-4532-48a4-99fd-def6c912ba2b"
     },
-    "fileId": "12wZiy475AdZycm80MyAJo",
+    "fileId": "809QGDopJEuqa3W/9HhW5x",
     "sync": true
   },
   {
@@ -89,16 +92,16 @@
     "_parent": {
       "__id__": 1
     },
-    "_id": "161jbcHbZC1LiO40GCAo3V",
+    "_id": "f3bhnEc1pBIqWislEs9eTl",
     "_prefab": {
       "__id__": 5
     },
-    "_name": "PopBuyOrderScene",
-    "_active": false,
+    "_name": "record_item_layout",
+    "_active": true,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 640,
-      "y": 400
+      "x": 716,
+      "y": 35.31
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -111,9 +114,42 @@
       "__id__": 4
     },
     "asset": {
-      "__uuid__": "c8e50ff7-b7f9-44af-a127-bd82b4b4b52c"
+      "__uuid__": "ec5748db-be17-4f57-96c5-d00e22e37a53"
     },
-    "fileId": "161jbcHbZC1LiO40GCAo3V",
+    "fileId": "f3bhnEc1pBIqWislEs9eTl",
+    "sync": true
+  },
+  {
+    "__type__": "cc.Node",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 1
+    },
+    "_id": "4cl96Y/kZPEaP9yGzWk7lD",
+    "_prefab": {
+      "__id__": 7
+    },
+    "_name": "game_history_item_layout",
+    "_active": true,
+    "_position": {
+      "__type__": "cc.Vec2",
+      "x": 716,
+      "y": 35.31
+    },
+    "_rotationX": 0,
+    "_rotationY": 0,
+    "_localZOrder": 0,
+    "_globalZOrder": 0
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 6
+    },
+    "asset": {
+      "__uuid__": "11e67829-757a-4552-abeb-0b9407eb19b9"
+    },
+    "fileId": "4cl96Y/kZPEaP9yGzWk7lD",
     "sync": true
   }
 ]

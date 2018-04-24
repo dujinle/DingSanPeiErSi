@@ -74,8 +74,17 @@ cc.Class({
 		this.node.addChild(this.pop_enter_scene);
 		this.pop_enter_scene.setPosition(this.node.convertToNodeSpaceAR(cc.p(size.width/2,size.height/2)));
 	},
-	store_scene(){
-		cc.director.loadScene("StoreScene");
+	popGonghuiScene(){
+		var size = cc.director.getWinSize();
+		this.pop_gonghui_scene = cc.instantiate(g_assets["PopGongHuiScene"]);
+		this.node.addChild(this.pop_gonghui_scene);
+		this.pop_gonghui_scene.setPosition(this.node.convertToNodeSpaceAR(cc.p(size.width/2,size.height/2)));
+	},
+	popMyGameScene(){
+		var size = cc.director.getWinSize();
+		this.pop_game_scene = cc.instantiate(g_assets["PopGameInfoScene"]);
+		this.node.addChild(this.pop_game_scene);
+		this.pop_game_scene.setPosition(this.node.convertToNodeSpaceAR(cc.p(size.width/2,size.height/2)));
 	},
 	feed_back_scene(){
 		cc.director.loadScene("FeedBack");

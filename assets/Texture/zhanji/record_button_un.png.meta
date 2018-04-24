@@ -1,14 +1,14 @@
 {
   "ver": "1.0.0",
-  "uuid": "755a3a09-380f-4308-ac34-181ce9a540e2",
+  "uuid": "cb221cd9-f769-4078-ad0d-981800ff594c",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "subMetas": {
-    "my_gonghui": {
+    "record_button_un": {
       "ver": "1.0.3",
-      "uuid": "43c54cd0-6cc9-4d57-bb6e-5b73ab7ef451",
-      "rawTextureUuid": "755a3a09-380f-4308-ac34-181ce9a540e2",
+      "uuid": "9d5abb65-2976-43b5-96b2-a23fd54a5b26",
+      "rawTextureUuid": "cb221cd9-f769-4078-ad0d-981800ff594c",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
