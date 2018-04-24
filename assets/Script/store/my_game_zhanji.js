@@ -2,8 +2,7 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-		
-		itemTemplate:cc.Node,
+		itemHeight:40,
 		scrollView: {
 			default: null,
 			type: cc.ScrollView
@@ -17,6 +16,7 @@ cc.Class({
 		win_node:cc.Node,
 		lose_node:cc.Node,
 		equal_node:cc.Node,
+		debug_label:cc.Label,
     },
     onLoad () {
 	},
@@ -26,14 +26,15 @@ cc.Class({
 		this.items = []; // 存储实际创建的项数组
         this.updateTimer = 0;  
         this.updateInterval = 0.2;
+		this.itemHeight = 40;
         // 使用这个变量来判断滚动操作是向上还是向下
         this.lastContentPosY = 0; 
         // 设定缓冲矩形的大小为实际创建项的高度累加，当某项超出缓冲矩形时，则更新该项的显示内容
-        this.bufferZone = this.spawnCount * (this.itemTemplate.height + this.spacing) / 2;
+        this.bufferZone = this.spawnCount * (this.itemHeight + this.spacing) / 2;
 		// 获取整个列表的高度
-        this.content.height = this.totalCount * (this.itemTemplate.height + this.spacing) + this.spacing;
+        this.content.height = this.totalCount * (this.itemHeight + this.spacing) + this.spacing;
     	for (let i = 0; i < this.spawnCount; ++i) { // spawn items, we only need to do this once
-    		let item = cc.instantiate(this.itemTemplate);
+    		let item = cc.instantiate(g_assets["game_history_item_layout"]);
             this.content.addChild(item);
             // 设置该item的坐标（注意父节点content的Anchor坐标是(0.5, 1)，所以item的y坐标总是负值）
     		item.setPosition(0, -item.height * (0.5 + i) - this.spacing * (i + 1));
@@ -62,7 +63,7 @@ cc.Class({
         // 如果当前content的y坐标小于上次记录值，则代表往下滚动，否则往上。
         let isDown = this.scrollView.content.y < this.lastContentPosY;
         // 实际创建项占了多高（即它们的高度累加）
-        let offset = (this.itemTemplate.height + this.spacing) * items.length;
+        let offset = (this.itemHeight + this.spacing) * items.length;
         let newY = 0;
 
         // 遍历数组，更新item的位置和显示
@@ -107,5 +108,15 @@ cc.Class({
 		this.equal_node.getComponent("cc.Label").string = data["equal"];
 		this.data_list = data_list;
 		this.initialize();
+	},
+	clear_scroll_data(){
+		if(this.items == null){
+			return ;
+		}
+		for (let i = 0; i < this.items.length; i++) { // spawn items, we only need to do this once
+			let item = this.items[i];
+			item.removeFromParent();
+			item.destroy();
+    	}
 	},
 });

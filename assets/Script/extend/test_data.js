@@ -13,7 +13,7 @@ for(var i = 0;i < 4;i++){
 }
 
 var g_user = {
-	'nickName':'player0',
+	'nickName':'杜甫',
 	'fangka':10,
 	'gender':1,
 	'playerId':1

@@ -43,8 +43,10 @@ cc.Class({
 		//init zhanji info
 		var zhanji_node_com = this.zhanji_node.getComponent("my_game_zhanji");
 		zhanji_node_com.init_zhanji_info(g_zhanji_light_data,g_zhanji_data);
-		
 		this.zhanji_node.active = true;
+		//清空隐藏node的数据
+		var record_node_com = this.record_node.getComponent("my_game_record");
+		record_node_com.clear_scroll_data();
 		this.record_node.active = false;
 		cc.log("zhanji_button_cb");
 	},
@@ -53,9 +55,12 @@ cc.Class({
 		this.zhanji_button.getComponent("cc.Button").interactable = true;
 		var record_node_com = this.record_node.getComponent("my_game_record");
 		record_node_com.init_record_info(g_record_light_data,g_record_data);
-		
-		this.zhanji_node.active = false;
 		this.record_node.active = true;
+		
+		var zhanji_node_com = this.zhanji_node.getComponent("my_game_zhanji");
+		zhanji_node_com.clear_scroll_data();
+		this.zhanji_node.active = false;
+
 		cc.log("record_button_cb");
 	},
     // update (dt) {},
