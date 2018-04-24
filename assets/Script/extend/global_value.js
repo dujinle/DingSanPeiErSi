@@ -6,6 +6,7 @@
 
 //扑克牌背面
 var g_dealCardBack = null;
+var g_DEBUG = true;
 //g_dealCardBack.retain();
 //筹码精灵
 //var g_countSprite=new cc.Sprite(res.Chips_Test_png);

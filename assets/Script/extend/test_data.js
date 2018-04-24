@@ -108,7 +108,7 @@ var g_zhanji_light_data = {
 	"equal":100
 };
 var g_zhanji_data = [];
-for(var i = 0;i < 12;i++){
+for(var i = 0;i < 50;i++){
 	var item = {
 		"order_id":"sdsdsdsdsdssdsd" + i,
 		"fangka_num":2,
@@ -126,7 +126,7 @@ var g_record_light_data = {
 	"invalid_num":100
 };
 var g_record_data = [];
-for(var i = 0;i < 12;i++){
+for(var i = 0;i < 50;i++){
 	var item = {
 		"order_id":"sdsdsdsdsdssdsd" + i,
 		"fangka_num":2,

@@ -7,10 +7,10 @@ cc.Class({
 	   money:cc.Node,
 	   creat_time:cc.Node,
 	   sbutton:cc.Node,
-	   ppthis:null,
+	   itemID:null,
     },
-	init(data,ppthis){
-		this.ppthis = ppthis;
+	init(id,data){
+		this.itemID = id;
 		this.order_id.getComponent("cc.Label").string = data["order_id"];
 		this.fangka_num.getComponent("cc.Label").string = data["fangka_num"];
 		this.money.getComponent("cc.Label").string = data["money"];
