@@ -8,9 +8,11 @@ cc.Class({
 	   creat_time:cc.Node,
 	   game_status:cc.Node,
 	   itemID:0,
+	   pthis:null,
     },
-	init(id,data){
+	init(id,data,pthis){
 		this.itemID = id;
+		this.pthis = pthis;
 		this.order_id.getComponent("cc.Label").string = data["order_id"];
 		this.fangka_num.getComponent("cc.Label").string = data["fangka_num"];
 		this.renshu.getComponent("cc.Label").string = data["renshu"];

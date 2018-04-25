@@ -13,10 +13,10 @@ for(var i = 0;i < 4;i++){
 }
 
 var g_user = {
-	'nickName':'杜甫',
+	'nickname':'杜甫',
 	'fangka':10,
 	'gender':1,
-	'playerId':1
+	'player_id':1
 };
 var g_paixing = {
 	"paixing":{

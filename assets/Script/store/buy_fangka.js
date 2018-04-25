@@ -10,6 +10,7 @@ cc.Class({
 		num_label:cc.Node,
 		danjia_label:cc.Label,
 		zongjia_label:cc.Label,
+		buy_button:cc.Node,
     },
 	onLoad(){
 		cc.log("on load store buy");
@@ -38,12 +39,46 @@ cc.Class({
 				}
 			}
          }, this.game_sprite);
+		 this.init();
 	},
-	init(data){
-		this.danjia = data["danjia"];
-		this.danjia_label.string = this.danjia + "元";
-		this.zongjia = this.danjia * this.fangka_num;
-		this.zongjia_label.string = this.zongjia + "元";
+	init(){
+		var self = this;
+		if(g_user.gonghui_id == null){
+			this.tip_label.string = "您还没有公会信息，请先加入公会再来购买。";
+			this.buy_button.getComponent("cc.Button").interactable = false;
+		}else{
+			Servers.gonghuiProcess("getGonghui",{"gonghui_id":g_user.gonghui_id},function(data){
+				if(data.code == 200){
+					self.danjia = data.msg["danjia"];
+					this.danjia_label.string = this.danjia + "元";
+				}else{
+					this.tip_label.string = data.msg;
+					this.buy_button.getComponent("cc.Button").interactable = false;
+				}
+			});
+		}
+	},
+	button_cb(){
+		var self = this;
+		var size = cc.director.getWinSize();
+		var param = {
+			"player_id":g_user["id"],
+			"fangka_num":this.fangka_num,
+			"danjia":this.danjia,
+			"zongjia":this.zongjia
+		};
+		Servers.storeProcess("creatOrder",param,function(data){
+			if(data.code == 200){
+				self.node.active = false;
+				self.node.destroy();
+				
+				var pop_order = cc.instantiate(g_assets["PopBuyOrderScene"]);
+				var pop_order_com = pop_order.getComponent("buy_order");
+				pop_order_com.init(data.data);
+				self.parent.node.addChild(pop_order);
+				pop_order.setPosition(self.parent.node.convertToNodeSpaceAR(cc.p(size.width/2,size.height/2)));
+			}
+		});
 	},
 	onEditDidBegan: function(editbox, customEventData) {
         //这里 editbox 是一个 cc.EditBox 对象

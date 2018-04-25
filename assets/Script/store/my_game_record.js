@@ -16,6 +16,7 @@ cc.Class({
 		left_num_node:cc.Node,
 		invalid_num_node:cc.Node,
 		debug_label:cc.Label,
+		pthis:null,
     },
     onLoad () {
 	},
@@ -37,7 +38,7 @@ cc.Class({
             this.content.addChild(item);
             // 设置该item的坐标（注意父节点content的Anchor坐标是(0.5, 1)，所以item的y坐标总是负值）
     		item.setPosition(0, -item.height * (0.5 + i) - this.spacing * (i + 1));
-    		item.getComponent('record_item').init(i,this.data_list[i]);
+    		item.getComponent('record_item').init(i,this.data_list[i],this.pthis);
             this.items.push(item);
     	}
     },
@@ -77,7 +78,7 @@ cc.Class({
                     items[i].setPositionY(newY);
 					let item = items[i].getComponent('record_item');
                     let itemId = item.itemID - items.length; // update item id
-                    item.init(itemId,this.data_list[itemId]);
+                    item.init(itemId,this.data_list[itemId],this.pthis);
 					cc.log("prev id:" + itemId);
                 }
             } else {
@@ -89,7 +90,7 @@ cc.Class({
                     items[i].setPositionY(newY);
                     let item = items[i].getComponent('record_item');
                     let itemId = item.itemID + items.length;
-					item.init(itemId,this.data_list[itemId]);
+					item.init(itemId,this.data_list[itemId],this.pthis);
 					cc.log("next id:" + itemId);
                 }
             }
@@ -99,14 +100,24 @@ cc.Class({
         this.lastContentPosY = this.scrollView.content.y;
     },
 
-	init_record_info(data,data_list){
-		this.all_num_node.getComponent("cc.Label").string = data["all_num"];
-		this.use_num_node.getComponent("cc.Label").string = data["use_num"];
-		this.left_num_node.getComponent("cc.Label").string = data["left_num"];
-		this.invalid_num_node.getComponent("cc.Label").string = data["invalid_num"];
-		this.data_list = data_list;
-		cc.log("data_list:" + data_list.length);
-		this.initialize();
+	init_record_info(data,pthis){
+		var self = this;
+		this.pthis = pthis;
+		this.all_num_node.getComponent("cc.Label").string = data["fangka_history"];
+		this.use_num_node.getComponent("cc.Label").string = parseInt(data["fangka_history"]) - parseInt(data["fangka_num"]);
+		this.left_num_node.getComponent("cc.Label").string = data["fangka_num"];
+		this.invalid_num_node.getComponent("cc.Label").string = data["invalid_fangka"];
+		var param = {
+			"player_id":data["id"],
+			"index":0,
+			"length":this.totalCount
+		};
+		Servers.gameInfoProcess("getBuyFangkaList",param,function(data){
+			self.data_list = data;
+			if(data.length > 0){
+				self.initialize();
+			}
+		});
 	},
 	clear_scroll_data(){
 		if(this.items == null){

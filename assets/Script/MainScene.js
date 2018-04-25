@@ -12,26 +12,10 @@ cc.Class({
 
     onLoad () {
         cc.log("on load main scene.....");
-
-		cc.loader.loadResDir("",cc.SpriteFrame,function (err, assets) {
-			for(var i = 0;i < assets.length;i++){
-				g_assets[assets[i].name] = assets[i];
-				self.rate = self.rate + 1;
-				cc.log("load res :" + assets[i].name);
-			}
-		});
-		cc.loader.loadResDir("prefab",function (err, assets) {
-			for(var i = 0;i < assets.length;i++){
-				g_assets[assets[i].name] = assets[i];
-				self.rate = self.rate + 1;
-				cc.log("load res :" + assets[i].name);
-			}
-		});
-
 		var self = this;
 		//this.node.on("pressed", this.buy_fangka_scene, this);
-		this.username_label.string = g_user.nickName;
-        this.fangka_label.string = g_user.fangka;
+		this.username_label.string = g_user.nick_name;
+        this.fangka_label.string = g_user.fangka_num;
 		if(g_user.gender == 1){
 			this.sex_sprite.spriteFrame = g_assets["gender1"];
         }
@@ -57,8 +41,6 @@ cc.Class({
 	buy_fangka_scene(){
 		var size = cc.director.getWinSize();
 		this.pop_buyfangka = cc.instantiate(g_assets["PopBuyFangKaScene"]);
-		var pop_buyfangka_com = this.pop_buyfangka.getComponent("buy_fangka");
-		pop_buyfangka_com.init(g_buy_fangka_data);
 		this.node.addChild(this.pop_buyfangka);
 		this.pop_buyfangka.setPosition(this.node.convertToNodeSpaceAR(cc.p(size.width/2,size.height/2)));
 	},

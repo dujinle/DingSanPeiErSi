@@ -951,8 +951,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 141,
-      "height": 62
+      "width": 143,
+      "height": 63
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -1004,7 +1004,7 @@
       "__id__": 29
     },
     "_enabled": true,
-    "transition": 0,
+    "transition": 2,
     "pressedColor": {
       "__type__": "cc.Color",
       "r": 211,
@@ -1042,12 +1042,24 @@
       "b": 124,
       "a": 255
     },
-    "_N$normalSprite": null,
-    "_N$pressedSprite": null,
-    "pressedSprite": null,
-    "_N$hoverSprite": null,
-    "hoverSprite": null,
-    "_N$disabledSprite": null,
+    "_N$normalSprite": {
+      "__uuid__": "a044f562-4ade-4c40-ba9f-8fd3a9dd0184"
+    },
+    "_N$pressedSprite": {
+      "__uuid__": "cbb8a4b5-fc49-487f-8e83-56158a0c99bd"
+    },
+    "pressedSprite": {
+      "__uuid__": "cbb8a4b5-fc49-487f-8e83-56158a0c99bd"
+    },
+    "_N$hoverSprite": {
+      "__uuid__": "cbb8a4b5-fc49-487f-8e83-56158a0c99bd"
+    },
+    "hoverSprite": {
+      "__uuid__": "cbb8a4b5-fc49-487f-8e83-56158a0c99bd"
+    },
+    "_N$disabledSprite": {
+      "__uuid__": "cbb8a4b5-fc49-487f-8e83-56158a0c99bd"
+    },
     "_N$target": {
       "__id__": 29
     }
@@ -1171,6 +1183,9 @@
     },
     "zongjia_label": {
       "__id__": 24
+    },
+    "buy_button": {
+      "__id__": 29
     }
   },
   {

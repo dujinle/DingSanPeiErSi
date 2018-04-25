@@ -7,32 +7,6 @@ cc.Class({
 		debug_label:cc.Label,
 		callback:null,
     },
-	onLogin(){
-		var self = this;
-		var size = cc.director.getVisibleSize();
-		/*
-		cc.log("onLogin",self.telephone,self.password);
-		if(self.telephone == null || self.password == null){
-			self.tip_label.string = "用户名密码不能为空";
-			return ;
-		}
-		if(self.telephone == "" || self.password == ""){
-			self.tip_label.string = "用户名密码不能为空";
-			return ;
-		}
-		Servers.getLogin(self.telephone, self.password, function (data) {
-			console.log("get login info succ:" + JSON.stringify(data));
-			if(data.code != 200){
-				self.tip_label.string = data.msg;
-				return;
-			}
-			var token = data.token;
-			Servers.getEntry(token,function(data){
-				self.saveUserInfo(data);
-			});
-		});
-		*/
-	},
 	wxLogin(){
 		cc.log("wxLogin");
 		this.debug_label.string = "wxLogin.......";
@@ -41,7 +15,6 @@ cc.Class({
 		this.login_flag = true;
 	},
 	update(){
-		cc.log("update" + this.login_flag);
 		if(this.login_flag == true){
 			this.login_flag = false;
 			var size = cc.director.getVisibleSize();
@@ -81,18 +54,21 @@ cc.Class({
 		cc.log("get_wxuser_info:" + JSON.stringify(data));
 		if(data.openid != null){
 			this.debug_label.string = "get_wxuser_info:" + JSON.stringify(data);
-			g_user['nickName'] = data.nickname;
-			g_user['fangka'] = 10;
+			g_user['nickname'] = data.nickname;
+			g_user['fangka'] = 0;
 			g_user['gender'] = data.sex;
-			g_user['playerId'] = data.unionid;
+			g_user['player_id'] = data.unionid;
 			g_user['headimgurl'] = data.headimgurl;
-			cc.director.loadScene("MainScene");
+			this.debug_label.string = "start on login......";
+			this.onLogin();
 		}else{
 			this.error_code(data);
 		}
 	},
     onLoad () {
     	cc.log("onLoad" + this.login_flag);
+		this.onLogin();
+		/*
     	this.login_flag = false;
 		var refresh_token = Storage.getData("refresh_token");
 		var app_id = Storage.getData("app_id");
@@ -100,9 +76,36 @@ cc.Class({
 			return false;
 		}else{
 			this.callback = this.get_access_token;
-			/*刷新refresh_token 获取最新的access_token*/
+			//刷新refresh_token 获取最新的access_token
 			util.get("https://api.weixin.qq.com/sns/oauth2/refresh_token","appid=" + app_id + "&grant_type=refresh_token&refresh_token=" + refresh_token,this);
 		}
+		*/
+	},
+	onLogin(){
+		var self = this;
+		this.debug_label.string = "go into on login......";
+		var size = cc.director.getVisibleSize();
+		Servers.getLogin(g_user['player_id'],g_user['nickname'],g_user['gender'], function (data) {
+			console.log("get login info succ:" + JSON.stringify(data));
+			if(data.code != 200){
+				self.debug_label.string = data.msg;
+				return;
+			}
+			var token = data.token;
+			Servers.getEntry(token,function(data){
+				if(data.code == 200){
+					self.saveUserInfo(data.player);
+				}else{
+					self.debug_label.string = data.msg;
+				}
+			});
+		});
+	},
+	saveUserInfo(data){
+		for(var key in data) {
+			g_user[key] = data[key];
+        }
+		cc.director.loadScene("MainScene");
 	},
 	error_code(data){
 		var size = cc.director.getVisibleSize();

@@ -1,35 +1,22 @@
 
-var gateHost       = "192.168.10.130";
-var loginHost      = "192.168.10.130";
-
-//var gateHost       = "187j615c32.iok.la";
-//var loginHost      = "187j615c32.iok.la";
-
-//var loginHost      = "120.24.254.91";
-//var loginHost       = "127.0.0.1";
-
-//var gateHost  = "121.14.129.144";
-//var loginHost  = "121.14.129.144";
-
-//var gateHost       = "10.16.20.251";
-//var loginHost       = "10.16.20.251";
+var gateHost       = "192.168.10.203";
+var loginHost      = "192.168.10.203";
 
 var gatePort       = "3014";
 var gateRouter     = "gate.gateHandler.queryEntry";
 var entryRouter    = "connector.entryHandler.entry";
 
-
 var loginPort      = "8210";
 var loginRouter    = "login.loginHandler.login"; //用户登录
-var registerRouter = "login.loginHandler.register"; //注册新用户
-var isPhoneRouter = "login.loginHandler.isPhone"; //注册新用户
-var userUpdateRouter = "user.userHandler.updateInfo"; //更新用户信息
-var userAddGoldRouter = "user.storeHandler.addGold"; //增加金币
-var userUpdateAccount = 'user.userHandler.updateAccount';//更改用户名
+
+var gonghuiRouter = "user.gonghuiHandler.gonghuiProcess";
+var storeRouter = "user.storeHandler.storeProcess";
+var gameInfoRouter = "user.gameInfoHandler.gameInfoProcess";
 
 var getPlayerInfo = 'user.userHandler.getPlayerInfo'; //获取其他用户的信息
 
 var userPresents = 'user.userHandler.presents'; //送礼物 //未完待续
+
 var storeBuyGift = 'user.storeHandler.buyGift';  //买礼物
 var storeBuyEquip = "user.storeHandler.buyEquip"; //买道具
 var storeBuyDiamond = 'user.storeHandler.buyDiamond'; //充值钻石
@@ -151,6 +138,24 @@ Servers.buyGift = function(playerId,gift,number,cb){
         cb(data);
     });
 };
+
+Servers.storeProcess = function(process,param,cb){
+    pomelo.request(storeRouter,{process:process,data:param},function(data){
+        cb(data);
+    });
+};
+
+Servers.gonghuiProcess = function(process,param,cb){
+    pomelo.request(gonghuiRouter,{process:process,data:param},function(data){
+        cb(data);
+    });
+};
+
+Servers.gameInfoProcess = function(process,param,cb){
+    pomelo.request(gameInfoRouter,{process:process,data:param},function(data){
+        cb(data);
+    });
+};
 /**
  * 更新用户信息
  * @param playerId
@@ -178,58 +183,12 @@ Servers.getAddGold = function(playerId,gold,diamond,cb){
     });
 };
 
-/**
- * login by userId and password
- * @param userId
- * @param password
- * @param cb 登录成功返回code=200  加密token信息
- 
-Servers.getLogin = function(userId, password, cb) {
+Servers.getLogin = function(playerId,nickName,gender, cb) {
     pomelo.init({
         host: loginHost,
         port: loginPort
     }, function () {
-        pomelo.request(loginRouter, {userId: userId, password: password}, function (data) {
-            //pomelo.disconnect();
-            cb(data);
-        });
-    });
-};
-*/
-
-Servers.getLogin = function(phone_num, password, cb) {
-    pomelo.init({
-        host: loginHost,
-        port: loginPort
-    }, function () {
-        pomelo.request(loginRouter, {phone_num: phone_num, password: password}, function (data) {
-            cb(data);
-        });
-    });
-};
-
-Servers.getIsPhone = function(phone_num, cb) {
-    pomelo.init({
-        host: loginHost,
-        port: loginPort
-    }, function () {
-        pomelo.request(isPhoneRouter, {phone_num: phone_num}, function (data) {
-            cb(data);
-        });
-    });
-};
-/**
- * 用户注册
- * @param imei
- * @param cb 注册成功返回code=200，加密token
- */
-Servers.getRegister = function(phone_num,nick_name,password,sign_text,sex_type, cb) {
-    pomelo.init({
-        host: loginHost,
-        port: loginPort
-    }, function () {
-        pomelo.request(registerRouter, {phone_num: phone_num,nick_name:nick_name,password:password,sign_text:sign_text,sex_type:sex_type}, function (data) {
-        	console.log("get register server succ......");
+        pomelo.request(loginRouter, {player_id:playerId, nick_name: nickName,sex:gender}, function (data) {
             cb(data);
         });
     });

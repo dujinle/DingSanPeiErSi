@@ -8,7 +8,7 @@ cc.Class({
 	  zhanji_button:cc.Node,
 	  //record params
 	  record_button:cc.Node,
-	  record_node:cc.Node, 
+	  record_node:cc.Node,
     },
     onLoad () {
 		var self = this;
@@ -42,7 +42,7 @@ cc.Class({
 		this.record_button.getComponent("cc.Button").interactable = true;
 		//init zhanji info
 		var zhanji_node_com = this.zhanji_node.getComponent("my_game_zhanji");
-		zhanji_node_com.init_zhanji_info(g_zhanji_light_data,g_zhanji_data);
+		zhanji_node_com.init_zhanji_info(g_user,this);
 		this.zhanji_node.active = true;
 		//清空隐藏node的数据
 		var record_node_com = this.record_node.getComponent("my_game_record");
@@ -54,7 +54,7 @@ cc.Class({
 		this.record_button.getComponent("cc.Button").interactable = false;
 		this.zhanji_button.getComponent("cc.Button").interactable = true;
 		var record_node_com = this.record_node.getComponent("my_game_record");
-		record_node_com.init_record_info(g_record_light_data,g_record_data);
+		record_node_com.init_record_info(g_user,this);
 		this.record_node.active = true;
 		
 		var zhanji_node_com = this.zhanji_node.getComponent("my_game_zhanji");
