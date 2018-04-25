@@ -30,11 +30,11 @@ cc.Class({
     },
 	init(params){
 		cc.log("tdk_player init: " + JSON.stringify(params));
-		this.id = params[0];
-        this.position_server = params[1];
-        this.is_power = params[2];
-		this.nick_name = params[3];
-		this.my_gold = params[4];
+		this.id = params.id;
+        this.position_server = params.location;
+        this.is_power = 0
+		this.nick_name = params.nick_name;
+		this.my_gold = 0;
 		this.nick_name_label.getComponent(cc.Label).string = this.nick_name;
 		this.gold_label.getComponent(cc.Label).string = this.my_gold;
 	},

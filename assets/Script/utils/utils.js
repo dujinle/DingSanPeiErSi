@@ -60,6 +60,10 @@ util.getEnterRoute = function(){
 	return "connector.entryHandler.enter";
 }
 
+util.getRoomInfoRoute = function(){
+	return "connector.entryHandler.get_room_info";
+}
+
 util.getStartGameRoute = function(){
 	return "connector.entryHandler.start_game";
 }
@@ -70,6 +74,10 @@ util.getDelayWaitTimeRoute = function(){
 
 util.getDissolveRoomRoute = function(){
 	return "connector.entryHandler.dissolve_room";
+}
+
+util.getLeaveRoomRoute = function(){
+	return "connector.entryHandler.leave_room";
 }
 
 util.show_error_info = function(pp,size,msg){

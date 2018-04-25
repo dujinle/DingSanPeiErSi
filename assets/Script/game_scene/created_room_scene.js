@@ -119,7 +119,11 @@ cc.Class({
 					var item = self.choice_sprite[i].getComponent("player_select");
 					item.set_flag(true);
 				}
-				self.start_game();
+				if(self.enter_player.id == g_user["id"]){
+					util.show_error_info(null,null,"房间人员已经到齐，请点击开始游戏，进入游戏！");
+				}else{
+					util.show_error_info(null,null,"房间人员已经到齐，请等待房主开始游戏，进入游戏！");
+				}
 			}
 		});
 	},
@@ -161,8 +165,27 @@ cc.Class({
 	},
 	onStartGame_function(data){
 		cc.log("pomelo on onStartGame_function:" + JSON.stringify(data));
-		g_room_data["is_gaming"] = data.is_gaming;
-		cc.director.loadScene("PJRoomScene");
+		var players = data.players;
+		g_players_data.splice(0,g_players_data.length);
+		for(var i = 0;i < players.length;i++){
+			if(players[i] != null && players[i] != "null"){
+				g_players_data.push(players[i]);
+			}
+		}
+		var param = {
+			"rid":g_room_data["rid"]
+		};
+		pomelo.request(util.getRoomInfoRoute(), param, function(data) {
+			cc.log(JSON.stringify(data));
+			if(data.code == 200){
+				for(var key in data) {
+					g_room_data[key] = data[key];
+				}
+				cc.director.loadScene("PJRoomScene");
+			}else{
+				util.show_error_info(null,null,data.msg);
+			}
+		});	
 	},
     
 	game_back(){
@@ -292,6 +315,12 @@ cc.Class({
 						player_id:g_user["id"]
 					};
 					pomelo.request(util.getEnterRoute(), param, function(data) {
+						if(data.code == 200){
+							g_user["fangka_num"] = data.fangka_num;
+						}else{
+							item.set_flag(false);
+							util.show_error_info(null,null,data.msg);
+						}
 						cc.log(JSON.stringify(data));
 					});
 				}

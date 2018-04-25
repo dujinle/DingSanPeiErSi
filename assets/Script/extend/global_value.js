@@ -13,12 +13,12 @@ var g_DEBUG = true;
 
 //房间中玩家存储数据
 var g_room_data = null;
+var g_players_data = new Array();
 var g_zhuang_serverPosition = 0;
 var g_players_noPower = new Array();
 var g_players = new Array();
 var g_myselfPlayerPos = -1;
 var g_playerData = new Array();
-var g_roomData = new Array();
 var g_roomMasterName = "";
 var g_game_type = "ZJH";
 var g_fapaiNum = 3;

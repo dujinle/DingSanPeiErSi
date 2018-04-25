@@ -35,12 +35,12 @@ cc.Class({
     },
 
     onLoad () {
-		this.sumBet = g_roomData[1];
-		this.count = g_roomData[2];
-		this.roomNum = g_roomData[3];
-        this.roomState = g_roomData[5];
-		this.currentGetPowerPlayerPosition = g_roomData[6];
-		this.master_name = g_roomData[0];
+		this.sumBet = 100;
+		this.count = 0;
+		this.roomNum = g_room_data["room_num"];
+        this.roomState = g_room_data["is_gaming"];
+		this.currentGetPowerPlayerPosition = 0;
+		this.master_name = g_room_data["fangzhu_name"];
 		this.total_count = g_totalCount;
 		this.startDealCardPosition = 0;
 		this.startDealCardPosition = 0;
@@ -52,8 +52,7 @@ cc.Class({
 		this.node.on("pressed", this.switchRadio, this);
 	},
 	start(){
-		/*
-		cc.log("go into zjh game room scene start");
+		cc.log("go into pj game room scene start");
 		this.audioSource = this.node.getComponent(cc.AudioSource);
 		g_music_key = cc.sys.localStorage.getItem(MUSIC_KEY);
 		if(g_music_key == BOOL.YES){
@@ -61,20 +60,6 @@ cc.Class({
 		}
 		this.init_count_timer();
 		this.pomelo_on();
-		*/
-		//test for 
-		cc.loader.loadResDir("",cc.SpriteFrame,function (err, assets) {
-			for(var i = 0;i < assets.length;i++){
-				g_assets[assets[i].name] = assets[i];
-				cc.log("load res :" + assets[i].name);
-			}
-		});
-		cc.loader.loadResDir("prefab",function (err, assets) {
-			for(var i = 0;i < assets.length;i++){
-				g_assets[assets[i].name] = assets[i];
-				cc.log("load res :" + assets[i].name);
-			}
-		});
 	},
 	init_head_info(){
 		var size = cc.director.getWinSize();
@@ -89,38 +74,30 @@ cc.Class({
 		
 		var lhuihe = this.huihe_label.getComponent(cc.Label);
 		lhuihe.string = this.count + "/" + this.total_count;
-		//添加滚动字幕
-		/*
-		this.msage_scroll = cc.instantiate(g_assets["msage_scroll"]);
-		this.node.addChild(this.msage_scroll);
-		var x = size.width/2;
-		var y = size.height - 120;
-		this.msage_scroll.setPosition(this.node.convertToNodeSpaceAR(cc.p(x,y)));
-		*/
 	},
 	initButtonEnableAfterComeInRoom(){
 		this.get_one_button("ready",true);
     },
     initPlayersAndPlayer_noPower(){
-		cc.log("initPlayersAndPlayer_noPower" + JSON.stringify(g_playerData));
-		for(var i = 0;i < g_playerData.length;i++){
-			if(g_playerData[i][0] == g_user.playerId){
-				g_myselfPlayerPos = g_playerData[i][1];
+		cc.log("initPlayersAndPlayer_noPower" + JSON.stringify(g_players_data));
+		for(var i = 0;i < g_players_data.length;i++){
+			if(g_players_data[i][0] == g_user.playerId){
+				g_myselfPlayerPos = g_players_data[i].location;
 				break;
 			}
 		}
 
 		var position = new Array();
 		//寻找玩家自己，确定自己的服务器位置和客户端位置
-		for(var i = 0;i < g_playerData.length;i++){
+		for(var i = 0;i < g_players_data.length;i++){
 			var idx = -1;
-			var player_stc = g_playerData[i];
-			if(player_stc[1] == g_myselfPlayerPos){
+			var player_stc = g_players_data[i];
+			if(player_stc.location == g_myselfPlayerPos){
 				idx = 0;
-			}else if(player_stc[1] > g_myselfPlayerPos){
-				var idx = player_stc[1] - g_myselfPlayerPos;
-			}else if(player_stc[1] < g_myselfPlayerPos){
-				var idx = this.players.length - g_myselfPlayerPos + player_stc[1];
+			}else if(player_stc.location > g_myselfPlayerPos){
+				var idx = player_stc.location - g_myselfPlayerPos;
+			}else if(player_stc.location < g_myselfPlayerPos){
+				var idx = this.players.length - g_myselfPlayerPos + player_stc.location;
 			}
 			if(idx >= 0){
 				position[idx] = player_stc;
@@ -136,11 +113,7 @@ cc.Class({
 			player_com.init(player_stc);
 			player_com.player_position = i + 1;
 			cc.log("set player_com: player_position:" + player_com.player_position + " position_server:" + player_com.position_server);
-			if(player_com.is_power == 0){
-				g_players_noPower.push(player);
-			}else{
-				g_players.push(player);
-			}
+			g_players.push(player);
 			player.active = true;
 		}
 	},
@@ -1278,7 +1251,7 @@ cc.Class({
     },
 
 	onExit(){
-        g_playerData.splice(0,g_playerData.length);
+        g_players_data.splice(0,g_players_data.length);
         g_roomData.splice(0,g_roomData.length);
 		g_players.splice(0,g_players.length);
 		g_players_noPower.splice(0,g_players_noPower.length);
