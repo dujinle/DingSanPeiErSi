@@ -15,19 +15,14 @@ cc.Class({
 		}
     },
 
-    // LIFE-CYCLE CALLBACKS:
-
     onLoad () {
 		this.node.on("pressed", this.switchRadio, this);
 		this.init_data();
 	},
 	share_button_cb(){
-		jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "WxShare", "()V");
+		jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "WxShare", "(Ljava/lang/String;Ljava/lang/String;I)V",g_room_data["room_num"],g_room_data["fangzhu_name"],g_room_data["rid"]);
 	},
-    start () {
 
-    },
-	
 	init_data(){
 		this.room_num_node.getComponent("cc.Label").string = g_room_data["room_num"];
 		this.fangzhu_node.getComponent("cc.Label").string = g_room_data["fangzhu_name"];

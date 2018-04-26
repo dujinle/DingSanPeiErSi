@@ -48,6 +48,10 @@ util.getCreateRoute = function(){
 	return "connector.entryHandler.create";
 }
 
+util.getRoomInfoRoute = function(){
+	return "connector.entryHandler.get_room";
+}
+
 util.getEnterRoute = function(){
 	return "connector.entryHandler.enter";
 }
@@ -55,9 +59,10 @@ util.getEnterRoute = function(){
 util.show_error_info = function(pp,size,msg){
 	var error_tip = cc.instantiate(g_assets["prop_error_scene"]);
 	var error_tip_com = error_tip.getComponent("prop_error_info");
-	error_tip_com.show_error_info(msg);
-	pp.node.addChild(error_tip);
-	error_tip.setPosition(pp.node.convertToNodeSpace(size.width/2,size.height/2));
+    error_tip_com.show_error_info(msg);
+    var root_node = cc.director.getScene().getChildByName('RootNode');
+	root_node.addChild(error_tip);
+	error_tip.setPosition(root_node.convertToNodeSpace(size.width/2,size.height/2));
 }
 
 util.get = function(url,param,pthis){

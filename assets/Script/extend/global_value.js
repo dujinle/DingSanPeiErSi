@@ -5,7 +5,9 @@
 /* gameScene.js*/
 
 //扑克牌背面
-var g_dealCardBack = null;
+var g_is_login = false;
+var g_next_scene = null;
+var g_next_data = null;
 var g_DEBUG = true;
 
 //房间中玩家存储数据

@@ -105,7 +105,12 @@ cc.Class({
 		for(var key in data) {
 			g_user[key] = data[key];
         }
-		cc.director.loadScene("MainScene");
+		g_is_login = true;
+		if(g_next_scene != null){
+			onGameEnterRoom(g_next_data["room_num"],g_next_data["rid"]);
+		}else{
+			cc.director.loadScene("MainScene");
+		}
 	},
 	error_code(data){
 		var size = cc.director.getVisibleSize();

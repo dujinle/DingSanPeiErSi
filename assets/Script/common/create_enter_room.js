@@ -16,7 +16,7 @@ var room_create = function(param,pthis){
 	});
 }
 
-var room_enter = function(param,callback){
+var room_enter = function(param,pthis){
     pomelo.request(util.getEnterRoute(), param, function(data) {
         if(data.error) {
 			callback(data.error);
@@ -27,9 +27,6 @@ var room_enter = function(param,callback){
 		},function(data1){
 			//玩家的信息
 			cc.log(JSON.stringify(data1));
-			//创建全局的发牌背景扑克
-			g_dealCardBack = new cc.Node("fapai_back");
-			var sp = g_dealCardBack.addComponent(cc.Sprite);
 			sp.spriteFrame = g_assets["back"];
 			//房间的信息
 			g_roomData.push(data1["current_chip"]);
@@ -76,4 +73,33 @@ var room_enter = function(param,callback){
 			}
         });
     });
+}
+
+var onGameEnterRoom = function(room_num,rid){
+	
+	if(g_is_login == true){
+		var param = {
+			"room_num":room_num,
+			"rid":rid
+		};
+		var size = cc.director.getVisibleSize();
+		pomelo.request(util.getRoomInfoRoute(), param, function(data) {
+			cc.log(JSON.stringify(data));
+			if(data.code != 200){
+				util.show_error_info(null,size,data.msg);
+				return ;
+			}
+			cc.log("create room succ" + JSON.stringify(data.msg));
+			g_room_data = data.msg;
+			g_next_scene = null;
+			g_next_data = null;
+			cc.director.loadScene("CreatedRoomScene");
+		});
+	}else{
+		g_next_scene = "enter_room";
+		g_next_data = {
+			"room_num":room_num,
+			"rid":rid
+		};
+	}
 }

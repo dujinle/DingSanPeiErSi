@@ -89,12 +89,6 @@ cc.Class({
 		
 		var lhuihe = this.huihe_label.getComponent(cc.Label);
 		lhuihe.string = this.count + "/" + this.total_count;
-		/*
-		var position = this.node.convertToNodeSpaceAR(cc.p(
-			size.width/2,size.height + g_dealCardBack.getContentSize().height/2));
-		g_dealCardBack.setPosition(position);
-		this.node.addChild(g_dealCardBack);
-		*/
 		//添加滚动字幕
 		/*
 		this.msage_scroll = cc.instantiate(g_assets["msage_scroll"]);
@@ -590,14 +584,6 @@ cc.Class({
 		*/
 		this.myselfCardsReach = true;
 		this.actionFaPai();
-		//给玩家发牌动作，由于服务器还没有给开始发牌位置信息，目前默认为从客户端位置最小的开始发牌
-		/*
-		var size = cc.director.getVisibleSize();
-		var acMoveDown = cc.moveTo(0.5,this.node.convertToNodeSpaceAR(cc.p(size.width/2,size.height)));
-		cc.log("startFaPaiPosition:" + this.currentGetPowerPlayerPosition);
-		var callFuncActionDealCard = cc.callFunc(this.actionFaPai,this);
-		g_dealCardBack.runAction(cc.sequence(new cc.EaseOut(acMoveDown,20),callFuncActionDealCard));
-		*/
 	},
 	onPeipai_function(data){
 		cc.log("onPeipai_function:" + JSON.stringify(data));
@@ -1292,7 +1278,6 @@ cc.Class({
     },
 
 	onExit(){
-        g_dealCardBack.destroy();
         g_playerData.splice(0,g_playerData.length);
         g_roomData.splice(0,g_roomData.length);
 		g_players.splice(0,g_players.length);
