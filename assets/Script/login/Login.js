@@ -67,8 +67,8 @@ cc.Class({
 	},
     onLoad () {
     	cc.log("onLoad" + this.login_flag);
-		this.onLogin();
-		/*
+		//this.onLogin();
+		
     	this.login_flag = false;
 		var refresh_token = Storage.getData("refresh_token");
 		var app_id = Storage.getData("app_id");
@@ -79,7 +79,7 @@ cc.Class({
 			//刷新refresh_token 获取最新的access_token
 			util.get("https://api.weixin.qq.com/sns/oauth2/refresh_token","appid=" + app_id + "&grant_type=refresh_token&refresh_token=" + refresh_token,this);
 		}
-		*/
+		
 	},
 	onLogin(){
 		var self = this;

@@ -7,40 +7,9 @@
 //扑克牌背面
 var g_dealCardBack = null;
 var g_DEBUG = true;
-//g_dealCardBack.retain();
-//筹码精灵
-//var g_countSprite=new cc.Sprite(res.Chips_Test_png);
-//g_countSprite.retain();
-//存放加注选择筹码按钮的精灵
-//var g_spritePlaceJiaZhuMenuSelect=null;
-//监听触摸器，用于监听存放加注筹码按钮精灵g_spritePlaceJiaZhuMenuSelect
-//var g_jiaZhu_touchListener=null;
-//加注的大小
-//var g_AddChipSize=null;
-//比牌选择界面的按钮和提示精灵
-//var g_menuBiPaiSelect=null;
-//var g_biPaiRing=null;
-//向服务器发送比牌玩家位置的变量
-//var g_playerPositionServer1=null;
-//var g_playerPositionServer2=null;
-//临时全局变量，比牌玩家的数组下标,actionBiPai:function（）中
-//var g_biPaiPlayerIndexOf1=new Array(2);
-//var g_biPaiPlayerIndexOf2=new Array(2);
-//玩家自己的服务器位置
-//var myselfPlayerPositionServer=null;
-//比牌失败者的位置,pomelo_on:function
-//var g_loserPositionServer=null;
-//广播信息记录数组，最多50条信息记录,假设现在只有四条记录
-//var g_radioMessageArray=new Array();
-//g_radioMessageArray.push("我来了，小子！");
-
-//广播文字滚动窗口
-//var g_cliper=new cc.ClippingNode();
-//g_cliper.retain();
-//广播信息记录最多保存数
-//var g_recordMax=15;
 
 //房间中玩家存储数据
+var g_room_data = null;
 var g_zhuang_serverPosition = 0;
 var g_players_noPower = new Array();
 var g_players = new Array();

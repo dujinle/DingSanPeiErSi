@@ -41,33 +41,17 @@ util.createUUID = function () {
 	return uuid;
 }
 util.getGameRoute = function(){
-	if(g_game_type == "ZJH"){
-		return "game.ZJHGameHandler.ZJHGameProcess";
-	}else if(g_game_type == "TDK"){
-		return "game.TDKGameHandler.TDKGameProcess";
-	}else if(g_game_type == "ZHQ"){
-		return "game.ZHQGameHandler.ZHQGameProcess";
-	}
+	return "game.gameHandler.gameProcess";
 }
 
 util.getCreateRoute = function(){
-	if(g_game_type == "ZJH"){
-		return "connector.ZJHEntryHandler.create";
-	}else if(g_game_type == "TDK"){
-		return "connector.TDKEntryHandler.create";
-	}else if(g_game_type == "ZHQ"){
-		return "connector.ZHQEntryHandler.create";
-	}
+	return "connector.entryHandler.create";
 }
+
 util.getEnterRoute = function(){
-	if(g_game_type == "ZJH"){
-		return "connector.ZJHEntryHandler.enter";
-	}else if(g_game_type == "TDK"){
-		return "connector.TDKEntryHandler.enter";
-	}else if(g_game_type == "ZHQ"){
-		return "connector.ZHQEntryHandler.enter";
-	}
+	return "connector.entryHandler.enter";
 }
+
 util.show_error_info = function(pp,size,msg){
 	var error_tip = cc.instantiate(g_assets["prop_error_scene"]);
 	var error_tip_com = error_tip.getComponent("prop_error_info");

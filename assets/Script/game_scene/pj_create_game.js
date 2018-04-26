@@ -70,24 +70,15 @@ cc.Class({
 		cc.log("select renshu" + this.renshu + " fangka:" + this.fangka + " zuida:" + this.max_type + " wait_time:" + this.wait_time);
     },
 	create_game(){
-		var self = this;
-		var size = cc.director.getVisibleSize();
-		window.g_fapaiNum = this.koupai + 1;
 		var param = {
-			roomType:this.game_type,
-			playerId:g_user.playerId,
-			model:this.model,
+			renshu:this.renshu,
+			room_type:this.game_type,
+			player_id:g_user.id,
+			wait_time:this.wait_time,
 			max_type:this.max_type,
-			fangKa:this.fangka
+			fangka_type:this.fangka
 		};
-		room_create(param,function(msg){
-			var error_tip = cc.instantiate(g_assets["prop_error_scene"]);
-			var error_tip_com = error_tip.getComponent("prop_error_info");
-			error_tip_com.show_error_info(msg);
-			self.node.addChild(error_tip);
-			error_tip.setPosition(self.node.convertToNodeSpace(size.width/2,size.height/2));
-			cc.log(msg);
-		});
+		room_create(param,this);
 	},
     // update (dt) {},
 });
