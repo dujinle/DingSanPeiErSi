@@ -1,4 +1,0 @@
-#Fri Apr 27 10:50:02 CST 2018
-base.0=D\:\\gitdata\\xx_cc_g\\build\\jsb-link\\frameworks\\runtime-src\\proj.android-studio\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\6
-path.0=classes.dex
-renamed.0=classes.dex
