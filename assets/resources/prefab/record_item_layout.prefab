@@ -756,7 +756,9 @@
     "sbutton": {
       "__id__": 14
     },
-    "itemID": null
+    "itemID": null,
+    "pthis": null,
+    "data": null
   },
   {
     "__type__": "cc.PrefabInfo",

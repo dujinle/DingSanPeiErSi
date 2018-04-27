@@ -595,7 +595,8 @@
     "game_status": {
       "__id__": 14
     },
-    "itemID": 0
+    "itemID": 0,
+    "pthis": null
   },
   {
     "__type__": "cc.PrefabInfo",

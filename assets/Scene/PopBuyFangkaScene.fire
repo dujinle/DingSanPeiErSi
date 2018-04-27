@@ -94,10 +94,10 @@
       "__id__": 5
     },
     "_name": "PopBuyOrderScene",
-    "_active": false,
+    "_active": true,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 640,
+      "x": 1983,
       "y": 400
     },
     "_rotationX": 0,

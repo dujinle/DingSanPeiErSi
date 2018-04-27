@@ -22,19 +22,8 @@ cc.Class({
             onTouchMoved: function (touch, event) {            // 触摸移动时触发
             },
             onTouchEnded: function (touch, event) {            // 点击事件结束处理
-				var target=event.getCurrentTarget();
-				var local=target.convertToNodeSpace(touch.getLocation());
-				var s = target.getContentSize();
-				var rect = cc.rect(0, 0, s.width, s.height);
-				if (cc.rectContainsPoint(rect, local)){
-					cc.log("ok touch in the region......");
-				}else{
-					cc.log("touch remove from parent");
-					self.node.active = false;
-					self.node.destroy();
-				}
 			}
-        }, self.game_sprite);
+        }, self.node);
 		this.zhanji_button_cb();
 	},
 	zhanji_button_cb(){
@@ -62,6 +51,10 @@ cc.Class({
 		this.zhanji_node.active = false;
 
 		cc.log("record_button_cb");
+	},
+	close_scene(){
+		this.node.active = false;
+		this.node.destroy();
 	},
     // update (dt) {},
 });

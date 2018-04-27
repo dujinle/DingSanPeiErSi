@@ -12,17 +12,43 @@ cc.Class({
 		choice_sprite:{
 			type:cc.Node,
 			default:[]
-		}
+		},
+		left_time_node:cc.Node,
+		
     },
 
     onLoad () {
 		this.node.on("pressed", this.switchRadio, this);
 		this.init_data();
+		this.init_room_pos();
+		this.left_time = parseInt(g_room_data["wait_time"]) * 60;
+		this.pomelo_on();
+		this.schedule(this.wait_time_cb,1);
 	},
 	share_button_cb(){
-		jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "WxShare", "(Ljava/lang/String;Ljava/lang/String;I)V",g_room_data["room_num"],g_room_data["fangzhu_name"],g_room_data["rid"]);
+		if(cc.sys.os == cc.sys.OS_ANDROID){
+			jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "WxShare", "(Ljava/lang/String;Ljava/lang/String;I)V",g_room_data["room_num"],g_room_data["fangzhu_name"],g_room_data["rid"]);
+		}
 	},
-
+	pomelo_on(){
+    	pomelo.on('onEnterRoom',this.onEnterRoom_function.bind(this));
+	},
+	onEnterRoom_function(data){
+		cc.log("pomelo on Ready:" + data.location+" is ready");
+		var player = data.player;
+		var location = data.location;
+		var item = this.choice_sprite[location - 1];
+		var item_com = item.getComponent("player_select");
+		item_com.set_data(player);
+		Servers.userInfoProcess("get_player",{id:player.id},function(data){
+			if(data.code == 200){
+				cc.loader.load({url:data.msg.headimgurl,type:'png'},function (err, texture) {
+					var frame = new cc.SpriteFrame(texture);
+					item.getComponent("cc.Sprite").spriteFrame = frame;
+				});
+			}
+		});
+	},
 	init_data(){
 		this.room_num_node.getComponent("cc.Label").string = g_room_data["room_num"];
 		this.fangzhu_node.getComponent("cc.Label").string = g_room_data["fangzhu_name"];
@@ -43,17 +69,54 @@ cc.Class({
 			this.wanjia_fangka_node.getComponent("cc.Label").string = "消费0张";
 		}
 	},
-    
+	init_room_pos(){
+		for(let i = 0; i < this.choice_sprite.length; i++){
+			var item = this.choice_sprite[i].getComponent("player_select");
+			var location = g_room_data["location" + (i + 1)];
+			if(location != null){
+				var player_id = location.split("*")[0];
+				Servers.userInfoProcess("get_player",{id:player.id},function(data){
+					if(data.code == 200){
+						cc.loader.load({url:data.msg.headimgurl,type:'png'},function (err, texture) {
+							var frame = new cc.SpriteFrame(texture);
+							item.getComponent("cc.Sprite").spriteFrame = frame;
+						});
+					}
+				});
+			}
+		}
+	},
+    game_back(){
+		cc.director.loadScene("MainScene");
+	},
+	
+	wait_time_cb(){
+		this.left_time = this.left_time - 1;
+		this.left_time_node.getComponent("cc.Label").string = this.left_time;
+	},
+	
 	switchRadio(event) {
-        var index = event.target.getComponent("one_choice").index;
-		var type = event.target.getComponent("one_choice").type;
+        var index = event.target.getComponent("player_select").index;
+		var type = event.target.getComponent("player_select").type;
 		cc.log("switchRadio : index:" + index + " type:" + type);
         for(let i = 0; i < this.choice_sprite.length; i++){
-			var item = this.choice_sprite[i].getComponent("one_choice");
+			var item = this.choice_sprite[i].getComponent("player_select");
             if(item.index == index){
+				var flag = item.get_flag();
+				if(flag == false){
+					item.set_flag(true);
+					var param = {
+						rid:g_room_data["rid"],
+						location:index,
+						player_id:g_user["id"]
+					};
+					pomelo.request(util.getEnterRoute(), param, function(data) {
+						cc.log(JSON.stringify(data));
+						
+					});
+				}
 				break;
             }
         }
     },
-	// update (dt) {},
 });

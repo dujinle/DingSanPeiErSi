@@ -12,6 +12,7 @@ var loginRouter    = "login.loginHandler.login"; //用户登录
 var gonghuiRouter = "user.gonghuiHandler.gonghuiProcess";
 var storeRouter = "user.storeHandler.storeProcess";
 var gameInfoRouter = "user.gameInfoHandler.gameInfoProcess";
+var userInfoRouter = "user.userHandler.userInfoProcess";
 
 var gameRouter = "game.gameHandler.gameProcess";
 
@@ -66,13 +67,18 @@ Servers.gameInfoProcess = function(process,param,cb){
         cb(data);
     });
 };
+Servers.userInfoProcess = function(process,param,cb){
+	pomelo.request(userInfoRouter,{process:process,data:param},function(data){
+        cb(data);
+    });
+};
 
-Servers.getLogin = function(playerId,nickName,gender, cb) {
+Servers.getLogin = function(playerId,nickName,gender,img_url, cb) {
     pomelo.init({
         host: loginHost,
         port: loginPort
     }, function () {
-        pomelo.request(loginRouter, {player_id:playerId, nick_name: nickName,sex:gender}, function (data) {
+        pomelo.request(loginRouter, {player_id:playerId, nick_name: nickName,sex:gender,head_img:img_url}, function (data) {
             cb(data);
         });
     });

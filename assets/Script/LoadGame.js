@@ -5,10 +5,10 @@ cc.Class({
         loadBar:cc.ProgressBar,
         precent:cc.Label,
 		rate:0,
-		source_leng:89,
+		source_leng:0,
     },
     onLoad () {
-		this.source_leng = 89;
+		this.source_leng = 0;
 		this.load_res();
         this.schedule(this.load_update,0.5);
     },

@@ -48,6 +48,10 @@ util.getCreateRoute = function(){
 	return "connector.entryHandler.create";
 }
 
+util.getEnterWaitRoomRoute = function(){
+	return "connector.entryHandler.enter_wait_room";
+}
+
 util.getRoomInfoRoute = function(){
 	return "connector.entryHandler.get_room";
 }

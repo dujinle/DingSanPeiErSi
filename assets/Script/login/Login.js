@@ -10,28 +10,35 @@ cc.Class({
 	wxLogin(){
 		cc.log("wxLogin");
 		this.debug_label.string = "wxLogin.......";
-		jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "WxLogin", "()V");
-		//cc.director.loadScene("MainScene");
-		this.login_flag = true;
+		if(cc.sys.os == cc.sys.OS_ANDROID){
+			jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "WxLogin", "()V");
+			this.login_flag = true;
+		}		
 	},
 	update(){
+		if(g_login_auto == true){
+			//这里就要自动进行登录操作
+			this.wxLogin();
+			g_login_auto = false;
+		}
 		if(this.login_flag == true){
 			this.login_flag = false;
-			var size = cc.director.getVisibleSize();
-			var app_id = jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "getAppId", "()Ljava/lang/String;");
-			var app_secret = jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "getAppSecret", "()Ljava/lang/String;");
-			var wx_code = jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "getWXCode", "()Ljava/lang/String;");
-			this.debug_label.string = "appid:" + app_id + " app_secret:" + app_secret + " wx_code:" + wx_code;
+			if(cc.sys.os == cc.sys.OS_ANDROID){
+				var app_id = jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "getAppId", "()Ljava/lang/String;");
+				var app_secret = jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "getAppSecret", "()Ljava/lang/String;");
+				var wx_code = jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "getWXCode", "()Ljava/lang/String;");
+				this.debug_label.string = "appid:" + app_id + " app_secret:" + app_secret + " wx_code:" + wx_code;
 
-			if(wx_code != null && wx_code != "null"){
-				Storage.setData("app_id",app_id);
-				Storage.setData("app_secret",app_secret);
-				this.callback = this.get_access_token;
-				this.debug_label.string = "wx_code:" + wx_code;
-				util.get("https://api.weixin.qq.com/sns/oauth2/access_token",
-					"appid=" + app_id + "&secret=" + app_secret + "&code=" + wx_code + "&grant_type=authorization_code",this);
-			}else{
-				this.login_flag = true;
+				if(wx_code != null && wx_code != "null"){
+					Storage.setData("app_id",app_id);
+					Storage.setData("app_secret",app_secret);
+					this.callback = this.get_access_token;
+					this.debug_label.string = "wx_code:" + wx_code;
+					util.get("https://api.weixin.qq.com/sns/oauth2/access_token",
+						"appid=" + app_id + "&secret=" + app_secret + "&code=" + wx_code + "&grant_type=authorization_code",this);
+				}else{
+					this.login_flag = true;
+				}
 			}
 		}
 	},
@@ -67,25 +74,35 @@ cc.Class({
 	},
     onLoad () {
     	cc.log("onLoad" + this.login_flag);
-		//this.onLogin();
-		
-    	this.login_flag = false;
-		var refresh_token = Storage.getData("refresh_token");
-		var app_id = Storage.getData("app_id");
-		if(refresh_token == null){
-			return false;
-		}else{
-			this.callback = this.get_access_token;
-			//刷新refresh_token 获取最新的access_token
-			util.get("https://api.weixin.qq.com/sns/oauth2/refresh_token","appid=" + app_id + "&grant_type=refresh_token&refresh_token=" + refresh_token,this);
+		if(cc.sys.os == cc.sys.OS_WINDOWS){
+			this.onLogin();
+		}else if(cc.sys.os == cc.sys.OS_ANDROID){
+			this.login_flag = false;
+			var refresh_token = Storage.getData("refresh_token");
+			var app_id = Storage.getData("app_id");
+			if(refresh_token == null){
+				//这里需要确定 是否是通过其他渠道打开的游戏如果是需要自动登录操作
+				if(cc.sys.os == cc.sys.OS_ANDROID){
+					var login_type = jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "getLoginType", "()I");
+					if(login_type == 1){
+						this.wxLogin();
+					}
+				}
+				return false;
+			}else{
+				this.callback = this.get_access_token;
+				//刷新refresh_token 获取最新的access_token
+				util.get("https://api.weixin.qq.com/sns/oauth2/refresh_token","appid=" + app_id + "&grant_type=refresh_token&refresh_token=" + refresh_token,this);
+			}
+		}else if(cc.sys.os == cc.sys.OS_IOS){
+			cc.log("TODO");
 		}
-		
 	},
 	onLogin(){
 		var self = this;
 		this.debug_label.string = "go into on login......";
 		var size = cc.director.getVisibleSize();
-		Servers.getLogin(g_user['player_id'],g_user['nickname'],g_user['gender'], function (data) {
+		Servers.getLogin(g_user['player_id'],g_user['nickname'],g_user['gender'],g_user['headimgurl'], function (data) {
 			console.log("get login info succ:" + JSON.stringify(data));
 			if(data.code != 200){
 				self.debug_label.string = data.msg;
@@ -109,6 +126,19 @@ cc.Class({
 		if(g_next_scene != null){
 			onGameEnterRoom(g_next_data["room_num"],g_next_data["rid"]);
 		}else{
+			//这里确定通过其他渠道登录的游戏
+			var login_type = 0;
+			if(cc.sys.os == cc.sys.OS_ANDROID){
+				login_type = jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "getLoginType", "()I");
+				if(login_type == 1){
+					var room_num = jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "getRoomNum", "()Ljava/lang/String;");
+					var scene = jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "getScene", "()Ljava/lang/String;");
+					var rid = jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "getRid", "()Ljava/lang/String;");
+					onGameEnterRoom(room_num,rid);
+				}else{
+					cc.director.loadScene("MainScene");
+				}
+			}
 			cc.director.loadScene("MainScene");
 		}
 	},

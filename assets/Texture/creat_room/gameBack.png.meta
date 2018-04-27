@@ -1,14 +1,14 @@
 {
   "ver": "1.0.0",
-  "uuid": "cc654301-934c-4b79-be48-034b72c68ba7",
+  "uuid": "b14bf112-b2d1-45ae-93bf-3c748a528b06",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "subMetas": {
-    "room_choice": {
+    "gameBack": {
       "ver": "1.0.3",
-      "uuid": "3ea0af7b-1974-4d47-a52e-f6117f184f03",
-      "rawTextureUuid": "cc654301-934c-4b79-be48-034b72c68ba7",
+      "uuid": "4b943765-5c0a-4a19-83cb-9bb2e47f4cf8",
+      "rawTextureUuid": "b14bf112-b2d1-45ae-93bf-3c748a528b06",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -16,10 +16,10 @@
       "offsetY": 0,
       "trimX": 0,
       "trimY": 0,
-      "width": 40,
-      "height": 40,
-      "rawWidth": 40,
-      "rawHeight": 40,
+      "width": 75,
+      "height": 67,
+      "rawWidth": 75,
+      "rawHeight": 67,
       "borderTop": 0,
       "borderBottom": 0,
       "borderLeft": 0,
