@@ -69,6 +69,17 @@ util.show_error_info = function(pp,size,msg){
 	error_tip.setPosition(root_node.convertToNodeSpace(size.width/2,size.height/2));
 }
 
+util.show_isok_info = function(pthis,callback,msg){
+	var size = cc.director.getVisibleSize();
+	var error_tip = cc.instantiate(g_assets["prop_isok_scene"]);
+	var error_tip_com = error_tip.getComponent("prop_isok_info");
+	error_tip_com.init(pthis,callback);
+    error_tip_com.show_error_info(msg);
+    var root_node = cc.director.getScene().getChildByName('RootNode');
+	root_node.addChild(error_tip);
+	error_tip.setPosition(root_node.convertToNodeSpace(size.width/2,size.height/2));
+}
+
 util.get = function(url,param,pthis){
 	var xhr = cc.loader.getXMLHttpRequest();
     if(param == null){
