@@ -24,7 +24,8 @@ cc.Class({
     },
 	show_error_info(message){
 		this.message.string = message;
-		this.node.runAction(cc.fadeOut(3));
+		var call_back_function = cc.callFunc(this.button_no,this);
+		this.node.runAction(cc.sequence(cc.fadeOut(5),call_back_function));
 	},
 	init(pthis,cb){
 		this.callback = cb;
@@ -32,9 +33,11 @@ cc.Class({
 	button_ok(){
 		this.flag = true;
 		this.callback(pthis,this.flag);
+		this.node.destroy();
 	},
 	button_no(){
 		this.flag = false;
 		this.callback(pthis,this.flag);
+		this.node.destroy();
 	},
 });

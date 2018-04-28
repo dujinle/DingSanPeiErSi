@@ -14,11 +14,14 @@ cc.Class({
 			default:[]
 		},
 		left_time_node:cc.Node,
+		player_num:0,
 		
     },
 
     onLoad () {
 		this.node.on("pressed", this.switchRadio, this);
+		this.wait_flag = true;
+		this.player_num = g_room_data["real_num"];
 		this.init_data();
 		this.init_room_pos();
 		this.left_time = parseInt(g_room_data["wait_time"]) * 60;
@@ -34,6 +37,7 @@ cc.Class({
     	pomelo.on('onEnterRoom',this.onEnterRoom_function.bind(this));
 	},
 	onEnterRoom_function(data){
+		var self = this;
 		cc.log("pomelo on Ready:" + data.location+" is ready");
 		var player = data.player;
 		var location = data.location;
@@ -45,6 +49,7 @@ cc.Class({
 				cc.loader.load({url:data.msg.headimgurl,type:'png'},function (err, texture) {
 					var frame = new cc.SpriteFrame(texture);
 					item.getComponent("cc.Sprite").spriteFrame = frame;
+					self.player_num = self.player_num + 1;
 				});
 			}
 		});
@@ -70,6 +75,7 @@ cc.Class({
 		}
 	},
 	init_room_pos(){
+		var self = this;
 		for(let i = 0; i < this.choice_sprite.length; i++){
 			var item = this.choice_sprite[i].getComponent("player_select");
 			var location = g_room_data["location" + (i + 1)];
@@ -79,7 +85,8 @@ cc.Class({
 					if(data.code == 200){
 						cc.loader.load({url:data.msg.headimgurl,type:'png'},function (err, texture) {
 							var frame = new cc.SpriteFrame(texture);
-							item.getComponent("cc.Sprite").spriteFrame = frame;
+							self.choice_sprite[i].getComponent("cc.Sprite").spriteFrame = frame;
+							item.set_flag(true);
 						});
 					}
 				});
@@ -91,10 +98,40 @@ cc.Class({
 	},
 	
 	wait_time_cb(){
-		this.left_time = this.left_time - 1;
-		this.left_time_node.getComponent("cc.Label").string = this.left_time;
+		var self = this;
+		if(this.wait_flag == true){
+			this.left_time = this.left_time - 1;
+			this.left_time_node.getComponent("cc.Label").string = this.left_time;
+			if(this.left_time <= 0){
+				this.wait_flag == flase;
+				if(this.player_num >= 2){
+					util.show_isok_info(this,function(pthis,flag){
+						if(flag == false){
+							self.start_game();
+						}else{
+							self.left_time = g_room_data["wait_time"];
+							self.wait_flag = true;
+						}
+					},"是否进行延迟等待，点击确定延迟等待，点击取消则进入游戏。");
+				}else{
+					util.show_isok_info(this,function(pthis,flag){
+						if(flag == false){
+							self.goout_game();
+						}else{
+							self.left_time = g_room_data["wait_time"];
+							self.wait_flag = true;
+						}
+					},"是否进行延迟等待，点击确定延迟等待，点击取消则退出游戏。");
+				}
+			}
+		}
 	},
-	
+	start_game(){
+
+	},
+	goout_game(){
+
+	},
 	switchRadio(event) {
         var index = event.target.getComponent("player_select").index;
 		var type = event.target.getComponent("player_select").type;

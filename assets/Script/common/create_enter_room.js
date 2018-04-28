@@ -8,6 +8,7 @@ var room_create = function(param,pthis){
 		cc.log(JSON.stringify(data));
 		if(data.code != 200){
 			util.show_error_info(pthis,size,data.msg);
+			cc.director.loadScene("MainScene");
 			return ;
 		}
 		cc.log("create room succ" + JSON.stringify(data.msg));
@@ -21,6 +22,7 @@ var enter_wait_room = function(param,pthis){
 		cc.log(JSON.stringify(data));
         if(data.code != 200) {
 			util.show_error_info(pthis,size,data.msg);
+			cc.director.loadScene("MainScene");
 			return ;
         }
 		cc.log("create room succ" + JSON.stringify(data.msg));
@@ -42,6 +44,7 @@ var onGameEnterRoom = function(room_num,rid){
 			cc.log(JSON.stringify(data));
 			if(data.code != 200){
 				util.show_error_info(null,size,data.msg);
+				cc.director.loadScene("MainScene");
 				return ;
 			}
 			cc.log("create room succ" + JSON.stringify(data.msg));
