@@ -129,7 +129,7 @@ cc.Class({
     
 	game_back(){
 		var self = this;
-		util.show_isok_info(self,function(flag){
+		show_isok_info(function(flag){
 			if(flag == true){
 				self.onDissolveRoom_function(g_room_data["rid"]);
 			}
@@ -148,7 +148,7 @@ cc.Class({
 				this.debug_label.string = "时间已经消耗完毕，请继续操作，增加时间";
 				if(g_room_data["fangzhu_id"] == g_user["id"]){
 					if(this.player_num >= 2){
-						util.show_isok_info(self,function(flag){
+						show_isok_info(function(flag){
 							if(flag == false){
 								self.start_game();
 							}else{
@@ -156,7 +156,7 @@ cc.Class({
 							}
 						},"是否进行延迟等待，点击确定延迟等待，点击取消则进入游戏。");
 					}else{
-						util.show_isok_info(self,function(flag){
+						show_isok_info(function(flag){
 							if(flag == false){
 								self.goout_game();
 							}else{
@@ -167,6 +167,15 @@ cc.Class({
 				}
 			}
 		}
+	},
+	show_isok_info(cb,msg){
+		var size = cc.director.getVisibleSize();
+		var error_tip = cc.instantiate(g_assets["pop_isok_scene"]);
+		var error_tip_com = error_tip.getComponent("prop_isok_info");
+		error_tip_com.init(cb);
+		this.node.addChild(error_tip);
+		error_tip.setPosition(this.node.convertToNodeSpace(size.width/2,size.height/2));
+		error_tip_com.show_error_info(msg);
 	},
 	start_game(){
 		//进入游戏房间，发送公告告诉准备的玩家进入游戏

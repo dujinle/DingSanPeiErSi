@@ -86,11 +86,8 @@ util.show_isok_info = function(pp,callback,msg){
 	var error_tip = cc.instantiate(g_assets["pop_isok_scene"]);
 	var error_tip_com = error_tip.getComponent("prop_isok_info");
 	error_tip_com.init(callback);
-    var root_node = cc.director.getScene().getChildByName('RootNode');
-	pp.debug_label.string = root_node.name;
-	return;
-	root_node.addChild(error_tip);
-	error_tip.setPosition(root_node.convertToNodeSpace(size.width/2,size.height/2));
+	pp.node.addChild(error_tip);
+	error_tip.setPosition(pp.node.convertToNodeSpace(size.width/2,size.height/2));
 	error_tip_com.show_error_info(msg);
 }
 
