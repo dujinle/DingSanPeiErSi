@@ -21,9 +21,9 @@ android {
                     arguments 'NDK_TOOLCHAIN_VERSION=4.9'
                     arguments 'APP_PLATFORM=android-'+PROP_TARGET_SDK_VERSION
                     
-                    def module_paths = [project.file("D:/CocosCreator/resources/cocos2d-x"),
-                                        project.file("D:/CocosCreator/resources/cocos2d-x/cocos"),
-                                        project.file("D:/CocosCreator/resources/cocos2d-x/external")]
+                    def module_paths = [project.file("E:/CocosCreator/resources/cocos2d-x"),
+                                        project.file("E:/CocosCreator/resources/cocos2d-x/cocos"),
+                                        project.file("E:/CocosCreator/resources/cocos2d-x/external")]
                     if (Os.isFamily(Os.FAMILY_WINDOWS)) {
                         arguments 'NDK_MODULE_PATH=' + module_paths.join(";")
                     }
@@ -64,7 +64,7 @@ android {
             }
             keyAlias 'dujinle'
             keyPassword 'dujinle'
-            storeFile file('D:/gitdata/xx_cc_g/dujinle.jks')
+            storeFile file('F:/gitdata/xx_cc_g/dujinle.jks')
             storePassword 'dujinle'
         }
     }
@@ -115,7 +115,7 @@ android.applicationVariants.all { variant ->
         }
 
         copy {
-            from "D:/CocosCreator/resources/cocos2d-x/cocos/scripting/js-bindings/script"
+            from "E:/CocosCreator/resources/cocos2d-x/cocos/scripting/js-bindings/script"
             into "${buildDir}/intermediates/assets/${variant.dirName}/script"
         }
     }

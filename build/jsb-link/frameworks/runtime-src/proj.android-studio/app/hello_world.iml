@@ -30,170 +30,170 @@
     <output url="file://$MODULE_DIR$/build/intermediates/classes/debug" />
     <output-test url="file://$MODULE_DIR$/build/intermediates/classes/test/debug" />
     <exclude-output />
-    <content url="file://D:/AndroidEnv/android-ndk-r15c/sources/android/cpufeatures">
-      <sourceFolder url="file://D:/AndroidEnv/android-ndk-r15c/sources/android/cpufeatures" isTestSource="false" />
+    <content url="file://E:/CocosCreator/resources/cocos2d-x/cocos">
+      <sourceFolder url="file://E:/CocosCreator/resources/cocos2d-x/cocos" isTestSource="false" />
     </content>
-    <content url="file://D:/CocosCreator/resources/cocos2d-x/cocos">
-      <sourceFolder url="file://D:/CocosCreator/resources/cocos2d-x/cocos" isTestSource="false" />
+    <content url="file://E:/CocosCreator/resources/cocos2d-x/cocos/2d">
+      <sourceFolder url="file://E:/CocosCreator/resources/cocos2d-x/cocos/2d" isTestSource="false" />
     </content>
-    <content url="file://D:/CocosCreator/resources/cocos2d-x/cocos/2d">
-      <sourceFolder url="file://D:/CocosCreator/resources/cocos2d-x/cocos/2d" isTestSource="false" />
+    <content url="file://E:/CocosCreator/resources/cocos2d-x/cocos/audio">
+      <sourceFolder url="file://E:/CocosCreator/resources/cocos2d-x/cocos/audio" isTestSource="false" />
     </content>
-    <content url="file://D:/CocosCreator/resources/cocos2d-x/cocos/audio">
-      <sourceFolder url="file://D:/CocosCreator/resources/cocos2d-x/cocos/audio" isTestSource="false" />
+    <content url="file://E:/CocosCreator/resources/cocos2d-x/cocos/audio/android">
+      <sourceFolder url="file://E:/CocosCreator/resources/cocos2d-x/cocos/audio/android" isTestSource="false" />
     </content>
-    <content url="file://D:/CocosCreator/resources/cocos2d-x/cocos/audio/android">
-      <sourceFolder url="file://D:/CocosCreator/resources/cocos2d-x/cocos/audio/android" isTestSource="false" />
+    <content url="file://E:/CocosCreator/resources/cocos2d-x/cocos/audio/android/audio_utils">
+      <sourceFolder url="file://E:/CocosCreator/resources/cocos2d-x/cocos/audio/android/audio_utils" isTestSource="false" />
     </content>
-    <content url="file://D:/CocosCreator/resources/cocos2d-x/cocos/audio/android/audio_utils">
-      <sourceFolder url="file://D:/CocosCreator/resources/cocos2d-x/cocos/audio/android/audio_utils" isTestSource="false" />
+    <content url="file://E:/CocosCreator/resources/cocos2d-x/cocos/audio/android/utils">
+      <sourceFolder url="file://E:/CocosCreator/resources/cocos2d-x/cocos/audio/android/utils" isTestSource="false" />
     </content>
-    <content url="file://D:/CocosCreator/resources/cocos2d-x/cocos/audio/android/utils">
-      <sourceFolder url="file://D:/CocosCreator/resources/cocos2d-x/cocos/audio/android/utils" isTestSource="false" />
+    <content url="file://E:/CocosCreator/resources/cocos2d-x/cocos/base">
+      <sourceFolder url="file://E:/CocosCreator/resources/cocos2d-x/cocos/base" isTestSource="false" />
     </content>
-    <content url="file://D:/CocosCreator/resources/cocos2d-x/cocos/base">
-      <sourceFolder url="file://D:/CocosCreator/resources/cocos2d-x/cocos/base" isTestSource="false" />
+    <content url="file://E:/CocosCreator/resources/cocos2d-x/cocos/editor-support/creator">
+      <sourceFolder url="file://E:/CocosCreator/resources/cocos2d-x/cocos/editor-support/creator" isTestSource="false" />
     </content>
-    <content url="file://D:/CocosCreator/resources/cocos2d-x/cocos/editor-support/creator">
-      <sourceFolder url="file://D:/CocosCreator/resources/cocos2d-x/cocos/editor-support/creator" isTestSource="false" />
+    <content url="file://E:/CocosCreator/resources/cocos2d-x/cocos/editor-support/creator/physics">
+      <sourceFolder url="file://E:/CocosCreator/resources/cocos2d-x/cocos/editor-support/creator/physics" isTestSource="false" />
     </content>
-    <content url="file://D:/CocosCreator/resources/cocos2d-x/cocos/editor-support/creator/physics">
-      <sourceFolder url="file://D:/CocosCreator/resources/cocos2d-x/cocos/editor-support/creator/physics" isTestSource="false" />
+    <content url="file://E:/CocosCreator/resources/cocos2d-x/cocos/editor-support/dragonbones/animation">
+      <sourceFolder url="file://E:/CocosCreator/resources/cocos2d-x/cocos/editor-support/dragonbones/animation" isTestSource="false" />
     </content>
-    <content url="file://D:/CocosCreator/resources/cocos2d-x/cocos/editor-support/dragonbones/animation">
-      <sourceFolder url="file://D:/CocosCreator/resources/cocos2d-x/cocos/editor-support/dragonbones/animation" isTestSource="false" />
+    <content url="file://E:/CocosCreator/resources/cocos2d-x/cocos/editor-support/dragonbones/armature">
+      <sourceFolder url="file://E:/CocosCreator/resources/cocos2d-x/cocos/editor-support/dragonbones/armature" isTestSource="false" />
     </content>
-    <content url="file://D:/CocosCreator/resources/cocos2d-x/cocos/editor-support/dragonbones/armature">
-      <sourceFolder url="file://D:/CocosCreator/resources/cocos2d-x/cocos/editor-support/dragonbones/armature" isTestSource="false" />
+    <content url="file://E:/CocosCreator/resources/cocos2d-x/cocos/editor-support/dragonbones/cocos2dx">
+      <sourceFolder url="file://E:/CocosCreator/resources/cocos2d-x/cocos/editor-support/dragonbones/cocos2dx" isTestSource="false" />
     </content>
-    <content url="file://D:/CocosCreator/resources/cocos2d-x/cocos/editor-support/dragonbones/cocos2dx">
-      <sourceFolder url="file://D:/CocosCreator/resources/cocos2d-x/cocos/editor-support/dragonbones/cocos2dx" isTestSource="false" />
+    <content url="file://E:/CocosCreator/resources/cocos2d-x/cocos/editor-support/dragonbones/core">
+      <sourceFolder url="file://E:/CocosCreator/resources/cocos2d-x/cocos/editor-support/dragonbones/core" isTestSource="false" />
     </content>
-    <content url="file://D:/CocosCreator/resources/cocos2d-x/cocos/editor-support/dragonbones/core">
-      <sourceFolder url="file://D:/CocosCreator/resources/cocos2d-x/cocos/editor-support/dragonbones/core" isTestSource="false" />
+    <content url="file://E:/CocosCreator/resources/cocos2d-x/cocos/editor-support/dragonbones/events">
+      <sourceFolder url="file://E:/CocosCreator/resources/cocos2d-x/cocos/editor-support/dragonbones/events" isTestSource="false" />
     </content>
-    <content url="file://D:/CocosCreator/resources/cocos2d-x/cocos/editor-support/dragonbones/events">
-      <sourceFolder url="file://D:/CocosCreator/resources/cocos2d-x/cocos/editor-support/dragonbones/events" isTestSource="false" />
+    <content url="file://E:/CocosCreator/resources/cocos2d-x/cocos/editor-support/dragonbones/factories">
+      <sourceFolder url="file://E:/CocosCreator/resources/cocos2d-x/cocos/editor-support/dragonbones/factories" isTestSource="false" />
     </content>
-    <content url="file://D:/CocosCreator/resources/cocos2d-x/cocos/editor-support/dragonbones/factories">
-      <sourceFolder url="file://D:/CocosCreator/resources/cocos2d-x/cocos/editor-support/dragonbones/factories" isTestSource="false" />
+    <content url="file://E:/CocosCreator/resources/cocos2d-x/cocos/editor-support/dragonbones/model">
+      <sourceFolder url="file://E:/CocosCreator/resources/cocos2d-x/cocos/editor-support/dragonbones/model" isTestSource="false" />
     </content>
-    <content url="file://D:/CocosCreator/resources/cocos2d-x/cocos/editor-support/dragonbones/model">
-      <sourceFolder url="file://D:/CocosCreator/resources/cocos2d-x/cocos/editor-support/dragonbones/model" isTestSource="false" />
+    <content url="file://E:/CocosCreator/resources/cocos2d-x/cocos/editor-support/dragonbones/parsers">
+      <sourceFolder url="file://E:/CocosCreator/resources/cocos2d-x/cocos/editor-support/dragonbones/parsers" isTestSource="false" />
     </content>
-    <content url="file://D:/CocosCreator/resources/cocos2d-x/cocos/editor-support/dragonbones/parsers">
-      <sourceFolder url="file://D:/CocosCreator/resources/cocos2d-x/cocos/editor-support/dragonbones/parsers" isTestSource="false" />
+    <content url="file://E:/CocosCreator/resources/cocos2d-x/cocos/editor-support/dragonbones/textures">
+      <sourceFolder url="file://E:/CocosCreator/resources/cocos2d-x/cocos/editor-support/dragonbones/textures" isTestSource="false" />
     </content>
-    <content url="file://D:/CocosCreator/resources/cocos2d-x/cocos/editor-support/dragonbones/textures">
-      <sourceFolder url="file://D:/CocosCreator/resources/cocos2d-x/cocos/editor-support/dragonbones/textures" isTestSource="false" />
+    <content url="file://E:/CocosCreator/resources/cocos2d-x/cocos/editor-support/spine">
+      <sourceFolder url="file://E:/CocosCreator/resources/cocos2d-x/cocos/editor-support/spine" isTestSource="false" />
     </content>
-    <content url="file://D:/CocosCreator/resources/cocos2d-x/cocos/editor-support/spine">
-      <sourceFolder url="file://D:/CocosCreator/resources/cocos2d-x/cocos/editor-support/spine" isTestSource="false" />
+    <content url="file://E:/CocosCreator/resources/cocos2d-x/cocos/math">
+      <sourceFolder url="file://E:/CocosCreator/resources/cocos2d-x/cocos/math" isTestSource="false" />
     </content>
-    <content url="file://D:/CocosCreator/resources/cocos2d-x/cocos/math">
-      <sourceFolder url="file://D:/CocosCreator/resources/cocos2d-x/cocos/math" isTestSource="false" />
+    <content url="file://E:/CocosCreator/resources/cocos2d-x/cocos/network">
+      <sourceFolder url="file://E:/CocosCreator/resources/cocos2d-x/cocos/network" isTestSource="false" />
     </content>
-    <content url="file://D:/CocosCreator/resources/cocos2d-x/cocos/network">
-      <sourceFolder url="file://D:/CocosCreator/resources/cocos2d-x/cocos/network" isTestSource="false" />
+    <content url="file://E:/CocosCreator/resources/cocos2d-x/cocos/platform">
+      <sourceFolder url="file://E:/CocosCreator/resources/cocos2d-x/cocos/platform" isTestSource="false" />
     </content>
-    <content url="file://D:/CocosCreator/resources/cocos2d-x/cocos/platform">
-      <sourceFolder url="file://D:/CocosCreator/resources/cocos2d-x/cocos/platform" isTestSource="false" />
+    <content url="file://E:/CocosCreator/resources/cocos2d-x/cocos/platform/android">
+      <sourceFolder url="file://E:/CocosCreator/resources/cocos2d-x/cocos/platform/android" isTestSource="false" />
     </content>
-    <content url="file://D:/CocosCreator/resources/cocos2d-x/cocos/platform/android">
-      <sourceFolder url="file://D:/CocosCreator/resources/cocos2d-x/cocos/platform/android" isTestSource="false" />
+    <content url="file://E:/CocosCreator/resources/cocos2d-x/cocos/platform/android/jni">
+      <sourceFolder url="file://E:/CocosCreator/resources/cocos2d-x/cocos/platform/android/jni" isTestSource="false" />
     </content>
-    <content url="file://D:/CocosCreator/resources/cocos2d-x/cocos/platform/android/jni">
-      <sourceFolder url="file://D:/CocosCreator/resources/cocos2d-x/cocos/platform/android/jni" isTestSource="false" />
+    <content url="file://E:/CocosCreator/resources/cocos2d-x/cocos/renderer">
+      <sourceFolder url="file://E:/CocosCreator/resources/cocos2d-x/cocos/renderer" isTestSource="false" />
     </content>
-    <content url="file://D:/CocosCreator/resources/cocos2d-x/cocos/renderer">
-      <sourceFolder url="file://D:/CocosCreator/resources/cocos2d-x/cocos/renderer" isTestSource="false" />
+    <content url="file://E:/CocosCreator/resources/cocos2d-x/cocos/scripting/js-bindings/auto">
+      <sourceFolder url="file://E:/CocosCreator/resources/cocos2d-x/cocos/scripting/js-bindings/auto" isTestSource="false" />
     </content>
-    <content url="file://D:/CocosCreator/resources/cocos2d-x/cocos/scripting/js-bindings/auto">
-      <sourceFolder url="file://D:/CocosCreator/resources/cocos2d-x/cocos/scripting/js-bindings/auto" isTestSource="false" />
+    <content url="file://E:/CocosCreator/resources/cocos2d-x/cocos/scripting/js-bindings/jswrapper">
+      <sourceFolder url="file://E:/CocosCreator/resources/cocos2d-x/cocos/scripting/js-bindings/jswrapper" isTestSource="false" />
     </content>
-    <content url="file://D:/CocosCreator/resources/cocos2d-x/cocos/scripting/js-bindings/jswrapper">
-      <sourceFolder url="file://D:/CocosCreator/resources/cocos2d-x/cocos/scripting/js-bindings/jswrapper" isTestSource="false" />
+    <content url="file://E:/CocosCreator/resources/cocos2d-x/cocos/scripting/js-bindings/jswrapper/sm">
+      <sourceFolder url="file://E:/CocosCreator/resources/cocos2d-x/cocos/scripting/js-bindings/jswrapper/sm" isTestSource="false" />
     </content>
-    <content url="file://D:/CocosCreator/resources/cocos2d-x/cocos/scripting/js-bindings/jswrapper/sm">
-      <sourceFolder url="file://D:/CocosCreator/resources/cocos2d-x/cocos/scripting/js-bindings/jswrapper/sm" isTestSource="false" />
+    <content url="file://E:/CocosCreator/resources/cocos2d-x/cocos/scripting/js-bindings/jswrapper/v8">
+      <sourceFolder url="file://E:/CocosCreator/resources/cocos2d-x/cocos/scripting/js-bindings/jswrapper/v8" isTestSource="false" />
     </content>
-    <content url="file://D:/CocosCreator/resources/cocos2d-x/cocos/scripting/js-bindings/jswrapper/v8">
-      <sourceFolder url="file://D:/CocosCreator/resources/cocos2d-x/cocos/scripting/js-bindings/jswrapper/v8" isTestSource="false" />
+    <content url="file://E:/CocosCreator/resources/cocos2d-x/cocos/scripting/js-bindings/manual">
+      <sourceFolder url="file://E:/CocosCreator/resources/cocos2d-x/cocos/scripting/js-bindings/manual" isTestSource="false" />
     </content>
-    <content url="file://D:/CocosCreator/resources/cocos2d-x/cocos/scripting/js-bindings/manual">
-      <sourceFolder url="file://D:/CocosCreator/resources/cocos2d-x/cocos/scripting/js-bindings/manual" isTestSource="false" />
+    <content url="file://E:/CocosCreator/resources/cocos2d-x/cocos/storage/local-storage">
+      <sourceFolder url="file://E:/CocosCreator/resources/cocos2d-x/cocos/storage/local-storage" isTestSource="false" />
     </content>
-    <content url="file://D:/CocosCreator/resources/cocos2d-x/cocos/storage/local-storage">
-      <sourceFolder url="file://D:/CocosCreator/resources/cocos2d-x/cocos/storage/local-storage" isTestSource="false" />
+    <content url="file://E:/CocosCreator/resources/cocos2d-x/cocos/ui">
+      <sourceFolder url="file://E:/CocosCreator/resources/cocos2d-x/cocos/ui" isTestSource="false" />
     </content>
-    <content url="file://D:/CocosCreator/resources/cocos2d-x/cocos/ui">
-      <sourceFolder url="file://D:/CocosCreator/resources/cocos2d-x/cocos/ui" isTestSource="false" />
+    <content url="file://E:/CocosCreator/resources/cocos2d-x/cocos/ui/UIEditBox">
+      <sourceFolder url="file://E:/CocosCreator/resources/cocos2d-x/cocos/ui/UIEditBox" isTestSource="false" />
     </content>
-    <content url="file://D:/CocosCreator/resources/cocos2d-x/cocos/ui/UIEditBox">
-      <sourceFolder url="file://D:/CocosCreator/resources/cocos2d-x/cocos/ui/UIEditBox" isTestSource="false" />
+    <content url="file://E:/CocosCreator/resources/cocos2d-x/extensions/assets-manager">
+      <sourceFolder url="file://E:/CocosCreator/resources/cocos2d-x/extensions/assets-manager" isTestSource="false" />
     </content>
-    <content url="file://D:/CocosCreator/resources/cocos2d-x/extensions/assets-manager">
-      <sourceFolder url="file://D:/CocosCreator/resources/cocos2d-x/extensions/assets-manager" isTestSource="false" />
+    <content url="file://E:/CocosCreator/resources/cocos2d-x/external/sources/Box2D">
+      <sourceFolder url="file://E:/CocosCreator/resources/cocos2d-x/external/sources/Box2D" isTestSource="false" />
     </content>
-    <content url="file://D:/CocosCreator/resources/cocos2d-x/external/sources/Box2D">
-      <sourceFolder url="file://D:/CocosCreator/resources/cocos2d-x/external/sources/Box2D" isTestSource="false" />
+    <content url="file://E:/CocosCreator/resources/cocos2d-x/external/sources/Box2D/Collision">
+      <sourceFolder url="file://E:/CocosCreator/resources/cocos2d-x/external/sources/Box2D/Collision" isTestSource="false" />
     </content>
-    <content url="file://D:/CocosCreator/resources/cocos2d-x/external/sources/Box2D/Collision">
-      <sourceFolder url="file://D:/CocosCreator/resources/cocos2d-x/external/sources/Box2D/Collision" isTestSource="false" />
+    <content url="file://E:/CocosCreator/resources/cocos2d-x/external/sources/Box2D/Collision/Shapes">
+      <sourceFolder url="file://E:/CocosCreator/resources/cocos2d-x/external/sources/Box2D/Collision/Shapes" isTestSource="false" />
     </content>
-    <content url="file://D:/CocosCreator/resources/cocos2d-x/external/sources/Box2D/Collision/Shapes">
-      <sourceFolder url="file://D:/CocosCreator/resources/cocos2d-x/external/sources/Box2D/Collision/Shapes" isTestSource="false" />
+    <content url="file://E:/CocosCreator/resources/cocos2d-x/external/sources/Box2D/Common">
+      <sourceFolder url="file://E:/CocosCreator/resources/cocos2d-x/external/sources/Box2D/Common" isTestSource="false" />
     </content>
-    <content url="file://D:/CocosCreator/resources/cocos2d-x/external/sources/Box2D/Common">
-      <sourceFolder url="file://D:/CocosCreator/resources/cocos2d-x/external/sources/Box2D/Common" isTestSource="false" />
+    <content url="file://E:/CocosCreator/resources/cocos2d-x/external/sources/Box2D/Dynamics">
+      <sourceFolder url="file://E:/CocosCreator/resources/cocos2d-x/external/sources/Box2D/Dynamics" isTestSource="false" />
     </content>
-    <content url="file://D:/CocosCreator/resources/cocos2d-x/external/sources/Box2D/Dynamics">
-      <sourceFolder url="file://D:/CocosCreator/resources/cocos2d-x/external/sources/Box2D/Dynamics" isTestSource="false" />
+    <content url="file://E:/CocosCreator/resources/cocos2d-x/external/sources/Box2D/Dynamics/Contacts">
+      <sourceFolder url="file://E:/CocosCreator/resources/cocos2d-x/external/sources/Box2D/Dynamics/Contacts" isTestSource="false" />
     </content>
-    <content url="file://D:/CocosCreator/resources/cocos2d-x/external/sources/Box2D/Dynamics/Contacts">
-      <sourceFolder url="file://D:/CocosCreator/resources/cocos2d-x/external/sources/Box2D/Dynamics/Contacts" isTestSource="false" />
+    <content url="file://E:/CocosCreator/resources/cocos2d-x/external/sources/Box2D/Dynamics/Joints">
+      <sourceFolder url="file://E:/CocosCreator/resources/cocos2d-x/external/sources/Box2D/Dynamics/Joints" isTestSource="false" />
     </content>
-    <content url="file://D:/CocosCreator/resources/cocos2d-x/external/sources/Box2D/Dynamics/Joints">
-      <sourceFolder url="file://D:/CocosCreator/resources/cocos2d-x/external/sources/Box2D/Dynamics/Joints" isTestSource="false" />
+    <content url="file://E:/CocosCreator/resources/cocos2d-x/external/sources/Box2D/Rope">
+      <sourceFolder url="file://E:/CocosCreator/resources/cocos2d-x/external/sources/Box2D/Rope" isTestSource="false" />
     </content>
-    <content url="file://D:/CocosCreator/resources/cocos2d-x/external/sources/Box2D/Rope">
-      <sourceFolder url="file://D:/CocosCreator/resources/cocos2d-x/external/sources/Box2D/Rope" isTestSource="false" />
+    <content url="file://E:/CocosCreator/resources/cocos2d-x/external/sources/ConvertUTF">
+      <sourceFolder url="file://E:/CocosCreator/resources/cocos2d-x/external/sources/ConvertUTF" isTestSource="false" />
     </content>
-    <content url="file://D:/CocosCreator/resources/cocos2d-x/external/sources/ConvertUTF">
-      <sourceFolder url="file://D:/CocosCreator/resources/cocos2d-x/external/sources/ConvertUTF" isTestSource="false" />
+    <content url="file://E:/CocosCreator/resources/cocos2d-x/external/sources/clipper">
+      <sourceFolder url="file://E:/CocosCreator/resources/cocos2d-x/external/sources/clipper" isTestSource="false" />
     </content>
-    <content url="file://D:/CocosCreator/resources/cocos2d-x/external/sources/clipper">
-      <sourceFolder url="file://D:/CocosCreator/resources/cocos2d-x/external/sources/clipper" isTestSource="false" />
+    <content url="file://E:/CocosCreator/resources/cocos2d-x/external/sources/edtaa3func">
+      <sourceFolder url="file://E:/CocosCreator/resources/cocos2d-x/external/sources/edtaa3func" isTestSource="false" />
     </content>
-    <content url="file://D:/CocosCreator/resources/cocos2d-x/external/sources/edtaa3func">
-      <sourceFolder url="file://D:/CocosCreator/resources/cocos2d-x/external/sources/edtaa3func" isTestSource="false" />
+    <content url="file://E:/CocosCreator/resources/cocos2d-x/external/sources/poly2tri/common">
+      <sourceFolder url="file://E:/CocosCreator/resources/cocos2d-x/external/sources/poly2tri/common" isTestSource="false" />
     </content>
-    <content url="file://D:/CocosCreator/resources/cocos2d-x/external/sources/poly2tri/common">
-      <sourceFolder url="file://D:/CocosCreator/resources/cocos2d-x/external/sources/poly2tri/common" isTestSource="false" />
+    <content url="file://E:/CocosCreator/resources/cocos2d-x/external/sources/poly2tri/sweep">
+      <sourceFolder url="file://E:/CocosCreator/resources/cocos2d-x/external/sources/poly2tri/sweep" isTestSource="false" />
     </content>
-    <content url="file://D:/CocosCreator/resources/cocos2d-x/external/sources/poly2tri/sweep">
-      <sourceFolder url="file://D:/CocosCreator/resources/cocos2d-x/external/sources/poly2tri/sweep" isTestSource="false" />
+    <content url="file://E:/CocosCreator/resources/cocos2d-x/external/sources/pvmp3dec/src">
+      <sourceFolder url="file://E:/CocosCreator/resources/cocos2d-x/external/sources/pvmp3dec/src" isTestSource="false" />
     </content>
-    <content url="file://D:/CocosCreator/resources/cocos2d-x/external/sources/pvmp3dec/src">
-      <sourceFolder url="file://D:/CocosCreator/resources/cocos2d-x/external/sources/pvmp3dec/src" isTestSource="false" />
+    <content url="file://E:/CocosCreator/resources/cocos2d-x/external/sources/pvmp3dec/src/asm">
+      <sourceFolder url="file://E:/CocosCreator/resources/cocos2d-x/external/sources/pvmp3dec/src/asm" isTestSource="false" />
     </content>
-    <content url="file://D:/CocosCreator/resources/cocos2d-x/external/sources/pvmp3dec/src/asm">
-      <sourceFolder url="file://D:/CocosCreator/resources/cocos2d-x/external/sources/pvmp3dec/src/asm" isTestSource="false" />
+    <content url="file://E:/CocosCreator/resources/cocos2d-x/external/sources/tinyxml2">
+      <sourceFolder url="file://E:/CocosCreator/resources/cocos2d-x/external/sources/tinyxml2" isTestSource="false" />
     </content>
-    <content url="file://D:/CocosCreator/resources/cocos2d-x/external/sources/tinyxml2">
-      <sourceFolder url="file://D:/CocosCreator/resources/cocos2d-x/external/sources/tinyxml2" isTestSource="false" />
+    <content url="file://E:/CocosCreator/resources/cocos2d-x/external/sources/tremolo/Tremolo">
+      <sourceFolder url="file://E:/CocosCreator/resources/cocos2d-x/external/sources/tremolo/Tremolo" isTestSource="false" />
     </content>
-    <content url="file://D:/CocosCreator/resources/cocos2d-x/external/sources/tremolo/Tremolo">
-      <sourceFolder url="file://D:/CocosCreator/resources/cocos2d-x/external/sources/tremolo/Tremolo" isTestSource="false" />
+    <content url="file://E:/CocosCreator/resources/cocos2d-x/external/sources/unzip">
+      <sourceFolder url="file://E:/CocosCreator/resources/cocos2d-x/external/sources/unzip" isTestSource="false" />
     </content>
-    <content url="file://D:/CocosCreator/resources/cocos2d-x/external/sources/unzip">
-      <sourceFolder url="file://D:/CocosCreator/resources/cocos2d-x/external/sources/unzip" isTestSource="false" />
+    <content url="file://E:/CocosCreator/resources/cocos2d-x/external/sources/xxhash">
+      <sourceFolder url="file://E:/CocosCreator/resources/cocos2d-x/external/sources/xxhash" isTestSource="false" />
     </content>
-    <content url="file://D:/CocosCreator/resources/cocos2d-x/external/sources/xxhash">
-      <sourceFolder url="file://D:/CocosCreator/resources/cocos2d-x/external/sources/xxhash" isTestSource="false" />
+    <content url="file://E:/CocosCreator/resources/cocos2d-x/external/sources/xxtea">
+      <sourceFolder url="file://E:/CocosCreator/resources/cocos2d-x/external/sources/xxtea" isTestSource="false" />
     </content>
-    <content url="file://D:/CocosCreator/resources/cocos2d-x/external/sources/xxtea">
-      <sourceFolder url="file://D:/CocosCreator/resources/cocos2d-x/external/sources/xxtea" isTestSource="false" />
+    <content url="file://E:/android_env/android-ndk-r16-windows-x86_64/android-ndk-r16/sources/android/cpufeatures">
+      <sourceFolder url="file://E:/android_env/android-ndk-r16-windows-x86_64/android-ndk-r16/sources/android/cpufeatures" isTestSource="false" />
     </content>
     <content url="file://$MODULE_DIR$/../../Classes">
       <sourceFolder url="file://$MODULE_DIR$/../../Classes" isTestSource="false" />
@@ -267,30 +267,18 @@
       <sourceFolder url="file://$MODULE_DIR$/src/androidTest/shaders" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/assets" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/blame" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/build-info" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/builds" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/check-manifest" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/classes" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental-classes" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental-runtime-classes" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental-verifier" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/instant-run-apk" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/instant-run-resources" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/instant-run-support" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/javaPrecompile" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/jniLibs" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/lint" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/manifest-checker" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/manifests" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/ndkBuild" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/prebuild" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/reload-dex" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/res" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/resources" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/rs" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/shaders" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/split-apk" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/splits-support" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/symbols" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/transforms" />
@@ -298,13 +286,13 @@
       <excludeFolder url="file://$MODULE_DIR$/build/reports" />
       <excludeFolder url="file://$MODULE_DIR$/build/tmp" />
     </content>
-    <orderEntry type="jdk" jdkName="Android API 22 Platform" jdkType="Android SDK" />
+    <orderEntry type="jdk" jdkName="Android API 22 Platform (1)" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Gradle: __local_aars__:D.\CocosCreator\resources\cocos2d-x\cocos\platform\android\java\libs\android-async-http-1.4.9.jar:unspecified@jar" level="project" />
-    <orderEntry type="library" name="Gradle: __local_aars__:D.\CocosCreator\resources\cocos2d-x\cocos\platform\android\java\libs\libcocosanalytics.jar:unspecified@jar" level="project" />
-    <orderEntry type="library" name="Gradle: __local_aars__:D.\CocosCreator\resources\cocos2d-x\cocos\platform\android\java\libs\httpclient-4.4.1.1.jar:unspecified@jar" level="project" />
-    <orderEntry type="library" name="Gradle: __local_aars__:D.\CocosCreator\resources\cocos2d-x\cocos\platform\android\java\libs\com.android.vending.expansion.zipfile.jar:unspecified@jar" level="project" />
+    <orderEntry type="library" name="Gradle: __local_aars__:E.\CocosCreator\resources\cocos2d-x\cocos\platform\android\java\libs\android-async-http-1.4.9.jar:unspecified@jar" level="project" />
+    <orderEntry type="library" name="Gradle: __local_aars__:E.\CocosCreator\resources\cocos2d-x\cocos\platform\android\java\libs\httpclient-4.4.1.1.jar:unspecified@jar" level="project" />
+    <orderEntry type="library" name="Gradle: __local_aars__:E.\CocosCreator\resources\cocos2d-x\cocos\platform\android\java\libs\libcocosanalytics.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.tencent.mm.opensdk:wechat-sdk-android-without-mta:5.1.4@jar" level="project" />
+    <orderEntry type="library" name="Gradle: __local_aars__:E.\CocosCreator\resources\cocos2d-x\cocos\platform\android\java\libs\com.android.vending.expansion.zipfile.jar:unspecified@jar" level="project" />
     <orderEntry type="module" module-name="libcocos2dx" />
   </component>
 </module>
