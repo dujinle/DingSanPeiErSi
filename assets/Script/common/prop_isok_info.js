@@ -25,19 +25,19 @@ cc.Class({
 	show_error_info(message){
 		this.message.string = message;
 		var call_back_function = cc.callFunc(this.button_no,this);
-		this.node.runAction(cc.sequence(cc.fadeOut(5),call_back_function));
+		this.node.runAction(cc.sequence(cc.fadeOut(20),call_back_function));
 	},
-	init(pthis,cb){
+	init(cb){
 		this.callback = cb;
 	},
 	button_ok(){
 		this.flag = true;
-		this.callback(pthis,this.flag);
+		this.callback(this.flag);
 		this.node.destroy();
 	},
 	button_no(){
 		this.flag = false;
-		this.callback(pthis,this.flag);
+		this.callback(this.flag);
 		this.node.destroy();
 	},
 });

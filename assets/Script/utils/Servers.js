@@ -1,6 +1,6 @@
 
-var gateHost       = "192.168.1.102";
-var loginHost      = "192.168.1.102";
+var gateHost       = "192.168.2.100";
+var loginHost      = "192.168.2.100";
 
 var gatePort       = "3014";
 var gateRouter     = "gate.gateHandler.queryEntry";

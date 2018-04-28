@@ -60,7 +60,16 @@ util.getEnterRoute = function(){
 	return "connector.entryHandler.enter";
 }
 
+util.getDelayWaitTimeRoute = function(){
+	return "connector.entryHandler.delay_wait_time";
+}
+
+util.getDissolveRoomRoute = function(){
+	return "connector.entryHandler.dissolve_room";
+}
+
 util.show_error_info = function(pp,size,msg){
+	var size = cc.director.getVisibleSize();
 	var error_tip = cc.instantiate(g_assets["prop_error_scene"]);
 	var error_tip_com = error_tip.getComponent("prop_error_info");
     error_tip_com.show_error_info(msg);
@@ -69,15 +78,20 @@ util.show_error_info = function(pp,size,msg){
 	error_tip.setPosition(root_node.convertToNodeSpace(size.width/2,size.height/2));
 }
 
-util.show_isok_info = function(pthis,callback,msg){
+util.show_isok_info = function(pp,callback,msg){
+	if(pp.debug_label != null){
+		pp.debug_label.string = "go into show_isok_info ......";
+	}
 	var size = cc.director.getVisibleSize();
-	var error_tip = cc.instantiate(g_assets["prop_isok_scene"]);
+	var error_tip = cc.instantiate(g_assets["pop_isok_scene"]);
 	var error_tip_com = error_tip.getComponent("prop_isok_info");
-	error_tip_com.init(pthis,callback);
-    error_tip_com.show_error_info(msg);
+	error_tip_com.init(callback);
     var root_node = cc.director.getScene().getChildByName('RootNode');
+	pp.debug_label.string = root_node.name;
+	return;
 	root_node.addChild(error_tip);
 	error_tip.setPosition(root_node.convertToNodeSpace(size.width/2,size.height/2));
+	error_tip_com.show_error_info(msg);
 }
 
 util.get = function(url,param,pthis){

@@ -9,6 +9,8 @@ cc.Class({
 		wait_time_node:cc.Node,
 		fangzhu_fangka_node:cc.Node,
 		wanjia_fangka_node:cc.Node,
+		start_button:cc.Node,
+		debug_label:cc.Label,
 		choice_sprite:{
 			type:cc.Node,
 			default:[]
@@ -19,14 +21,62 @@ cc.Class({
     },
 
     onLoad () {
+		cc.log("start gointo created room scene......");
 		this.node.on("pressed", this.switchRadio, this);
 		this.wait_flag = true;
 		this.player_num = g_room_data["real_num"];
 		this.init_data();
 		this.init_room_pos();
-		this.left_time = parseInt(g_room_data["wait_time"]) * 60;
+		var now_time = Date.now();
+		var cost_time = parseInt((now_time - g_room_data["creat_time"])/1000);
+		this.left_time = parseInt(g_room_data["wait_time"]) * 60 - cost_time;
 		this.pomelo_on();
 		this.schedule(this.wait_time_cb,1);
+	},
+	init_data(){
+		this.room_num_node.getComponent("cc.Label").string = g_room_data["room_num"];
+		this.fangzhu_node.getComponent("cc.Label").string = g_room_data["fangzhu_name"];
+		if(g_room_data["max_type"] == 1){
+			this.max_pai_node.getComponent("cc.Label").string = "鬼大";
+		}else if(g_room_data["max_type"] == 2){
+			this.max_pai_node.getComponent("cc.Label").string = "玄大";
+		}else if(g_room_data["max_type"] == 3){
+			this.max_pai_node.getComponent("cc.Label").string = "皇上大";
+		}
+		this.renshu_node.getComponent("cc.Label").string = g_room_data["player_num"] + "人";
+		this.wait_time_node.getComponent("cc.Label").string = g_room_data["wait_time"] + "分钟";
+		if(g_room_data["fangka_type"] == 1){
+			this.fangzhu_fangka_node.getComponent("cc.Label").string = "消费1张";
+			this.wanjia_fangka_node.getComponent("cc.Label").string = "消费1张";
+		}else if(g_room_data["fangka_type"] == 2){
+			this.fangzhu_fangka_node.getComponent("cc.Label").string = "消费" + g_room_data["fangka_num"] + "张";
+			this.wanjia_fangka_node.getComponent("cc.Label").string = "消费0张";
+		}
+		if(g_room_data["fangzhu_id"] != g_user["id"]){
+			this.start_button.getComponent("cc.Button").interactable = false;
+		}
+	},
+	init_room_pos(){
+		var self = this;
+		for(let i = 0; i < this.choice_sprite.length; i++){
+			var item = this.choice_sprite[i].getComponent("player_select");
+			var location = g_room_data["location" + (i + 1)];
+			if(location != null && location != "null"){
+				var player_id = location.split("*")[0];
+				Servers.userInfoProcess("get_player",{player_id:player_id},function(data){
+					if(data.code == 200){
+						cc.loader.load({url:data.msg.headimgurl,type:'png'},function (err, texture) {
+							var frame = new cc.SpriteFrame(texture);
+							self.choice_sprite[i].getComponent("cc.Sprite").spriteFrame = frame;
+							item.set_flag(true);
+						});
+					}
+				});
+			}
+			if(g_room_data["player_num"] == g_room_data["real_num"]){
+				item.set_flag(true);
+			}
+		}
 	},
 	share_button_cb(){
 		if(cc.sys.os == cc.sys.OS_ANDROID){
@@ -35,10 +85,13 @@ cc.Class({
 	},
 	pomelo_on(){
     	pomelo.on('onEnterRoom',this.onEnterRoom_function.bind(this));
+		pomelo.on('onDelayWaitTime',this.onDelayWaitTime_function.bind(this));
+		pomelo.on('onDissolveRoom',this.onDissolveRoom_function.bind(this));
+		
 	},
 	onEnterRoom_function(data){
 		var self = this;
-		cc.log("pomelo on Ready:" + data.location+" is ready");
+		cc.log("pomelo on onEnterRoom_function:" + data.location+" is ready");
 		var player = data.player;
 		var location = data.location;
 		var item = this.choice_sprite[location - 1];
@@ -54,84 +107,103 @@ cc.Class({
 			}
 		});
 	},
-	init_data(){
-		this.room_num_node.getComponent("cc.Label").string = g_room_data["room_num"];
-		this.fangzhu_node.getComponent("cc.Label").string = g_room_data["fangzhu_name"];
-		if(g_room_data["max_type"] == 1){
-			this.max_pai_node.getComponent("cc.Label").string = "鬼大";
-		}else if(g_room_data["max_type"] == 2){
-			this.max_pai_node.getComponent("cc.Label").string = "玄大";
-		}else if(g_room_data["max_type"] == 3){
-			this.max_pai_node.getComponent("cc.Label").string = "皇上大";
+	onDelayWaitTime_function(data){
+		cc.log("pomelo on onDelayWaitTime_function:" + JSON.stringify(data) + " is ready");
+		//房主延长了等待时间则继续等待 this.wait_flag = true;
+		var wait_time = data.wait_time;
+		if(g_room_data["fangzhu_id"] == g_user["id"]){
+			g_room_data["wait_time"] = wait_time;
+			var now_time = Date.now();
+			var cost_time = parseInt((now_time - g_room_data["creat_time"])/1000);
+			this.left_time = parseInt(g_room_data["wait_time"]) * 60 - cost_time;
+		}else{
+			this.left_time = 2 * 60;
 		}
-		this.renshu_node.getComponent("cc.Label").string = g_room_data["player_num"];
-		this.wait_time_node.getComponent("cc.Label").string = g_room_data["wait_time"];
-		if(g_room_data["fangka_type"] == 1){
-			this.fangzhu_fangka_node.getComponent("cc.Label").string = "消费1张";
-			this.wanjia_fangka_node.getComponent("cc.Label").string = "消费1张";
-		}else if(g_room_data["fangka_type"] == 2){
-			this.fangzhu_fangka_node.getComponent("cc.Label").string = "消费" + g_room_data["fangka_num"] + "张";
-			this.wanjia_fangka_node.getComponent("cc.Label").string = "消费0张";
-		}
+		this.wait_flag = true;
 	},
-	init_room_pos(){
-		var self = this;
-		for(let i = 0; i < this.choice_sprite.length; i++){
-			var item = this.choice_sprite[i].getComponent("player_select");
-			var location = g_room_data["location" + (i + 1)];
-			if(location != null){
-				var player_id = location.split("*")[0];
-				Servers.userInfoProcess("get_player",{id:player.id},function(data){
-					if(data.code == 200){
-						cc.loader.load({url:data.msg.headimgurl,type:'png'},function (err, texture) {
-							var frame = new cc.SpriteFrame(texture);
-							self.choice_sprite[i].getComponent("cc.Sprite").spriteFrame = frame;
-							item.set_flag(true);
-						});
-					}
-				});
-			}
-		}
-	},
-    game_back(){
+	onDissolveRoom_function(data){
+		util.show_error_info(null,null,"房主已经解散了该房间,所有玩家退出房间！");
+		g_room_data = null;
 		cc.director.loadScene("MainScene");
+	},
+    
+	game_back(){
+		var self = this;
+		util.show_isok_info(self,function(flag){
+			if(flag == true){
+				self.onDissolveRoom_function(g_room_data["rid"]);
+			}
+		},"你确定要解散房间吗？消费的房卡不会退回，请稍安勿躁！");
 	},
 	
 	wait_time_cb(){
 		var self = this;
 		if(this.wait_flag == true){
-			this.left_time = this.left_time - 1;
+			if(this.left_time > 0){
+				this.left_time = this.left_time - 1;
+			}
 			this.left_time_node.getComponent("cc.Label").string = this.left_time;
 			if(this.left_time <= 0){
-				this.wait_flag == flase;
-				if(this.player_num >= 2){
-					util.show_isok_info(this,function(pthis,flag){
-						if(flag == false){
-							self.start_game();
-						}else{
-							self.left_time = g_room_data["wait_time"];
-							self.wait_flag = true;
-						}
-					},"是否进行延迟等待，点击确定延迟等待，点击取消则进入游戏。");
-				}else{
-					util.show_isok_info(this,function(pthis,flag){
-						if(flag == false){
-							self.goout_game();
-						}else{
-							self.left_time = g_room_data["wait_time"];
-							self.wait_flag = true;
-						}
-					},"是否进行延迟等待，点击确定延迟等待，点击取消则退出游戏。");
+				this.wait_flag = false;
+				this.debug_label.string = "时间已经消耗完毕，请继续操作，增加时间";
+				if(g_room_data["fangzhu_id"] == g_user["id"]){
+					if(this.player_num >= 2){
+						util.show_isok_info(self,function(flag){
+							if(flag == false){
+								self.start_game();
+							}else{
+								self.delay_wait_time();
+							}
+						},"是否进行延迟等待，点击确定延迟等待，点击取消则进入游戏。");
+					}else{
+						util.show_isok_info(self,function(flag){
+							if(flag == false){
+								self.goout_game();
+							}else{
+								self.delay_wait_time();
+							}
+						},"是否进行延迟等待，点击确定延迟等待，点击取消则退出游戏。");
+					}
 				}
 			}
 		}
 	},
 	start_game(){
-
+		//进入游戏房间，发送公告告诉准备的玩家进入游戏
+		this.start_button.getComponent("cc.Button").interactable = false;
+		if(this.player_num >= 2){
+			var param = {
+				rid:g_room_data["rid"]
+			};
+			pomelo.request(util.getStartGameRoute(), param, function(data) {
+				cc.log(JSON.stringify(data));
+			});
+		}else{
+			this.start_button.getComponent("cc.Button").interactable = true;
+			util.show_error_info(null,null,"人员不够，无法开始游戏，请等待玩家加入！");
+		}
 	},
 	goout_game(){
-
+		//解散游戏取消channel 并且清除房间数据
+		var param = {
+			rid:g_room_data["rid"]
+		};
+		pomelo.request(util.getDissolveRoomRoute(), param, function(data) {
+			cc.log(JSON.stringify(data));
+		});
 	},
+	
+	delay_wait_time(){
+		var self = this;
+		var param = {
+			rid:g_room_data["rid"],
+			player_id:g_user["id"]
+		};
+		pomelo.request(util.getDelayWaitTimeRoute(), param, function(data) {
+			cc.log(JSON.stringify(data));
+		});
+	},
+	
 	switchRadio(event) {
         var index = event.target.getComponent("player_select").index;
 		var type = event.target.getComponent("player_select").type;
@@ -149,7 +221,6 @@ cc.Class({
 					};
 					pomelo.request(util.getEnterRoute(), param, function(data) {
 						cc.log(JSON.stringify(data));
-						
 					});
 				}
 				break;
