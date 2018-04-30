@@ -77,13 +77,11 @@ cc.Class({
 		this.room_num.splice(0,this.room_num.length);
 		
 		var param = {
-			player_od:g_user.id,
+			player_id:g_user.id,
 			room_num: roomNum,
 			rid: null
 		};
-		var self = this;
-		var size = cc.director.getVisibleSize();
-		room_enter(param,this);
+		enter_wait_room(param,this);
 	},
 	close_scene(){
 		this.node.active = false;

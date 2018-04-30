@@ -12,6 +12,7 @@ var room_create = function(param,pthis){
 			return ;
 		}
 		cc.log("create room succ" + JSON.stringify(data.msg));
+		g_user["fangka_num"] = g_user["fangka_num"] - data.msg["fangka_num"];
 		g_room_data = data.msg;
 		cc.director.loadScene("CreatedRoomScene");
 	});
@@ -21,7 +22,7 @@ var enter_wait_room = function(param,pthis){
     pomelo.request(util.getEnterWaitRoomRoute(), param, function(data) {
 		cc.log(JSON.stringify(data));
         if(data.code != 200) {
-			util.show_error_info(pthis,size,data.msg);
+			util.show_error_info(pthis,null,data.msg);
 			cc.director.loadScene("MainScene");
 			return ;
         }

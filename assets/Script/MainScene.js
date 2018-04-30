@@ -29,6 +29,9 @@ cc.Class({
 			g_assets["headimg"] = self.touxiang_sprite.spriteFrame;
 		}
     },
+	update(){
+		this.fangka_label.string = g_user.fangka_num;
+	},
     popUserLayer(){
         cc.log("start init pop user layer info");
 		var size = cc.director.getWinSize();

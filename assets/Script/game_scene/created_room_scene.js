@@ -77,7 +77,7 @@ cc.Class({
 					}
 				});
 			}
-			if(g_room_data["player_num"] >= g_room_data["real_num"]){
+			if(g_room_data["player_num"] <= g_room_data["real_num"]){
 				item.set_flag(true);
 			}
 		}
@@ -92,39 +92,34 @@ cc.Class({
     	pomelo.on('onEnterRoom',this.onEnterRoom_function.bind(this));
 		pomelo.on('onDelayWaitTime',this.onDelayWaitTime_function.bind(this));
 		pomelo.on('onDissolveRoom',this.onDissolveRoom_function.bind(this));
-		
+		pomelo.on('onLeaveRoom',this.onLeaveRoom_function.bind(this));
 	},
 	onEnterRoom_function(data){
 		var self = this;
 		cc.log("pomelo on onEnterRoom_function:" + data.location+" is ready");
-		var player = data.player;
-		var location = data.location;
-		var item = this.choice_sprite[location - 1];
-		var item_com = item.getComponent("player_select");
-		item_com.set_data(player);
-		Servers.userInfoProcess("get_player",{player_id:player.id},function(data){
-			if(data.code == 200){
-				cc.loader.load({url:data.msg.head_img_url,type:'png'},function (err, texture) {
-					var frame = new cc.SpriteFrame(texture);
-					item.getComponent("cc.Sprite").spriteFrame = frame;
-					self.player_num = self.player_num + 1;
-					//判断是否是自己，如果是自己则取消点击事件。
-					if(player.id == g_user["id"]){
-						g_user["fangka_num"] = player.fangka_num;
-						for(let i = 0; i < this.choice_sprite.length; i++){
-							var item = this.choice_sprite[i].getComponent("player_select");
-							item.set_flag(true);
-						}
-					}
-					if(self.player_num >= g_room_data["player_num"]){
-						for(let i = 0; i < this.choice_sprite.length; i++){
-							var item = this.choice_sprite[i].getComponent("player_select");
-							item.set_flag(true);
-						}
-						self.start_game();
-					}
-				});
-				
+		this.enter_player = data.player;
+		this.enter_location = data.location;
+		this.enter_item = this.choice_sprite[this.enter_location - 1];
+		var item_com = this.enter_item.getComponent("player_select");
+		item_com.set_data(this.enter_player);
+		cc.loader.load({url:this.enter_player.head_img_url,type:'png'},function (err, texture) {
+			var frame = new cc.SpriteFrame(texture);
+			self.enter_item.getComponent("cc.Sprite").spriteFrame = frame;
+			self.player_num = self.player_num + 1;
+			//判断是否是自己，如果是自己则取消点击事件。
+			if(self.enter_player.id == g_user["id"]){
+				g_user["fangka_num"] = self.enter_player.fangka_num;
+				for(let i = 0; i < self.choice_sprite.length; i++){
+					var item = self.choice_sprite[i].getComponent("player_select");
+					item.set_flag(true);
+				}
+			}
+			if(self.player_num >= g_room_data["player_num"]){
+				for(let i = 0; i < self.choice_sprite.length; i++){
+					var item = self.choice_sprite[i].getComponent("player_select");
+					item.set_flag(true);
+				}
+				self.start_game();
 			}
 		});
 	},
@@ -147,6 +142,23 @@ cc.Class({
 		g_room_data = null;
 		cc.director.loadScene("MainScene");
 	},
+	onLeaveRoom_function(data){
+		var location = data.location;
+		var room_info = data.data;
+		var player_id = data.player_id;
+		if(location != -1){
+			var item = this.choice_sprite[location - 1];
+			var item_com = item.getComponent("player_select");
+			this.player_num = this.player_num - 1;
+			item.set_data(null);
+			item.set_flag(false);
+			item.getComponent("cc.Sprite").spriteFrame = g_assets["wait_" + location];
+		}
+		
+		if(g_user["id"] == player_id){
+			cc.director.loadScene("MainScene");
+		}
+	},
 	onStartGame_function(data){
 		cc.log("pomelo on onStartGame_function:" + JSON.stringify(data));
 		g_room_data["is_gaming"] = data.is_gaming;
@@ -157,9 +169,14 @@ cc.Class({
 		var self = this;
 		util.show_isok_info(function(flag){
 			if(flag == true){
-				self.onDissolveRoom_function(g_room_data["rid"]);
+				if(g_room_data["fangzhu_id"] == g_user["id"]){
+					//房主打算退出房间
+					self.goout_game();
+				}else{
+					self.leave_room();
+				}
 			}
-		},"你确定要解散房间吗？消费的房卡不会退回，请稍安勿躁！");
+		},"你确定要解散房间吗？如果已经消费房卡，则消费的房卡不会退回，请稍安勿躁！");
 	},
 	
 	wait_time_cb(){
@@ -223,9 +240,25 @@ cc.Class({
 	},
 	leave_room(){
 		//离开游戏房间
+		for(let i = 0; i < this.choice_sprite.length; i++){
+			var item = this.choice_sprite[i].getComponent("player_select");
+			var player = item.get_data();
+			if(player != null && player.id == g_user["id"]){
+				var param = {
+					rid:g_room_data["rid"],
+					player_id:g_user["id"],
+					location:i + 1
+				};
+				pomelo.request(util.getLeaveRoomRoute(), param, function(data) {
+					cc.log(JSON.stringify(data));
+				});
+				return true;
+			}
+		}
 		var param = {
 			rid:g_room_data["rid"],
-			player_id:g_user["id"]
+			player_id:g_user["id"],
+			location:null
 		};
 		pomelo.request(util.getLeaveRoomRoute(), param, function(data) {
 			cc.log(JSON.stringify(data));
