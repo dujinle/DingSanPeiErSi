@@ -238,35 +238,26 @@ cc.Class({
 			}
 		}
 		this.get_one_button("queding",false);
-		//this.qiangzhang_button.active = true;
-		/*
-		pomelo.request(util.getGameRoute(),{
-			process:"ready",
-			location:g_myselfPlayerPos
-		},function(data){
-			cc.log(data.msg);
-		});
-		*/
-		//for test
     },
 	callback_queding(){
-		//this.xiazhu_button.active = false
 		this.chip_layout.active = false;
 		this.queding_button.active = false;
-		//this.qiangzhang_button.active = true;
-		/*
-		pomelo.request(util.getGameRoute(),{
-			process:"ready",
-			location:g_myselfPlayerPos
-		},function(data){
-			cc.log(data.msg);
-		});
-		*/
-		//for test
-		this.onFapai_function({"location":1,"shaizi1":3,"shaizi2":2,"all_chip":100});
-		
-		var call_back_function = cc.callFunc(this.onShoupai_function,this,g_paixing);
-		this.node.runAction(cc.sequence(cc.delayTime(2.5),call_back_function));
+		for(var i = 0;i < g_players.length;i++){
+			var player = g_players[i];
+			var player_com = player.getComponent("tdk_player");
+			if(player_com.position_server == g_myselfPlayerPos){
+				var chip1 = player_com.my_chip1;
+				var chip2 = player_com.my_chip2;
+				pomelo.request(util.getGameRoute(),{
+					process:"xiazhu",
+					chips:[chip1,chip2],
+					location:g_myselfPlayerPos
+				},function(data){
+					cc.log(data.msg);
+				});
+				break;
+			}
+		}
     },
 	callback_peipai(){
 		this.peipai_button.active = false;
@@ -385,7 +376,7 @@ cc.Class({
 	},
 	pomelo_on(){
     	pomelo.on('onReady',this.onReady_function.bind(this));
-		pomelo.on('onQiangFinish',this.onQiangFinish_function.bind(this));
+		pomelo.on('onGetZhuang',this.onGetZhuang_function.bind(this));
 		pomelo.on('onQiang',this.onQiangzhuang_function.bind(this));
 		pomelo.on('onAdd',this.onAdd_function.bind(this));
 		pomelo.on('onNoRound',this.onNoRound_function.bind(this));
@@ -439,27 +430,15 @@ cc.Class({
 			}
 		}
 	},
-	onQiangFinish_function(data){
-		cc.log("pomelo onQiangFinish_function:" + data.location);
-		for(var i = 0;i < g_players.length;i++){
-			var player = g_players[i];
-			var player_com = player.getComponent("tdk_player");
-			if(player_com.position_server == data.location){
-				player_com.is_power = 1;
-				player_com.setSpriteStatus("qiang");
-				break;
-			}
-		}
-		
-	},
 	onGetzhuang_function(data){
 		cc.log("pomelo onGetzhuang_function:" + data.location);
-		var self = this;
+		var num1 = data.nums[0];
+		var num2 = data.nums[1];
 		var size = cc.director.getWinSize();
-		this.zhuang_serverPosition = data.location;
+		this.zhuang_serverPosition = data.zhuang_local;
 		this.yao_shaizi = cc.instantiate(g_assets["yaoshaizi"]);
 		var yao_shaizi_com = this.yao_shaizi.getComponent("shai_zhong_active");
-		yao_shaizi_com.init_start(null,3,2);
+		yao_shaizi_com.init_start(null,num1,num2);
 		this.node.addChild(this.yao_shaizi);
 		this.yao_shaizi.setPosition(this.node.convertToNodeSpaceAR(cc.p(size.width/2,size.height/2)));
 		var call_back_function = cc.callFunc(this.getzhuang_callback,this);
@@ -1248,8 +1227,9 @@ cc.Class({
 		for(var i = 0;i < g_players.length;i++){
 			var player = g_players[i];
 			var player_com = player.getComponent("tdk_player");
-			if(player_com.position_server != pthis.zhuang_serverPosition){
+			if(player_com.position_server == g_myselfPlayerPos){
 				player_com.set_chips(idx,chip);
+				break;
 			}
 		}
 		pthis.get_one_button("queding",true);
