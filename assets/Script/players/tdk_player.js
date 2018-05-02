@@ -12,7 +12,7 @@ cc.Class({
 		player_position:0,
 		check_card:false,
 		is_power:0,
-		mobile_sprite:cc.Sprite,
+		head_sprite:cc.Sprite,
 		counter_timer:cc.Node,
 		status_sprite:cc.Sprite,
 		game_sprite:cc.Sprite,
@@ -30,13 +30,18 @@ cc.Class({
     },
 	init(params){
 		cc.log("tdk_player init: " + JSON.stringify(params));
-		this.id = params[0];
-        this.position_server = params[1];
-        this.is_power = params[2];
-		this.nick_name = params[3];
-		this.my_gold = params[4];
+		var self = this;
+		this.id = params.id;
+        this.position_server = params.location;
+        this.is_power = 0
+		this.nick_name = params.nick_name;
+		this.my_gold = 0;
 		this.nick_name_label.getComponent(cc.Label).string = this.nick_name;
 		this.gold_label.getComponent(cc.Label).string = this.my_gold;
+		cc.loader.load({url:params.head_img_url,type:'png'},function (err, texture) {
+			var frame = new cc.SpriteFrame(texture);
+			self.head_sprite.spriteFrame = frame;
+		});
 	},
 	start_timer(){
 		var count_timer = this.counter_timer.getComponent("count_timer");
