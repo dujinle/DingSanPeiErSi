@@ -1,14 +1,14 @@
 {
   "ver": "1.0.0",
-  "uuid": "3babe535-be28-458b-96c0-9f5c548577bb",
+  "uuid": "de551837-5ab7-4abc-ab76-3892c4929d93",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "subMetas": {
-    "button_weixin": {
+    "3": {
       "ver": "1.0.3",
-      "uuid": "4798b265-61be-4c94-bbf8-6dc5f1eb8b8f",
-      "rawTextureUuid": "3babe535-be28-458b-96c0-9f5c548577bb",
+      "uuid": "abc60c94-c2dd-4067-8b8f-11e6ecbedb5f",
+      "rawTextureUuid": "de551837-5ab7-4abc-ab76-3892c4929d93",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -16,10 +16,10 @@
       "offsetY": 0,
       "trimX": 0,
       "trimY": 0,
-      "width": 202,
-      "height": 62,
-      "rawWidth": 202,
-      "rawHeight": 62,
+      "width": 50,
+      "height": 105,
+      "rawWidth": 50,
+      "rawHeight": 105,
       "borderTop": 0,
       "borderBottom": 0,
       "borderLeft": 0,

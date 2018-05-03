@@ -5,41 +5,35 @@ cc.Class({
 		sprite:null,
 		sprite_back:cc.Sprite,
 		touch_tag:false,
+		num:0,
 		id:0,
 		suit:0,
 		rank:0
     },
 
-	initCardSprite(suit,rank){
+	initCardSprite(rank){
 		var size = cc.director.getVisibleSize();
-        this.suit = suit;
-        this.rank = rank;
-        var cardNumber=(this.rank-2)*4+this.suit;
+		this.num = rank;
+        this.suit = g_paixing[rank][1];
+        this.rank = g_paixing[rank][0];
 		this.sprite = new cc.Node("sprite");
 		var sp = this.sprite.addComponent(cc.Sprite);
-		sp.spriteFrame = g_assets[cardNumber.toString()];
+		sp.spriteFrame = g_assets[rank.toString()];
 		this.sprite.runAction(cc.hide());
 		this.node.addChild(this.sprite);
     },
     onLoad () {
 		cc.log("zjh_card  onload......");
-		//var acrotateBy = cc.rotateBy(0.45,90,90);
-		//this.node.runAction(acrotateBy);
 	},
 	installTouch(){
-		var self = this;
-		var size = cc.director.getVisibleSize();
-		self.node.on("touchstart", function (event) {
-			self.menuCallbackButton();
-            self.node.dispatchEvent(new cc.Event.EventCustom("pressed", true));
-        }, self)
+		this.node.on("touchstart", this.touch_call, this);
 	},
 	uninstallTouch(){
-		var self = this;
-		var size = cc.director.getVisibleSize();
-		self.node.off("touchstart", function (event) {
-			cc.log("uninstallTouch.....");
-        }, self)
+		this.node.off("touchstart",this.touch_call,this);
+	},
+	touch_call(event){
+		this.menuCallbackButton();
+		this.node.dispatchEvent(new cc.Event.EventCustom("pressed", true));
 	},
 	menuCallbackButton(){
 		console.log("start move the card......");

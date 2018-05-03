@@ -41,7 +41,7 @@ util.createUUID = function () {
 	return uuid;
 }
 util.getGameRoute = function(){
-	return "game.gameHandler.gameProcess";
+	return "game.gameHandler.game_process";
 }
 
 util.getCreateRoute = function(){

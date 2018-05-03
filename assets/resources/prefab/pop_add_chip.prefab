@@ -49,7 +49,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 600,
-      "height": 80
+      "height": 150
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -57,8 +57,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
+      "x": 559,
+      "y": 306
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -113,7 +113,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 600,
-      "height": 80
+      "height": 150
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -174,7 +174,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 600,
-      "height": 20
+      "height": 24
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -183,7 +183,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": 20
+      "y": 53
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -228,7 +228,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 600,
-      "height": 20
+      "height": 24
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -255,7 +255,7 @@
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "6f8202b6-1c92-4a39-8c4d-647f7436d87c"
+      "__uuid__": "fa233b98-c513-4f28-acf7-033fa5a9e709"
     },
     "_type": 0,
     "_sizeMode": 0,
@@ -523,7 +523,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 600,
-      "height": 20
+      "height": 24
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -532,7 +532,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": -20
+      "y": -51
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -864,7 +864,7 @@
     "_layoutSize": {
       "__type__": "cc.Size",
       "width": 600,
-      "height": 80
+      "height": 150
     },
     "_resize": 0,
     "_N$layoutType": 3,
@@ -880,7 +880,7 @@
     "_N$paddingTop": 10,
     "_N$paddingBottom": 0,
     "_N$spacingX": 0,
-    "_N$spacingY": 20,
+    "_N$spacingY": 80,
     "_N$verticalDirection": 1,
     "_N$horizontalDirection": 0
   },
@@ -930,7 +930,8 @@
     "silder_num1": 0,
     "silder_num2": 0,
     "callback": null,
-    "pthis": null
+    "pthis": null,
+    "total": 0
   },
   {
     "__type__": "cc.PrefabInfo",
