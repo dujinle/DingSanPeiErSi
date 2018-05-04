@@ -27,7 +27,8 @@ cc.Class({
 			}
          }, this.node);
 	},
-	init_info(players){
+	init_info(players,cb){
+		this.cb = cb;
 		for(var i = 0;i < players.length;i++){
 			var player = players[i];
 			var item = this.items[i];
@@ -55,8 +56,16 @@ cc.Class({
 		dlabel.string = player_com[3] - player_com[2];
 	},
 	callback_tuichu(){
-		this.node.active = false;
-		this.node.destory();
-		cc.director.loadScene("MainScene");
+		var self = this;
+		var param = {
+			rid:g_room_data["rid"],
+			player_id:g_user["id"]
+		};
+		pomelo.request(util.getDissolveRoomRoute(), param, function(data) {
+			cc.log(JSON.stringify(data));
+			self.node.active = false;
+			self.cb();
+			cc.director.loadScene("MainScene");
+		});
 	},
 });

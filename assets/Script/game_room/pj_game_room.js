@@ -137,7 +137,7 @@ cc.Class({
 				}
 				player_com.player_position = i + 1;
 				player_com.position_server = left_local;
-				//player.active = true;
+				player.active = false;
 				continue;
 			}
 			left_local = player_stc.location;
@@ -408,15 +408,8 @@ cc.Class({
 		pomelo.on('onOpen',this.onOpen_function.bind(this));
 		pomelo.on('onQieguo',this.onQieguo_function.bind(this));
 		
-		//pomelo.on('onThrow',this.onThrow_function.bind(this));
-		//pomelo.on('onFollow',this.onFollow_function.bind(this));
-		//pomelo.on('onLeave',this.onLeave_function.bind(this));
-		//pomelo.on('onChangePlayer',this.onChangePlayer_function.bind(this));
-		//pomelo.on('onBipai',this.onBipai_function.bind(this));
 		pomelo.on('onEnd',this.onEnd_function.bind(this));
-		//pomelo.on('onEndPai',this.onEndPai_function.bind(this));
-		//pomelo.on('onAddChip',this.onAddChip_function.bind(this));
-		//pomelo.on('onActBroadcast',this.onUserBroadcast_function.bind(this));
+		pomelo.on('onActBroadcast',this.onUserBroadcast_function.bind(this));
     },
 	
 	onReady_function(data){
@@ -696,11 +689,14 @@ cc.Class({
 					results.push(item);
 				}
 			}
+			var self = this;
 			var x = size.width/2;
 			var y = size.height/2;
 			var pop_game_finish = cc.instantiate(g_assets["pop_game_finish"]);
 			var pop_game_finish_com = pop_game_finish.getComponent("pop_game_finish");
-			pop_game_finish_com.init_info(results);
+			pop_game_finish_com.init_info(results,function(){
+				self.onExit();
+			});
 			this.node.addChild(pop_game_finish);
 			pop_game_finish.setPosition(this.node.convertToNodeSpaceAR(cc.p(x,y)));
 		}
@@ -729,6 +725,7 @@ cc.Class({
 			}
 		}
 	},
+	
 	onUserBroadcast_function(data){
 		console.log("onUserBroadcast:"+JSON.stringify(data));
 		var msage_scroll_com = this.msage_scroll.getComponent("msage_scroll");
@@ -1033,9 +1030,14 @@ cc.Class({
 			this.node.addChild(chip);
 			this.betPhotoArray.push(chip);
 			chip.setPosition(player_from.getPosition());
-			var moveBet = cc.moveTo(1,player_end.getPosition());
+			var moveBet = cc.moveTo(0.5,player_end.getPosition());
 			chip.runAction(cc.sequence(moveBet,cc.hide()));
 		}
+		var callback = cc.callFunc(this.ready_next_turn,this);
+		this.node.runAction(cc.sequence(cc.delayTime(1),callback));
+    },
+	
+	ready_next_turn(){
 		if(this.left_cards.length == 0){
 			for(var i = 0;i < this.myselfCards.length;i++){
 				var item = this.myselfCards[i];
@@ -1044,41 +1046,37 @@ cc.Class({
 					var card_com = card.getComponent("pj_card");
 					card_com.initCardSprite(item[j]);
 					card_com.sprite.runAction(cc.show());
-					card_com.back.node.runAction(cc.hide());
+					card_com.sprite_back.node.runAction(cc.hide());
 					this.left_card_layout.addChild(card);
 					this.left_cards.push(card);
 				}
 			}
 		}
-		var self = this;
-		setTimeout(function(){
-			for(var i = 0;i < self.players.length;i++){
-			//清除玩家手中上一局的牌，
-				var player_com = self.players[i].getComponent("tdk_player");
-				player_com.remove_cards();
-				player_com.remove_select_cards();
+		for(var i = 0;i < this.players.length;i++){
+		//清除玩家手中上一局的牌，
+			var player_com = this.players[i].getComponent("tdk_player");
+			player_com.remove_cards();
+			player_com.remove_select_cards();
+		}
+		if(g_myselfPlayerPos == this.zhuang_serverPosition){
+			if(this.qieguo == 1){
+				this.qieguo_button.active = true;
+				this.buqie_button.active = true;
+				this.qieguo_button.getComponent("cc.Button").interactable = true;
+				this.buqie_button.getComponent("cc.Button").interactable = true;
+			}else if(this.qieguo == 2){
+				this.qieguo_button.active = true;
+				this.buqie_button.active = true;
+				this.qieguo_button.getComponent("cc.Button").interactable = true;
+				this.buqie_button.getComponent("cc.Button").interactable = false;
 			}
-			if(g_myselfPlayerPos == self.zhuang_serverPosition){
-				if(self.qieguo == 1){
-					self.qieguo_button.active = true;
-					self.buqie_button.active = true;
-					self.qieguo_button.getComponent("cc.Button").interactable = true;
-					self.buqie_button.getComponent("cc.Button").interactable = true;
-				}else if(self.qieguo == 2){
-					self.qieguo_button.active = true;
-					self.buqie_button.active = true;
-					self.qieguo_button.getComponent("cc.Button").interactable = true;
-					self.buqie_button.getComponent("cc.Button").interactable = false;
-				}
+		}
+		if(g_myselfPlayerPos != this.zhuang_serverPosition){
+			if(this.qieguo == 0){
+				this.get_one_button("xiazhu",true);
 			}
-			if(g_myselfPlayerPos != self.zhuang_serverPosition){
-				if(self.qieguo == 0){
-					self.get_one_button("xiazhu",true);
-				}
-			}
-		},1000);
-    },
-
+		}
+	},
 	set_cards_w(player,cards){
 		cc.log("set_cards_w:" + cards.length);
 		for(var i = 0;i < cards.length;i++){
@@ -1143,35 +1141,28 @@ cc.Class({
 		}
 		pthis.get_one_button("queding",true);
 	},
+	
 	pomelo_removeListener(){
 		cc.log("remove listener");
         pomelo.removeListener('onReady');
 		pomelo.removeListener('onGetUinfo');
-        pomelo.removeListener('onFollow');
-        pomelo.removeListener('onAddChip');
-        pomelo.removeListener('onAdd');
         pomelo.removeListener('onOpen');
-        pomelo.removeListener('onThrow');
-        pomelo.removeListener('onBipai');
-		pomelo.removeListener('onNoRound');
-        pomelo.removeListener('onLeave');
-        pomelo.removeListener('onEnd');
+        pomelo.removeListener('onGetZhuang');
+        pomelo.removeListener('onQiang');
+		pomelo.removeListener('onXiazhu');
+        pomelo.removeListener('onPeiPai');
+        pomelo.removeListener('onPeiPaiFinish');
         pomelo.removeListener('onFapai');
         pomelo.removeListener('onShoupai');
-        pomelo.removeListener('onChangePlayer');
-        pomelo.removeListener('onEndPai');
+        pomelo.removeListener('onQieguo');
+        pomelo.removeListener('onEnd');
 		pomelo.removeListener('onActBroadcast');
-		
-        //pomelo.removeListener('onChatInGame',onChatInGame_function);
-        //pomelo.removeListener('onActBroadcast',onActBroadcast_function);
-        //pomelo.removeListener('onUserBroadcast',onUserBroadcast_function);
     },
 
 	onExit(){
         g_players_data.splice(0,g_players_data.length);
-        g_roomData.splice(0,g_roomData.length);
+		g_room_data = null;
 		g_players.splice(0,g_players.length);
-		g_players_noPower.splice(0,g_players_noPower.length);
 		console.log("exit from the room......");
         //释放资源
         //this.releaseMember();

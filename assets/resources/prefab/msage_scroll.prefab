@@ -463,7 +463,9 @@
     "scroll_label": {
       "__id__": 8
     },
-    "scroll_parent": null
+    "scroll_parent": {
+      "__id__": 2
+    }
   },
   {
     "__type__": "cc.PrefabInfo",
