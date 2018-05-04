@@ -2,7 +2,7 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-		sprite:null,
+		sprite:cc.Node,
 		sprite_back:cc.Sprite,
 		touch_tag:false,
 		num:0,
@@ -12,15 +12,12 @@ cc.Class({
     },
 
 	initCardSprite(rank){
-		var size = cc.director.getVisibleSize();
+		//this.sprite.active = false;
 		this.num = rank;
         this.suit = g_paixing[rank][1];
         this.rank = g_paixing[rank][0];
-		this.sprite = new cc.Node("sprite");
-		var sp = this.sprite.addComponent(cc.Sprite);
-		sp.spriteFrame = g_assets[rank.toString()];
+		this.sprite.getComponent("cc.Sprite").spriteFrame = g_assets[rank.toString()];
 		this.sprite.runAction(cc.hide());
-		this.node.addChild(this.sprite);
     },
     onLoad () {
 		cc.log("zjh_card  onload......");

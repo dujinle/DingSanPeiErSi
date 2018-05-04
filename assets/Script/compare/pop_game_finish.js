@@ -14,8 +14,7 @@ cc.Class({
 			var item = this.items[i];
 			item.active = false;
 		}
-		var self = this;
-        cc.eventManager.addListener({
+		cc.eventManager.addListener({
             event: cc.EventListener.TOUCH_ONE_BY_ONE,
             swallowTouches: true,
             // 设置是否吞没事件，在 onTouchBegan 方法返回 true 时吞没
@@ -25,40 +24,39 @@ cc.Class({
             onTouchMoved: function (touch, event) {            // 触摸移动时触发
             },
             onTouchEnded: function (touch, event) {            // 点击事件结束处理
-				var target=event.getCurrentTarget();
-				var local=target.convertToNodeSpace(touch.getLocation());
-				var s = target.getContentSize();
-				var rect = cc.rect(0, 0, s.width, s.height);
-				if (cc.rectContainsPoint(rect, local)){
-					cc.log("ok touch in the region......");
-				}else{
-					cc.log("touch remove from parent");
-					self.node.active = false;
-					self.destroy();
-				}
 			}
-         }, self.game_sprite);
+         }, this.node);
 	},
 	init_info(players){
 		for(var i = 0;i < players.length;i++){
 			var player = players[i];
-			var player_com = player.getComponent("tdk_player");
 			var item = this.items[i];
-			this.set_item_info(item,player_com);
+			this.set_item_info(item,player);
 			item.active = true;
 		}
 	},
 	set_item_info(item,player_com){
+		var self = this;
 		var user_layout = item.getChildByName("user_layout");
 		var user_sprite = user_layout.getChildByName("user_sprite");
 		var user_label = user_layout.getChildByName("user_label");
 		var slabel = item.getChildByName("slabel");
 		var elabel = item.getChildByName("elabel");
 		var dlabel = item.getChildByName("dlabel");
-		slabel.string = player_com.start_gold;
-		elabel.string = player_com.my_gold;
-		dlabel.string = player_com.my_gold - player_com.start_gold;
-		user_label.string = player_com.nick_name;
-		user_sprite.SpriteFrame = player_com.mobile_sprite.getChildByName("man").SpriteFrame;
+		user_label.string = player_com[0];
+		if(player_com[1] != null){
+			cc.loader.load({url:params.head_img_url,type:'png'},function (err, texture) {
+				var frame = new cc.SpriteFrame(texture);
+				user_sprite.SpriteFrame = frame;
+			});
+		}
+		slabel.string = player_com[2];
+		elabel.string = player_com[3];
+		dlabel.string = player_com[3] - player_com[2];
+	},
+	callback_tuichu(){
+		this.node.active = false;
+		this.node.destory();
+		cc.director.loadScene("MainScene");
 	},
 });

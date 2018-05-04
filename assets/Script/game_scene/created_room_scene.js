@@ -66,14 +66,14 @@ cc.Class({
 			if(location != null && location != "null"){
 				var player_id = location.split("*")[0];
 				Servers.userInfoProcess("get_player",{player_id:player_id},function(data){
-					if(data.code == 200){
+					if(data.code == 200 && data.msg.head_img_url != null){
 						cc.loader.load({url:data.msg.head_img_url,type:'png'},function (err, texture) {
 							var frame = new cc.SpriteFrame(texture);
 							self.choice_sprite[i].getComponent("cc.Sprite").spriteFrame = frame;
-							item.set_flag(true);
 						});
 					}
 				});
+				item.set_flag(true);
 			}
 			if(g_room_data["player_num"] <= g_room_data["real_num"]){
 				item.set_flag(true);
@@ -100,7 +100,7 @@ cc.Class({
 		this.enter_item = this.choice_sprite[this.enter_location - 1];
 		var item_com = this.enter_item.getComponent("player_select");
 		item_com.set_data(this.enter_player);
-
+		item_com.set_flag(true);
 		if(this.enter_player.head_img_url != null){
 			cc.loader.load({url:this.enter_player.head_img_url,type:'png'},function (err, texture) {
 				var frame = new cc.SpriteFrame(texture);

@@ -21,7 +21,7 @@
     "_active": true,
     "_components": [],
     "_prefab": null,
-    "_id": "64905a0e-3e1b-4d76-955a-9ab1c5b773fe",
+    "_id": "b5b75a57-d3be-476a-9447-e69dd1db4095",
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
@@ -53,16 +53,16 @@
     "_parent": {
       "__id__": 1
     },
-    "_id": "72YMDJyd9OPqmV3016ccAZ",
+    "_id": "48ohc8yIdNToMbUod1uFjp",
     "_prefab": {
       "__id__": 3
     },
-    "_name": "pop_game_finish",
+    "_name": "chip",
     "_active": true,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 640,
-      "y": 360
+      "x": 480,
+      "y": 320
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -75,9 +75,9 @@
       "__id__": 2
     },
     "asset": {
-      "__uuid__": "5aa281da-b384-4736-8485-c093d411f419"
+      "__uuid__": "0ebc82b1-110b-4904-9dec-6aeb9aa0a257"
     },
-    "fileId": "72YMDJyd9OPqmV3016ccAZ",
+    "fileId": "48ohc8yIdNToMbUod1uFjp",
     "sync": true
   }
 ]
