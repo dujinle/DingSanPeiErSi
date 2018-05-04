@@ -6,45 +6,23 @@ cc.Class({
 		silder_num2:0,
 		callback:null,
 		pthis:null,
+		total:0,
     },
     onLoad () {
 		cc.log("start go into pop add chip js");
-		/*
-		var self = this;
-        cc.eventManager.addListener({
-            event: cc.EventListener.TOUCH_ONE_BY_ONE,
-            swallowTouches: true,
-            // 设置是否吞没事件，在 onTouchBegan 方法返回 true 时吞没
-            onTouchBegan: function (touch, event) {
-                return true;
-            },
-            onTouchMoved: function (touch, event) {            // 触摸移动时触发
-            },
-            onTouchEnded: function (touch, event) {            // 点击事件结束处理
-				var target=event.getCurrentTarget();
-				var local=target.convertToNodeSpace(touch.getLocation());
-				var s = target.getContentSize();
-				var rect = cc.rect(0, 0, s.width, s.height);
-				if (cc.rectContainsPoint(rect, local)){
-					cc.log("ok touch in the region......");
-				}else{
-					cc.log("touch remove from parent");
-				}
-			}
-         }, this.node);
-		 */
 	},
-	init_callback(pthis,callback){
+	init_callback(pthis,total,callback){
 		this.pthis = pthis;
 		this.callback = callback;
+		this.total = total;
 	},
 	silder1_callback(slider, customEventData){
-		this.silder_num1 = slider.progress;
+		this.silder_num1 = Math.floor(slider.progress * (this.total - this.silder_num2));
 		cc.log("silder1:" + this.silder_num1);
 		this.callback(this.pthis,1,this.silder_num1);
 	},
 	silder2_callback(slider, customEventData){
-		this.silder_num2 = slider.progress;
+		this.silder_num2 = Math.floor(slider.progress * (this.total - this.silder_num1));
 		cc.log("silder1:" + this.silder_num2);
 		this.callback(this.pthis,2,this.silder_num2);
 	},

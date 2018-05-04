@@ -23,7 +23,6 @@ cc.Class({
 
     onLoad () {
 		cc.log("start gointo created room scene......");
-
 		this.node.on("pressed", this.switchRadio, this);
 		this.wait_flag = true;
 		this.player_num = g_room_data["real_num"];
@@ -35,7 +34,6 @@ cc.Class({
 		this.left_time = parseInt(g_room_data["wait_time"]) * 60 - cost_time;
 		this.pomelo_on();
 		this.schedule(this.wait_time_cb,1);
-
 	},
 	init_data(){
 		this.room_num_node.getComponent("cc.Label").string = g_room_data["room_num"];
@@ -68,14 +66,14 @@ cc.Class({
 			if(location != null && location != "null"){
 				var player_id = location.split("*")[0];
 				Servers.userInfoProcess("get_player",{player_id:player_id},function(data){
-					if(data.code == 200){
+					if(data.code == 200 && data.msg.head_img_url != null){
 						cc.loader.load({url:data.msg.head_img_url,type:'png'},function (err, texture) {
 							var frame = new cc.SpriteFrame(texture);
 							self.choice_sprite[i].getComponent("cc.Sprite").spriteFrame = frame;
-							item.set_flag(true);
 						});
 					}
 				});
+				item.set_flag(true);
 			}
 			if(g_room_data["player_num"] <= g_room_data["real_num"]){
 				item.set_flag(true);
@@ -102,30 +100,33 @@ cc.Class({
 		this.enter_item = this.choice_sprite[this.enter_location - 1];
 		var item_com = this.enter_item.getComponent("player_select");
 		item_com.set_data(this.enter_player);
-		cc.loader.load({url:this.enter_player.head_img_url,type:'png'},function (err, texture) {
-			var frame = new cc.SpriteFrame(texture);
-			self.enter_item.getComponent("cc.Sprite").spriteFrame = frame;
-			self.player_num = self.player_num + 1;
-			//判断是否是自己，如果是自己则取消点击事件。
+		item_com.set_flag(true);
+		if(this.enter_player.head_img_url != null){
+			cc.loader.load({url:this.enter_player.head_img_url,type:'png'},function (err, texture) {
+				var frame = new cc.SpriteFrame(texture);
+				self.enter_item.getComponent("cc.Sprite").spriteFrame = frame;
+			});
+		}
+		self.player_num = self.player_num + 1;
+		//判断是否是自己，如果是自己则取消点击事件。
+		if(self.enter_player.id == g_user["id"]){
+			g_user["fangka_num"] = self.enter_player.fangka_num;
+			for(let i = 0; i < self.choice_sprite.length; i++){
+				var item = self.choice_sprite[i].getComponent("player_select");
+				item.set_flag(true);
+			}
+		}
+		if(self.player_num >= g_room_data["player_num"]){
+			for(let i = 0; i < self.choice_sprite.length; i++){
+				var item = self.choice_sprite[i].getComponent("player_select");
+				item.set_flag(true);
+			}
 			if(self.enter_player.id == g_user["id"]){
-				g_user["fangka_num"] = self.enter_player.fangka_num;
-				for(let i = 0; i < self.choice_sprite.length; i++){
-					var item = self.choice_sprite[i].getComponent("player_select");
-					item.set_flag(true);
-				}
+				util.show_error_info(null,null,"房间人员已经到齐，请点击开始游戏，进入游戏！");
+			}else{
+				util.show_error_info(null,null,"房间人员已经到齐，请等待房主开始游戏，进入游戏！");
 			}
-			if(self.player_num >= g_room_data["player_num"]){
-				for(let i = 0; i < self.choice_sprite.length; i++){
-					var item = self.choice_sprite[i].getComponent("player_select");
-					item.set_flag(true);
-				}
-				if(self.enter_player.id == g_user["id"]){
-					util.show_error_info(null,null,"房间人员已经到齐，请点击开始游戏，进入游戏！");
-				}else{
-					util.show_error_info(null,null,"房间人员已经到齐，请等待房主开始游戏，进入游戏！");
-				}
-			}
-		});
+		}
 	},
 	onDelayWaitTime_function(data){
 		cc.log("pomelo on onDelayWaitTime_function:" + JSON.stringify(data) + " is ready");
@@ -144,7 +145,6 @@ cc.Class({
 	onDissolveRoom_function(data){
 		util.show_error_info(null,null,"房主已经解散了该房间,所有玩家退出房间！");
 		g_room_data = null;
-		cc.director.loadScene("MainScene");
 	},
 	onLeaveRoom_function(data){
 		var location = data.location;
@@ -158,13 +158,10 @@ cc.Class({
 			item.set_flag(false);
 			item.getComponent("cc.Sprite").spriteFrame = g_assets["wait_" + location];
 		}
-		
-		if(g_user["id"] == player_id){
-			cc.director.loadScene("MainScene");
-		}
 	},
 	onStartGame_function(data){
 		cc.log("pomelo on onStartGame_function:" + JSON.stringify(data));
+		var self = this;
 		var players = data.players;
 		g_players_data.splice(0,g_players_data.length);
 		for(var i = 0;i < players.length;i++){
@@ -181,6 +178,7 @@ cc.Class({
 				for(var key in data) {
 					g_room_data[key] = data[key];
 				}
+				self.pomelo_removeListener();
 				cc.director.loadScene("PJRoomScene");
 			}else{
 				util.show_error_info(null,null,data.msg);
@@ -253,16 +251,19 @@ cc.Class({
 	},
 	goout_game(){
 		//解散游戏取消channel 并且清除房间数据
+		this.pomelo_removeListener();
 		var param = {
 			rid:g_room_data["rid"],
 			player_id:g_user["id"]
 		};
 		pomelo.request(util.getDissolveRoomRoute(), param, function(data) {
 			cc.log(JSON.stringify(data));
+			cc.director.loadScene("MainScene");
 		});
 	},
 	leave_room(){
 		//离开游戏房间
+		this.pomelo_removeListener();
 		for(let i = 0; i < this.choice_sprite.length; i++){
 			var item = this.choice_sprite[i].getComponent("player_select");
 			var player = item.get_data();
@@ -274,6 +275,7 @@ cc.Class({
 				};
 				pomelo.request(util.getLeaveRoomRoute(), param, function(data) {
 					cc.log(JSON.stringify(data));
+					cc.director.loadScene("MainScene");
 				});
 				return true;
 			}
@@ -285,6 +287,7 @@ cc.Class({
 		};
 		pomelo.request(util.getLeaveRoomRoute(), param, function(data) {
 			cc.log(JSON.stringify(data));
+			cc.director.loadScene("MainScene");
 		});
 	},
 	
@@ -328,4 +331,12 @@ cc.Class({
             }
         }
     },
+	pomelo_removeListener(){
+		cc.log("remove listener");
+        pomelo.removeListener('onStartGame');
+		pomelo.removeListener('onEnterRoom');
+        pomelo.removeListener('onDelayWaitTime');
+        pomelo.removeListener('onDissolveRoom');
+        pomelo.removeListener('onLeaveRoom');
+	},
 });

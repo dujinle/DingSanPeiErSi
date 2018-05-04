@@ -5,13 +5,12 @@ cc.Class({
 		id:0,
 		nick_name:null,
 		my_gold:0,
-		start_gold:0,
 		my_chip1:0,
 		my_chip2:0,
 		position_server:0,
 		player_position:0,
-		check_card:false,
 		is_power:0,
+		mobile_sprite:cc.Sprite,
 		head_sprite:cc.Sprite,
 		counter_timer:cc.Node,
 		status_sprite:cc.Sprite,
@@ -38,10 +37,12 @@ cc.Class({
 		this.my_gold = 0;
 		this.nick_name_label.getComponent(cc.Label).string = this.nick_name;
 		this.gold_label.getComponent(cc.Label).string = this.my_gold;
-		cc.loader.load({url:params.head_img_url,type:'png'},function (err, texture) {
-			var frame = new cc.SpriteFrame(texture);
-			self.head_sprite.spriteFrame = frame;
-		});
+		if(params.head_img_url != null){
+			cc.loader.load({url:params.head_img_url,type:'png'},function (err, texture) {
+				var frame = new cc.SpriteFrame(texture);
+				self.head_sprite.spriteFrame = frame;
+			});
+		}
 	},
 	start_timer(){
 		var count_timer = this.counter_timer.getComponent("count_timer");
@@ -128,10 +129,10 @@ cc.Class({
 		this.my_cards.push(card);
 		return card;
 	},
-	set_card_sprite(idx,suit,rank){
-		cc.log("set_card_sprite: idx" + idx + " suit:" + suit + " rank:" + rank);
+	set_card_sprite(idx,rank){
+		cc.log("set_card_sprite: idx" + idx + " rank:" + rank);
 		var card = this.my_cards[idx].getComponent("pj_card");
-		card.initCardSprite(suit,rank);
+		card.initCardSprite(rank);
 	},
 	remove_cards(){
 		for(var i = 0;i < this.my_cards.length;i++){

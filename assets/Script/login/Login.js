@@ -5,10 +5,12 @@ cc.Class({
 		version_label:cc.Node,
 		login_flag:false,
 		debug_label:cc.Label,
+		button_login:cc.Node,
 		callback:null,
     },
 	wxLogin(){
 		cc.log("wxLogin");
+		this.button_login.getComponent("cc.Button").interactable = false;
 		this.debug_label.string = "wxLogin.......";
 		if(cc.sys.os == cc.sys.OS_ANDROID){
 			jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "WxLogin", "()V");
@@ -74,6 +76,7 @@ cc.Class({
 	},
     onLoad () {
     	cc.log("onLoad" + this.login_flag);
+		this.button_login.getComponent("cc.Button").interactable = false;
 		if(cc.sys.os == cc.sys.OS_WINDOWS){
 			this.onLogin();
 		}else if(cc.sys.os == cc.sys.OS_ANDROID){
@@ -88,6 +91,7 @@ cc.Class({
 						this.wxLogin();
 					}
 				}
+				this.button_login.getComponent("cc.Button").interactable = true;
 				return false;
 			}else{
 				this.callback = this.get_access_token;

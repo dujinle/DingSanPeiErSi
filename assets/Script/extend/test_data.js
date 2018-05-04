@@ -18,47 +18,12 @@ var g_user = {
 	'gender':1,
 	'player_id':1111
 };
-var g_paixing = {
-	"paixing":{
-		"s1":1,
-		"p1":2,
-		"s2":1,
-		"p2":3,
-		"s3":1,
-		"p3":4,
-		"s4":1,
-		"p4":5
-	}
-};
-var g_peipai_data1 = {
-	"location":1,
-	"first":true,
-	"select":[1,2],
-	"unpei":3,
-};
-var g_peipai_data2 = {
-	"location":2,
-	"first":true,
-	"select":[1,2],
-	"unpei":2,
-};
-var g_peipai_data3 = {
-	"location":3,
-	"first":true,
-	"select":[1,2],
-	"unpei":1,
-};
-var g_peipai_data4 = {
-	"location":4,
-	"first":true,
-	"select":[1,2],
-	"unpei":0
-};
 
 g_buy_fangka_data = {
 	"danjia":2
 };
-
+//g_room_data = {"rid":6,"room_num":"673548","fangzhu_id":1,"fangzhu_name":"杜1111","first_fapai":0,"game_type":"PJ","max_type":1,"fangka_num":1,"fangka_type":1,"wait_time":1,"creat_time":1525324949259,"timeout_mark":null,"player_num":2,"real_num":2,"zhuang_location":null,"zhuang_score":100,"round":0,"qiang_num":0,"qiang_flag":"[]","location1":"1*6","location2":"2*6","location3":"null","location4":"null","is_gaming":1,"is_game_1":-1,"is_game_2":-1,"is_game_3":-1,"is_game_4":-1,"peipai_num":0,"pai1":null,"pai2":null,"pai3":null,"pai4":null,"score_1":null,"score_2":null,"score_3":null,"score_4":null};
+//g_players_data = [{"id":1,"player_id":"1111","phone_num":null,"nick_name":"杜1111","fangka_num":4,"head_img_url":null,"gender":1,"createTime":1525323152967,"round_num":0,"all_score":0,"win_num":0,"lose_num":0,"fangka_history":0,"invalid_fangka":0,"gonghui_id":null,"lastLoginTime":1525324946423,"continueLoginDays":1,"location":1},{"id":2,"player_id":"ooOAK0xltsyGh6hq5YvA0rR6RJn0","phone_num":null,"nick_name":"杜府","fangka_num":4,"head_img_url":"http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJ0J3Obq3uG2qg6QKp19xJXG8fpmDnC383WzI0fXLtfsGA6JibtpreNd98vzG1vr0oibibhiab6b1wzCw/132","gender":1,"createTime":1525323155772,"round_num":0,"all_score":0,"win_num":0,"lose_num":0,"fangka_history":0,"invalid_fangka":0,"gonghui_id":null,"lastLoginTime":1525324953083,"continueLoginDays":1,"location":2}];
 g_endpai_data = {
 	"winners":[],
 	"losers":[2,3,4],
