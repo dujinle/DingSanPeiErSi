@@ -29,6 +29,7 @@ cc.Class({
 	},
 	init_info(players,cb){
 		this.cb = cb;
+		cc.log("pop game finish:" + JSON.stringify(players));
 		for(var i = 0;i < players.length;i++){
 			var player = players[i];
 			var item = this.items[i];
@@ -37,7 +38,6 @@ cc.Class({
 		}
 	},
 	set_item_info(item,player_com){
-		var self = this;
 		var user_layout = item.getChildByName("user_layout");
 		var user_sprite = user_layout.getChildByName("user_sprite");
 		var user_label = user_layout.getChildByName("user_label");
@@ -46,9 +46,9 @@ cc.Class({
 		var dlabel = item.getChildByName("dlabel");
 		user_label.string = player_com[0];
 		if(player_com[1] != null){
-			cc.loader.load({url:params.head_img_url,type:'png'},function (err, texture) {
+			cc.loader.load({url:player_com[1],type:'png'},function (err, texture) {
 				var frame = new cc.SpriteFrame(texture);
-				user_sprite.SpriteFrame = frame;
+				user_sprite.spriteFrame = frame;
 			});
 		}
 		slabel.string = player_com[2];
@@ -59,9 +59,10 @@ cc.Class({
 		var self = this;
 		var param = {
 			rid:g_room_data["rid"],
-			player_id:g_user["id"]
+			player_id:g_user["id"],
+			location:null
 		};
-		pomelo.request(util.getDissolveRoomRoute(), param, function(data) {
+		pomelo.request(util.getLeaveRoomRoute(), param, function(data) {
 			cc.log(JSON.stringify(data));
 			self.node.active = false;
 			self.cb();

@@ -675,7 +675,7 @@ cc.Class({
 			var scores = data.scores;
 			var results = new Array();
 			for(var i = 0;i < g_players_data.length;i++){
-				var player_item = g_players[i];
+				var player_item = g_players_data[i];
 				if(player_item != null && player_item != "null"){
 					var item = new Array();
 					item.push(player_item.nick_name);
