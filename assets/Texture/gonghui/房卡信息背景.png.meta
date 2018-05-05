@@ -1,14 +1,14 @@
 {
   "ver": "1.0.0",
-  "uuid": "3f0d29ed-807d-47cd-8643-1a77f32f929e",
+  "uuid": "b13a1916-7f2b-430e-9a7d-4844c07a0f5b",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "subMetas": {
-    "jiefeng": {
+    "房卡信息背景": {
       "ver": "1.0.3",
-      "uuid": "0149540a-a216-4997-95c3-fb8258bd2474",
-      "rawTextureUuid": "3f0d29ed-807d-47cd-8643-1a77f32f929e",
+      "uuid": "6c6209d0-3a77-423e-b6c3-70652e640cfe",
+      "rawTextureUuid": "b13a1916-7f2b-430e-9a7d-4844c07a0f5b",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -16,10 +16,10 @@
       "offsetY": 0,
       "trimX": 0,
       "trimY": 0,
-      "width": 60,
-      "height": 60,
-      "rawWidth": 60,
-      "rawHeight": 60,
+      "width": 725,
+      "height": 86,
+      "rawWidth": 725,
+      "rawHeight": 86,
       "borderTop": 0,
       "borderBottom": 0,
       "borderLeft": 0,

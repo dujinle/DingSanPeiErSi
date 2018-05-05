@@ -6732,6 +6732,9 @@
     "wait_time": 1,
     "renshu": 2,
     "game_type": "PJ",
+    "button_node": {
+      "__id__": 206
+    },
     "choice_radios": [
       {
         "__id__": 5

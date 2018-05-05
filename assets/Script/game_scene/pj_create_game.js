@@ -9,6 +9,7 @@ cc.Class({
 		wait_time:1,
 		renshu:2,
 		game_type:"PJ",
+		button_node:cc.Node,
 		choice_radios:{
 			type:cc.Node,
 			default:[],
@@ -60,6 +61,7 @@ cc.Class({
 		cc.log("select renshu" + this.renshu + " fangka:" + this.fangka + " zuida:" + this.max_type + " wait_time:" + this.wait_time);
     },
 	create_game(){
+		this.button_node.getComponent("cc.Button").interactable = false;
 		var param = {
 			renshu:this.renshu,
 			room_type:this.game_type,

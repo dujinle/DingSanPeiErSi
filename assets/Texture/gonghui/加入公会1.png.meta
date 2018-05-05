@@ -1,14 +1,14 @@
 {
   "ver": "1.0.0",
-  "uuid": "a7c6a73f-74c5-458a-b7c3-e589b92abc0c",
+  "uuid": "223b2ba3-ba43-4e03-b0a3-3c6a0e290563",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "subMetas": {
-    "touxiang": {
+    "加入公会1": {
       "ver": "1.0.3",
-      "uuid": "7e7497e8-08b1-40bd-b2d7-1ff74fe50331",
-      "rawTextureUuid": "a7c6a73f-74c5-458a-b7c3-e589b92abc0c",
+      "uuid": "203b5957-6b9f-4a6e-bd3b-c37ebbcd6280",
+      "rawTextureUuid": "223b2ba3-ba43-4e03-b0a3-3c6a0e290563",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -16,10 +16,10 @@
       "offsetY": 0,
       "trimX": 0,
       "trimY": 0,
-      "width": 60,
-      "height": 60,
-      "rawWidth": 60,
-      "rawHeight": 60,
+      "width": 140,
+      "height": 70,
+      "rawWidth": 140,
+      "rawHeight": 70,
       "borderTop": 0,
       "borderBottom": 0,
       "borderLeft": 0,

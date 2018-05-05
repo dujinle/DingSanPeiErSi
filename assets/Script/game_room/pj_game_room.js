@@ -669,6 +669,14 @@ cc.Class({
 		var flag = data.flag;
 		if(flag == false){
 			if(g_myselfPlayerPos != this.zhuang_serverPosition){
+				for(var i = 0;i < this.players.length;i++){
+					var player = this.players[i];
+					var player_com = player.getComponent("tdk_player");
+					if(player_com.position_server == g_myselfPlayerPos){
+						player_com.set_chips(1,0);
+						player_com.set_chips(2,0);
+					}
+				}
 				this.get_one_button("xiazhu",true);
 			}
 		}else{
@@ -694,10 +702,10 @@ cc.Class({
 			var y = size.height/2;
 			var pop_game_finish = cc.instantiate(g_assets["pop_game_finish"]);
 			var pop_game_finish_com = pop_game_finish.getComponent("pop_game_finish");
+			this.node.addChild(pop_game_finish);
 			pop_game_finish_com.init_info(results,function(){
 				self.onExit();
 			});
-			this.node.addChild(pop_game_finish);
 			pop_game_finish.setPosition(this.node.convertToNodeSpaceAR(cc.p(x,y)));
 		}
 	},
@@ -1073,6 +1081,14 @@ cc.Class({
 		}
 		if(g_myselfPlayerPos != this.zhuang_serverPosition){
 			if(this.qieguo == 0){
+				for(var i = 0;i < this.players.length;i++){
+					var player = this.players[i];
+					var player_com = player.getComponent("tdk_player");
+					if(player_com.position_server == g_myselfPlayerPos){
+						player_com.set_chips(1,0);
+						player_com.set_chips(2,0);
+					}
+				}
 				this.get_one_button("xiazhu",true);
 			}
 		}
@@ -1126,6 +1142,14 @@ cc.Class({
 			}
 		}
 		if(g_myselfPlayerPos != this.zhuang_serverPosition){
+			for(var i = 0;i < this.players.length;i++){
+				var player = this.players[i];
+				var player_com = player.getComponent("tdk_player");
+				if(player_com.position_server == g_myselfPlayerPos){
+					player_com.set_chips(1,0);
+					player_com.set_chips(2,0);
+				}
+			}
 			this.get_one_button("xiazhu",true);
 		}
 	},

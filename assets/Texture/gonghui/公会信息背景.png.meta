@@ -1,14 +1,14 @@
 {
   "ver": "1.0.0",
-  "uuid": "14d81d32-d5dc-4311-b182-f076bf119b25",
+  "uuid": "be157d5f-a4c3-4c14-b23b-557189df576f",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "subMetas": {
-    "start": {
+    "公会信息背景": {
       "ver": "1.0.3",
-      "uuid": "c72beece-62ef-4082-ac88-b1d1074f244d",
-      "rawTextureUuid": "14d81d32-d5dc-4311-b182-f076bf119b25",
+      "uuid": "24972f29-3449-45c3-98bc-751acf2a1b0f",
+      "rawTextureUuid": "be157d5f-a4c3-4c14-b23b-557189df576f",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -16,10 +16,10 @@
       "offsetY": 0,
       "trimX": 0,
       "trimY": 0,
-      "width": 60,
-      "height": 60,
-      "rawWidth": 60,
-      "rawHeight": 60,
+      "width": 930,
+      "height": 145,
+      "rawWidth": 930,
+      "rawHeight": 145,
       "borderTop": 0,
       "borderBottom": 0,
       "borderLeft": 0,

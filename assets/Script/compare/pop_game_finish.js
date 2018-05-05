@@ -39,11 +39,11 @@ cc.Class({
 	},
 	set_item_info(item,player_com){
 		var user_layout = item.getChildByName("user_layout");
-		var user_sprite = user_layout.getChildByName("user_sprite");
-		var user_label = user_layout.getChildByName("user_label");
-		var slabel = item.getChildByName("slabel");
-		var elabel = item.getChildByName("elabel");
-		var dlabel = item.getChildByName("dlabel");
+		var user_sprite = user_layout.getChildByName("user_sprite").getComponent("cc.Sprite");
+		var user_label = user_layout.getChildByName("user_label").getComponent("cc.Label");
+		var slabel = item.getChildByName("slabel").getComponent("cc.Label");
+		var elabel = item.getChildByName("elabel").getComponent("cc.Label");
+		var dlabel = item.getChildByName("dlabel").getComponent("cc.Label");
 		user_label.string = player_com[0];
 		if(player_com[1] != null){
 			cc.loader.load({url:player_com[1],type:'png'},function (err, texture) {

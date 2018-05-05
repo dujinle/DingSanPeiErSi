@@ -143,8 +143,10 @@ cc.Class({
 		this.wait_flag = true;
 	},
 	onDissolveRoom_function(data){
+		this.pomelo_removeListener();
 		util.show_error_info(null,null,"房主已经解散了该房间,所有玩家退出房间！");
 		g_room_data = null;
+		cc.director.loadScene("MainScene");
 	},
 	onLeaveRoom_function(data){
 		var location = data.location;
