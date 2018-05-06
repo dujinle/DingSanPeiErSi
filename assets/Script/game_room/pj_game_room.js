@@ -377,13 +377,12 @@ cc.Class({
         })
 	},
 	callback_uinfo(event,id){
-		var self = this;
 		var player = this.players[id];
 		var player_com = player.getComponent("tdk_player");
 		pomelo.request(util.getGameRoute(),{
-            process : 'get_uinfo',
-			send_from:g_myselfPlayerPos,
-			send_to:player_com.position_server
+            process : 'get_user_info',
+			"send_from":g_myselfPlayerPos,
+			"location":player_com.position_server
         },function(data){
             console.log("-----quit------"+JSON.stringify(data));
         })
@@ -401,13 +400,11 @@ cc.Class({
 		pomelo.on('onXiazhu',this.onXiazhu_function.bind(this));
 		pomelo.on('onPeiPai',this.onPeiPai_function.bind(this));
 		pomelo.on('onPeiPaiFinish',this.onPeiPaiFinish_function.bind(this));
-		//pomelo.on('onNoRound',this.onNoRound_function.bind(this));
 		pomelo.on('onFapai',this.onFapai_function.bind(this));
-		//pomelo.on('onGetUinfo',this.onGetUinfo_function.bind(this));
+		pomelo.on('onGetUinfo',this.onGetUinfo_function.bind(this));
 		pomelo.on('onShoupai',this.onShoupai_function.bind(this));
 		pomelo.on('onOpen',this.onOpen_function.bind(this));
 		pomelo.on('onQieguo',this.onQieguo_function.bind(this));
-		
 		pomelo.on('onEnd',this.onEnd_function.bind(this));
 		pomelo.on('onActBroadcast',this.onUserBroadcast_function.bind(this));
     },
@@ -605,39 +602,6 @@ cc.Class({
 		}
 	},
 	
-	onLeave_function(data){
-		cc.log("onLeave:" + JSON.stringify(data));
-		var playerName = data["user"];
-		var isFind = false;
-		for(var i = 0;i < g_players.length;i++){
-			var player = g_players[i];
-			var player_com = player.getComponent("tdk_player");
-			if(player_com.id == playerName){
-				cc.log("quit from zjh room g_players");
-				player_com.remove_cards();
-				player.active = false;
-				g_players.splice(i,1);
-				isFind = true;
-				break;
-			}
-		}
-		if(isFind==false){
-			for(var i = 0;i < g_players_noPower.length;i++){
-				var player = g_players_noPower[i];
-				var player_com = player.getComponent("tdk_player");
-				if(player_com.id == playerName){
-					cc.log("quit from zjh room g_players_noPower");
-					player_com.remove_cards();
-					player.active = false;
-					g_players_noPower.splice(i,1);
-					isFind = true;
-					break;
-				}
-			}
-		}
-		this.playerNum--;
-	},
-	
 	onEnd_function(data){
 		cc.log("onEnd:" + JSON.stringify(data));
 		//获胜者的牌型
@@ -746,13 +710,14 @@ cc.Class({
 		//显示玩家信息
 		if(data["send_from"] == g_myselfPlayerPos){
 			this.uinfo = cc.instantiate(g_assets["pop_game_user"]);
-			var uinfo_com = this.uinfo.getComponent("pop_game_user");
+			var uinfo_com = this.uinfo.getComponent("pop_game_user_info");
 			
 			uinfo_com.init_info(data,this.actionSendGift);
 			this.node.addChild(this.uinfo);
 			this.uinfo.setPosition(this.node.convertToNodeSpaceAR(cc.p(size.width/2,size.height/2)));
 		}
 	},
+	
 	actionSendGift(pnode,type,send_from,send_to){
 		cc.log("actionSendGift",type,send_from,send_to);
 		var s_player = null;

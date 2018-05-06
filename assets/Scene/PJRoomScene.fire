@@ -5105,7 +5105,7 @@
     "target": {
       "__id__": 2
     },
-    "component": "tdk_game_room",
+    "component": "pj_game_room",
     "handler": "callback_uinfo",
     "customEventData": "0"
   },
@@ -6590,7 +6590,7 @@
     "target": {
       "__id__": 2
     },
-    "component": "tdk_game_room",
+    "component": "pj_game_room",
     "handler": "callback_uinfo",
     "customEventData": "1"
   },
@@ -8075,7 +8075,7 @@
     "target": {
       "__id__": 2
     },
-    "component": "tdk_game_room",
+    "component": "pj_game_room",
     "handler": "callback_uinfo",
     "customEventData": "2"
   },
@@ -9560,7 +9560,7 @@
     "target": {
       "__id__": 2
     },
-    "component": "tdk_game_room",
+    "component": "pj_game_room",
     "handler": "callback_uinfo",
     "customEventData": "3"
   },
