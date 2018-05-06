@@ -55,6 +55,7 @@ cc.Class({
 	close_scene(){
 		this.node.active = false;
 		this.node.destroy();
+		cc.director.loadScene("MainScene");
 	},
     // update (dt) {},
 });

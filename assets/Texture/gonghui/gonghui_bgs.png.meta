@@ -1,14 +1,14 @@
 {
   "ver": "1.0.0",
-  "uuid": "0b58ca1f-1c29-41d4-8e4e-a105ad4de162",
+  "uuid": "4f510c65-1948-4a32-bb69-bf581141fb5f",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "subMetas": {
-    "record_button": {
+    "gonghui_bgs": {
       "ver": "1.0.3",
-      "uuid": "30ea5eaf-c283-46eb-9507-7c3cd3564f71",
-      "rawTextureUuid": "0b58ca1f-1c29-41d4-8e4e-a105ad4de162",
+      "uuid": "69d1ed3d-74a9-4985-9497-cac149294828",
+      "rawTextureUuid": "4f510c65-1948-4a32-bb69-bf581141fb5f",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -16,10 +16,10 @@
       "offsetY": 0,
       "trimX": 0,
       "trimY": 0,
-      "width": 145,
-      "height": 70,
-      "rawWidth": 145,
-      "rawHeight": 70,
+      "width": 1280,
+      "height": 720,
+      "rawWidth": 1280,
+      "rawHeight": 720,
       "borderTop": 0,
       "borderBottom": 0,
       "borderLeft": 0,

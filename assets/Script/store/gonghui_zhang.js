@@ -4,14 +4,13 @@ cc.Class({
     properties: {
 		gonghui_id:cc.Node,
 		gonghui_name:cc.Node,
+		gonghui_zhang:cc.Node,
 		fangka_num:cc.Node,
 		renshu:cc.Node,
 		danjia:cc.Node,
 		xuanyan:cc.Node,
-		gonggao:cc.Node,
 		danjia_str:null,
 		xuanyan_str:null,
-		gonggao_str:null,
 		xuka_status:null,
 		data:null,
 		pthis:null,
@@ -25,10 +24,9 @@ cc.Class({
 		this.renshu.getComponent("cc.Label").string = data["renshu"];
 		this.danjia.getComponent("cc.EditBox").string = data["danjia"];
 		this.xuanyan.getComponent("cc.EditBox").string = data["xuanyan"];
-		this.gonggao.getComponent("cc.EditBox").string = data["gonggao"];
+		this.gonghui_zhang.getComponent("cc.Label").string = data["player_name"];
 		this.xuka_status = data["xuka_status"];
 		this.xuanyan_str = data["xuanyan"];
-		this.gonggao_str = data["gonggao"];
 		this.danjia_str = data["danjia"];
 	},
 	onChangeDanjia(){
@@ -42,12 +40,6 @@ cc.Class({
 	},
 	onEndXuanyan(){
 		this.xuanyan_str = this.xuanyan.getComponent("cc.EditBox").string;
-	},
-	onChangeGonggao(){
-		this.gonggao_str = this.gonggao.getComponent("cc.EditBox").string;
-	},
-	onEndGonggao(){
-		this.gonggao_str = this.gonggao.getComponent("cc.EditBox").string;
 	},
 	onXuka(){
 		var size = cc.director.getWinSize();

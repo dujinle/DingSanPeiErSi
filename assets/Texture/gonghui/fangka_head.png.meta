@@ -1,14 +1,14 @@
 {
   "ver": "1.0.0",
-  "uuid": "0b58ca1f-1c29-41d4-8e4e-a105ad4de162",
+  "uuid": "680233da-d4d9-40ea-b674-0365e5c6bfff",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "subMetas": {
-    "record_button": {
+    "fangka_head": {
       "ver": "1.0.3",
-      "uuid": "30ea5eaf-c283-46eb-9507-7c3cd3564f71",
-      "rawTextureUuid": "0b58ca1f-1c29-41d4-8e4e-a105ad4de162",
+      "uuid": "5fe4fece-c779-4c9b-8e83-568f237f9742",
+      "rawTextureUuid": "680233da-d4d9-40ea-b674-0365e5c6bfff",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -16,10 +16,10 @@
       "offsetY": 0,
       "trimX": 0,
       "trimY": 0,
-      "width": 145,
-      "height": 70,
-      "rawWidth": 145,
-      "rawHeight": 70,
+      "width": 165,
+      "height": 33,
+      "rawWidth": 165,
+      "rawHeight": 33,
       "borderTop": 0,
       "borderBottom": 0,
       "borderLeft": 0,

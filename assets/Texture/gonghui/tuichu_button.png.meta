@@ -1,14 +1,14 @@
 {
   "ver": "1.0.0",
-  "uuid": "0b58ca1f-1c29-41d4-8e4e-a105ad4de162",
+  "uuid": "02d027af-6c9a-4c9a-a9fd-ef2deca34d73",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "subMetas": {
-    "record_button": {
+    "tuichu_button": {
       "ver": "1.0.3",
-      "uuid": "30ea5eaf-c283-46eb-9507-7c3cd3564f71",
-      "rawTextureUuid": "0b58ca1f-1c29-41d4-8e4e-a105ad4de162",
+      "uuid": "7470673e-e3c4-4877-a417-a46c1b923dff",
+      "rawTextureUuid": "02d027af-6c9a-4c9a-a9fd-ef2deca34d73",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -16,10 +16,10 @@
       "offsetY": 0,
       "trimX": 0,
       "trimY": 0,
-      "width": 145,
-      "height": 70,
-      "rawWidth": 145,
-      "rawHeight": 70,
+      "width": 77,
+      "height": 40,
+      "rawWidth": 77,
+      "rawHeight": 40,
       "borderTop": 0,
       "borderBottom": 0,
       "borderLeft": 0,
