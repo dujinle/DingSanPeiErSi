@@ -3,7 +3,7 @@
   "_name": "kiss_active",
   "_objFlags": 0,
   "_rawFiles": null,
-  "_duration": 4.016666666666667,
+  "_duration": 4.183333333333334,
   "sample": 60,
   "speed": 2,
   "wrapMode": 1,
@@ -160,6 +160,10 @@
             "value": {
               "__uuid__": "c00eff2a-ea1a-4eee-b952-2a643da7eadc"
             }
+          },
+          {
+            "frame": 4.166666666666667,
+            "value": null
           }
         ]
       }

@@ -25,7 +25,7 @@ cc.Class({
             },
             onTouchEnded: function (touch, event) {            // 点击事件结束处理
 				var target=event.getCurrentTarget();
-				var local=target.convertToNodeSpace(touch.getLocation());
+				var local=target.convertToNodeSpaceAR(touch.getLocation());
 				var s = target.getContentSize();
 				var rect = cc.rect(0, 0, s.width, s.height);
 				if (cc.rectContainsPoint(rect, local)){

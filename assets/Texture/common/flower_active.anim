@@ -3,7 +3,7 @@
   "_name": "flower_active",
   "_objFlags": 0,
   "_rawFiles": null,
-  "_duration": 9.516666666666667,
+  "_duration": 10.016666666666667,
   "sample": 60,
   "speed": 2.5,
   "wrapMode": 1,
@@ -130,6 +130,10 @@
             "value": {
               "__uuid__": "32191d6d-e941-4240-bca2-ecb6316243b0"
             }
+          },
+          {
+            "frame": 10,
+            "value": null
           }
         ]
       }

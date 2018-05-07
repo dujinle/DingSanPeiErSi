@@ -3,7 +3,7 @@
   "_name": "cheers_active",
   "_objFlags": 0,
   "_rawFiles": null,
-  "_duration": 7.516666666666667,
+  "_duration": 7.7,
   "sample": 60,
   "speed": 3,
   "wrapMode": 1,
@@ -106,6 +106,10 @@
             "value": {
               "__uuid__": "b1fc3305-503a-464b-b09e-9993012180ba"
             }
+          },
+          {
+            "frame": 7.683333333333334,
+            "value": null
           }
         ]
       }

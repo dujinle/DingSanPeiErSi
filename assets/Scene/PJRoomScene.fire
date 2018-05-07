@@ -1766,7 +1766,7 @@
     "target": {
       "__id__": 2
     },
-    "component": "tdk_game_room",
+    "component": "pj_game_room",
     "handler": "callback_setting",
     "customEventData": ""
   },

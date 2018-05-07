@@ -356,10 +356,11 @@ cc.Class({
 		var pop_setting_com = pop_setting.getComponent("pop_set_scene");
 		pop_setting_com.set_callback(function(index){
 			if(index == 0){
-				if(g_music_key == BOOL.NO){
-					self.audioSource.pause();
-				}else{
-					self.audioSource.play();
+				if(g_music_key == BOOL.NO && this.current != null){
+					cc.audioEngine.stop(this.current);
+					this.current = null;
+				}else if(this.current == null){
+					this.current = cc.audioEngine.play(this.audio, true, 1);
 				}
 			}
 		});
