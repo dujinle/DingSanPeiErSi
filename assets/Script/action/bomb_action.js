@@ -20,9 +20,9 @@ cc.Class({
 		this.animStatus.wrapMode = cc.WrapMode.Loop;
 		// 设置动画循环次数为2次
 		this.animStatus.repeatCount = 1;
-		
+		g_sound_key = cc.sys.localStorage.getItem(SOUND_KEY);
 		this.audio = this.node.getComponent(cc.AudioSource);
-		if(this.audio != null){
+		if(this.audio != null && g_sound_key == BOOL.YES){
 			this.audio.loop = false;
 			this.audioStatus = this.audio.play();
 		}

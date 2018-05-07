@@ -354,13 +354,14 @@ cc.Class({
 		var size = cc.director.getVisibleSize();
 		var pop_setting = cc.instantiate(g_assets["pop_setting_scene"]);
 		var pop_setting_com = pop_setting.getComponent("pop_set_scene");
+		
 		pop_setting_com.set_callback(function(index){
 			if(index == 0){
-				if(g_music_key == BOOL.NO && this.current != null){
-					cc.audioEngine.stop(this.current);
-					this.current = null;
-				}else if(this.current == null){
-					this.current = cc.audioEngine.play(this.audio, true, 1);
+				if(g_music_key == BOOL.NO && self.current != null){
+					cc.audioEngine.stop(self.current);
+					self.current = null;
+				}else if(self.current == null){
+					self.current = cc.audioEngine.play(self.audio, true, 1);
 				}
 			}
 		});
@@ -667,7 +668,7 @@ cc.Class({
 					if(player_item.location == g_myselfPlayerPos){
 						var param = {
 							player_id:g_user["id"],
-							renshu:g_room_data["renshu"],
+							renshu:g_room_data["real_num"],
 							game_status:item[3] - item[2],
 							status:item[3] - item[2],
 							creat_time:g_room_data["creat_time"],

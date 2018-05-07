@@ -12,19 +12,14 @@ cc.Class({
     },
     onLoad () {
 		var self = this;
-		cc.eventManager.addListener({
-            event: cc.EventListener.TOUCH_ONE_BY_ONE,
-            swallowTouches: true,
-            // 设置是否吞没事件，在 onTouchBegan 方法返回 true 时吞没
-            onTouchBegan: function (touch, event) {
-                return true;
-            },
-            onTouchMoved: function (touch, event) {            // 触摸移动时触发
-            },
-            onTouchEnded: function (touch, event) {            // 点击事件结束处理
+		Servers.userInfoProcess("get_player",{player_id:g_user["id"]},function(data){
+			if(data.code == 200){
+				for(var key in data.msg) {
+					g_user[key] = data.msg[key];
+				}
+				self.zhanji_button_cb();
 			}
-        }, self.node);
-		this.zhanji_button_cb();
+		});
 	},
 	zhanji_button_cb(){
 		this.zhanji_button.getComponent("cc.Button").interactable = false;

@@ -16,7 +16,9 @@ cc.Class({
 		this.order_id.getComponent("cc.Label").string = data["room_num"];
 		this.fangka_num.getComponent("cc.Label").string = data["use_fangka"];
 		this.renshu.getComponent("cc.Label").string = data["renshu"];
-		this.creat_time.getComponent("cc.Label").string = data["creat_time"];
+		
+		var date_str = util.dateftt(data["creat_time"],"yyyy-MM-dd h:m:s");
+		this.creat_time.getComponent("cc.Label").string = date_str;
 		this.game_status.getComponent("cc.Label").string = data["game_status"];
 	},
 });

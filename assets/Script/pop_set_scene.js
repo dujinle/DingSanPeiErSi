@@ -99,6 +99,7 @@ cc.Class({
 
     },
 	switchRadio(event) {
+		event.stopPropagation();
         var index = event.target.getComponent("one_choice").index;
 		var type = event.target.getComponent("one_choice").type;
 		cc.log("switchRadio : index:" + index + " type:" + type);
