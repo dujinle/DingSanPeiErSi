@@ -13,8 +13,8 @@ cc.Class({
 	init(id,data,pthis){
 		this.itemID = id;
 		this.pthis = pthis;
-		this.order_id.getComponent("cc.Label").string = data["order_id"];
-		this.fangka_num.getComponent("cc.Label").string = data["fangka_num"];
+		this.order_id.getComponent("cc.Label").string = data["room_num"];
+		this.fangka_num.getComponent("cc.Label").string = data["use_fangka"];
 		this.renshu.getComponent("cc.Label").string = data["renshu"];
 		this.creat_time.getComponent("cc.Label").string = data["creat_time"];
 		this.game_status.getComponent("cc.Label").string = data["game_status"];

@@ -22,11 +22,11 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 68
+        "__id__": 75
       }
     ],
     "_prefab": {
-      "__id__": 69
+      "__id__": 76
     },
     "_id": "",
     "_opacity": 255,
@@ -80,11 +80,11 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 66
+        "__id__": 73
       }
     ],
     "_prefab": {
-      "__id__": 67
+      "__id__": 74
     },
     "_id": "",
     "_opacity": 255,
@@ -150,11 +150,11 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 64
+        "__id__": 71
       }
     ],
     "_prefab": {
-      "__id__": 65
+      "__id__": 72
     },
     "_id": "",
     "_opacity": 255,
@@ -1205,33 +1205,33 @@
         "__id__": 38
       },
       {
-        "__id__": 42
+        "__id__": 43
       },
       {
-        "__id__": 46
+        "__id__": 48
       },
       {
-        "__id__": 50
-      },
-      {
-        "__id__": 54
+        "__id__": 53
       },
       {
         "__id__": 58
+      },
+      {
+        "__id__": 63
       }
     ],
     "_tag": -1,
     "_active": true,
     "_components": [
       {
-        "__id__": 61
+        "__id__": 68
       },
       {
-        "__id__": 62
+        "__id__": 69
       }
     ],
     "_prefab": {
-      "__id__": 63
+      "__id__": 70
     },
     "_id": "",
     "_opacity": 255,
@@ -1271,7 +1271,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "flower",
+    "_name": "shoe",
     "_objFlags": 0,
     "_parent": {
       "__id__": 37
@@ -1288,7 +1288,7 @@
       }
     ],
     "_prefab": {
-      "__id__": 41
+      "__id__": 42
     },
     "_id": "",
     "_opacity": 255,
@@ -1335,7 +1335,7 @@
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "88f8dc3f-0742-4785-8f8c-ecf60f299c39"
+      "__uuid__": "de34ee4a-ea0f-4e6b-94d3-c5f3454ee579"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -1377,7 +1377,11 @@
     },
     "duration": 0.1,
     "zoomScale": 1.2,
-    "clickEvents": [],
+    "clickEvents": [
+      {
+        "__id__": 41
+      }
+    ],
     "_N$interactable": true,
     "_N$enableAutoGrayEffect": false,
     "_N$normalColor": {
@@ -1405,6 +1409,15 @@
     }
   },
   {
+    "__type__": "cc.ClickEvent",
+    "target": {
+      "__id__": 1
+    },
+    "component": "pop_game_user_info",
+    "handler": "button_call",
+    "customEventData": "1"
+  },
+  {
     "__type__": "cc.PrefabInfo",
     "root": {
       "__id__": 1
@@ -1412,12 +1425,12 @@
     "asset": {
       "__uuid__": "75ba2379-b3d2-4a06-a835-c0f8830c8684"
     },
-    "fileId": "3bqtS0wKNPVJ5j3A9HyCkG",
+    "fileId": "dbpNZAy0pODYS8xRsYp7RR",
     "sync": false
   },
   {
     "__type__": "cc.Node",
-    "_name": "kiss",
+    "_name": "egg",
     "_objFlags": 0,
     "_parent": {
       "__id__": 37
@@ -1427,14 +1440,14 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 43
+        "__id__": 44
       },
       {
-        "__id__": 44
+        "__id__": 45
       }
     ],
     "_prefab": {
-      "__id__": 45
+      "__id__": 47
     },
     "_id": "",
     "_opacity": 255,
@@ -1477,11 +1490,11 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 42
+      "__id__": 43
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "e7908927-5789-4062-af0c-018074f50dd9"
+      "__uuid__": "998e00d3-e7df-4af9-994a-e2d22376403f"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -1503,7 +1516,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 42
+      "__id__": 43
     },
     "_enabled": true,
     "transition": 0,
@@ -1523,7 +1536,11 @@
     },
     "duration": 0.1,
     "zoomScale": 1.2,
-    "clickEvents": [],
+    "clickEvents": [
+      {
+        "__id__": 46
+      }
+    ],
     "_N$interactable": true,
     "_N$enableAutoGrayEffect": false,
     "_N$normalColor": {
@@ -1547,8 +1564,17 @@
     "hoverSprite": null,
     "_N$disabledSprite": null,
     "_N$target": {
-      "__id__": 42
+      "__id__": 43
     }
+  },
+  {
+    "__type__": "cc.ClickEvent",
+    "target": {
+      "__id__": 1
+    },
+    "component": "pop_game_user_info",
+    "handler": "button_call",
+    "customEventData": "2"
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -1558,12 +1584,12 @@
     "asset": {
       "__uuid__": "75ba2379-b3d2-4a06-a835-c0f8830c8684"
     },
-    "fileId": "e9ZKxfevhGvLFR+CYKbcMb",
+    "fileId": "fcNq4SjBxHf6C3EUhfO5uC",
     "sync": false
   },
   {
     "__type__": "cc.Node",
-    "_name": "egg",
+    "_name": "bomb",
     "_objFlags": 0,
     "_parent": {
       "__id__": 37
@@ -1573,14 +1599,14 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 47
+        "__id__": 49
       },
       {
-        "__id__": 48
+        "__id__": 50
       }
     ],
     "_prefab": {
-      "__id__": 49
+      "__id__": 52
     },
     "_id": "",
     "_opacity": 255,
@@ -1623,11 +1649,11 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 46
+      "__id__": 48
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "998e00d3-e7df-4af9-994a-e2d22376403f"
+      "__uuid__": "ccf0867c-0a9c-4472-883a-ff92a3e03ed5"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -1649,7 +1675,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 46
+      "__id__": 48
     },
     "_enabled": true,
     "transition": 0,
@@ -1669,7 +1695,11 @@
     },
     "duration": 0.1,
     "zoomScale": 1.2,
-    "clickEvents": [],
+    "clickEvents": [
+      {
+        "__id__": 51
+      }
+    ],
     "_N$interactable": true,
     "_N$enableAutoGrayEffect": false,
     "_N$normalColor": {
@@ -1693,8 +1723,17 @@
     "hoverSprite": null,
     "_N$disabledSprite": null,
     "_N$target": {
-      "__id__": 46
+      "__id__": 48
     }
+  },
+  {
+    "__type__": "cc.ClickEvent",
+    "target": {
+      "__id__": 1
+    },
+    "component": "pop_game_user_info",
+    "handler": "button_call",
+    "customEventData": "3"
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -1704,12 +1743,12 @@
     "asset": {
       "__uuid__": "75ba2379-b3d2-4a06-a835-c0f8830c8684"
     },
-    "fileId": "fcNq4SjBxHf6C3EUhfO5uC",
+    "fileId": "53/c2zbIxO7L4upOZAOArW",
     "sync": false
   },
   {
     "__type__": "cc.Node",
-    "_name": "bomb",
+    "_name": "kiss",
     "_objFlags": 0,
     "_parent": {
       "__id__": 37
@@ -1719,14 +1758,14 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 51
+        "__id__": 54
       },
       {
-        "__id__": 52
+        "__id__": 55
       }
     ],
     "_prefab": {
-      "__id__": 53
+      "__id__": 57
     },
     "_id": "",
     "_opacity": 255,
@@ -1769,11 +1808,11 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 50
+      "__id__": 53
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "ccf0867c-0a9c-4472-883a-ff92a3e03ed5"
+      "__uuid__": "e7908927-5789-4062-af0c-018074f50dd9"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -1795,7 +1834,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 50
+      "__id__": 53
     },
     "_enabled": true,
     "transition": 0,
@@ -1815,7 +1854,11 @@
     },
     "duration": 0.1,
     "zoomScale": 1.2,
-    "clickEvents": [],
+    "clickEvents": [
+      {
+        "__id__": 56
+      }
+    ],
     "_N$interactable": true,
     "_N$enableAutoGrayEffect": false,
     "_N$normalColor": {
@@ -1839,8 +1882,17 @@
     "hoverSprite": null,
     "_N$disabledSprite": null,
     "_N$target": {
-      "__id__": 50
+      "__id__": 53
     }
+  },
+  {
+    "__type__": "cc.ClickEvent",
+    "target": {
+      "__id__": 1
+    },
+    "component": "pop_game_user_info",
+    "handler": "button_call",
+    "customEventData": "4"
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -1850,12 +1902,12 @@
     "asset": {
       "__uuid__": "75ba2379-b3d2-4a06-a835-c0f8830c8684"
     },
-    "fileId": "53/c2zbIxO7L4upOZAOArW",
+    "fileId": "e9ZKxfevhGvLFR+CYKbcMb",
     "sync": false
   },
   {
     "__type__": "cc.Node",
-    "_name": "cheers",
+    "_name": "flower",
     "_objFlags": 0,
     "_parent": {
       "__id__": 37
@@ -1865,14 +1917,14 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 55
+        "__id__": 59
       },
       {
-        "__id__": 56
+        "__id__": 60
       }
     ],
     "_prefab": {
-      "__id__": 57
+      "__id__": 62
     },
     "_id": "",
     "_opacity": 255,
@@ -1915,11 +1967,11 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 54
+      "__id__": 58
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "826b1001-fb18-45eb-9650-02792336786b"
+      "__uuid__": "88f8dc3f-0742-4785-8f8c-ecf60f299c39"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -1941,7 +1993,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 54
+      "__id__": 58
     },
     "_enabled": true,
     "transition": 0,
@@ -1961,7 +2013,11 @@
     },
     "duration": 0.1,
     "zoomScale": 1.2,
-    "clickEvents": [],
+    "clickEvents": [
+      {
+        "__id__": 61
+      }
+    ],
     "_N$interactable": true,
     "_N$enableAutoGrayEffect": false,
     "_N$normalColor": {
@@ -1985,8 +2041,17 @@
     "hoverSprite": null,
     "_N$disabledSprite": null,
     "_N$target": {
-      "__id__": 54
+      "__id__": 58
     }
+  },
+  {
+    "__type__": "cc.ClickEvent",
+    "target": {
+      "__id__": 1
+    },
+    "component": "pop_game_user_info",
+    "handler": "button_call",
+    "customEventData": "5"
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -1996,12 +2061,12 @@
     "asset": {
       "__uuid__": "75ba2379-b3d2-4a06-a835-c0f8830c8684"
     },
-    "fileId": "13IAbH7DJK9YeUXBq0Rd1r",
+    "fileId": "3bqtS0wKNPVJ5j3A9HyCkG",
     "sync": false
   },
   {
     "__type__": "cc.Node",
-    "_name": "shoe",
+    "_name": "cheers",
     "_objFlags": 0,
     "_parent": {
       "__id__": 37
@@ -2011,11 +2076,14 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 59
+        "__id__": 64
+      },
+      {
+        "__id__": 65
       }
     ],
     "_prefab": {
-      "__id__": 60
+      "__id__": 67
     },
     "_id": "",
     "_opacity": 255,
@@ -2058,11 +2126,11 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 58
+      "__id__": 63
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "de34ee4a-ea0f-4e6b-94d3-c5f3454ee579"
+      "__uuid__": "826b1001-fb18-45eb-9650-02792336786b"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -2080,6 +2148,71 @@
     "_atlas": null
   },
   {
+    "__type__": "cc.Button",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 63
+    },
+    "_enabled": true,
+    "transition": 0,
+    "pressedColor": {
+      "__type__": "cc.Color",
+      "r": 211,
+      "g": 211,
+      "b": 211,
+      "a": 255
+    },
+    "hoverColor": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "duration": 0.1,
+    "zoomScale": 1.2,
+    "clickEvents": [
+      {
+        "__id__": 66
+      }
+    ],
+    "_N$interactable": true,
+    "_N$enableAutoGrayEffect": false,
+    "_N$normalColor": {
+      "__type__": "cc.Color",
+      "r": 214,
+      "g": 214,
+      "b": 214,
+      "a": 255
+    },
+    "_N$disabledColor": {
+      "__type__": "cc.Color",
+      "r": 124,
+      "g": 124,
+      "b": 124,
+      "a": 255
+    },
+    "_N$normalSprite": null,
+    "_N$pressedSprite": null,
+    "pressedSprite": null,
+    "_N$hoverSprite": null,
+    "hoverSprite": null,
+    "_N$disabledSprite": null,
+    "_N$target": {
+      "__id__": 63
+    }
+  },
+  {
+    "__type__": "cc.ClickEvent",
+    "target": {
+      "__id__": 1
+    },
+    "component": "pop_game_user_info",
+    "handler": "button_call",
+    "customEventData": "6"
+  },
+  {
     "__type__": "cc.PrefabInfo",
     "root": {
       "__id__": 1
@@ -2087,7 +2220,7 @@
     "asset": {
       "__uuid__": "75ba2379-b3d2-4a06-a835-c0f8830c8684"
     },
-    "fileId": "dbpNZAy0pODYS8xRsYp7RR",
+    "fileId": "13IAbH7DJK9YeUXBq0Rd1r",
     "sync": false
   },
   {
@@ -2241,23 +2374,26 @@
     "bg_sprite": {
       "__id__": 3
     },
+    "touxiang": {
+      "__id__": 5
+    },
     "shoe_node": {
-      "__id__": 58
-    },
-    "egg_node": {
-      "__id__": 46
-    },
-    "bomb_node": {
-      "__id__": 50
-    },
-    "kiss_node": {
-      "__id__": 42
-    },
-    "flower_node": {
       "__id__": 38
     },
+    "egg_node": {
+      "__id__": 43
+    },
+    "bomb_node": {
+      "__id__": 48
+    },
+    "kiss_node": {
+      "__id__": 53
+    },
+    "flower_node": {
+      "__id__": 58
+    },
     "cheer_node": {
-      "__id__": 54
+      "__id__": 63
     },
     "vnickname_lable": {
       "__id__": 12

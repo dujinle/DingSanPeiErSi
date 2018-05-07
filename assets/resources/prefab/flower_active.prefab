@@ -22,10 +22,13 @@
       },
       {
         "__id__": 3
+      },
+      {
+        "__id__": 4
       }
     ],
     "_prefab": {
-      "__id__": 4
+      "__id__": 5
     },
     "_id": "",
     "_opacity": 255,
@@ -102,6 +105,19 @@
       }
     ],
     "playOnLoad": false
+  },
+  {
+    "__type__": "341e6ixhkdIH41d1uXrCVPC",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "anim": null,
+    "animStatus": null,
+    "audio": null,
+    "audioStatus": null
   },
   {
     "__type__": "cc.PrefabInfo",

@@ -467,16 +467,30 @@
     },
     "_enabled": true,
     "is_start": false,
-    "shoe_active": null,
-    "egg_active": null,
-    "bomb_active": null,
-    "kiss_active": null,
-    "flower_active": null,
-    "cheers_active": null,
+    "shoe_active": {
+      "__id__": 5
+    },
+    "egg_active": {
+      "__id__": 3
+    },
+    "bomb_active": {
+      "__id__": 7
+    },
+    "kiss_active": {
+      "__id__": 9
+    },
+    "flower_active": {
+      "__id__": 13
+    },
+    "cheers_active": {
+      "__id__": 11
+    },
     "show_type": 0,
     "is_finish": false,
     "anim": null,
-    "animStatus": null
+    "animStatus": null,
+    "audio": null,
+    "audioStatus": null
   },
   {
     "__type__": "cc.PrefabInfo",

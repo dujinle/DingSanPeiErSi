@@ -4,6 +4,7 @@ cc.Class({
     properties: {
         /*player layer 里面的参数设置*/
 		bg_sprite:cc.Node,
+		touxiang:cc.Sprite,
 		shoe_node:cc.Node,
 		egg_node:cc.Node,
 		bomb_node:cc.Node,
@@ -31,7 +32,7 @@ cc.Class({
             },
             onTouchEnded: function (touch, event) {            // 点击事件结束处理
 				var target=event.getCurrentTarget();
-				var local=target.convertToNodeSpace(touch.getLocation());
+				var local=target.convertToNodeSpaceAR(touch.getLocation());
 				var s = target.getContentSize();
 				var rect = cc.rect(0, 0, s.width, s.height);
 				if (cc.rectContainsPoint(rect, local)){
@@ -44,12 +45,19 @@ cc.Class({
          }, self.bg_sprite);
     },
 	init_info(data,call_back){
+		var self = this;
 		this.vnickname_lable.string = data["player"].nick_name;
 		this.vfangka_label.string = data["player"].fangka_num;
 		if(data["player"].gender == 1){
 			this.vsex_label.string = "男";
 		}else{
 			this.vsex_label.string = "女";
+		}
+		if(data["player"].head_img_url != null){
+			cc.loader.load({url:data["player"].head_img_url,type:'png'},function (err, texture) {
+				var frame = new cc.SpriteFrame(texture);
+				self.touxiang.spriteFrame = frame;
+			});
 		}
 		this.node.active = true;
 		this.call_back = call_back;
@@ -63,18 +71,6 @@ cc.Class({
 		cc.log("button call",type);
 		this.node.active = false;
 		this.node.destroy();
-		this.call_back(this.node.parent,type,this.send_from,this.location);
+		this.call_back(type,this.send_from,this.location);
 	},
-	test_t(){
-		this.vnickname_lable.string = "11111111";
-		this.vacount_label.string = "1234567890";
-		this.vlevel_label.string = "0";
-		this.vfangka_label.string = "1111111";
-		this.vuid_label.string = "12345566";
-		this.vsex_label.string = "男";
-		this.vvip_label.string = 1;
-		this.vdiamon_label.string = 1;
-		this.vsign_label.string = "111111111";
-		this.node.active = true;
-	}
 });

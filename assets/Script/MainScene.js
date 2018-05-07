@@ -6,6 +6,10 @@ cc.Class({
         username_label:cc.Label,
         fangka_label:cc.Label,
         sex_sprite:cc.Sprite,
+		audio:{
+            url: cc.AudioClip,
+            default: null
+        }
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -14,6 +18,10 @@ cc.Class({
         cc.log("on load main scene.....");
 		var self = this;
 		//this.node.on("pressed", this.buy_fangka_scene, this);
+		g_music_key = cc.sys.localStorage.getItem(MUSIC_KEY);
+		if(g_music_key == null || g_music_key == BOOL.YES){
+			this.current = cc.audioEngine.play(this.audio, true, 1);
+		}
 		this.username_label.string = g_user.nick_name;
         this.fangka_label.string = g_user.fangka_num;
 		if(g_user.gender == 1){
@@ -61,5 +69,8 @@ cc.Class({
 	},
 	exit(){
 		cc.director.end();
-	}
+	},
+	onDestroy: function () {
+        cc.audioEngine.stop(this.current);
+    }
 });
