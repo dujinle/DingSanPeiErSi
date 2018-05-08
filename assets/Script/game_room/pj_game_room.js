@@ -33,7 +33,11 @@ cc.Class({
 		players:{
 			type:cc.Node,
 			default:[],
-		}
+		},
+		audio:{
+            url: cc.AudioClip,
+            default: null
+        }
     },
 
     onLoad () {
@@ -55,10 +59,9 @@ cc.Class({
 	},
 	start(){
 		cc.log("go into pj game room scene start");
-		this.audioSource = this.node.getComponent(cc.AudioSource);
 		g_music_key = cc.sys.localStorage.getItem(MUSIC_KEY);
-		if(g_music_key == BOOL.YES){
-			this.audioSource.play();
+		if(g_music_key == null || g_music_key == BOOL.YES){
+			this.current = cc.audioEngine.play(this.audio, true, 1);
 		}
 		this.init_count_timer();
 		this.pomelo_on();
@@ -351,12 +354,14 @@ cc.Class({
 		var size = cc.director.getVisibleSize();
 		var pop_setting = cc.instantiate(g_assets["pop_setting_scene"]);
 		var pop_setting_com = pop_setting.getComponent("pop_set_scene");
+		
 		pop_setting_com.set_callback(function(index){
 			if(index == 0){
-				if(g_music_key == BOOL.NO){
-					self.audioSource.pause();
-				}else{
-					self.audioSource.play();
+				if(g_music_key == BOOL.NO && self.current != null){
+					cc.audioEngine.stop(self.current);
+					self.current = null;
+				}else if(self.current == null){
+					self.current = cc.audioEngine.play(self.audio, true, 1);
 				}
 			}
 		});
@@ -377,13 +382,12 @@ cc.Class({
         })
 	},
 	callback_uinfo(event,id){
-		var self = this;
 		var player = this.players[id];
 		var player_com = player.getComponent("tdk_player");
 		pomelo.request(util.getGameRoute(),{
-            process : 'get_uinfo',
-			send_from:g_myselfPlayerPos,
-			send_to:player_com.position_server
+            process : 'get_user_info',
+			"send_from":g_myselfPlayerPos,
+			"location":player_com.position_server
         },function(data){
             console.log("-----quit------"+JSON.stringify(data));
         })
@@ -401,13 +405,12 @@ cc.Class({
 		pomelo.on('onXiazhu',this.onXiazhu_function.bind(this));
 		pomelo.on('onPeiPai',this.onPeiPai_function.bind(this));
 		pomelo.on('onPeiPaiFinish',this.onPeiPaiFinish_function.bind(this));
-		//pomelo.on('onNoRound',this.onNoRound_function.bind(this));
 		pomelo.on('onFapai',this.onFapai_function.bind(this));
-		//pomelo.on('onGetUinfo',this.onGetUinfo_function.bind(this));
+		pomelo.on('onGetUinfo',this.onGetUinfo_function.bind(this));
 		pomelo.on('onShoupai',this.onShoupai_function.bind(this));
+		pomelo.on('onSendGift',this.onSendGift_function.bind(this));
 		pomelo.on('onOpen',this.onOpen_function.bind(this));
 		pomelo.on('onQieguo',this.onQieguo_function.bind(this));
-		
 		pomelo.on('onEnd',this.onEnd_function.bind(this));
 		pomelo.on('onActBroadcast',this.onUserBroadcast_function.bind(this));
     },
@@ -605,39 +608,6 @@ cc.Class({
 		}
 	},
 	
-	onLeave_function(data){
-		cc.log("onLeave:" + JSON.stringify(data));
-		var playerName = data["user"];
-		var isFind = false;
-		for(var i = 0;i < g_players.length;i++){
-			var player = g_players[i];
-			var player_com = player.getComponent("tdk_player");
-			if(player_com.id == playerName){
-				cc.log("quit from zjh room g_players");
-				player_com.remove_cards();
-				player.active = false;
-				g_players.splice(i,1);
-				isFind = true;
-				break;
-			}
-		}
-		if(isFind==false){
-			for(var i = 0;i < g_players_noPower.length;i++){
-				var player = g_players_noPower[i];
-				var player_com = player.getComponent("tdk_player");
-				if(player_com.id == playerName){
-					cc.log("quit from zjh room g_players_noPower");
-					player_com.remove_cards();
-					player.active = false;
-					g_players_noPower.splice(i,1);
-					isFind = true;
-					break;
-				}
-			}
-		}
-		this.playerNum--;
-	},
-	
 	onEnd_function(data){
 		cc.log("onEnd:" + JSON.stringify(data));
 		//获胜者的牌型
@@ -694,6 +664,28 @@ cc.Class({
 						item.push(0);
 					}
 					item.push(scores[player_item.location - 1]);
+					//如果是自己则执行更新游戏记录操作
+					if(player_item.location == g_myselfPlayerPos){
+						var param = {
+							player_id:g_user["id"],
+							renshu:g_room_data["real_num"],
+							game_status:item[3] - item[2],
+							status:item[3] - item[2],
+							creat_time:g_room_data["creat_time"],
+							room_num:g_room_data["room_num"],
+							use_fangka:1
+						};
+						if(g_room_data["fangka_type"] == 2){
+							if(g_myselfPlayerPos == this.zhuang_serverPosition){
+								param["use_fangka"] = g_room_data["fangka_num"];
+							}else{
+								param["use_fangka"] = 0;
+							}
+						}
+						Servers.gameInfoProcess("update_game",param,function(res){
+							
+						})
+					}
 					results.push(item);
 				}
 			}
@@ -741,22 +733,25 @@ cc.Class({
 	},
 
 	onGetUinfo_function(data){
-		console.log("onNoRound:"+JSON.stringify(data));
+		console.log("onGetUinfo_function:"+JSON.stringify(data));
 		var size = cc.director.getWinSize();
 		//显示玩家信息
 		if(data["send_from"] == g_myselfPlayerPos){
 			this.uinfo = cc.instantiate(g_assets["pop_game_user"]);
-			var uinfo_com = this.uinfo.getComponent("pop_game_user");
+			var uinfo_com = this.uinfo.getComponent("pop_game_user_info");
 			
 			uinfo_com.init_info(data,this.actionSendGift);
 			this.node.addChild(this.uinfo);
 			this.uinfo.setPosition(this.node.convertToNodeSpaceAR(cc.p(size.width/2,size.height/2)));
 		}
 	},
-	actionSendGift(pnode,type,send_from,send_to){
+	onSendGift_function(data){
 		cc.log("actionSendGift",type,send_from,send_to);
 		var s_player = null;
 		var e_player = null;
+		var type = data["type"];
+		var send_from = data["send_from"];
+		var send_to = data["send_to"];
 		var all_players = g_players.concat(g_players_noPower);
 		if(send_from == send_to){
 			return false;
@@ -792,7 +787,7 @@ cc.Class({
 			active = cc.instantiate(g_assets["cheers_active"]);
 			active_name = "cheers_active";
 		}
-		pnode.addChild(active);
+		this.node.addChild(active);
 		active.setPosition(s_player.getPosition());
 		
 		var move = cc.moveTo(0.5,e_player.getPosition());
@@ -800,19 +795,21 @@ cc.Class({
 		var spawn = cc.spawn(move,rotation);
 		var self = this;
 		var sendAction = cc.callFunc(function(){
-			var anim = active.getComponent(cc.Animation);
-			anim.on('finished',  function(){
-				active.destroy();
-			},null);
-			var animStatus = anim.play(active_name);
-			// 设置循环模式为 Normal
-			animStatus.wrapMode = cc.WrapMode.Normal;
-			// 设置循环模式为 Loop
-			animStatus.wrapMode = cc.WrapMode.Loop;
-			// 设置动画循环次数为2次
-			animStatus.repeatCount = 1;
+			var	active_com = active.getComponent("bomb_action");
+			active_com.play(active_name);
 		});
 		active.runAction(cc.sequence(spawn,sendAction));
+	},
+	
+	actionSendGift(type,send_from,send_to){
+		pomelo.request(util.getGameRoute(),{
+            process : 'send_gift',
+			"send_from":send_from,
+			"send_to":send_to,
+			"type":type
+        },function(data){
+            console.log("-----quit------"+JSON.stringify(data));
+        })
 	},
 	
 	actionFaPai(pthis,fapai_order){
@@ -1184,6 +1181,10 @@ cc.Class({
     },
 
 	onExit(){
+		g_music_key = cc.sys.localStorage.getItem(MUSIC_KEY);
+		if(g_music_key == null || g_music_key == BOOL.YES){
+			cc.audioEngine.stop(this.current);
+		}
         g_players_data.splice(0,g_players_data.length);
 		g_room_data = null;
 		g_players.splice(0,g_players.length);

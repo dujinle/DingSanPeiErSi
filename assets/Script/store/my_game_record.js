@@ -113,8 +113,9 @@ cc.Class({
 			"length":this.totalCount
 		};
 		Servers.gameInfoProcess("getBuyFangkaList",param,function(data){
-			self.data_list = data;
-			if(data.length > 0){
+			self.data_list = data.msg;
+			self.totalCount = self.data_list.length;
+			if(self.data_list.length > 0){
 				self.initialize();
 			}
 		});

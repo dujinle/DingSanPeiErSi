@@ -10,7 +10,6 @@ cc.Class({
 		my_gonghui_zhang_node:cc.Node,
 		add_gonghui_node:cc.Node,
 		join_gonghui_node:cc.Node,
-		debug_label:cc.Label,
 		empty_node:cc.Node,
     },
 	unable_one_button(tag){
@@ -54,14 +53,12 @@ cc.Class({
 		cc.log("add_gonghui_button_cb");
 		var self = this;
 		this.unable_one_button("add_gonghui");
-		self.debug_label.string = JSON.stringify(g_user);
 		if(g_user["gonghui_id"] != null){
 			var empty_node_com = this.empty_node.getComponent("gonghui_empty");
 			empty_node_com.set_text("has_g");
 			this.show_one_node("empty");
 		}else{
 			Servers.gonghuiProcess("getGonghuiAns",{"player_id":g_user["id"]},function(data){
-				self.debug_label.string = "getGonghuiAns" + JSON.stringify(data);
 				if(data.code == 200){
 					var gonghui_ans = data.msg;
 					if(gonghui_ans.status == 0){
@@ -121,6 +118,7 @@ cc.Class({
 	close_scene(){
 		this.node.active = false;
 		this.node.destroy();
+		cc.director.loadScene("MainScene");
 	},
 	show_one_node(tag){
 		this.my_gonghui_node.active = false;

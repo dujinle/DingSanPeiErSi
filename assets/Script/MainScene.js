@@ -6,6 +6,10 @@ cc.Class({
         username_label:cc.Label,
         fangka_label:cc.Label,
         sex_sprite:cc.Sprite,
+		audio:{
+            url: cc.AudioClip,
+            default: null
+        }
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -14,6 +18,10 @@ cc.Class({
         cc.log("on load main scene.....");
 		var self = this;
 		//this.node.on("pressed", this.buy_fangka_scene, this);
+		g_music_key = cc.sys.localStorage.getItem(MUSIC_KEY);
+		if(g_music_key == null || g_music_key == BOOL.YES){
+			this.current = cc.audioEngine.play(this.audio, true, 1);
+		}
 		this.username_label.string = g_user.nick_name;
         this.fangka_label.string = g_user.fangka_num;
 		if(g_user.gender == 1){
@@ -32,15 +40,6 @@ cc.Class({
 	update(){
 		this.fangka_label.string = g_user.fangka_num;
 	},
-    popUserLayer(){
-        cc.log("start init pop user layer info");
-		var size = cc.director.getWinSize();
-		this.user_layer = cc.instantiate(g_assets["pop_userinfo"]);
-		var user_layer_com = this.user_layer.getComponent("popUserLayer");
-		this.node.addChild(this.user_layer);
-		this.user_layer.setPosition(this.node.convertToNodeSpaceAR(cc.p(size.width/2,size.height/2)));
-		user_layer_com.show();
-    },
 	buy_fangka_scene(){
 		var size = cc.director.getWinSize();
 		this.pop_buyfangka = cc.instantiate(g_assets["PopBuyFangKaScene"]);
@@ -60,21 +59,18 @@ cc.Class({
 		this.pop_enter_scene.setPosition(this.node.convertToNodeSpaceAR(cc.p(size.width/2,size.height/2)));
 	},
 	popGonghuiScene(){
-		var size = cc.director.getWinSize();
-		this.pop_gonghui_scene = cc.instantiate(g_assets["PopGongHuiScene"]);
-		this.node.addChild(this.pop_gonghui_scene);
-		this.pop_gonghui_scene.setPosition(this.node.convertToNodeSpaceAR(cc.p(size.width/2,size.height/2)));
+		cc.director.loadScene("GongHuiScene");
 	},
 	popMyGameScene(){
-		var size = cc.director.getWinSize();
-		this.pop_game_scene = cc.instantiate(g_assets["PopGameInfoScene"]);
-		this.node.addChild(this.pop_game_scene);
-		this.pop_game_scene.setPosition(this.node.convertToNodeSpaceAR(cc.p(size.width/2,size.height/2)));
+		cc.director.loadScene("MyGameInfoScene");
 	},
 	feed_back_scene(){
 		cc.director.loadScene("FeedBack");
 	},
 	exit(){
 		cc.director.end();
-	}
+	},
+	onDestroy: function () {
+        cc.audioEngine.stop(this.current);
+    }
 });

@@ -3,9 +3,9 @@
   "_name": "egg_active",
   "_objFlags": 0,
   "_rawFiles": null,
-  "_duration": 1.2666666666666666,
+  "_duration": 1.35,
   "sample": 60,
-  "speed": 0.5,
+  "speed": 0.6,
   "wrapMode": 1,
   "curveData": {
     "comps": {
@@ -14,98 +14,102 @@
           {
             "frame": 0,
             "value": {
-              "__uuid__": "f1019e70-db39-4c84-9119-eb9b80ad207f"
+              "__uuid__": "6cf90f16-b968-4d94-8225-6aeaa2dec540"
             }
           },
           {
             "frame": 0.08333333333333333,
             "value": {
-              "__uuid__": "1842d5a4-3469-45a8-a6bb-4749df23e9a3"
+              "__uuid__": "13433f5a-d580-4396-9de2-b644c5f3ffd6"
             }
           },
           {
             "frame": 0.16666666666666666,
             "value": {
-              "__uuid__": "88ba4839-bb62-40e9-9f10-b0367b365c1f"
+              "__uuid__": "704a9b11-994a-482c-a82d-f0d2bfac5763"
             }
           },
           {
             "frame": 0.25,
             "value": {
-              "__uuid__": "7b84b08f-b783-4608-9a86-5cadf209cd1d"
+              "__uuid__": "795b63d4-84f3-40f9-bb12-958855e1c5f1"
             }
           },
           {
             "frame": 0.3333333333333333,
             "value": {
-              "__uuid__": "5e9194fa-9294-4b68-b93f-b4d2c32b421c"
+              "__uuid__": "f6f57ca2-3ac3-4603-b9d5-209e7d7f8b2e"
             }
           },
           {
             "frame": 0.4166666666666667,
             "value": {
-              "__uuid__": "8118565b-4482-45ad-9533-b21213dd69d5"
+              "__uuid__": "e9986116-6452-4fc9-80f6-303aa47853ab"
             }
           },
           {
             "frame": 0.5,
             "value": {
-              "__uuid__": "265d330a-52fa-453d-9086-03f822e6b69b"
+              "__uuid__": "5b82b7a1-6e93-4622-8747-c7a68a79a94c"
             }
           },
           {
             "frame": 0.5833333333333334,
             "value": {
-              "__uuid__": "a60c7bfe-b821-45e0-8dac-158fdc4f1464"
+              "__uuid__": "02f34ab4-1a05-462d-b0e7-e8c57443130c"
             }
           },
           {
             "frame": 0.6666666666666666,
             "value": {
-              "__uuid__": "5f44fc7c-0d98-4fd3-ac9e-6fcea2d39751"
+              "__uuid__": "e5c46366-e738-4b4b-a5f7-2cc98bdb3fa0"
             }
           },
           {
             "frame": 0.75,
             "value": {
-              "__uuid__": "9484c61b-d77e-45af-91bc-cc7cef77de7e"
+              "__uuid__": "a523eb1c-a197-4976-8954-27a8b48c493d"
             }
           },
           {
             "frame": 0.8333333333333334,
             "value": {
-              "__uuid__": "4c5021a8-2ff8-49ec-b170-cc5198a1f284"
+              "__uuid__": "8987c676-ad44-444d-93db-3016d1dbce0e"
             }
           },
           {
             "frame": 0.9166666666666666,
             "value": {
-              "__uuid__": "599cd2a5-b4a6-4606-8f5f-2525937d9832"
+              "__uuid__": "3fee2dc6-4c44-42c8-bada-534cd8f17cac"
             }
           },
           {
             "frame": 1,
             "value": {
-              "__uuid__": "e2ff9bb0-b3c2-4a8d-b67a-fed86c416249"
+              "__uuid__": "9528e75b-ebe3-4d8d-b9dd-ac1100de4c25"
             }
           },
           {
             "frame": 1.0833333333333333,
             "value": {
-              "__uuid__": "66d51f54-fbc4-4871-bdcf-1eeac5ea1e96"
+              "__uuid__": "b5d46ea0-05f3-4c56-a95c-bfc26beaad12"
             }
           },
           {
             "frame": 1.1666666666666667,
             "value": {
-              "__uuid__": "13a7aed4-5310-42b3-b7d0-1178ad26d221"
+              "__uuid__": "77ecc618-a0ab-4fbc-baad-d395781631d8"
             }
           },
           {
             "frame": 1.25,
             "value": {
-              "__uuid__": "bd7b0ee4-5be0-4286-9962-c4cde7d46b2b"
+              "__uuid__": "0244188c-d365-4fde-aeeb-9c8ecf5d70ae"
             }
+          },
+          {
+            "frame": 1.3333333333333333,
+            "value": null
           }
         ]
       }

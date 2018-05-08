@@ -29,12 +29,15 @@ cc.Class({
         this.updateInterval = 0.2;
 		this.itemHeight = 40;
         // 使用这个变量来判断滚动操作是向上还是向下
-        this.lastContentPosY = 0; 
+        this.lastContentPosY = 0;
         // 设定缓冲矩形的大小为实际创建项的高度累加，当某项超出缓冲矩形时，则更新该项的显示内容
         this.bufferZone = this.spawnCount * (this.itemHeight + this.spacing) / 2;
 		// 获取整个列表的高度
         this.content.height = this.totalCount * (this.itemHeight + this.spacing) + this.spacing;
     	for (let i = 0; i < this.spawnCount; ++i) { // spawn items, we only need to do this once
+			if(this.data_list.length <= i){
+				break;
+			}
     		let item = cc.instantiate(g_assets["game_history_item_layout"]);
             this.content.addChild(item);
             // 设置该item的坐标（注意父节点content的Anchor坐标是(0.5, 1)，所以item的y坐标总是负值）
@@ -115,9 +118,12 @@ cc.Class({
 			"length":this.totalCount
 		};
 		Servers.gameInfoProcess("getGameHistoryList",param,function(data){
-			self.data_list = data;
-			if(data.length > 0){
-				self.initialize();
+			if(data.code == 200){
+				self.data_list = data.msg;
+				self.totalCount = self.data_list.length;
+				if(self.data_list.length > 0){
+					self.initialize();
+				}
 			}
 		});
 	},

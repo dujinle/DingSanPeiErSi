@@ -9,7 +9,6 @@ cc.Class({
 		renshu:cc.Node,
 		danjia:cc.Node,
 		xuanyan:cc.Node,
-		gonggao:cc.Node,
 		pthis:null,
     },
 	init(data,pthis){
