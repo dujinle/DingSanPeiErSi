@@ -129,7 +129,7 @@ public class AppActivity extends Cocos2dxActivity {
     public static void WxShare(String rnum,String name,int rid){
         if(wxapi.getWXAppSupportAPI() >= 0x21020001){
             WXWebpageObject webpage = new WXWebpageObject();
-            webpage.webpageUrl = "http://192.168.10.198:8000/open_app?room_num=" + rnum + "&name=" + name + "&rid=" + rid;
+            webpage.webpageUrl = "http://193.112.243.189:8000/open_app?room_num=" + rnum + "&name=" + name + "&rid=" + rid;
             WXMediaMessage msg = new WXMediaMessage(webpage);
             msg.title = "点击链接进入房间";
             msg.description = "房间号：" + rnum;
