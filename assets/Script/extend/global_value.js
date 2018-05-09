@@ -15,7 +15,6 @@ var g_DEBUG = true;
 var g_room_data = null;
 var g_players_data = new Array();
 var g_zhuang_serverPosition = 0;
-var g_players_noPower = new Array();
 var g_players = new Array();
 var g_myselfPlayerPos = -1;
 var g_playerData = new Array();
@@ -25,12 +24,9 @@ var g_fapaiNum = 3;
 var g_totalCount = 0;
 var g_user = null;
 var g_assets = {};
-//房间状态信息是否进行中
-//var g_roomState = 0;
-/*popUpSettingLayer.js*/
-//筹码加注级别
-var g_betArray=[100,300,500,800,1000];
+
 //游戏设置全局变量
+var g_version = "0.0.1";
 var g_music_key;
 var g_sound_key;
 var g_chat_key;

@@ -6,6 +6,7 @@ cc.Class({
 		login_flag:false,
 		debug_label:cc.Label,
 		button_login:cc.Node,
+		load_update:cc.Node,
 		callback:null,
     },
 	wxLogin(){
@@ -18,6 +19,7 @@ cc.Class({
 		}		
 	},
 	update(){
+		this.version_label.getComponent("cc.Label").string = g_version;
 		if(g_login_auto == true){
 			//这里就要自动进行登录操作
 			this.wxLogin();
@@ -75,14 +77,24 @@ cc.Class({
 		}
 	},
     onLoad () {
+		var self = this;
     	cc.log("onLoad" + this.login_flag);
+		this.version_label.getComponent("cc.Label").string = g_version;
+		var load_update_com = this.load_update.getComponent("LoadUpdateGame");
+		load_update_com.init(function(){
+			self.onInitLogin();
+		});
+	},
+	onInitLogin(){
 		this.button_login.getComponent("cc.Button").interactable = false;
+		
 		if(cc.sys.os == cc.sys.OS_WINDOWS){
 			this.onLogin();
 		}else if(cc.sys.os == cc.sys.OS_ANDROID){
 			this.login_flag = false;
 			var refresh_token = Storage.getData("refresh_token");
 			var app_id = Storage.getData("app_id");
+			this.debug_label.string = "onInitLogin:" + refresh_token;
 			if(refresh_token == null){
 				//这里需要确定 是否是通过其他渠道打开的游戏如果是需要自动登录操作
 				if(cc.sys.os == cc.sys.OS_ANDROID){

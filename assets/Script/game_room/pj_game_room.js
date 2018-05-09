@@ -152,9 +152,8 @@ cc.Class({
 		}
 	},
     init_count_timer(){
-		var tmp_allplayers = g_players_noPower.concat(g_players);
-    	for(var i = 0;i < tmp_allplayers.length;i++){
-			var player_com = tmp_allplayers[i].getComponent("tdk_player");
+    	for(var i = 0;i < g_players.length;i++){
+			var player_com = g_players[i].getComponent("tdk_player");
 			if(player_com.position_server == g_myselfPlayerPos){
 				player_com.start_timer();
     			break;
@@ -418,15 +417,6 @@ cc.Class({
 	onReady_function(data){
 		cc.log("pomelo on Ready:" + data.location+" is ready");
 		/*如果玩家进来时正在游戏中则准备后 放入g_players中*/
-		for(var i = 0;i < g_players_noPower.length;i++){
-			var player = g_players_noPower[i];
-			var player_com = player.getComponent("tdk_player");
-			if(player_com.position_server == data.location){
-				g_players.push(player);
-				g_players_noPower.splice(i,1);
-				break;
-			}
-		}
 		for(var i = 0;i < g_players.length;i++){
 			var player = g_players[i];
 			var player_com = player.getComponent("tdk_player");
@@ -752,17 +742,16 @@ cc.Class({
 		var type = data["type"];
 		var send_from = data["send_from"];
 		var send_to = data["send_to"];
-		var all_players = g_players.concat(g_players_noPower);
 		if(send_from == send_to){
 			return false;
 		}
-		for(var i = 0;i < all_players.length;i++){
-			var player_com = all_players[i].getComponent("tdk_player");
+		for(var i = 0;i < g_players.length;i++){
+			var player_com = g_players[i].getComponent("tdk_player");
 			if(player_com.position_server == send_from){
-				s_player = all_players[i];
+				s_player = g_players[i];
 			}
 			if(player_com.position_server == send_to){
-				e_player = all_players[i];
+				e_player = g_players[i];
 			}
 		}
 		var active = null;
