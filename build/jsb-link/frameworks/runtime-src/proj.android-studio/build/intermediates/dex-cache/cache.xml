@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="E:\CocosCreator\resources\cocos2d-x\cocos\platform\android\libcocos2dx\build\intermediates\intermediate-jars\release\classes.jar"
+        jumboMode="false"
+        min-sdk-version="10"
+        optimize="true"
+        revision="27.0.3"
+        sha1="fc0f90ee03c235b133ec3973797f5212d5428e56">
+        <dex dex="F:\gitdata\xx_cc_g\build\jsb-link\frameworks\runtime-src\proj.android-studio\app\build\intermediates\transforms\preDex\release\6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\CocosCreator\resources\cocos2d-x\cocos\platform\android\java\libs\httpclient-4.4.1.1.jar"
+        jumboMode="false"
+        min-sdk-version="10"
+        optimize="true"
+        revision="27.0.3"
+        sha1="c8d96f6fd2bcc179c312da33ee670a71188cc60d">
+        <dex dex="F:\gitdata\xx_cc_g\build\jsb-link\frameworks\runtime-src\proj.android-studio\app\build\intermediates\transforms\preDex\release\3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\CocosCreator\resources\cocos2d-x\cocos\platform\android\java\libs\libcocosanalytics.jar"
+        jumboMode="false"
+        min-sdk-version="10"
+        optimize="true"
+        revision="27.0.3"
+        sha1="5f07da20956a4173ee8ebeb12aa128cb623962ee">
+        <dex dex="F:\gitdata\xx_cc_g\build\jsb-link\frameworks\runtime-src\proj.android-studio\app\build\intermediates\transforms\preDex\release\4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\CocosCreator\resources\cocos2d-x\cocos\platform\android\java\libs\android-async-http-1.4.9.jar"
+        jumboMode="false"
+        min-sdk-version="10"
+        optimize="true"
+        revision="27.0.3"
+        sha1="386a4339ffe52d5d63e80f9bed8d2b1d1a418249">
+        <dex dex="F:\gitdata\xx_cc_g\build\jsb-link\frameworks\runtime-src\proj.android-studio\app\build\intermediates\transforms\preDex\release\1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\CocosCreator\resources\cocos2d-x\cocos\platform\android\java\libs\com.android.vending.expansion.zipfile.jar"
+        jumboMode="false"
+        min-sdk-version="10"
+        optimize="true"
+        revision="27.0.3"
+        sha1="95c9b1a43b72596758adc99d5277427eb6db461e">
+        <dex dex="F:\gitdata\xx_cc_g\build\jsb-link\frameworks\runtime-src\proj.android-studio\app\build\intermediates\transforms\preDex\release\2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\com.tencent.mm.opensdk\wechat-sdk-android-without-mta\5.1.4\4a65d54e456cd2a0ef32dde023ce206753bfb518\wechat-sdk-android-without-mta-5.1.4.jar"
+        jumboMode="false"
+        min-sdk-version="10"
+        optimize="true"
+        revision="27.0.3"
+        sha1="4a65d54e456cd2a0ef32dde023ce206753bfb518">
+        <dex dex="F:\gitdata\xx_cc_g\build\jsb-link\frameworks\runtime-src\proj.android-studio\app\build\intermediates\transforms\preDex\release\5.jar" />
+    </item>
+
+</items>
