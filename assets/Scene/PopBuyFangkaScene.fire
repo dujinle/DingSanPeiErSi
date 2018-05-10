@@ -15,9 +15,6 @@
     "_children": [
       {
         "__id__": 2
-      },
-      {
-        "__id__": 4
       }
     ],
     "_tag": -1,
@@ -48,7 +45,7 @@
     "_globalZOrder": 0,
     "_opacityModifyRGB": false,
     "groupIndex": 0,
-    "autoReleaseAssets": null
+    "autoReleaseAssets": false
   },
   {
     "__type__": "cc.Node",
@@ -64,8 +61,8 @@
     "_active": true,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 640,
-      "y": 400
+      "x": 643,
+      "y": 364
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -81,39 +78,6 @@
       "__uuid__": "867dd157-15d4-4fa2-8442-f9241b40266a"
     },
     "fileId": "12wZiy475AdZycm80MyAJo",
-    "sync": true
-  },
-  {
-    "__type__": "cc.Node",
-    "_objFlags": 0,
-    "_parent": {
-      "__id__": 1
-    },
-    "_id": "161jbcHbZC1LiO40GCAo3V",
-    "_prefab": {
-      "__id__": 5
-    },
-    "_name": "PopBuyOrderScene",
-    "_active": true,
-    "_position": {
-      "__type__": "cc.Vec2",
-      "x": 1983,
-      "y": 400
-    },
-    "_rotationX": 0,
-    "_rotationY": 0,
-    "_localZOrder": 0,
-    "_globalZOrder": 0
-  },
-  {
-    "__type__": "cc.PrefabInfo",
-    "root": {
-      "__id__": 4
-    },
-    "asset": {
-      "__uuid__": "c8e50ff7-b7f9-44af-a127-bd82b4b4b52c"
-    },
-    "fileId": "161jbcHbZC1LiO40GCAo3V",
     "sync": true
   }
 ]

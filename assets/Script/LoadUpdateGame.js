@@ -41,7 +41,7 @@ cc.Class({
             }
          }, this.node);
 		this.updateInterval = 0.2;
-		this.source_leng = 50;
+		this.source_leng = 58;
 		this.load_res();
         this.schedule(this.load_update,0.5);
     },
@@ -72,7 +72,7 @@ cc.Class({
 			for(var i = 0;i < assets.length;i++){
 				g_assets[assets[i].name] = assets[i];
 				self.rate = self.rate + 1;
-				self.precent.string = "加载:" + assets[i].name;
+				self.precent.string = "加载文件中......";
 				cc.log("load res :" + assets[i].name);
 			}
 		});
@@ -80,7 +80,7 @@ cc.Class({
 			for(var i = 0;i < assets.length;i++){
 				g_assets[assets[i].name] = assets[i];
 				self.rate = self.rate + 1;
-				self.precent.string = "加载:" + assets[i].name;
+				self.precent.string = "加载文件中......";
 				cc.log("load res :" + assets[i].name);
 			}
 		});

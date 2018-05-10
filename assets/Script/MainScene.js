@@ -17,7 +17,6 @@ cc.Class({
     onLoad () {
         cc.log("on load main scene.....");
 		var self = this;
-		//this.node.on("pressed", this.buy_fangka_scene, this);
 		g_music_key = cc.sys.localStorage.getItem(MUSIC_KEY);
 		if(g_music_key == null || g_music_key == BOOL.YES){
 			this.current = cc.audioEngine.play(this.audio, true, 1);
