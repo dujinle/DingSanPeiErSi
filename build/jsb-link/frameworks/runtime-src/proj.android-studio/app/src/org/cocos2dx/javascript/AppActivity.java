@@ -27,9 +27,13 @@ import org.cocos2d.enjoypuke.R;
 import org.cocos2dx.lib.Cocos2dxActivity;
 import org.cocos2dx.lib.Cocos2dxGLSurfaceView;
 
+import android.annotation.TargetApi;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import org.cocos2dx.javascript.SDKWrapper;
 import org.cocos2dx.lib.Cocos2dxJavascriptJavaBridge;
@@ -49,7 +53,7 @@ import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 public class AppActivity extends Cocos2dxActivity {
-
+    static AppActivity sgsActivity;
     public static IWXAPI wxapi;
     private static final String APP_ID = "wx6c145967bc25e278";
     private static final String APP_SECRET = "58e5b95e019569937536d937d4f680f5";
@@ -65,6 +69,7 @@ public class AppActivity extends Cocos2dxActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sgsActivity = this;
         // 注册到微信
         Log.i("enjoypuke","start go into appactivity.................");
         if (!isTaskRoot()) {
@@ -147,6 +152,35 @@ public class AppActivity extends Cocos2dxActivity {
             Toast.makeText(AppActivity.getContext(), "微信版本过低", Toast.LENGTH_SHORT).show();
         }
     }
+
+    public static void copy(final String str){
+        final Context context = sgsActivity;//参数要加final关键字，否则内部类不能访问
+        try{
+            Log.d("cocos2dx","copyToClipboard " + str);
+            Runnable runnable = new Runnable() {
+                public void run() {
+                    ClipboardManager clipboard = null;
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+                        clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+                    }
+                    ClipData clip = null;
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+                        clip = ClipData.newPlainText("Copied Text", str);
+                    }
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+                        clipboard.setPrimaryClip(clip);
+                    }
+                }
+            };
+            //getSystemService运行所在线程必须执行过Looper.prepare()
+            //否则会出现Can't create handler inside thread that has not called Looper.prepare()
+            sgsActivity.runOnUiThread(runnable);
+        }catch(Exception e){
+            Log.d("cocos2dx","copyToClipboard error");
+            e.printStackTrace();
+        }
+	}
+	
     @Override
     public Cocos2dxGLSurfaceView onCreateView() {
         Cocos2dxGLSurfaceView glSurfaceView = new Cocos2dxGLSurfaceView(this);
