@@ -48,7 +48,7 @@
     "_globalZOrder": 0,
     "_opacityModifyRGB": false,
     "groupIndex": 0,
-    "autoReleaseAssets": false
+    "autoReleaseAssets": null
   },
   {
     "__type__": "cc.Node",
@@ -923,7 +923,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 500,
-      "height": 25
+      "height": 20
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -975,7 +975,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 0,
-      "height": 25
+      "height": 20
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -1121,7 +1121,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 200,
-      "height": 25
+      "height": 20
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -1149,8 +1149,8 @@
     "_enabled": true,
     "_useOriginalSize": false,
     "_actualFontSize": 25,
-    "_fontSize": 25,
-    "_lineHeight": 25,
+    "_fontSize": 20,
+    "_lineHeight": 20,
     "_enableWrapText": true,
     "_N$file": null,
     "_isSystemFontUsed": true,

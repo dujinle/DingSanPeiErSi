@@ -78,6 +78,7 @@ cc.Class({
 	},
     onLoad () {
 		var self = this;
+		g_current_scene = SCENE_TAG.LOAD;
     	cc.log("onLoad" + this.login_flag);
 		this.version_label.getComponent("cc.Label").string = g_version;
 		var load_update_com = this.load_update.getComponent("LoadUpdateGame");
@@ -87,7 +88,6 @@ cc.Class({
 	},
 	onInitLogin(){
 		this.button_login.getComponent("cc.Button").interactable = false;
-		
 		if(cc.sys.os == cc.sys.OS_WINDOWS){
 			this.onLogin();
 		}else if(cc.sys.os == cc.sys.OS_ANDROID){
@@ -154,8 +154,9 @@ cc.Class({
 				}else{
 					cc.director.loadScene("MainScene");
 				}
+			}else{
+				cc.director.loadScene("MainScene");
 			}
-			cc.director.loadScene("MainScene");
 		}
 	},
 	error_code(data){

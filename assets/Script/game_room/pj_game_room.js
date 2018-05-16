@@ -41,6 +41,7 @@ cc.Class({
     },
 
     onLoad () {
+		this.pomelo_removeListener();
 		this.sumBet = 100;
 		this.count = 0;
 		this.qieguo = 0;

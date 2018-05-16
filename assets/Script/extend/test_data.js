@@ -16,7 +16,8 @@ var g_user = {
 	'nickname':'杜1111',
 	'fangka':10,
 	'gender':1,
-	'player_id':1111
+	'player_id':"1111",
+	'headimgurl':"http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJ0J3Obq3uG2qg6QKp19xJXG8fpmDnC383WzI0fXLtfsGA6JibtpreNd98vzG1vr0oibibhiab6b1wzCw/132"
 };
 
 g_buy_fangka_data = {

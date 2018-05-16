@@ -12,6 +12,7 @@ cc.Class({
     },
     onLoad () {
 		var self = this;
+		g_current_scene = SCENE_TAG.GAMEINFO;
 		Servers.userInfoProcess("get_player",{player_id:g_user["id"]},function(data){
 			if(data.code == 200){
 				for(var key in data.msg) {

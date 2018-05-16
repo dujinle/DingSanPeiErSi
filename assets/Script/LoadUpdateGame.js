@@ -17,7 +17,7 @@ cc.Class({
 		this.callback = callback;
 	},
     onLoad () {
-		//var self = this;
+		var self = this;
         cc.eventManager.addListener({
             event: cc.EventListener.TOUCH_ONE_BY_ONE,
             swallowTouches: true,
@@ -41,17 +41,29 @@ cc.Class({
             }
          }, this.node);
 		this.updateInterval = 0.2;
-		this.source_leng = 58;
+		this.source_leng = 59;
 		this.load_res();
         this.schedule(this.load_update,0.5);
     },
 	load_update(){
+		var self = this;
 		this.loadBar.progress = this.rate/this.source_leng * 100;
 		cc.log("this.rate:" + this.rate);
 		if(this.rate >= this.source_leng){
 			this.precent.string = "加载完成......";
 			this.unschedule(this.load_update);
-			this.init_update();
+			if (cc.sys.isNative){
+				var login_type = jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "getNetType", "()I");
+				if(login_type != -1){
+					this.init_update();
+				}else{
+					util.show_net_error("当前网络不可用，请检查自己的网络状态",function(){
+						self.init_update();
+					});
+				}
+			}else{
+				this.init_update();
+			}
 		}
 	},
 	update(dt){
