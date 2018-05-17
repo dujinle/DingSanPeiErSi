@@ -24,11 +24,12 @@ cc.Class({
 		});
 		*/
 	},
-	init_start(callback,num1,num2){
+	init_start(callback,num1,num2,position){
 		cc.log("load 筛盅 active class");
 		this.callback = callback;
 		this.sz_num_1 = num1;
 		this.sz_num_2 = num2;
+		this.position = position;
 		this.shaizi_layout.active = false;
 		this.anim = this.shai_zhong.getComponent(cc.Animation);
 		this.anim.on('finished',  this.onFinished,this);
@@ -46,12 +47,15 @@ cc.Class({
 		self.shaizi_layout.active = true;
 		self.shaizi_1.spriteFrame = g_assets["shaizi_" + self.sz_num_1];
 		self.shaizi_2.spriteFrame = g_assets["shaizi_" + self.sz_num_2];
-		self.node.runAction(cc.sequence(cc.delayTime(2),cc.fadeOut(1),cc.callFunc(function(){
-			if(self.callback != null){
-				self.callback();
-			}
-			self.node.parent = null;
-			self.node.destroy();
+		self.shai_zhong.runAction(cc.sequence(cc.fadeOut(1),cc.callFunc(function(){
+			var moveAc = cc.moveTo(0.5,self.position);
+			self.shaizi_layout.runAction(cc.sequence(moveAc,cc.fadeOut(2),cc.callFunc(function(){
+				if(self.callback != null){
+					self.callback();
+					self.node.parent = null;
+					self.node.destroy();
+				}
+			})));
 		})));
 	},
 });
