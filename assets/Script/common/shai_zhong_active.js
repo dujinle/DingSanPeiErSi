@@ -13,16 +13,7 @@ cc.Class({
 		animStatus:null,
     },
     onLoad () {
-		/*
-		var self = this;
-		cc.loader.loadResDir("",cc.SpriteFrame,function (err, assets) {
-			for(var i = 0;i < assets.length;i++){
-				g_assets[assets[i].name] = assets[i];
-				cc.log("load res :" + assets[i].name);
-			}
-			self.init_start(null,2,2);
-		});
-		*/
+
 	},
 	init_start(callback,num1,num2,position){
 		cc.log("load 筛盅 active class");
@@ -51,10 +42,10 @@ cc.Class({
 			var moveAc = cc.moveTo(0.5,self.position);
 			self.shaizi_layout.runAction(cc.sequence(moveAc,cc.fadeOut(2),cc.callFunc(function(){
 				if(self.callback != null){
-					self.callback();
-					self.node.parent = null;
-					self.node.destroy();
+					self.callback();	
 				}
+				self.node.removeFromParent();
+				self.node.destroy();
 			})));
 		})));
 	},

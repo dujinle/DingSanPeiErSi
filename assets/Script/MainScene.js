@@ -23,6 +23,7 @@ cc.Class({
 		}
 		g_music_key = cc.sys.localStorage.getItem(MUSIC_KEY);
 		if(g_music_key == null || g_music_key == BOOL.YES){
+			cc.audioEngine.stopAll();
 			this.current = cc.audioEngine.play(this.audio, true, 1);
 		}
 		this.username_label.string = g_user.nick_name;

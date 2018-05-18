@@ -64,6 +64,11 @@ util.getRoomInfoRoute = function(){
 	return "connector.entryHandler.get_room_info";
 }
 
+util.getRepairEnterRoomRoute = function(){
+	return "connector.entryHandler.repair_enter_room";
+}
+
+
 util.getStartGameRoute = function(){
 	return "connector.entryHandler.start_game";
 }
