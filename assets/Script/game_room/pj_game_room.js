@@ -184,16 +184,13 @@ cc.Class({
 				continue;
 			}
 			left_local = player_stc.location;
-			player_com.init(player_stc);
-			player_com.is_power = g_room_data["is_game_" + player_com.position_server];
-			if(this.zhuang_location == player_com.position_server){
-				player_com.resetMoneyLabel(g_room_data["zhuang_score"]);
+			player_stc["is_power"] = g_room_data["is_game_" + player_stc.location];
+			if(this.zhuang_location == player_stc.location){
+				player_stc["mygold"] = g_room_data["zhuang_score"];
 			}else{
-				player_com.resetMoneyLabel(g_room_data["left_score_" + player_com.position_server]);
+				player_stc["mygold"] = g_room_data["left_score_" + player_stc.location];
 			}
-			if(player_com.is_power == 1){
-				player_com.setSpriteStatus("yizhunbei");
-			}
+			player_com.init(player_stc);
 			player_com.player_position = i + 1;
 			cc.log("set player_com: player_position:" + player_com.player_position + " position_server:" + player_com.position_server);
 			cc.log("player_com: is_power:" + player_com.is_power);

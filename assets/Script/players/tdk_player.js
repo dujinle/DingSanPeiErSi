@@ -32,9 +32,9 @@ cc.Class({
 		var self = this;
 		this.id = params.id;
         this.position_server = params.location;
-        this.is_power = 0
+        this.is_power = params.is_power;
 		this.nick_name = params.nick_name;
-		this.my_gold = 0;
+		this.my_gold = params.my_gold;
 		this.nick_name_label.getComponent(cc.Label).string = this.nick_name;
 		this.gold_label.getComponent(cc.Label).string = this.my_gold;
 		if(params.head_img_url != null){
@@ -42,6 +42,9 @@ cc.Class({
 				var frame = new cc.SpriteFrame(texture);
 				self.head_sprite.spriteFrame = frame;
 			});
+		}
+		if(this.is_power == 1){
+			this.setSpriteStatus("yizhunbei");
 		}
 	},
 	start_timer(){
