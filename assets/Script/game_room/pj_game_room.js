@@ -186,9 +186,9 @@ cc.Class({
 			left_local = player_stc.location;
 			player_stc["is_power"] = g_room_data["is_game_" + player_stc.location];
 			if(this.zhuang_location == player_stc.location){
-				player_stc["mygold"] = g_room_data["zhuang_score"];
+				player_stc["my_gold"] = g_room_data["zhuang_score"];
 			}else{
-				player_stc["mygold"] = g_room_data["left_score_" + player_stc.location];
+				player_stc["my_gold"] = g_room_data["left_score_" + player_stc.location];
 			}
 			player_com.init(player_stc);
 			player_com.player_position = i + 1;
@@ -725,6 +725,7 @@ cc.Class({
 		for(var i = 0;i < this.players.length;i++){
 			var player = this.players[i];
 			var player_com = player.getComponent("tdk_player");
+			player_com.is_power = 2;
 			if(player_com.position_server == this.zhuang_serverPosition){
 				var yao_shaizi = cc.instantiate(g_assets["yaoshaizi"]);
 				var yao_shaizi_com = yao_shaizi.getComponent("shai_zhong_active");
@@ -1413,7 +1414,6 @@ cc.Class({
 			var player = this.players[i];
 			var player_com = player.getComponent("tdk_player");
 			if(player_com.position_server == this.zhuang_serverPosition){
-				player_com.is_power = 1;
 				player_com.setSpriteStatus(mens[0]);
 				player_com.resetMoneyLabel(this.sumBet);
 				player_com.install_chip_label(true);
@@ -1427,7 +1427,6 @@ cc.Class({
 				}else if(player_com.position_server < this.zhuang_serverPosition){
 					men_idx = player_com.position_server - this.zhuang_serverPosition + 4;
 				}
-				player_com.is_power = 1;
 				player_com.setSpriteStatus(mens[men_idx]);
 				player_com.install_chip_label(false);
 				var pos = this.calc_player_chip_position(player);
@@ -1445,6 +1444,9 @@ cc.Class({
 				}
 			}
 			this.get_one_button("xiazhu",true);
+		}else{
+			this.zhunbei_button.getComponent(cc.Button).interactable = false;
+			this.zhunbei_button.active = false;
 		}
 	},
 	silder_callback(pthis,idx,silder_progress){
