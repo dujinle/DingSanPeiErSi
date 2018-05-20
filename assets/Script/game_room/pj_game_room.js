@@ -53,6 +53,7 @@ cc.Class({
 		this.master_name = g_room_data["fangzhu_name"];
 		this.startDealCardPosition = g_room_data["first_fapai"];
 		this.zhuang_serverPosition = g_room_data["zhuang_location"];
+		this.cur_turn = g_room_data["cur_turn"];
 		this.myselfCards = new Array();
 		this.left_cards = new Array();
 		this.betPhotoArray = new Array();
@@ -106,38 +107,52 @@ cc.Class({
     },
 	
 	init_game_status(){
+		var player_com = null;
 		for(var i = 0;i < g_players.length;i++){
 			var player = g_players[i];
-			var player_com = player.getComponent("tdk_player");
-			cc.log("init_game_status: location:" + player_com.position_server + " is_power:" + player_com.is_power);
-			if(player_com.is_power == 1){
-				player_com.setSpriteStatus("yizhunbei");
-			}
-			if(player_com.is_power == 3){
-				var pos_server = player_com.position_server;
-				var chips = JSON.parse(g_room_data["score_" + pos_server]);
-				player_com.set_chips(1,parseInt(chips[0]));
-				player_com.set_chips(1,parseInt(chips[1]));
-			}
+			player_com = player.getComponent("tdk_player");
 			if(player_com.position_server == g_myselfPlayerPos){
-				if(player_com.is_power == 0){
-					this.initButtonEnableAfterComeInRoom();
-				}else if(player_com.is_power == 2){
-					this.getzhuang_callback();
-				}else if(player_com.is_power == 4){
-					this.getzhuang_callback();
-					this.repairFapai_function();
-				}else if(player_com.is_power == 5){
-					this.getzhuang_callback();
-					this.repairPeipai_function();
-				}else if(player_com.is_power == 6){
-					this.getzhuang_callback();
-					this.repairOpenpai_function();
-				}else if(player_com.is_power == 7){
-					this.getzhuang_callback();
-					this.repairQieguo_function();
+				break;
+			}
+		}
+		if(player_com.is_power >= 1){
+			for(var i = 0;i < g_players.length;i++){
+				var player = g_players[i];
+				var t_player_com = player.getComponent("tdk_player");
+				cc.log("init_game_status: location:" + t_player_com.position_server + " is_power:" + t_player_com.is_power);
+				if(t_player_com.is_power >= 1){
+					t_player_com.setSpriteStatus("yizhunbei");
 				}
 			}
+		}
+		if(player_com.is_power >= 2){
+			this.getzhuang_callback();
+			for(var i = 0;i < g_players.length;i++){
+				var player = g_players[i];
+				var t_player_com = player.getComponent("tdk_player");
+				cc.log("init_game_status: location:" + t_player_com.position_server + " is_power:" + t_player_com.is_power);
+				if(t_player_com.is_power >= 3){
+					var pos_server = t_player_com.position_server;
+					var score_str = g_room_data["score_" + pos_server];
+					if(score_str != null && score_str != "null"){
+						var chips = JSON.parse(score_str);
+						t_player_com.set_chips(1,parseInt(chips[0]));
+						t_player_com.set_chips(1,parseInt(chips[1]));
+					}
+				}
+			}
+		}
+		if(player_com.is_power >= 4){
+			this.repairFapai_function();
+		}
+		if(player_com.is_power >= 5){
+			this.repairPeipai_function();
+		}
+		if(player_com.is_power >= 6){
+			this.repairOpenpai_function();
+		}
+		if(player_com.is_power >= 7){
+			this.repairQieguo_function();
 		}
 	},
 	
@@ -412,10 +427,6 @@ cc.Class({
 	},
 	
 	repairFapai_function(){
-		this.cur_turn = g_room_data["cur_turn"];
-		this.sumBet = g_room_data["zhuang_score"];
-
-		this.startDealCardPosition = data["location"];
 		var paixing = new Array();
 		paixing.push(JSON.parse(g_room_data["pai1"]));
 		paixing.push(JSON.parse(g_room_data["pai2"]));
@@ -444,65 +455,8 @@ cc.Class({
 				}
 			}
 		}
-		var data = {
-			"paixing":paixing,
-			"round":g_room_data["round"]
-		};
-		this.onShoupai_function(data);
-	},
-	
-	repairPeipai_function(){
-		this.cur_turn = g_room_data["cur_turn"];
-		this.sumBet = g_room_data["zhuang_score"];
-
-		this.startDealCardPosition = data["location"];
-		var paixing = new Array();
-		paixing.push(JSON.parse(g_room_data["pai1"]));
-		paixing.push(JSON.parse(g_room_data["pai2"]));
-		paixing.push(JSON.parse(g_room_data["pai3"]));
-		paixing.push(JSON.parse(g_room_data["pai4"]));
-		//说明是一锅中的第二把需要把上一把的牌显示出来
-		if(this.cur_turn == 1){
-			for(var i = 1;i < 33;i++){
-				var flag = false;
-				for(var j = 0;j < paixing.length;j++){
-					var item = paixing[j];
-					for(var m = 0;m < item.length;m++){
-						if(i == item[m]){
-							flag = true;
-						}
-					}
-				}
-				if(flag == false){
-					var card = cc.instantiate(g_assets["pj_card"]);
-					var card_com = card.getComponent("pj_card");
-					card_com.initCardSprite(i);
-					card_com.sprite.runAction(cc.show());
-					card_com.sprite_back.node.runAction(cc.hide());
-					this.left_card_layout.addChild(card);
-					this.left_cards.push(card);
-				}
-			}
-		}
-		var varm_player = new Array();
 		for(var i = 0;i < this.players.length;i++){
 			var player = this.players[i];
-			var player_com = player.getComponent("tdk_player");
-			var flag = false;
-			for(var j = 0;j < g_players.length;j++){
-				var real_player = g_players[i];
-				var real_player_com = real_player.getComponent("tdk_player");
-				if(real_player_com.position_server == player_com.position_server){
-					flag = true;
-					break;
-				}
-			}
-			if(flag == false){
-				varm_player.push(player);
-			}
-		}
-		for(var i = 0;i < varm_player.length;i++){
-			var player = varm_player[i];
 			var player_com = player.getComponent("tdk_player");
 			var card_type = paixing[player_com.position_server - 1];
 			cc.log("actionFaPai card_type:" + JSON.stringify(card_type) + " position_server:" + player_com.position_server);
@@ -510,26 +464,28 @@ cc.Class({
 				var card = player_com.addPlayerCard();
 				var card_com = card.getComponent("pj_card");
 				var position = this.calc_player_card_position(player,j);
+				if(player_com.position_server == g_myselfPlayerPos){
+					card_com.installTouch();
+					player_com.set_card_sprite(j,card_type[j]);
+					card_com.sprite_back.node.runAction(cc.hide());
+					card_com.sprite.runAction(cc.show());
+				}
 				card.setPosition(position);
 			}
 		}
+		this.get_one_button("peipai",true);
+	},
+	
+	repairPeipai_function(){
 		var flag = true;
 		for(var i = 0;i < g_players.length;i++){
 			var player = g_players[i];
 			var player_com = player.getComponent("tdk_player");
-			var card_type = paixing[player_com.position_server - 1];
-			cc.log("actionFaPai card_type:" + JSON.stringify(card_type) + " position_server:" + player_com.position_server);
 			var unselect_cards = new Array();
 			var select_cards = new Array();
-			if(player_com.position_server == g_myselfPlayerPos){
+			if(player_com.is_power >= 5){
 				for(var j = 0;j < 4;j++){
-					var card = player_com.addPlayerCard();
-					var card_com = card.getComponent("pj_card");
-					player_com.set_card_sprite(j,card_type[j]);
-					card.sprite_back.node.runAction(cc.hide());
-					card.sprite.runAction(cc.show());
-					var position = this.calc_player_card_position(player,j);
-					card.setPosition(position);
+					var card = player_com.my_cards[j];
 					if(j < 2){
 						select_cards.push(card);
 					}else{
@@ -539,118 +495,35 @@ cc.Class({
 				this.set_cards_w(player,select_cards);
 				this.set_cards_h(player,unselect_cards);
 			}else{
-				if(player_com.is_power == 5){
-					for(var j = 0;j < 4;j++){
-						var card = player_com.addPlayerCard();
-						var card_com = card.getComponent("pj_card");
-						var position = this.calc_player_card_position(player,j);
-						card.setPosition(position);
-						if(j < 2){
-							select_cards.push(card);
-						}else{
-							unselect_cards.push(card);
-						}
-					}
-					this.set_cards_w(player,select_cards);
-					this.set_cards_h(player,unselect_cards);
-				}else{
-					flag = false;
-				}
+				flag = false;
 			}
 		}
 		if(this.zhuang_location == g_myselfPlayerPos && flag == true){
 			this.get_one_button("kaipai",true);
 		}
+		this.peipai_button.active = false;
+		this.peipai_button.getComponent("cc.Button").interactable = false;
 	},
 	
 	repairOpenpai_function(){
-		this.cur_turn = g_room_data["cur_turn"];
-		this.sumBet = g_room_data["zhuang_score"];
-
-		this.startDealCardPosition = data["location"];
 		var paixing = new Array();
 		paixing.push(JSON.parse(g_room_data["pai1"]));
 		paixing.push(JSON.parse(g_room_data["pai2"]));
 		paixing.push(JSON.parse(g_room_data["pai3"]));
 		paixing.push(JSON.parse(g_room_data["pai4"]));
 		//说明是一锅中的第二把需要把上一把的牌显示出来
-		if(this.cur_turn == 1){
-			for(var i = 1;i < 33;i++){
-				var flag = false;
-				for(var j = 0;j < paixing.length;j++){
-					var item = paixing[j];
-					for(var m = 0;m < item.length;m++){
-						if(i == item[m]){
-							flag = true;
-						}
-					}
-				}
-				if(flag == false){
-					var card = cc.instantiate(g_assets["pj_card"]);
-					var card_com = card.getComponent("pj_card");
-					card_com.initCardSprite(i);
-					card_com.sprite.runAction(cc.show());
-					card_com.sprite_back.node.runAction(cc.hide());
-					this.left_card_layout.addChild(card);
-					this.left_cards.push(card);
-				}
-			}
-		}
 		var varm_player = new Array();
 		for(var i = 0;i < this.players.length;i++){
 			var player = this.players[i];
 			var player_com = player.getComponent("tdk_player");
-			var flag = false;
-			for(var j = 0;j < g_players.length;j++){
-				var real_player = g_players[i];
-				var real_player_com = real_player.getComponent("tdk_player");
-				if(real_player_com.position_server == player_com.position_server){
-					flag = true;
-					break;
-				}
-			}
-			if(flag == false){
-				varm_player.push(player);
-			}
-		}
-		for(var i = 0;i < varm_player.length;i++){
-			var player = varm_player[i];
-			var player_com = player.getComponent("tdk_player");
 			var card_type = paixing[player_com.position_server - 1];
-			cc.log("actionFaPai card_type:" + JSON.stringify(card_type) + " position_server:" + player_com.position_server);
 			for(var j = 0;j < 4;j++){
-				var card = player_com.addPlayerCard();
-				var card_com = card.getComponent("pj_card");
-				var position = this.calc_player_card_position(player,j);
-				card.sprite_back.node.runAction(cc.hide());
-				card.sprite.runAction(cc.show());
-				card.setPosition(position);
-			}
-		}
-		var flag = true;
-		for(var i = 0;i < g_players.length;i++){
-			var player = g_players[i];
-			var player_com = player.getComponent("tdk_player");
-			var card_type = paixing[player_com.position_server - 1];
-			cc.log("actionFaPai card_type:" + JSON.stringify(card_type) + " position_server:" + player_com.position_server);
-			var unselect_cards = new Array();
-			var select_cards = new Array();
-			for(var j = 0;j < 4;j++){
-				var card = player_com.addPlayerCard();
-				var card_com = card.getComponent("pj_card");
 				player_com.set_card_sprite(j,card_type[j]);
-				card.sprite_back.node.runAction(cc.hide());
-				card.sprite.runAction(cc.show());
-				var position = this.calc_player_card_position(player,j);
-				card.setPosition(position);
-				if(j < 2){
-					select_cards.push(card);
-				}else{
-					unselect_cards.push(card);
-				}
+				var card = player_com.my_cards[j];
+				var card_com = card.getComponent("pj_card");
+				card_com.sprite_back.node.runAction(cc.hide());
+				card_com.sprite.runAction(cc.show());
 			}
-			this.set_cards_w(player,select_cards);
-			this.set_cards_h(player,unselect_cards);
 		}
 		var scores = [g_room_data["left_score_1"],g_room_data["left_score_2"],g_room_data["left_score_3"],g_room_data["left_score_4"]];
 		this.qieguo = g_room_data["qieguo"];
