@@ -112,6 +112,7 @@ cc.Class({
 			var player = g_players[i];
 			player_com = player.getComponent("tdk_player");
 			if(player_com.position_server == g_myselfPlayerPos){
+				cc.log("init_game_status: location:" + player_com.position_server + " is_power:" + player_com.is_power);
 				break;
 			}
 		}
@@ -119,7 +120,7 @@ cc.Class({
 			for(var i = 0;i < g_players.length;i++){
 				var player = g_players[i];
 				var t_player_com = player.getComponent("tdk_player");
-				cc.log("init_game_status: location:" + t_player_com.position_server + " is_power:" + t_player_com.is_power);
+				cc.log("setSpriteStatus: location:" + t_player_com.position_server + " is_power:" + t_player_com.is_power);
 				if(t_player_com.is_power >= 1){
 					t_player_com.setSpriteStatus("yizhunbei");
 				}
@@ -130,14 +131,14 @@ cc.Class({
 			for(var i = 0;i < g_players.length;i++){
 				var player = g_players[i];
 				var t_player_com = player.getComponent("tdk_player");
-				cc.log("init_game_status: location:" + t_player_com.position_server + " is_power:" + t_player_com.is_power);
+				cc.log("getzhuang_callback: location:" + t_player_com.position_server + " is_power:" + t_player_com.is_power);
 				if(t_player_com.is_power >= 3){
 					var pos_server = t_player_com.position_server;
 					var score_str = g_room_data["score_" + pos_server];
 					if(score_str != null && score_str != "null"){
 						var chips = JSON.parse(score_str);
 						t_player_com.set_chips(1,parseInt(chips[0]));
-						t_player_com.set_chips(1,parseInt(chips[1]));
+						t_player_com.set_chips(2,parseInt(chips[1]));
 					}
 				}
 			}
@@ -427,17 +428,17 @@ cc.Class({
 	},
 	
 	repairFapai_function(){
-		var paixing = new Array();
-		paixing.push(JSON.parse(g_room_data["pai1"]));
-		paixing.push(JSON.parse(g_room_data["pai2"]));
-		paixing.push(JSON.parse(g_room_data["pai3"]));
-		paixing.push(JSON.parse(g_room_data["pai4"]));
+		this.myselfCards.splice(0,this.myselfCards.length);
+		this.myselfCards.push(JSON.parse(g_room_data["pai1"]));
+		this.myselfCards.push(JSON.parse(g_room_data["pai2"]));
+		this.myselfCards.push(JSON.parse(g_room_data["pai3"]));
+		this.myselfCards.push(JSON.parse(g_room_data["pai4"]));
 		//说明是一锅中的第二把需要把上一把的牌显示出来
 		if(this.cur_turn == 1){
 			for(var i = 1;i < 33;i++){
 				var flag = false;
-				for(var j = 0;j < paixing.length;j++){
-					var item = paixing[j];
+				for(var j = 0;j < this.myselfCards.length;j++){
+					var item = this.myselfCards[j];
 					for(var m = 0;m < item.length;m++){
 						if(i == item[m]){
 							flag = true;
@@ -458,7 +459,7 @@ cc.Class({
 		for(var i = 0;i < this.players.length;i++){
 			var player = this.players[i];
 			var player_com = player.getComponent("tdk_player");
-			var card_type = paixing[player_com.position_server - 1];
+			var card_type = this.myselfCards[player_com.position_server - 1];
 			cc.log("actionFaPai card_type:" + JSON.stringify(card_type) + " position_server:" + player_com.position_server);
 			for(var j = 0;j < 4;j++){
 				var card = player_com.addPlayerCard();
@@ -506,17 +507,12 @@ cc.Class({
 	},
 	
 	repairOpenpai_function(){
-		var paixing = new Array();
-		paixing.push(JSON.parse(g_room_data["pai1"]));
-		paixing.push(JSON.parse(g_room_data["pai2"]));
-		paixing.push(JSON.parse(g_room_data["pai3"]));
-		paixing.push(JSON.parse(g_room_data["pai4"]));
 		//说明是一锅中的第二把需要把上一把的牌显示出来
 		var varm_player = new Array();
 		for(var i = 0;i < this.players.length;i++){
 			var player = this.players[i];
 			var player_com = player.getComponent("tdk_player");
-			var card_type = paixing[player_com.position_server - 1];
+			var card_type = this.myselfCards[player_com.position_server - 1];
 			for(var j = 0;j < 4;j++){
 				player_com.set_card_sprite(j,card_type[j]);
 				var card = player_com.my_cards[j];
@@ -579,7 +575,6 @@ cc.Class({
 			var player = g_players[i];
 			var player_com = player.getComponent("tdk_player");
 			if(player_com.position_server == data.location){
-				player_com.is_power = 1;
 				player_com.setSpriteStatus("yizhunbei");
 				player_com.stop_timer();
 				//准备状态表示
@@ -598,7 +593,6 @@ cc.Class({
 		for(var i = 0;i < this.players.length;i++){
 			var player = this.players[i];
 			var player_com = player.getComponent("tdk_player");
-			player_com.is_power = 2;
 			if(player_com.position_server == this.zhuang_serverPosition){
 				var yao_shaizi = cc.instantiate(g_assets["yaoshaizi"]);
 				var yao_shaizi_com = yao_shaizi.getComponent("shai_zhong_active");
@@ -619,7 +613,6 @@ cc.Class({
 		for(var i = 0;i < g_players.length;i++){
 			var player = g_players[i];
 			var player_com = player.getComponent("tdk_player");
-			player_com.is_power = 3;
 			if(player_com.position_server == data.location){
 				player_com.set_chips(1,chips[0]);
 				player_com.set_chips(2,chips[1]);
@@ -631,10 +624,10 @@ cc.Class({
 	onFapai_function(data){
 		cc.log("onFapai" + JSON.stringify(data));
 		var size = cc.director.getWinSize();
-		var cur_turn = data["cur_turn"];
+		this.cur_turn = data["cur_turn"];
 		//如果是第一次发牌则清空已经用过的牌
 		/*更新房间状态和玩家信息*/
-		if(cur_turn == 0){
+		if(this.cur_turn == 0){
 			for(var i = 0;i < this.left_cards.length;i++){
 				var card = this.left_cards[i];
 				card.removeFromParent();
@@ -661,7 +654,6 @@ cc.Class({
 		for(var i=0;i < g_players.length;i++){
 			var player_com = g_players[i].getComponent("tdk_player");
 			player_com.hide_game_sprite();
-			player_com.is_power = 4;
 		}
 		/*摇色子动作 并显示发牌开始玩家*/
 		for(var i = 0;i < this.players.length;i++){
@@ -718,7 +710,6 @@ cc.Class({
 			var player_com = player.getComponent("tdk_player");
 			if(player_com.position_server == player_position){
 				//如果是自己则执行配牌动作
-				player_com.is_power = 5;
 				var all_cards = player_com.my_cards;
 				var unselect_cards = new Array();
 				var select_cards = new Array();
@@ -1212,7 +1203,7 @@ cc.Class({
     },
 	
 	ready_next_turn(){
-		if(this.left_cards.length == 0){
+		if(this.cur_turn == 0){
 			for(var i = 0;i < this.myselfCards.length;i++){
 				var item = this.myselfCards[i];
 				for(var j = 0;j < item.length;j++){
@@ -1310,7 +1301,6 @@ cc.Class({
 			for(var i = 0;i < this.players.length;i++){
 				var player = this.players[i];
 				var player_com = player.getComponent("tdk_player");
-				player_com.is_power = 2;
 				if(player_com.position_server == g_myselfPlayerPos){
 					player_com.set_chips(1,0);
 					player_com.set_chips(2,0);
