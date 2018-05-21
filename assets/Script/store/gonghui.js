@@ -101,6 +101,7 @@ cc.Class({
 	},
     onLoad () {
 		var self = this;
+		g_current_scene = SCENE_TAG.GONGHUI;
 		cc.eventManager.addListener({
             event: cc.EventListener.TOUCH_ONE_BY_ONE,
             swallowTouches: true,

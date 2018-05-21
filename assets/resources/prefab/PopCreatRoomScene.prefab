@@ -22,14 +22,14 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 221
+        "__id__": 220
       },
       {
-        "__id__": 222
+        "__id__": 221
       }
     ],
     "_prefab": {
-      "__id__": 223
+      "__id__": 222
     },
     "_id": "",
     "_opacity": 255,
@@ -88,24 +88,24 @@
         "__id__": 168
       },
       {
-        "__id__": 206
+        "__id__": 205
       },
       {
-        "__id__": 211
+        "__id__": 210
       },
       {
-        "__id__": 214
+        "__id__": 213
       }
     ],
     "_tag": -1,
     "_active": true,
     "_components": [
       {
-        "__id__": 219
+        "__id__": 218
       }
     ],
     "_prefab": {
-      "__id__": 220
+      "__id__": 219
     },
     "_id": "",
     "_opacity": 255,
@@ -5142,14 +5142,14 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 203
+        "__id__": 202
       },
       {
-        "__id__": 204
+        "__id__": 203
       }
     ],
     "_prefab": {
-      "__id__": 205
+      "__id__": 204
     },
     "_id": "",
     "_opacity": 255,
@@ -5708,21 +5708,21 @@
         "__id__": 187
       },
       {
-        "__id__": 197
+        "__id__": 196
       }
     ],
     "_tag": -1,
     "_active": true,
     "_components": [
       {
-        "__id__": 200
+        "__id__": 199
       },
       {
-        "__id__": 201
+        "__id__": 200
       }
     ],
     "_prefab": {
-      "__id__": 202
+      "__id__": 201
     },
     "_id": "",
     "_opacity": 255,
@@ -5780,13 +5780,10 @@
     "_components": [
       {
         "__id__": 194
-      },
-      {
-        "__id__": 195
       }
     ],
     "_prefab": {
-      "__id__": 196
+      "__id__": 195
     },
     "_id": "",
     "_opacity": 255,
@@ -6031,17 +6028,6 @@
     "_atlas": null
   },
   {
-    "__type__": "d1a018PC3BH/bIuqlMswyHX",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 187
-    },
-    "_enabled": true,
-    "index": 2,
-    "type": 3
-  },
-  {
     "__type__": "cc.PrefabInfo",
     "root": {
       "__id__": 1
@@ -6064,11 +6050,11 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 198
+        "__id__": 197
       }
     ],
     "_prefab": {
-      "__id__": 199
+      "__id__": 198
     },
     "_id": "",
     "_opacity": 255,
@@ -6111,7 +6097,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 197
+      "__id__": 196
     },
     "_enabled": true,
     "_useOriginalSize": false,
@@ -6283,14 +6269,14 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 207
+        "__id__": 206
       },
       {
-        "__id__": 208
+        "__id__": 207
       }
     ],
     "_prefab": {
-      "__id__": 210
+      "__id__": 209
     },
     "_id": "",
     "_opacity": 255,
@@ -6333,7 +6319,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 206
+      "__id__": 205
     },
     "_enabled": true,
     "_spriteFrame": {
@@ -6359,7 +6345,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 206
+      "__id__": 205
     },
     "_enabled": true,
     "transition": 0,
@@ -6381,7 +6367,7 @@
     "zoomScale": 1.2,
     "clickEvents": [
       {
-        "__id__": 209
+        "__id__": 208
       }
     ],
     "_N$interactable": true,
@@ -6407,7 +6393,7 @@
     "hoverSprite": null,
     "_N$disabledSprite": null,
     "_N$target": {
-      "__id__": 206
+      "__id__": 205
     }
   },
   {
@@ -6442,11 +6428,11 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 212
+        "__id__": 211
       }
     ],
     "_prefab": {
-      "__id__": 213
+      "__id__": 212
     },
     "_id": "",
     "_opacity": 255,
@@ -6489,7 +6475,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 211
+      "__id__": 210
     },
     "_enabled": true,
     "_useOriginalSize": false,
@@ -6500,7 +6486,7 @@
     "_N$file": null,
     "_isSystemFontUsed": true,
     "_spacingX": 0,
-    "_N$string": "注：消费房卡，个人模式花费一张房卡，集体模式花费选定玩家人数的房卡数量",
+    "_N$string": "注：消费房卡，个人模式花费一张房卡，集体模式花费选定玩家人数的房卡数量(集体模式不可用下一版本会增加)",
     "_N$horizontalAlign": 0,
     "_N$verticalAlign": 0,
     "_N$fontFamily": "Arial",
@@ -6529,14 +6515,14 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 215
+        "__id__": 214
       },
       {
-        "__id__": 216
+        "__id__": 215
       }
     ],
     "_prefab": {
-      "__id__": 218
+      "__id__": 217
     },
     "_id": "",
     "_opacity": 255,
@@ -6579,7 +6565,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 214
+      "__id__": 213
     },
     "_enabled": true,
     "_spriteFrame": {
@@ -6605,7 +6591,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 214
+      "__id__": 213
     },
     "_enabled": true,
     "transition": 0,
@@ -6627,7 +6613,7 @@
     "zoomScale": 1.2,
     "clickEvents": [
       {
-        "__id__": 217
+        "__id__": 216
       }
     ],
     "_N$interactable": true,
@@ -6653,7 +6639,7 @@
     "hoverSprite": null,
     "_N$disabledSprite": null,
     "_N$target": {
-      "__id__": 214
+      "__id__": 213
     }
   },
   {
@@ -6725,7 +6711,7 @@
       "__id__": 2
     },
     "tip_label": {
-      "__id__": 212
+      "__id__": 211
     },
     "max_type": 1,
     "fangka": 1,
@@ -6733,7 +6719,7 @@
     "renshu": 2,
     "game_type": "PJ",
     "button_node": {
-      "__id__": 206
+      "__id__": 205
     },
     "choice_radios": [
       {

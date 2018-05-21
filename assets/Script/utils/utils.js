@@ -64,6 +64,11 @@ util.getRoomInfoRoute = function(){
 	return "connector.entryHandler.get_room_info";
 }
 
+util.getRepairEnterRoomRoute = function(){
+	return "connector.entryHandler.repair_enter_room";
+}
+
+
 util.getStartGameRoute = function(){
 	return "connector.entryHandler.start_game";
 }
@@ -78,6 +83,16 @@ util.getDissolveRoomRoute = function(){
 
 util.getLeaveRoomRoute = function(){
 	return "connector.entryHandler.leave_room";
+}
+
+util.show_net_error = function(msg,cb){
+	var size = cc.director.getVisibleSize();
+	var error_tip = cc.instantiate(g_assets["pop_net_error"]);
+	var error_tip_com = error_tip.getComponent("pop_net_error");
+    error_tip_com.show_error_info(msg,cb);
+    var root_node = cc.director.getScene().getChildByName('RootNode');
+	root_node.addChild(error_tip);
+	error_tip.setPosition(root_node.convertToNodeSpaceAR(cc.p(size.width/2,size.height/2)));
 }
 
 util.show_error_info = function(pp,size,msg){

@@ -16,9 +16,14 @@ cc.Class({
 
     onLoad () {
         cc.log("on load main scene.....");
+		g_current_scene = SCENE_TAG.MAIN;
 		var self = this;
+		if (cc.sys.isNative) {
+			jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "setLoadStatus", "(I)V");
+		}
 		g_music_key = cc.sys.localStorage.getItem(MUSIC_KEY);
 		if(g_music_key == null || g_music_key == BOOL.YES){
+			cc.audioEngine.stopAll();
 			this.current = cc.audioEngine.play(this.audio, true, 1);
 		}
 		this.username_label.string = g_user.nick_name;

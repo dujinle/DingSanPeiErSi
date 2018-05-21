@@ -27,6 +27,15 @@ var g_assets = {};
 
 //游戏设置全局变量
 var g_version = "0.0.1";
+var g_current_scene = null;
+SCENE_TAG = {
+	"LOAD":0,
+	"MAIN":1,
+	"GONGHUI":2,
+	"GAMEINFO":3,
+	"WAITROOM":4,
+	"ROOM":5
+};
 var g_music_key;
 var g_sound_key;
 var g_chat_key;

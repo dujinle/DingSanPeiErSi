@@ -22,7 +22,9 @@ cc.Class({
     },
 
     onLoad () {
-		cc.log("start gointo created room scene......");
+		this.pomelo_removeListener();
+		cc.log("created_room_scene","start gointo created room scene......");
+		g_current_scene = SCENE_TAG.WAITROOM;
 		this.node.on("pressed", this.switchRadio, this);
 		this.wait_flag = true;
 		this.player_num = g_room_data["real_num"];
@@ -33,6 +35,7 @@ cc.Class({
 		var cost_time = parseInt((now_time - g_room_data["creat_time"])/1000);
 		this.left_time = parseInt(g_room_data["wait_time"]) * 60 - cost_time;
 		this.pomelo_on();
+		cc.log("created_room_scene","this.choice_sprite:" + this.choice_sprite.length);
 		this.schedule(this.wait_time_cb,1);
 	},
 	init_data(){
@@ -94,10 +97,10 @@ cc.Class({
 	},
 	onEnterRoom_function(data){
 		var self = this;
-		cc.log("pomelo on onEnterRoom_function:" + data.location+" is ready");
+		cc.log("pomelo on onEnterRoom_function:" + data.location+" is ready" + this.choice_sprite.length);
+		var enter_location = data.location;
 		this.enter_player = data.player;
-		this.enter_location = data.location;
-		this.enter_item = this.choice_sprite[this.enter_location - 1];
+		this.enter_item = this.choice_sprite[enter_location - 1];
 		var item_com = this.enter_item.getComponent("player_select");
 		item_com.set_data(this.enter_player);
 		item_com.set_flag(true);
@@ -185,7 +188,7 @@ cc.Class({
 			}else{
 				util.show_error_info(null,null,data.msg);
 			}
-		});	
+		});
 	},
     
 	game_back(){
@@ -205,6 +208,7 @@ cc.Class({
 	wait_time_cb(){
 		this.fangka_label.string = g_user["fangka_num"];
 		var self = this;
+		this.wait_flag = false;
 		if(this.wait_flag == true){
 			if(this.left_time > 0){
 				this.left_time = this.left_time - 1;

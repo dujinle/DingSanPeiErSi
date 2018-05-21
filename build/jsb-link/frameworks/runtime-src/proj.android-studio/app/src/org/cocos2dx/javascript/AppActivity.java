@@ -30,8 +30,10 @@ import org.cocos2dx.lib.Cocos2dxGLSurfaceView;
 import android.annotation.TargetApi;
 import android.content.ClipData;
 import android.content.ClipboardManager;
+import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -42,6 +44,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,25 +55,32 @@ import com.tencent.mm.opensdk.modelmsg.WXWebpageObject;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
-public class AppActivity extends Cocos2dxActivity {
+public class AppActivity extends Cocos2dxActivity implements NetWorkBroadcastReceiver.NetEvevt{
     static AppActivity sgsActivity;
     public static IWXAPI wxapi;
     private static final String APP_ID = "wx6c145967bc25e278";
     private static final String APP_SECRET = "58e5b95e019569937536d937d4f680f5";
     private static String WXCode = "null";
+    private static int LoadStatus = 0;
     //保存跳转过来的信息用于界面直接跳转
     private static int loginType = 0;
     private static String roomNum = "null";
     private static String scene = "null";
     private static String  rid = "null";
-
+    //拷贝数据参数
     private static int mTargetScene = SendMessageToWX.Req.WXSceneSession;
     private static final int THUMB_SIZE = 150;
+    //网络类型
+    NetWorkBroadcastReceiver mNetBroadcastReceiver;
+    public static NetWorkBroadcastReceiver.NetEvevt evevt;
+    private static int mNetType;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sgsActivity = this;
+        evevt = this;
         // 注册到微信
+        this.checkNetWork();
         Log.i("enjoypuke","start go into appactivity.................");
         if (!isTaskRoot()) {
             Log.i("enjoypuke","start go into appactivity. not root task................");
@@ -118,6 +128,9 @@ public class AppActivity extends Cocos2dxActivity {
     public static void setWXCode(String wxCode){
         AppActivity.WXCode = wxCode;
     }
+    public static void setLoadStatus(int status){
+        AppActivity.LoadStatus = status;
+    }
     public static String getRoomNum(){
         return roomNum;
     }
@@ -130,7 +143,9 @@ public class AppActivity extends Cocos2dxActivity {
     public static int getLoginType(){
         return loginType;
     }
-
+    public static int getNetType(){
+        return mNetType;
+    }
     public static void WxShare(String rnum,String name,int rid){
         if(wxapi.getWXAppSupportAPI() >= 0x21020001){
             WXWebpageObject webpage = new WXWebpageObject();
@@ -194,12 +209,21 @@ public class AppActivity extends Cocos2dxActivity {
 
     @Override
     protected void onResume() {
+        if (mNetBroadcastReceiver == null) {
+            mNetBroadcastReceiver = new NetWorkBroadcastReceiver();
+        }
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(mNetBroadcastReceiver, filter);
+        System.out.println("---------------->注册广播");
         super.onResume();
      //   SDKWrapper.getInstance().onResume();
     }
 
     @Override
     protected void onPause() {
+        unregisterReceiver(mNetBroadcastReceiver);
+        System.out.println("---------------->注销广播");
         super.onPause();
     //    SDKWrapper.getInstance().onPause();
     }
@@ -292,4 +316,82 @@ public class AppActivity extends Cocos2dxActivity {
         return (type == null) ? String.valueOf(System.currentTimeMillis())
                 : type + System.currentTimeMillis();
     }
+
+    @Override
+    public void onNetWorkChange(int mNetType) {
+        this.mNetType = mNetType;
+        boolean is_status = isNetConnect();
+        if(is_status == false){
+            is_status = NetworkUtils.isConnected(this);
+
+            if(is_status == false){
+                this.mNetType = NetworkUtils.NETWORK_NONE;
+                if(LoadStatus != 0) {
+                    final String jsCallStr = String.format("onReconnect();");
+                    // call JS method, must be in GL thread
+                    AppActivity.this.runOnGLThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Log.d("runOnGLThread", "runOnGLThread: jsCallStr == " + jsCallStr);
+                            Cocos2dxJavascriptJavaBridge.evalString(jsCallStr);
+                        }
+                    });
+                }
+            }else{
+                boolean is_wf_status = NetworkUtils.isWifiConnected(this);
+                if(is_wf_status == true){
+                    this.mNetType = NetworkUtils.NETWORK_WIFI;
+                }
+                boolean is_mb_status = NetworkUtils.isMobileConnected(this);
+                if(is_mb_status){
+                    this.mNetType = NetworkUtils.NETWORK_MOBILE;
+                }
+            }
+        }
+        /*
+        if (mNetType == NetworkUtils.NETWORK_NONE) {
+            boolean is_status = NetworkUtils.isConnected(this);
+            boolean is_wf_status = NetworkUtils.isWifiConnected(this);
+            boolean is_mb_status = NetworkUtils.isMobileConnected(this);
+        } else {
+            boolean is_status = NetworkUtils.isConnected(this);
+            boolean is_wf_status = NetworkUtils.isWifiConnected(this);
+            boolean is_mb_status = NetworkUtils.isMobileConnected(this);
+        }
+        */
+    }
+
+    /**
+     * 判断有无网络
+     *
+     * @return true 有网, false 没有网络.
+     */
+    public boolean isNetConnect() {
+        if (mNetType == NetworkUtils.NETWORK_WIFI) {
+            return true;
+        } else if (mNetType == NetworkUtils.NETWORK_MOBILE) {
+            return true;
+        } else if (mNetType == NetworkUtils.NETWORK_NONE) {
+            return false;
+        }
+        return false;
+    }
+    /**
+     * 初始化时判断网络是否可用
+     */
+    public boolean checkNetWork() {
+
+        this.mNetType = NetworkUtils.checkNetWorkState(this);
+        return isNetConnect();
+
+        // if (netMobile == NetUtil.NETWORK_WIFI) {
+        // System.out.println("inspectNet：连接wifi");
+        // } else if (netMobile == NetUtil.NETWORK_MOBILE) {
+        // System.out.println("inspectNet:连接移动数据");
+        // } else if (netMobile == NetUtil.NETWORK_NONE) {
+        // System.out.println("inspectNet:当前没有网络");
+        //
+        // }
+    }
+
 }
