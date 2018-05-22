@@ -201,7 +201,7 @@ cc.Class({
 			}
 			left_local = player_stc.location;
 			player_stc["is_power"] = g_room_data["is_game_" + player_stc.location];
-			if(this.zhuang_location == player_stc.location){
+			if(this.zhuang_serverPosition == player_stc.location){
 				player_stc["my_gold"] = g_room_data["zhuang_score"];
 			}else{
 				player_stc["my_gold"] = g_room_data["left_score_" + player_stc.location];
@@ -455,6 +455,7 @@ cc.Class({
 					this.left_cards.push(card);
 				}
 			}
+			this.cur_turn == 2;
 		}
 		for(var i = 0;i < this.players.length;i++){
 			var player = this.players[i];
@@ -474,17 +475,12 @@ cc.Class({
 				card.setPosition(position);
 			}
 		}
-		this.get_one_button("peipai",true);
-	},
-	
-	repairPeipai_function(){
-		var flag = true;
 		for(var i = 0;i < g_players.length;i++){
 			var player = g_players[i];
 			var player_com = player.getComponent("tdk_player");
 			var unselect_cards = new Array();
 			var select_cards = new Array();
-			if(player_com.is_power >= 5){
+			if(player_com.is_power >= 5 && player_com.position_server != g_myselfPlayerPos){
 				for(var j = 0;j < 4;j++){
 					var card = player_com.my_cards[j];
 					if(j < 2){
@@ -495,11 +491,43 @@ cc.Class({
 				}
 				this.set_cards_w(player,select_cards);
 				this.set_cards_h(player,unselect_cards);
+			}
+		}
+		this.get_one_button("peipai",true);
+	},
+	
+	repairPeipai_function(){
+		var flag = true;
+		for(var i = 0;i < g_players.length;i++){
+			var player = g_players[i];
+			var player_com = player.getComponent("tdk_player");
+			var unselect_cards = new Array();
+			var select_cards = new Array();
+			if(player_com.is_power >= 5 && player_com.position_server == g_myselfPlayerPos){
+				for(var j = 0;j < 4;j++){
+					var card = player_com.my_cards[j];
+					if(j < 2){
+						select_cards.push(card);
+					}else{
+						unselect_cards.push(card);
+					}
+				}
+				this.set_cards_w(player,select_cards);
+				this.set_cards_h(player,unselect_cards);
+			}
+		}
+		for(var i = 0;i < g_players.length;i++){
+			var player = g_players[i];
+			var player_com = player.getComponent("tdk_player");
+			cc.log("repairPeipai_function : is_power:" + player_com.is_power);
+			if(player_com.is_power >= 5){
+				continue;
 			}else{
 				flag = false;
 			}
 		}
-		if(this.zhuang_location == g_myselfPlayerPos && flag == true){
+		cc.log("repairPeipai_function:" + this.zhuang_serverPosition  + " " + g_myselfPlayerPos + " " + flag);
+		if(this.zhuang_serverPosition == g_myselfPlayerPos && flag == true){
 			this.get_one_button("kaipai",true);
 		}
 		this.peipai_button.active = false;

@@ -180,8 +180,8 @@ cc.Class({
 		pomelo.request(util.getRoomInfoRoute(), param, function(data) {
 			cc.log(JSON.stringify(data));
 			if(data.code == 200){
-				for(var key in data) {
-					g_room_data[key] = data[key];
+				for(var key in data.msg) {
+					g_room_data[key] = data.msg[key];
 				}
 				self.pomelo_removeListener();
 				cc.director.loadScene("PJRoomScene");
