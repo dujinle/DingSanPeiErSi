@@ -52,7 +52,7 @@ cc.Class({
 		if(this.rate >= this.source_leng){
 			this.precent.string = "加载完成......";
 			this.unschedule(this.load_update);
-			if (cc.sys.isNative){
+			if (cc.sys.os == cc.sys.OS_ANDROID){
 				var login_type = jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "getNetType", "()I");
 				if(login_type != -1){
 					this.init_update();
