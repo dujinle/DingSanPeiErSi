@@ -17,7 +17,7 @@ cc.Class({
 			jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "WxLogin", "()V");
 			this.login_flag = true;
 		}else if(cc.sys.os == cc.sys.OS_IOS){
-			jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "WxLogin", "()V");
+			jsb.reflection.callStaticMethod("NativeOcClass", "iOSLoginWithWX");
 			this.login_flag = true;
 		}
 	},
@@ -47,9 +47,9 @@ cc.Class({
 					this.login_flag = true;
 				}
 			}else if(cc.sys.os == cc.sys.OS_IOS){
-				var app_id = jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "getAppId", "()Ljava/lang/String;");
-				var app_secret = jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "getAppSecret", "()Ljava/lang/String;");
-				var wx_code = jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "getWXCode", "()Ljava/lang/String;");
+				var app_id = jsb.reflection.callStaticMethod("NativeOcClass", "getAppId");
+				var app_secret = jsb.reflection.callStaticMethod("NativeOcClass", "getAppSecret");
+				var wx_code = jsb.reflection.callStaticMethod("NativeOcClass", "getWXCode");
 				this.debug_label.string = "appid:" + app_id + " app_secret:" + app_secret + " wx_code:" + wx_code;
 
 				if(wx_code != null && wx_code != "null"){
@@ -109,7 +109,7 @@ cc.Class({
 		this.button_login.getComponent("cc.Button").interactable = false;
 		if(cc.sys.os == cc.sys.OS_WINDOWS){
 			this.onLogin();
-		}else if(cc.sys.os == cc.sys.OS_ANDROID){
+		}else if(cc.sys.isNative){
 			this.login_flag = false;
 			var refresh_token = Storage.getData("refresh_token");
 			var app_id = Storage.getData("app_id");
@@ -122,26 +122,13 @@ cc.Class({
 						this.wxLogin();
 					}
 				}
-				this.button_login.getComponent("cc.Button").interactable = true;
-				return false;
-			}else{
-				this.callback = this.get_access_token;
-				//刷新refresh_token 获取最新的access_token
-				util.get("https://api.weixin.qq.com/sns/oauth2/refresh_token","appid=" + app_id + "&grant_type=refresh_token&refresh_token=" + refresh_token,this);
-			}
-		}else if(cc.sys.os == cc.sys.OS_IOS){
-			this.login_flag = false;
-			var refresh_token = Storage.getData("refresh_token");
-			var app_id = Storage.getData("app_id");
-			this.debug_label.string = "onInitLogin:" + refresh_token;
-			if(refresh_token == null){
-				//这里需要确定 是否是通过其他渠道打开的游戏如果是需要自动登录操作
-				if(cc.sys.os == cc.sys.OS_ANDROID){
-					var login_type = jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "getLoginType", "()I");
+				/*else if(cc.sys.os == cc.sys.OS_IOS){
+					var login_type = jsb.reflection.callStaticMethod("NativeOcClass", "getLoginType");
 					if(login_type == 1){
 						this.wxLogin();
 					}
 				}
+				*/
 				this.button_login.getComponent("cc.Button").interactable = true;
 				return false;
 			}else{
@@ -149,7 +136,6 @@ cc.Class({
 				//刷新refresh_token 获取最新的access_token
 				util.get("https://api.weixin.qq.com/sns/oauth2/refresh_token","appid=" + app_id + "&grant_type=refresh_token&refresh_token=" + refresh_token,this);
 			}
-			cc.log("TODO");
 		}
 	},
 	onLogin(){
@@ -193,11 +179,11 @@ cc.Class({
 					cc.director.loadScene("MainScene");
 				}
 			}else if(cc.sys.os == cc.sys.OS_IOS){
-				login_type = jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "getLoginType", "()I");
+				login_type = jsb.reflection.callStaticMethod("NativeOcClass", "getLoginType");
 				if(login_type == 1){
-					var room_num = jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "getRoomNum", "()Ljava/lang/String;");
-					var scene = jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "getScene", "()Ljava/lang/String;");
-					var rid = jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "getRid", "()Ljava/lang/String;");
+					var room_num = jsb.reflection.callStaticMethod("NativeOcClass", "getRoomNum");
+					var scene = jsb.reflection.callStaticMethod("NativeOcClass", "getScene");
+					var rid = jsb.reflection.callStaticMethod("NativeOcClass", "getRid");
 					onGameEnterRoom(room_num,rid);
 				}else{
 					cc.director.loadScene("MainScene");
