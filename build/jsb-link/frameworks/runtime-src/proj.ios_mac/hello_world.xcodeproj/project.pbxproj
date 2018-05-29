@@ -464,7 +464,7 @@
 				LastUpgradeCheck = 0500;
 				TargetAttributes = {
 					A922753C1517C094001B78AA = {
-						DevelopmentTeam = 6TZ6HWB5A4;
+						DevelopmentTeam = T4K9RRPK3N;
 					};
 				};
 			};
@@ -712,7 +712,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
-				DEVELOPMENT_TEAM = 6TZ6HWB5A4;
+				DEVELOPMENT_TEAM = T4K9RRPK3N;
 				ENABLE_BITCODE = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
@@ -733,7 +733,7 @@
 					"$(PROJECT_DIR)/WechatSDK1.8.2",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = org.cocos2d.helloworldsss;
+				PRODUCT_BUNDLE_IDENTIFIER = org.cocos2d.enjoypuke;
 				SDKROOT = iphoneos;
 				STRIP_PNG_TEXT = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -749,7 +749,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
-				DEVELOPMENT_TEAM = 6TZ6HWB5A4;
+				DEVELOPMENT_TEAM = T4K9RRPK3N;
 				ENABLE_BITCODE = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -769,7 +769,7 @@
 					"$(PROJECT_DIR)/WechatSDK1.8.2",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = org.cocos2d.helloworldsss;
+				PRODUCT_BUNDLE_IDENTIFIER = org.cocos2d.enjoypuke;
 				SDKROOT = iphoneos;
 				STRIP_PNG_TEXT = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
