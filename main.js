@@ -4,7 +4,7 @@
 		let hotUpdateSearchPaths = cc.sys.localStorage.getItem('HotUpdateSearchPaths');
 		if (hotUpdateSearchPaths) {
 			jsb.fileUtils.setSearchPaths(JSON.parse(hotUpdateSearchPaths));
-			console.log('[main.js] 热更新SearchPath: ' + JSON.parse(hotUpdateSearchPaths));
+			cc.log('[main.js] 热更新SearchPath: ' + JSON.parse(hotUpdateSearchPaths));
         }
     }
     // 这是为了解决一个重启的 bug 而添加的
@@ -102,6 +102,7 @@
                 if (cc.sys.os !== cc.sys.OS_ANDROID || cc.sys.browserType !== cc.sys.BROWSER_TYPE_UC) {
                     cc.view.enableRetina(true);
                 }
+				cc.log("cc.sys.isBrowser:" + cc.sys.isBrowser);
                 if (cc.sys.isBrowser) {
                     setLoadingDisplay();
                 }
