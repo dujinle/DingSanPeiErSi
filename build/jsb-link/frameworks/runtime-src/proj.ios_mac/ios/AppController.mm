@@ -28,7 +28,7 @@
 #import "AppDelegate.h"
 #import "RootViewController.h"
 #import "platform/ios/CCEAGLView-ios.h"
-
+#import "ScriptingCore.cpp"
 #import "cocos-analytics/CAAgent.h"
 #import "NativeOcClass.h"
 using namespace cocos2d;
@@ -96,9 +96,25 @@ static AppDelegate* s_sharedApplication = nullptr;
     return YES;
 }
 -(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
+    
+    
+    
+    
     return [WXApi handleOpenURL:url delegate:self];
 }
+
 -(BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options{
+    NSString *str = [url.absoluteString urlDecodeString];
+    
+    if ([str hasPrefix:@"xinchang://"]) {
+        NSArray * arr = [str componentsSeparatedByString:@"&"];
+        NSString *roomID = [arr[1] subStringFrom:@"{{" to:@"}}"];
+        NSString *rid = [arr.lastObject subStringFrom:@"{{" to:@"}}"];
+        NSString *funcName = [NSString stringWithFormat:@"onGameEnterRoom(%@,%@)",roomID,rid];
+        se::ScriptEngine::getInstance()->evalString(funcName.UTF8String);
+        return YES;
+    }
+    
     return [WXApi handleOpenURL:url delegate:self];
 }
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{

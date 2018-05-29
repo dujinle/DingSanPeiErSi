@@ -69,6 +69,7 @@
 		C24401E620BBA4270030AFCD /* NativeOcClass.m in Sources */ = {isa = PBXBuildFile; fileRef = C24401E420BBA4270030AFCD /* NativeOcClass.m */; };
 		C24401ED20BBA4320030AFCD /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = C24401EA20BBA4320030AFCD /* README.txt */; };
 		C24401EE20BBA4320030AFCD /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C24401EC20BBA4320030AFCD /* libWeChatSDK.a */; };
+		C2BF72EE20BCFECA00133869 /* NSString+URLCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = C2BF72ED20BCFECA00133869 /* NSString+URLCoding.m */; };
 		D454520C156E22BD00887EB5 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D454520B156E22BD00887EB5 /* libz.dylib */; };
 		D4545227156E28EF00887EB5 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4545215156E28EF00887EB5 /* AppDelegate.cpp */; };
 		D6B061241803AB9F0077942B /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6B061231803AB9F0077942B /* CoreMotion.framework */; };
@@ -197,6 +198,8 @@
 		C24401EA20BBA4320030AFCD /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		C24401EB20BBA4320030AFCD /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
 		C24401EC20BBA4320030AFCD /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		C2BF72EC20BCFECA00133869 /* NSString+URLCoding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+URLCoding.h"; sourceTree = "<group>"; };
+		C2BF72ED20BCFECA00133869 /* NSString+URLCoding.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+URLCoding.m"; sourceTree = "<group>"; };
 		D454520B156E22BD00887EB5 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		D4545215156E28EF00887EB5 /* AppDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AppDelegate.cpp; sourceTree = "<group>"; };
 		D4545216156E28EF00887EB5 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -394,6 +397,8 @@
 				509D4AAC17EBB2AB00697056 /* AppController.mm */,
 				C24401E520BBA4270030AFCD /* NativeOcClass.h */,
 				C24401E420BBA4270030AFCD /* NativeOcClass.m */,
+				C2BF72EC20BCFECA00133869 /* NSString+URLCoding.h */,
+				C2BF72ED20BCFECA00133869 /* NSString+URLCoding.m */,
 				509D4AB717EBB2AB00697056 /* Info.plist */,
 				509D4AB817EBB2AB00697056 /* main.m */,
 				509D4AB917EBB2AB00697056 /* Prefix.pch */,
@@ -574,6 +579,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2BF72EE20BCFECA00133869 /* NSString+URLCoding.m in Sources */,
 				509D4AC917EBB2AB00697056 /* RootViewController.mm in Sources */,
 				C24401E620BBA4270030AFCD /* NativeOcClass.m in Sources */,
 				D4545227156E28EF00887EB5 /* AppDelegate.cpp in Sources */,
