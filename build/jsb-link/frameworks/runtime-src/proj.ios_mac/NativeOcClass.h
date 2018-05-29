@@ -27,7 +27,7 @@
 //跳转微信登录
 + (void)iOSLoginWithWX;
 
-+ (void)setLoadStatus:int LoadStatus;
++ (void)setLoadStatus:(int) LoadStatus;
 //获取token
 + (NSString *)getWXCode;
 //获取APPID

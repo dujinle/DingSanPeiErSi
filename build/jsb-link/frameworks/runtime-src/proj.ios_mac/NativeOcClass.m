@@ -26,7 +26,7 @@
     
     [WXApi sendReq:req];
 }
-+(void)setLoadStatus:int LoadStatus{
++(void)setLoadStatus:(int) LoadStatus{
 	[NativeOcClass sharedManager].LoadStatus = LoadStatus;
 }
 
