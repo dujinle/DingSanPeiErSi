@@ -26,16 +26,17 @@
     
     [WXApi sendReq:req];
 }
-+(NSString *)getWXCode{
-    
++(void)setLoadStatus:int LoadStatus{
+	[NativeOcClass sharedManager].LoadStatus = LoadStatus;
+}
+
++(NSString *)getWXCode{   
     return [NativeOcClass sharedManager].wxCode;
 }
-+(NSString *)getAppId{
-    
++(NSString *)getAppId{ 
     return @"wx6c145967bc25e278";
 }
 +(NSString *)getAppSecret{
-    
     return @"58e5b95e019569937536d937d4f680f5";
 }
 +(int)getLoginType{

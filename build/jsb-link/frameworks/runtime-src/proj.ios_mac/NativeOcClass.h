@@ -13,15 +13,21 @@
 
 @property (nonatomic)int LoginType;
 
+@property (nonatomic)int LoadStatus;
+
 @property (nonatomic,copy)NSString *roomNum;
 
 @property (nonatomic,copy)NSString *rid;
 
 @property (nonatomic,copy)NSString *scene;
 
+
+
 + (instancetype)sharedManager;
 //跳转微信登录
 + (void)iOSLoginWithWX;
+
++ (void)setLoadStatus:int LoadStatus;
 //获取token
 + (NSString *)getWXCode;
 //获取APPID

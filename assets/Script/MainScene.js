@@ -18,8 +18,10 @@ cc.Class({
         cc.log("on load main scene.....");
 		g_current_scene = SCENE_TAG.MAIN;
 		var self = this;
-		if (cc.sys.isNative) {
-			jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "setLoadStatus", "(I)V");
+		if (cc.sys.os == cc.sys.OS_ANDROID) {
+			jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "setLoadStatus", "(I)V",1);
+		}else if(cc.sys.os == cc.sys.OS_IOS){
+			jsb.reflection.callStaticMethod("NativeOcClass", "setLoadStatus:",1);
 		}
 		g_music_key = cc.sys.localStorage.getItem(MUSIC_KEY);
 		if(g_music_key == null || g_music_key == BOOL.YES){
