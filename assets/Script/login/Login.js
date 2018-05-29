@@ -97,9 +97,11 @@ cc.Class({
 	},
     onLoad () {
 		var self = this;
+		this.xieyi_select = true;
 		g_current_scene = SCENE_TAG.LOAD;
     	cc.log("onLoad" + this.login_flag);
 		this.version_label.getComponent("cc.Label").string = g_version;
+		self.node.on("pressed", self.switchRadio, self);
 		var load_update_com = this.load_update.getComponent("LoadUpdateGame");
 		load_update_com.init(function(){
 			self.onInitLogin();
@@ -202,5 +204,23 @@ cc.Class({
 		}else if(data.errcode == 40003){
 			util.show_error_info(this,size,"无效的openid请重新登录");
 		}
+	},
+	switchRadio(event) {
+        var item =event.target.getComponent("one_choice");
+        if(this.xieyi_select == true){
+			item.lifeUp();
+			this.xieyi_select = false;
+		}else{
+            item.pitchOn();
+			this.xieyi_select = true;
+		}
+    },
+	pop_user_xieyi(){
+		var size = cc.director.getVisibleSize();
+		this.pop_xieyi = cc.instantiate(g_assets["PopXieyiScene"]);
+		var x = size.width/2;
+		var y = size.height/2;
+		this.node.addChild(this.pop_xieyi);
+		this.pop_xieyi.setPosition(this.node.convertToNodeSpaceAR(cc.p(x,y)));
 	},
 });

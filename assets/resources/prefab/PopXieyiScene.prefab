@@ -1,0 +1,1622 @@
+[
+  {
+    "__type__": "cc.Prefab",
+    "_name": "",
+    "_objFlags": 0,
+    "_rawFiles": null,
+    "data": {
+      "__id__": 1
+    }
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "PopXieyiScene",
+    "_objFlags": 0,
+    "_parent": null,
+    "_children": [
+      {
+        "__id__": 2
+      }
+    ],
+    "_tag": -1,
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 52
+      }
+    ],
+    "_prefab": {
+      "__id__": 53
+    },
+    "_id": "",
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_cascadeOpacityEnabled": true,
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 1280,
+      "height": 720
+    },
+    "_rotationX": 0,
+    "_rotationY": 0,
+    "_scaleX": 1,
+    "_scaleY": 1,
+    "_position": {
+      "__type__": "cc.Vec2",
+      "x": 640,
+      "y": 360
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_localZOrder": 0,
+    "_globalZOrder": 0,
+    "_opacityModifyRGB": false,
+    "groupIndex": 0
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "bg_sprite",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 1
+    },
+    "_children": [
+      {
+        "__id__": 3
+      },
+      {
+        "__id__": 45
+      }
+    ],
+    "_tag": -1,
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 50
+      }
+    ],
+    "_prefab": {
+      "__id__": 51
+    },
+    "_id": "",
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_cascadeOpacityEnabled": true,
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 1280,
+      "height": 720
+    },
+    "_rotationX": 0,
+    "_rotationY": 0,
+    "_scaleX": 1,
+    "_scaleY": 1,
+    "_position": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_localZOrder": 0,
+    "_globalZOrder": 0,
+    "_opacityModifyRGB": false,
+    "groupIndex": 0
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "xieyi_bg",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 2
+    },
+    "_children": [
+      {
+        "__id__": 4
+      }
+    ],
+    "_tag": -1,
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 43
+      }
+    ],
+    "_prefab": {
+      "__id__": 44
+    },
+    "_id": "",
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_cascadeOpacityEnabled": true,
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 833,
+      "height": 520
+    },
+    "_rotationX": 0,
+    "_rotationY": 0,
+    "_scaleX": 1,
+    "_scaleY": 1,
+    "_position": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_localZOrder": 0,
+    "_globalZOrder": 0,
+    "_opacityModifyRGB": false,
+    "groupIndex": 0
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "scroll_view",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 3
+    },
+    "_children": [
+      {
+        "__id__": 5
+      },
+      {
+        "__id__": 12
+      }
+    ],
+    "_tag": -1,
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 41
+      },
+      {
+        "__id__": 10
+      }
+    ],
+    "_prefab": {
+      "__id__": 42
+    },
+    "_id": "",
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 184,
+      "g": 184,
+      "b": 184,
+      "a": 255
+    },
+    "_cascadeOpacityEnabled": true,
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 800,
+      "height": 400
+    },
+    "_rotationX": 0,
+    "_rotationY": 0,
+    "_scaleX": 1,
+    "_scaleY": 1,
+    "_position": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": -30
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_localZOrder": 0,
+    "_globalZOrder": 0,
+    "_opacityModifyRGB": false,
+    "groupIndex": 0
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "scrollBar",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 4
+    },
+    "_children": [
+      {
+        "__id__": 6
+      }
+    ],
+    "_tag": -1,
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 9
+      },
+      {
+        "__id__": 38
+      },
+      {
+        "__id__": 39
+      }
+    ],
+    "_prefab": {
+      "__id__": 40
+    },
+    "_id": "",
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 238,
+      "g": 217,
+      "b": 227,
+      "a": 255
+    },
+    "_cascadeOpacityEnabled": true,
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 1,
+      "y": 0.5
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 12,
+      "height": 400
+    },
+    "_rotationX": 0,
+    "_rotationY": 0,
+    "_scaleX": 1,
+    "_scaleY": 1,
+    "_position": {
+      "__type__": "cc.Vec2",
+      "x": 400,
+      "y": 0
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_localZOrder": 0,
+    "_globalZOrder": 0,
+    "_opacityModifyRGB": false,
+    "groupIndex": 0
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "bar",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 5
+    },
+    "_children": [],
+    "_tag": -1,
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 7
+      }
+    ],
+    "_prefab": {
+      "__id__": 8
+    },
+    "_id": "",
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 236,
+      "g": 241,
+      "b": 245,
+      "a": 255
+    },
+    "_cascadeOpacityEnabled": true,
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 1,
+      "y": 0
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 10,
+      "height": 30
+    },
+    "_rotationX": 0,
+    "_rotationY": 0,
+    "_scaleX": 1,
+    "_scaleY": 1,
+    "_position": {
+      "__type__": "cc.Vec2",
+      "x": -1,
+      "y": 0
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_localZOrder": 0,
+    "_globalZOrder": 0,
+    "_opacityModifyRGB": false,
+    "groupIndex": 0
+  },
+  {
+    "__type__": "cc.Sprite",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 6
+    },
+    "_enabled": true,
+    "_spriteFrame": {
+      "__uuid__": "5c3bb932-6c3c-468f-88a9-c8c61d458641"
+    },
+    "_type": 1,
+    "_sizeMode": 0,
+    "_fillType": 0,
+    "_fillCenter": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_fillStart": 0,
+    "_fillRange": 0,
+    "_isTrimmedMode": true,
+    "_srcBlendFactor": 770,
+    "_dstBlendFactor": 771,
+    "_atlas": null
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 1
+    },
+    "asset": {
+      "__uuid__": "e1fa6427-b7a8-4c38-a136-e2565c1b9891"
+    },
+    "fileId": "e4ozPNg29NOK5p6tVd4t7u",
+    "sync": false
+  },
+  {
+    "__type__": "cc.Scrollbar",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 5
+    },
+    "_enabled": true,
+    "_scrollView": {
+      "__id__": 10
+    },
+    "_touching": false,
+    "_opacity": 255,
+    "enableAutoHide": true,
+    "autoHideTime": 1,
+    "_N$handle": {
+      "__id__": 7
+    },
+    "_N$direction": 1
+  },
+  {
+    "__type__": "cc.ScrollView",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 4
+    },
+    "_enabled": true,
+    "content": {
+      "__id__": 11
+    },
+    "horizontal": false,
+    "vertical": true,
+    "inertia": true,
+    "brake": 0.75,
+    "elastic": true,
+    "bounceDuration": 0.23,
+    "scrollEvents": [],
+    "cancelInnerEvents": true,
+    "_N$horizontalScrollBar": null,
+    "_N$verticalScrollBar": {
+      "__id__": 9
+    }
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "content",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 12
+    },
+    "_children": [
+      {
+        "__id__": 15
+      },
+      {
+        "__id__": 18
+      },
+      {
+        "__id__": 21
+      },
+      {
+        "__id__": 24
+      },
+      {
+        "__id__": 27
+      },
+      {
+        "__id__": 30
+      },
+      {
+        "__id__": 33
+      }
+    ],
+    "_tag": -1,
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 36
+      }
+    ],
+    "_prefab": {
+      "__id__": 37
+    },
+    "_id": "",
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_cascadeOpacityEnabled": true,
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 1
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 780,
+      "height": 10050
+    },
+    "_rotationX": 0,
+    "_rotationY": 0,
+    "_scaleX": 1,
+    "_scaleY": 1,
+    "_position": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 202
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_localZOrder": 0,
+    "_globalZOrder": 0,
+    "_opacityModifyRGB": false,
+    "groupIndex": 0
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "view",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 4
+    },
+    "_children": [
+      {
+        "__id__": 11
+      }
+    ],
+    "_tag": -1,
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 13
+      }
+    ],
+    "_prefab": {
+      "__id__": 14
+    },
+    "_id": "",
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_cascadeOpacityEnabled": true,
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 800,
+      "height": 400
+    },
+    "_rotationX": 0,
+    "_rotationY": 0,
+    "_scaleX": 1,
+    "_scaleY": 1,
+    "_position": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_localZOrder": 0,
+    "_globalZOrder": 0,
+    "_opacityModifyRGB": false,
+    "groupIndex": 0
+  },
+  {
+    "__type__": "cc.Mask",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 12
+    },
+    "_enabled": true,
+    "_type": 0,
+    "_segements": 64,
+    "_N$spriteFrame": null,
+    "_N$alphaThreshold": 1,
+    "_N$inverted": false
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 1
+    },
+    "asset": {
+      "__uuid__": "e1fa6427-b7a8-4c38-a136-e2565c1b9891"
+    },
+    "fileId": "18HSS6xx1Mk5EG3mpxmxyl",
+    "sync": false
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "item_0",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 11
+    },
+    "_children": [],
+    "_tag": -1,
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 16
+      }
+    ],
+    "_prefab": {
+      "__id__": 17
+    },
+    "_id": "",
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_cascadeOpacityEnabled": true,
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 780,
+      "height": 600
+    },
+    "_rotationX": 0,
+    "_rotationY": 0,
+    "_scaleX": 1,
+    "_scaleY": 1,
+    "_position": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": -300
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_localZOrder": 0,
+    "_globalZOrder": 0,
+    "_opacityModifyRGB": false,
+    "groupIndex": 0
+  },
+  {
+    "__type__": "cc.Label",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 15
+    },
+    "_enabled": true,
+    "_useOriginalSize": false,
+    "_actualFontSize": 30,
+    "_fontSize": 30,
+    "_lineHeight": 30,
+    "_enableWrapText": true,
+    "_N$file": null,
+    "_isSystemFontUsed": true,
+    "_spacingX": 0,
+    "_N$string": "鑫畅棋牌用户注册协议\n\n重要须知： \n第一 、用户在使用《鑫畅棋牌》软件及相关各项服务之前，请仔细阅读本《鑫畅棋牌最终用户使用许可协议》(下称《协议》)中各项条款。本公司在此特别提醒用户认真阅读本《协议》的全部条款，特别是其中免除或者限制本公司责任的条款（该等条款通常含有“不负任何责任”、“无义务”等词汇）中的条款和其它限制用户权利的条款（该等条款通常含有“不得”等词汇），这些条款应在中国法律所允许的范围内最大程度地适用。 \n 第二、如用户不同意本《协议》的条款，请不要安装、使用本软件或者相关服务。用户一旦点击“接受”并安装本软件，或者注册、开始使用及/或继续使用本软件或相关服务，即视为用户已经接受本《协议》中全部条款。 \n 第三、用户有权在使用本软件及相关服务的期间，随时向本公司提出与本公司的产品和服务有关意见和建议。 \n",
+    "_N$horizontalAlign": 1,
+    "_N$verticalAlign": 1,
+    "_N$fontFamily": "Arial",
+    "_N$overflow": 2
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 1
+    },
+    "asset": {
+      "__uuid__": "e1fa6427-b7a8-4c38-a136-e2565c1b9891"
+    },
+    "fileId": "60KJRBxWVLwoZXrMvUedT7",
+    "sync": false
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "item_1",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 11
+    },
+    "_children": [],
+    "_tag": -1,
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 19
+      }
+    ],
+    "_prefab": {
+      "__id__": 20
+    },
+    "_id": "",
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_cascadeOpacityEnabled": true,
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 780,
+      "height": 400
+    },
+    "_rotationX": 0,
+    "_rotationY": 0,
+    "_scaleX": 1,
+    "_scaleY": 1,
+    "_position": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": -800
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_localZOrder": 0,
+    "_globalZOrder": 0,
+    "_opacityModifyRGB": false,
+    "groupIndex": 0
+  },
+  {
+    "__type__": "cc.Label",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 18
+    },
+    "_enabled": true,
+    "_useOriginalSize": false,
+    "_actualFontSize": 30,
+    "_fontSize": 30,
+    "_lineHeight": 30,
+    "_enableWrapText": true,
+    "_N$file": null,
+    "_isSystemFontUsed": true,
+    "_spacingX": 0,
+    "_N$string": "1、定义和说明： \n 本《协议》中，如无相反说明，以下词语具有如下含义： \n1.1 本公司：指鑫畅网络科技有限公司。 \n1.2《鑫畅棋牌》：指本公司研发/运营的网络游戏《鑫畅棋牌》。 \n1.3 本软件：指《鑫畅棋牌》计算机软件，包含客户端内容及程序，并可能包括相关网络服务器、网站（包括但不限于游戏官方网站: http://www.enjoymygame.com/）、电子媒体、印刷材料和“联机”或电子文档，等。 \n1.4 用户：又称“最终用户”，指通过本公司提供的合法途径获得《鑫畅棋牌》软件使用许可而安装、使用《鑫畅棋牌》软件产品及服务的个人。 ",
+    "_N$horizontalAlign": 0,
+    "_N$verticalAlign": 1,
+    "_N$fontFamily": "Arial",
+    "_N$overflow": 2
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 1
+    },
+    "asset": {
+      "__uuid__": "e1fa6427-b7a8-4c38-a136-e2565c1b9891"
+    },
+    "fileId": "88K/XeyA1HOq8EYATEp+Wi",
+    "sync": false
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "item_2",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 11
+    },
+    "_children": [],
+    "_tag": -1,
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 22
+      }
+    ],
+    "_prefab": {
+      "__id__": 23
+    },
+    "_id": "",
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_cascadeOpacityEnabled": true,
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 780,
+      "height": 400
+    },
+    "_rotationX": 0,
+    "_rotationY": 0,
+    "_scaleX": 1,
+    "_scaleY": 1,
+    "_position": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": -1200
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_localZOrder": 0,
+    "_globalZOrder": 0,
+    "_opacityModifyRGB": false,
+    "groupIndex": 0
+  },
+  {
+    "__type__": "cc.Label",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 21
+    },
+    "_enabled": true,
+    "_useOriginalSize": false,
+    "_actualFontSize": 30,
+    "_fontSize": 30,
+    "_lineHeight": 30,
+    "_enableWrapText": true,
+    "_N$file": null,
+    "_isSystemFontUsed": true,
+    "_spacingX": 0,
+    "_N$string": "2．隐私政策： \n 尊重用户个人隐私是本公司的一项基本政策，所以，本公司不会公开、修改或透露用户的注册资料及保存在本公司各项服务中的非公开内容，除非本公司在诚信的基础上认为透露这些信息是必要的，包括但不限于以下情形： \n2.1遵守有关法律法规规定，包括在国家有关机关查询时，提供用户在本公司的网页上发布的信息内容及其发布时间、互联网地址或者域名。 \n2.2保持维护本公司的知识产权和其他重要权利。 \n2.3在紧急情况下竭力维护用户个人和社会大众的隐私安全。 \n2.4根据公司规定、本公司公布的规则、制度或者本公司认为必要的其他情况下。 ",
+    "_N$horizontalAlign": 0,
+    "_N$verticalAlign": 1,
+    "_N$fontFamily": "Arial",
+    "_N$overflow": 2
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 1
+    },
+    "asset": {
+      "__uuid__": "e1fa6427-b7a8-4c38-a136-e2565c1b9891"
+    },
+    "fileId": "535CMz7eJM5YMKuXX7LZer",
+    "sync": false
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "item_3",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 11
+    },
+    "_children": [],
+    "_tag": -1,
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 25
+      }
+    ],
+    "_prefab": {
+      "__id__": 26
+    },
+    "_id": "",
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_cascadeOpacityEnabled": true,
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 780,
+      "height": 500
+    },
+    "_rotationX": 0,
+    "_rotationY": 0,
+    "_scaleX": 1,
+    "_scaleY": 1,
+    "_position": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": -1650
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_localZOrder": 0,
+    "_globalZOrder": 0,
+    "_opacityModifyRGB": false,
+    "groupIndex": 0
+  },
+  {
+    "__type__": "cc.Label",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 24
+    },
+    "_enabled": true,
+    "_useOriginalSize": false,
+    "_actualFontSize": 30,
+    "_fontSize": 30,
+    "_lineHeight": 30,
+    "_enableWrapText": true,
+    "_N$file": null,
+    "_isSystemFontUsed": true,
+    "_spacingX": 0,
+    "_N$string": "3.责任限制 \n3.1用户承诺自行承担因使用本软件及相关服务所引起的任何风险。除根据特定目的和不违反规定的明确的适当的担保以外，本公司不作其他任何类型的担保（不论是明确的或隐含的）。本公司不担保： \n3.1.1本软件及本公司提供的相关服务符合用户的要求； \n3.1.2本软件及本公司提供的相关服务不受不可抗力、计算机病毒、黑客攻击、系统不稳定、用户所在位置、用户关机、电信部门原因及其他任何网络、技术、通信线路等外界或人为因素的影响； \n3.1.3安装、复制、访问网站、充值、运行本软件或以其它方式使用本软件及/或接受本公司提供的相关服务与任何其他软件不存在任何冲突； \n3.1.4通过本公司网站、游戏官方网站及其他相关网络上的链接和标签所指向的第三方的商业信誉及其提供服务的真实性、有效性和合法性。 ",
+    "_N$horizontalAlign": 0,
+    "_N$verticalAlign": 1,
+    "_N$fontFamily": "Arial",
+    "_N$overflow": 2
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 1
+    },
+    "asset": {
+      "__uuid__": "e1fa6427-b7a8-4c38-a136-e2565c1b9891"
+    },
+    "fileId": "0cbj03AUFE5YH4OCiMmWF+",
+    "sync": false
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "item_4",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 11
+    },
+    "_children": [],
+    "_tag": -1,
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 28
+      }
+    ],
+    "_prefab": {
+      "__id__": 29
+    },
+    "_id": "",
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_cascadeOpacityEnabled": true,
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 780,
+      "height": 450
+    },
+    "_rotationX": 0,
+    "_rotationY": 0,
+    "_scaleX": 1,
+    "_scaleY": 1,
+    "_position": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": -2125
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_localZOrder": 0,
+    "_globalZOrder": 0,
+    "_opacityModifyRGB": false,
+    "groupIndex": 0
+  },
+  {
+    "__type__": "cc.Label",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 27
+    },
+    "_enabled": true,
+    "_useOriginalSize": false,
+    "_actualFontSize": 30,
+    "_fontSize": 30,
+    "_lineHeight": 30,
+    "_enableWrapText": true,
+    "_N$file": null,
+    "_isSystemFontUsed": true,
+    "_spacingX": 0,
+    "_N$string": "4.软件、服务与协议的变更、终止 \n4.1为了保障公司业务发展，本公司拥有变更本软件（包括但不限于升级、更新、增加、减少、演绎，等）及相关服务以及本《协议》内容的权利，也拥有终止本软件/相关服务/本《协议》的权利；在公司认为有必要的前提下，本公司会以公告等形式公布于《鑫畅棋牌》网站（http://www.enjoymygame.com）重要页面上。本公司提请用户定期查阅了解有关变更、终止等信息。 \n4.2用户拥有自主权利，单方面随时决定终止使用本软件及相关服务并卸载本软件。如本公司对本软件、相关服务或本《协议》的内容作出任何变更，而用户不同意有关变更的内容，用户有权单方面立即停止使用《鑫畅棋牌》软件以及相关服务并卸载本软件。如用户在有关内容变更后，仍继续使用《鑫畅棋牌》软件和相关服务，即视为用户同意接受有关变更内容。 ",
+    "_N$horizontalAlign": 0,
+    "_N$verticalAlign": 1,
+    "_N$fontFamily": "Arial",
+    "_N$overflow": 2
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 1
+    },
+    "asset": {
+      "__uuid__": "e1fa6427-b7a8-4c38-a136-e2565c1b9891"
+    },
+    "fileId": "6bTNpx7p5B9L8pWYeBIIwZ",
+    "sync": false
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "item_5",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 11
+    },
+    "_children": [],
+    "_tag": -1,
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 31
+      }
+    ],
+    "_prefab": {
+      "__id__": 32
+    },
+    "_id": "",
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_cascadeOpacityEnabled": true,
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 780,
+      "height": 2700
+    },
+    "_rotationX": 0,
+    "_rotationY": 0,
+    "_scaleX": 1,
+    "_scaleY": 1,
+    "_position": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": -3700
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_localZOrder": 0,
+    "_globalZOrder": 0,
+    "_opacityModifyRGB": false,
+    "groupIndex": 0
+  },
+  {
+    "__type__": "cc.Label",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 30
+    },
+    "_enabled": true,
+    "_useOriginalSize": false,
+    "_actualFontSize": 30,
+    "_fontSize": 30,
+    "_lineHeight": 30,
+    "_enableWrapText": true,
+    "_N$file": null,
+    "_isSystemFontUsed": true,
+    "_spacingX": 0,
+    "_N$string": "5．权利和义务： \n5.1在用户同意接受本《协议》全部内容的前提下，本公司同意授予用户可撤销的、可变更的、非专有的、不可转让和不可再授权的许可权利。用户可在许可生效的时间内将本软件安装在个人使用的联网计算机上，并以指定的方式运行本《鑫畅棋牌》软件的一份副本并享受本公司提供的服务。本公司基于本《协议》授予用户的许可是针对个人使用的许可。如用户有需要在个人使用的范围以外使用本软件及服务或者将本软件与服务用于任何商业用途，则用户应与本公司联系并获得本公司另行授权。任何未经本公司许可的安装、使用、访问、显示、运行等行为均视为违反本协议。 \n5.2 除非本《协议》另有规定，否则，未经本公司书面同意，用户不得实施下列行为（无论是营利的还是非营利的）： \n5.2.1复制、翻拷、传播和陈列本软件的程序、使用手册和其它图文音像资料的全部或部分内容。 \n5.2.2公开展示和播放本产品的全部或部分内容。 \n5.2.3出租、销售本软件或者利用本软件从事营利行为。 \n5.2.4修改或遮盖本软件程序、图像、动画、包装和手册等内容上的产品名称、公司标志、版权信息等内容。 \n5.2.5 其它违反著作权法、计算机软件保护条例和相关法律法规的行为。 \n5.3 用户应通过合法的途径使用本软件和相关服务，不得作出以下侵害本公司或第三人利益，扰乱游戏秩序，违反游戏公平性、违反本《协议》或者本公司发布的其他规则或者国家有关法律法规规定的行为，包括但不限于： \n5.3.1 修改、翻译、注释、整理、汇编、演绎本软件； \n5.3.2 反向工程、反向编译或者反汇编本软件，或者采用其他技术手段对本软件进行分析、修改、攻击、衍生； \n5.3.3 使用任何外挂程序或游戏修改程序（本《协议》所称“外挂程序”是指独立于游戏软件之外的，能够在游戏运行的同时影响游戏操作的所有程序，包括但不限于模拟键盘鼠标操作、改变操作环境、修改数据等一切类型。如国家有关法律、法规及政府主管部门的规章或规范性文件规定的外挂定义与本《协议》有冲突，则以法律、法规、部门规章或规范性文件规定的为准），对本网络游戏软件进行还原工程、编译、译码或修改，包括但不限于修改本软件所使用的任何专有通讯协议、对动态随机存取内存（RAM）中资料进行修改或锁定； \n5.3.4 使用异常的方法登录游戏、使用网络加速器等外挂软件或机器人程式等恶意破坏服务设施、扰乱正常服务秩序的行为； \n5.3.5通过异常或者非法方式使用本软件（包括但不限于利用本软件登录游戏私服），恶意破环本软件，扰乱正常的服务秩序或者实施其他不正当行为； \n5.3.6制作、传播或使用外挂、封包、加速软件及其它各种作弊程序，或组织、教唆他人使用此类软件程序，或销售此类软件程序而为个人或组织谋取经济利益； \n5.3.7使用任何方式或方法，试图攻击提供游戏服务的相关服务器、路由器、交换机以及其他设备，以达到非法获得或修改未经授权的数据资料、影响正常游戏服务，以及其他危害性目的的任何行为； \n5.3.8利用本软件或者线上游戏系统可能存在的技术缺陷或漏洞而以各种形式为自己及他人牟利（包括但不限于复制游戏中的虚拟物品等）或者从事其他不正当行为。 \n5.3.9违反国家有关法律法规的规定，利用本软件制作、复制、发布和传播信息。 \n 一旦本公司通过内部的监测程序发现或经其他用户举报而发现用户有可能正在从事上述行为，则本公司有权作出独立的判断并采取相应的措施，该措施包括但不限于限制用户帐号的登陆、限制用户在游戏中的活动、终止本软件授权、删除与复制有关的物品（包括复制出的虚拟物品和参与复制的虚拟物品）、删除用户的帐号并要求用户赔偿因从事上述行为而给本公司造成的损失等。 \n5.4本公司提供可使用本软件，并运用自己的网络系统通过国际互联网络（Internet）为用户提供服务。同时，用户应自行提供以下的设备和信息： \n5.4.1自行配备上网的所需设备， 包括个人电脑、调制解调器或其他必备上网装置。 \n5.4.2自行负担个人上网所支付的与此服务有关的电话费用、网络费用。 \n5.4.3基于本公司提供服务的重要性，用户同意： \n （1）提供详尽、准确的个人资料。 \n （2）不断更新注册资料，符合及时、详尽、准确的要求。 \n （3）牢记用户填写的注册资料、历史信息。 \n 本公司在为用户提供相关客户服务的前提是用户能表明用户是帐号的所有人，这可能需要用户提供相关信息（包括但不限于注册信息、历史密码等）。用户理解，如果用户不能提供准确完整的注册资料及相关历史信息、未及时更新相关注册资料或者相关的证据，将有可能导致本公司无法判断用户的身份，从而无法为提供密码找回等相关服务，而本公司对此不承担任何责任。如因用户提交的相关信息资料不真实、不准确、不完整、不合法从而导致本公司作出错误的判断的，本公司有权终止为用户提供服务并追究用户的法律责任。 \n5.5本公司保留通过本软件和相关的服务向用户投放商业性广告的权利。 \n",
+    "_N$horizontalAlign": 0,
+    "_N$verticalAlign": 1,
+    "_N$fontFamily": "Arial",
+    "_N$overflow": 2
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 1
+    },
+    "asset": {
+      "__uuid__": "e1fa6427-b7a8-4c38-a136-e2565c1b9891"
+    },
+    "fileId": "5e5v+MunRAuLP+4FiVpBvA",
+    "sync": false
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "item_6",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 11
+    },
+    "_children": [],
+    "_tag": -1,
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 34
+      }
+    ],
+    "_prefab": {
+      "__id__": 35
+    },
+    "_id": "",
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_cascadeOpacityEnabled": true,
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 780,
+      "height": 5000
+    },
+    "_rotationX": 0,
+    "_rotationY": 0,
+    "_scaleX": 1,
+    "_scaleY": 1,
+    "_position": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": -7550
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_localZOrder": 0,
+    "_globalZOrder": 0,
+    "_opacityModifyRGB": false,
+    "groupIndex": 0
+  },
+  {
+    "__type__": "cc.Label",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 33
+    },
+    "_enabled": true,
+    "_useOriginalSize": false,
+    "_actualFontSize": 30,
+    "_fontSize": 30,
+    "_lineHeight": 30,
+    "_enableWrapText": true,
+    "_N$file": null,
+    "_isSystemFontUsed": true,
+    "_spacingX": 0,
+    "_N$string": "6.违约责任 \n6.1用户同意保障和维护本公司及其他用户的利益，如因用户违反有关法律、法规或本《协议》项下的任何条款而给本公司造成损害，用户同意承担由此造成的损害赔偿责任，该等责任包括但不限于给本公司造成的任何直接或间接损失。 \n6.2 如用户违反本《协议》、本公司发布的其他规则或者国家法律法规规定，则本公司有权作出独立的判断，立即撤销相关许可，终止为用户提供服务并通过各种合法途径追究用户的法律责任。 \n\n7. 法律适用和争议解决 \n7.1本《协议》的订立、履行、解释及争议的解决均应适用中华人民共和国法律并排除其他一切冲突法的适用。 \n7.2如双方就本《协议》内容或其执行发生任何争议，双方应尽量友好协商解决；协商不成时，双方同意交由本公司所在地法院管辖并处理。 \n\n7.3拒绝提供担保和免责声明\n 用户明确同意使用本公司服务的风险由用户个人承担。本公司明确表示不提供任何类型的担保，不论是明确的或隐含的，但是对商业性的隐含担保，特定目的和不违反规定的适当担保除外。本公司不担保服务一定能满足用户的要求，也不担保服务不会受中断，对服务的及时性、安全性、真实性、出错发生都不作担保。本公司拒绝提供任何担保，包括信息能否准确、及时、顺利地传送。用户理解并接受下载或通过本公司产品服务取得的任何信息资料取决于用户自己，并由其承担系统受损、资料丢失以及其它任何风险。本公司对在服务网上得到的任何商品购物服务、交易进程、招聘信息，都不作担保。用户不会从本公司收到口头或书面的意见或信息，本公司也不会在这里作明确担保。\n\n7.4保障\n 用户同意保障和维护本公司全体成员 的利益，负责支付由用户使用超出服务范围引起的律师费用，违反服务条款的损害补偿费用，其它人使用用户的电脑、帐号和其它知识产权的追索费。\n\n7.5结束服务\n 玩家注册账号365天未登陆游戏，本公司有权收回该账号，用户或本公司可随时根据实际情况中断服务。本公司不需对任何个人或第三方负责而随时中断服务。用户若反对任何服务条款的建议或对后来的条款修改有异议，或对服务不满，用户只有以下的追索权：\n （1）不再使用本公司服务。\n （2）结束用户使用本公司服务的资格。\n （3）通告本公司停止该用户的服务。\n 结束用户服务后，用户使用本公司服务的权利马上中止。从那时起，本公司不再对用户承担任何义务。\n\n8.其他规定 \n8.1 本《协议》构成双方对本《协议》之约定事项及其他有关事宜的完整协议，除本《协议》规定的之外，未赋予本《协议》各方其他权利。 \n8.2如本《协议》中的任何条款因任何原因被判定为完全或部分无效或不具有执行力的，该无效或不具有执行力的条款将被最接近原条款意图的一项有效并可执行的条款所替代，并且本《协议》的其余条款仍应有效并且有执行力。 \n8.3本公司不行使、未能及时行使或者未充分行使本《协议》或者按照法律规定所享有的权利，不应被视为放弃该权利，也不影响本公司在将来行使该权利。 \n8.4在法律允许的最大范围内，本公司保留对本《协议》的最终解释权。\n\n关于充值的特别提示和约定\n\n\n1． 本文中的所有条款内容均属于《鑫畅棋牌用户注册协议》的一部分，一旦用户选择充值服务，用户在进行充值程序过程中点击“同意”按钮即表示用户完全接受本协议项下的全部条款。\n\n2．鑫畅网络科技有限公司（以下简称“本公司“）通过销售支付计费系统以及客户服务系统等，为用户获取数字内容产品提供充值渠道。用户理解本公司也会为本公司关联公司提供用户服务，即用户通过本公司获得的服务内容有可能来源于本公司关联公司，一旦用户接受该关联公司提供的网络服务内容，则用户应当遵守该关联公司对其服务做出的约定。如本公司关联公司接入本公司系统且其既有用户可以使用本公司提供的服务，则该既有用户即成为本公司的用户，其账号也自动成为鑫畅棋牌账号。该既有用户同意亦将与在本公司系统中直接注册的用户一样遵守本协议的约定。但对于这些既有用户，本公司在服务过程中会仍然提供其已经熟悉的游戏账号充值界面，该过程仅为方便用户接受服务而设，既有用户与本公司之间的关系仍应受《鑫畅棋牌用户注册协议》的约定。\n\n3． 关于用户充值的特别提示：\n(A) 在本公司系统中,用户通过本公司所向用户提供的充值支付服务方式为其账号充值直接获得的均为”房卡币”，房卡币为本公司向用户提供的服务点数,用户可以使用房卡币兑换本公司所提供的相应产品及服务。（或更新发布的其他支付工具）；\n(B) 为了尊重用户的消费习惯和符合用户体验习惯，用户在利用本公司系统提供的服务进行付费的过程中，可能出现直接获得其需要的具体应用内容中的虚拟道具，而不是直接显示获得房卡币的情况，用户理解并知晓本公司已经在游戏程序之外的后台技术系统内自动将房卡币兑换为该应用内容中的虚拟道具；\n(C) 应用内容为本公司游戏的，本公司根据国家有关规定发行房卡币作为网络游戏虚拟货币， 同时会在游戏中设置游戏道具，在游戏程序之外的计费系统中由房卡币兑换为游戏内的道具。应用内容提供方为本公司关联公司的，则该关联公司可能会根据国家有关规定发行网络游戏虚拟货币，同时在游戏中设置游戏道具，用户可以根据自己的需要使用房卡币。通常来说，在用户选择进入该关联公司运营的网络游戏系统后，本公司会自动将用户账号中剩余的房卡币全部显示为可以消费的该关联公司发行的网络游戏虚拟货币总量，房卡币和它们的兑换比例将会明确公告给用户。即使用户可能感受到人民币或房卡币和游戏道具之间的直接存在对应关系，但在游戏程序之外的计费系统中，仍然是由系统结算为房卡币再兑换成该关联公司发行的网络游戏虚拟货币，然后再将该网络游戏虚拟货币根据用户的需求转换为游戏内的道具。\n(D) 用户理解其对游戏道具的需求往往是消费的最终目的，本公司和本公司关联公司系统内部对于付费过程的设置均为方便用户消费和符合用户体验习惯而设置，即使用户在整个消费网络游戏过程中可能无法直接体验到本公司或本公司关联公司发行的网络游戏虚拟货币的存在，而事实上它们确实真实存在于本公司及本公司关联公司的系统中。用户理解并明确，用户在本公司提供的网络游戏中所购买的存在于网络游戏程序内的游戏道具均系通过房卡币兑换后获得；用户在本公司关联公司提供的网络游戏中所购买的存在于网络游戏程序内的游戏道具均系通过兑换或支付该关联公司自身发行的网络游戏虚拟货币而获得。\n(E) 用户理解并知晓，本公司不提供用户间交易房卡币及本公司游戏道具（如金币）的服务。用户间交易房卡币或本公司游戏道具（如金币）系构成对本协议的违反，本公司有权在未经通知的情况下，采取相应适当措施，以确保本公司不提供用户间上述交易的服务。\n\n4． 用户充值一旦成功，充值即确定完成，本公司将不提供任何更改、修正服务。\n\n5． 在使用本公司充值系统时，用户必须仔细确认自己的帐号，若因为用户自身输入帐号错误、操作不当或不了解充值计费方式等因素造成充错帐号、错选充值种类等情形而损害自身权益，不得因此要求本公司作任何补偿或赔偿。\n\n6． 若因用户违反《鑫畅棋牌用户注册协议》或本文条款，本公司因此冻结帐号及终止帐号使用资格者，不得因此要求本公司作任何补偿或赔偿。\n\n7．使用任何充值卡进行充值后，必须保留充值卡至有效期期限结束为止，以作为今后发生问题核对依据凭证。若因为未保存充值卡而造成用户受损时，不得因此要求本公司作任何补偿或赔偿。\n\n8．若因本公司充值系统自身故障原因造成用户充值失实，在本公司恢复、存有有效数据和用户提供合法有效凭证的情况下，本公司将根据用户充值情况作出变动措施。\n\n9． 因充值系统自身故障原因，造成系统充值额小于用户实际充值额的，本公司予以补其差额。\n\n10．因充值系统自身故障原因，造成系统充值额大于用户实际充值额的，本公司有权追回差额。\n\n11．本公司用户应对其账号安全具有保护义务，如由于其账号下房卡币由于用户帐户安全保护不当而造成的损失，将由用户自行承担，本公司将不予以赔偿。非本公司用户由于互联网信息安全问题而被充值支付到本公司，请您尽快与当地司法机关联系，本公司将尽量配合司法机关进行调查。\n",
+    "_N$horizontalAlign": 0,
+    "_N$verticalAlign": 1,
+    "_N$fontFamily": "Arial",
+    "_N$overflow": 2
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 1
+    },
+    "asset": {
+      "__uuid__": "e1fa6427-b7a8-4c38-a136-e2565c1b9891"
+    },
+    "fileId": "0261KqN5FMD7DI7CLyJLmh",
+    "sync": false
+  },
+  {
+    "__type__": "cc.Layout",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 11
+    },
+    "_enabled": true,
+    "_layoutSize": {
+      "__type__": "cc.Size",
+      "width": 780,
+      "height": 10050
+    },
+    "_resize": 1,
+    "_N$layoutType": 3,
+    "_N$padding": 0,
+    "_N$cellSize": {
+      "__type__": "cc.Size",
+      "width": 40,
+      "height": 40
+    },
+    "_N$startAxis": 0,
+    "_N$paddingLeft": 0,
+    "_N$paddingRight": 0,
+    "_N$paddingTop": 0,
+    "_N$paddingBottom": 0,
+    "_N$spacingX": 0,
+    "_N$spacingY": 0,
+    "_N$verticalDirection": 1,
+    "_N$horizontalDirection": 0
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 1
+    },
+    "asset": {
+      "__uuid__": "e1fa6427-b7a8-4c38-a136-e2565c1b9891"
+    },
+    "fileId": "416llfI95Gq40ooS1+TbHq",
+    "sync": false
+  },
+  {
+    "__type__": "cc.Widget",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 5
+    },
+    "_enabled": true,
+    "isAlignOnce": true,
+    "_target": null,
+    "_alignFlags": 37,
+    "_left": 350.07654921020657,
+    "_right": 0,
+    "_top": 0,
+    "_bottom": 0,
+    "_verticalCenter": 0,
+    "_horizontalCenter": 0,
+    "_isAbsLeft": true,
+    "_isAbsRight": true,
+    "_isAbsTop": true,
+    "_isAbsBottom": true,
+    "_isAbsHorizontalCenter": true,
+    "_isAbsVerticalCenter": true,
+    "_originalWidth": 0,
+    "_originalHeight": 237
+  },
+  {
+    "__type__": "cc.Sprite",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 5
+    },
+    "_enabled": true,
+    "_spriteFrame": {
+      "__uuid__": "5fe5dcaa-b513-4dc5-a166-573627b3a159"
+    },
+    "_type": 1,
+    "_sizeMode": 0,
+    "_fillType": 0,
+    "_fillCenter": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_fillStart": 0,
+    "_fillRange": 0,
+    "_isTrimmedMode": true,
+    "_srcBlendFactor": 770,
+    "_dstBlendFactor": 771,
+    "_atlas": null
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 1
+    },
+    "asset": {
+      "__uuid__": "e1fa6427-b7a8-4c38-a136-e2565c1b9891"
+    },
+    "fileId": "c9Wbi81WhMUZrVtzcU3OMe",
+    "sync": false
+  },
+  {
+    "__type__": "cc.Sprite",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 4
+    },
+    "_enabled": true,
+    "_spriteFrame": null,
+    "_type": 1,
+    "_sizeMode": 0,
+    "_fillType": 0,
+    "_fillCenter": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_fillStart": 0,
+    "_fillRange": 0,
+    "_isTrimmedMode": true,
+    "_srcBlendFactor": 770,
+    "_dstBlendFactor": 771,
+    "_atlas": null
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 1
+    },
+    "asset": {
+      "__uuid__": "e1fa6427-b7a8-4c38-a136-e2565c1b9891"
+    },
+    "fileId": "479MtHN5lAK58hmvhkLIBi",
+    "sync": false
+  },
+  {
+    "__type__": "cc.Sprite",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 3
+    },
+    "_enabled": true,
+    "_spriteFrame": {
+      "__uuid__": "bda2f2ed-4979-4903-bc99-7101a7b157bc"
+    },
+    "_type": 0,
+    "_sizeMode": 1,
+    "_fillType": 0,
+    "_fillCenter": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_fillStart": 0,
+    "_fillRange": 0,
+    "_isTrimmedMode": true,
+    "_srcBlendFactor": 770,
+    "_dstBlendFactor": 771,
+    "_atlas": null
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 1
+    },
+    "asset": {
+      "__uuid__": "e1fa6427-b7a8-4c38-a136-e2565c1b9891"
+    },
+    "fileId": "af3BLGDUtETJZmfK0C5kWK",
+    "sync": false
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "exit",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 2
+    },
+    "_children": [],
+    "_tag": -1,
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 46
+      },
+      {
+        "__id__": 47
+      }
+    ],
+    "_prefab": {
+      "__id__": 49
+    },
+    "_id": "",
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_cascadeOpacityEnabled": true,
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 53,
+      "height": 53
+    },
+    "_rotationX": 0,
+    "_rotationY": 0,
+    "_scaleX": 1,
+    "_scaleY": 1,
+    "_position": {
+      "__type__": "cc.Vec2",
+      "x": 404,
+      "y": 222
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_localZOrder": 0,
+    "_globalZOrder": 0,
+    "_opacityModifyRGB": false,
+    "groupIndex": 0
+  },
+  {
+    "__type__": "cc.Sprite",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 45
+    },
+    "_enabled": true,
+    "_spriteFrame": {
+      "__uuid__": "43b83b4d-5f58-470d-abd5-8158aa48f30e"
+    },
+    "_type": 1,
+    "_sizeMode": 0,
+    "_fillType": 0,
+    "_fillCenter": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_fillStart": 0,
+    "_fillRange": 0,
+    "_isTrimmedMode": true,
+    "_srcBlendFactor": 770,
+    "_dstBlendFactor": 771,
+    "_atlas": null
+  },
+  {
+    "__type__": "cc.Button",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 45
+    },
+    "_enabled": true,
+    "transition": 2,
+    "pressedColor": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "hoverColor": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "duration": 0.1,
+    "zoomScale": 1.2,
+    "clickEvents": [
+      {
+        "__id__": 48
+      }
+    ],
+    "_N$interactable": true,
+    "_N$enableAutoGrayEffect": false,
+    "_N$normalColor": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_N$disabledColor": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_N$normalSprite": {
+      "__uuid__": "43b83b4d-5f58-470d-abd5-8158aa48f30e"
+    },
+    "_N$pressedSprite": {
+      "__uuid__": "43b83b4d-5f58-470d-abd5-8158aa48f30e"
+    },
+    "pressedSprite": {
+      "__uuid__": "43b83b4d-5f58-470d-abd5-8158aa48f30e"
+    },
+    "_N$hoverSprite": {
+      "__uuid__": "43b83b4d-5f58-470d-abd5-8158aa48f30e"
+    },
+    "hoverSprite": {
+      "__uuid__": "43b83b4d-5f58-470d-abd5-8158aa48f30e"
+    },
+    "_N$disabledSprite": {
+      "__uuid__": "43b83b4d-5f58-470d-abd5-8158aa48f30e"
+    },
+    "_N$target": {
+      "__id__": 45
+    }
+  },
+  {
+    "__type__": "cc.ClickEvent",
+    "target": {
+      "__id__": 1
+    },
+    "component": "PopXieyi",
+    "handler": "onClose",
+    "customEventData": ""
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 1
+    },
+    "asset": {
+      "__uuid__": "e1fa6427-b7a8-4c38-a136-e2565c1b9891"
+    },
+    "fileId": "a0T/LiDCVHLIfsX7U7td34",
+    "sync": false
+  },
+  {
+    "__type__": "cc.Sprite",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 2
+    },
+    "_enabled": true,
+    "_spriteFrame": {
+      "__uuid__": "5d2f9857-95ed-4016-9c9a-101fc9d1fb78"
+    },
+    "_type": 0,
+    "_sizeMode": 0,
+    "_fillType": 0,
+    "_fillCenter": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_fillStart": 0,
+    "_fillRange": 0,
+    "_isTrimmedMode": true,
+    "_srcBlendFactor": 770,
+    "_dstBlendFactor": 771,
+    "_atlas": null
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 1
+    },
+    "asset": {
+      "__uuid__": "e1fa6427-b7a8-4c38-a136-e2565c1b9891"
+    },
+    "fileId": "1d9oYs6p1JEq4YB+C8My5O",
+    "sync": false
+  },
+  {
+    "__type__": "976f4cEfWhBmbJz7b5iEPEu",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 1
+    },
+    "asset": {
+      "__uuid__": "e1fa6427-b7a8-4c38-a136-e2565c1b9891"
+    },
+    "fileId": "75ia9fa6NBS6iqiWGZ1SOH",
+    "sync": false
+  }
+]
