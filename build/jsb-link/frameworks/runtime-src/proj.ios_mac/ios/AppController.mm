@@ -107,12 +107,24 @@ static AppDelegate* s_sharedApplication = nullptr;
     NSString *str = [url.absoluteString urlDecodeString];
     
     if ([str hasPrefix:@"xinchang://"]) {
-        NSArray * arr = [str componentsSeparatedByString:@"&"];
-        NSString *roomID = [arr[1] subStringFrom:@"{{" to:@"}}"];
-        NSString *rid = [arr.lastObject subStringFrom:@"{{" to:@"}}"];
-        NSString *funcName = [NSString stringWithFormat:@"onGameEnterRoom(%@,%@)",roomID,rid];
-        se::ScriptEngine::getInstance()->evalString(funcName.UTF8String);
-        return YES;
+        NSDictionary *dic = [str getURLParameters];
+        NSString *roomID = [dic objectForKey:@"room_num"];
+        NSString *rid = [dic objectForKey:@"rid"];
+        NSString *scene = [dic objectForKey:@"scene"];
+        
+        if (scene.length > 0 && roomID.length > 0 && rid.length > 0) {
+            NSString *room = [[roomID stringByReplacingOccurrencesOfString:@"{{" withString:@""] stringByReplacingOccurrencesOfString:@"}}" withString:@""];
+            NSString *r = [[rid stringByReplacingOccurrencesOfString:@"{{" withString:@""] stringByReplacingOccurrencesOfString:@"}}" withString:@""];
+            NSString *scene = [[scene stringByReplacingOccurrencesOfString:@"{{" withString:@""] stringByReplacingOccurrencesOfString:@"}}" withString:@""];
+            
+            NSString *funcName = [NSString stringWithFormat:@"onGameEnterRoom(%@,%@)",room,r];
+            [NativeOcClass sharedManager].LoginType = 1;
+            [NativeOcClass sharedManager].roomNum = room;
+            [NativeOcClass sharedManager].scene = scene;
+            [NativeOcClass sharedManager].rid = r;
+            se::ScriptEngine::getInstance()->evalString(funcName.UTF8String);
+            return YES;
+        }
     }
     
     return [WXApi handleOpenURL:url delegate:self];

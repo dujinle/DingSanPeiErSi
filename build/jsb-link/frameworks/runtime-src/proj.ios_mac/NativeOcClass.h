@@ -11,6 +11,13 @@
 
 @property (nonatomic,copy)NSString *wxCode;
 
+@property (nonatomic)int LoginType;
+
+@property (nonatomic,copy)NSString *roomNum;
+
+@property (nonatomic,copy)NSString *rid;
+
+@property (nonatomic,copy)NSString *scene;
 
 + (instancetype)sharedManager;
 //跳转微信登录
@@ -21,4 +28,12 @@
 + (NSString *)getAppId;
 //获取AppSecret
 + (NSString *)getAppSecret;
+//获取roomNum
++ (NSString *)getRoomNum;
+//获取scene
++ (NSString *)getScene;
+//获取rid
++ (NSString *)getRid;
+//获取登录方式
++(int)getLoginType;
 @end

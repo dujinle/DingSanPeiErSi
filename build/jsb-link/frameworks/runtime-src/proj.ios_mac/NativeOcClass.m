@@ -14,6 +14,7 @@
     static NativeOcClass *instance;
     dispatch_once(&onceToken, ^{
         instance = [[NativeOcClass alloc] init];
+        instance.LoginType = 0;
     });
     return instance;
 }
@@ -32,8 +33,21 @@
 +(NSString *)getAppId{
     
     return @"wx6c145967bc25e278";
-}+(NSString *)getAppSecret{
+}
++(NSString *)getAppSecret{
     
     return @"58e5b95e019569937536d937d4f680f5";
+}
++(int)getLoginType{
+    return [NativeOcClass sharedManager].LoginType;
+}
++(NSString *)getRoomNum{
+    return [NativeOcClass sharedManager].roomNum;
+}
++(NSString *)getScene{
+    return [NativeOcClass sharedManager].scene;
+}
++(NSString *)getRid{
+    return [NativeOcClass sharedManager].rid;
 }
 @end
