@@ -1,3 +1,4 @@
+
 cc.Class({
     extends: cc.Component,
 
@@ -17,6 +18,7 @@ cc.Class({
     onLoad () {
         cc.log("on load main scene.....");
 		g_current_scene = SCENE_TAG.MAIN;
+		g_root_node = cc.director.getScene().getChildByName('RootNode');
 		var self = this;
 		if (cc.sys.os == cc.sys.OS_ANDROID) {
 			jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "setLoadStatus", "(I)V",1);
@@ -74,7 +76,11 @@ cc.Class({
 		cc.director.loadScene("FeedBack");
 	},
 	exit(){
-		cc.director.end();
+		if (cc.sys.os == cc.sys.OS_ANDROID) {
+			cc.director.end();
+		}else if(cc.sys.os == cc.sys.OS_IOS){
+			cc.director.popScene();
+		}
 	},
 	onDestroy: function () {
         cc.audioEngine.stop(this.current);

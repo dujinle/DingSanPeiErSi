@@ -10,7 +10,7 @@ var g_next_scene = null;
 var g_next_data = null;
 var g_login_auto = false;
 var g_DEBUG = true;
-
+var g_root_node = null;
 //房间中玩家存储数据
 var g_room_data = null;
 var g_players_data = new Array();
