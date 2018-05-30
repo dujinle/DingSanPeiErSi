@@ -91,7 +91,7 @@ cc.Class({
 		if(cc.sys.os == cc.sys.OS_ANDROID){
 			jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "WxShare", "(Ljava/lang/String;Ljava/lang/String;I)V",g_room_data["room_num"],g_room_data["fangzhu_name"],g_room_data["rid"]);
 		}else if(cc.sys.os == cc.sys.OS_IOS){
-			jsb.reflection.callStaticMethod("NativeOcClass", "WxShare:",g_room_data["room_num"],g_room_data["fangzhu_name"],g_room_data["rid"]);
+			jsb.reflection.callStaticMethod("NativeOcClass", "WxShare:masterName:roomId:",g_room_data["room_num"],g_room_data["fangzhu_name"],g_room_data["rid"]);
 		}
 	},
 	pomelo_on(){
