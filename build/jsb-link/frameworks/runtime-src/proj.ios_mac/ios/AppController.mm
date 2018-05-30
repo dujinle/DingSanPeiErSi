@@ -31,6 +31,7 @@
 #import "ScriptingCore.cpp"
 #import "cocos-analytics/CAAgent.h"
 #import "NativeOcClass.h"
+#import "Reachability.h"
 using namespace cocos2d;
 
 @implementation AppController
@@ -61,6 +62,7 @@ static AppDelegate* s_sharedApplication = nullptr;
     //注册微信SDK
     [WXApi registerApp:@"wx6c145967bc25e278"];
     // Override point for customization after application launch.
+    [self startNetwork];
 
     // Add the view controller's view to the window and display.
     window = [[UIWindow alloc] initWithFrame: [[UIScreen mainScreen] bounds]];
@@ -96,10 +98,6 @@ static AppDelegate* s_sharedApplication = nullptr;
     return YES;
 }
 -(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
-    
-    
-    
-    
     return [WXApi handleOpenURL:url delegate:self];
 }
 
@@ -143,7 +141,69 @@ static AppDelegate* s_sharedApplication = nullptr;
     
 }
 
-
+-(void)startNetwork{
+    // Allocate a reachability object
+    Reachability* reach = [Reachability reachabilityWithHostname:@"www.baidu.com"];
+    reach.reachabilityBlock = ^(Reachability *reachability, SCNetworkConnectionFlags flags) {
+        NetworkStatus status = [reach currentReachabilityStatus];
+        /*
+         NotReachable = 0, 无网络连接
+         ReachableViaWiFi, Wifi
+         ReachableViaWWAN 2G/3G/4G/5G
+         */
+        if (status == NotReachable) {
+            [NativeOcClass sharedManager].NetType = NotReachable;
+        } else if (status == ReachableViaWiFi) {
+            [NativeOcClass sharedManager].NetType = ReachableViaWiFi;
+            NSLog(@"Wifi");
+        } else {
+            [NativeOcClass sharedManager].NetType = ReachableViaWWAN;
+            NSLog(@"3G/4G/5G");
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"REACHABLE!");
+        });
+    };
+    // Set the blocks
+    reach.reachableBlock = ^(Reachability*reach)
+    {
+        NetworkStatus status = [reach currentReachabilityStatus];
+        /*
+            NotReachable = 0, 无网络连接
+            ReachableViaWiFi, Wifi
+            ReachableViaWWAN 2G/3G/4G/5G
+         */
+        if (status == NotReachable) {
+            [NativeOcClass sharedManager].NetType = NotReachable;
+        } else if (status == ReachableViaWiFi) {
+            [NativeOcClass sharedManager].NetType = ReachableViaWiFi;
+//            NSLog(@"Wifi");
+        } else {
+            [NativeOcClass sharedManager].NetType = ReachableViaWWAN;
+//            NSLog(@"3G/4G/5G");
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+//            NSLog(@"REACHABLE!");
+        });
+    };
+    
+    reach.unreachableBlock = ^(Reachability*reach)
+    {
+        NetworkStatus status = [reach currentReachabilityStatus];
+        if (status == NotReachable){
+            [NativeOcClass sharedManager].NetType = NotReachable;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSString *funcName = @"onReconnect()";
+                se::ScriptEngine::getInstance()->evalString(funcName.UTF8String);
+            });
+        }
+    };
+    
+    // Start the notifier, which will cause the reachability object to retain itself!
+    [reach startNotifier];
+}
 - (void)applicationWillResignActive:(UIApplication *)application {
     /*
       Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

@@ -36,7 +36,7 @@
 		//init title
 		message.title = @"点击链接进入房间";
         NSString* roomLabel = @"房间号:";
-        message.description = [NSString stringWithFormat:@"%@%@",roomLabel,roomNum];
+        message.description = [NSString stringWithFormat:@"%@%@",roomLabel,rid];
 		//init image
 		[message setThumbImage:[UIImage imageNamed:@"send_music_thumb"]];
 		//init url
@@ -78,5 +78,8 @@
 }
 +(NSString *)getRid{
     return [NativeOcClass sharedManager].rid;
+}
++(int)getNetType{
+    return [NativeOcClass sharedManager].NetType;
 }
 @end

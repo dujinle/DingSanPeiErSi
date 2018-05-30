@@ -15,6 +15,8 @@
 
 @property (nonatomic)int LoadStatus;
 
+@property (nonatomic)int NetType;
+
 @property (nonatomic,copy)NSString *roomNum;
 
 @property (nonatomic,copy)NSString *rid;
@@ -44,4 +46,6 @@
 + (NSString *)getRid;
 //获取登录方式
 +(int)getLoginType;
+
++(int)getNetType;
 @end
