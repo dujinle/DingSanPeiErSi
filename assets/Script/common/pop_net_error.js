@@ -45,11 +45,20 @@ cc.Class({
         }
 		this.updateTimer = 0;
 		//获取底层的网络状态
-		var login_type = jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "getNetType", "()I");
-		if(login_type != -1){
-			this.cb();
-			this.node.active = false;
-			this.node.destroy();
+		if(cc.sys.os == cc.sys.OS_ANDROID){
+			var login_type = jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "getNetType", "()I");
+			if(login_type != -1){
+				this.cb();
+				this.node.active = false;
+				this.node.destroy();
+			}
+		}else if(cc.sys.os == cc.sys.OS_IOS){
+			var login_type = jsb.reflection.callStaticMethod("NativeOcClass", "getNetType");
+			if(login_type != -1){
+				this.cb();
+				this.node.active = false;
+				this.node.destroy();
+			}
 		}
 	}
 });
