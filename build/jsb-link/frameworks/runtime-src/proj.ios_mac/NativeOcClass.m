@@ -20,12 +20,43 @@
 }
 
 +(void)iOSLoginWithWX{
-    SendAuthReq *req = [[[SendAuthReq alloc]init] autorelease];
-    req.scope = @"snsapi_userinfo";
-    req.state = @"123";
+	if ([WXApi isWXAppInstalled] && [WXApi isWXAppSupportApi]) {
+		SendAuthReq *req = [[[SendAuthReq alloc]init] autorelease];
+		req.scope = @"snsapi_userinfo";
+		req.state = @"123";
     
-    [WXApi sendReq:req];
+		[WXApi sendReq:req];
+	}else{
+		[SVProgressHUD showInfoWithStatus:@"你还没有安装微信"];
+	}
 }
+
++(void) WxShare:(NSString*) roomNum name:(NSString*) name rid:(NSString*) rid{
+	if ([WXApi isWXAppInstalled] && [WXApi isWXAppSupportApi]) {
+		WXMediaMessage * message = [WXMediaMessage message];
+		//init title
+		message.title = @"点击链接进入房间";
+		NSString* roomLabel = @"房间号：";
+		message.description = [NSString initWithFormat:@"%@%@",roomLabel,rid];
+		//init image
+		[message setThumbImage:[UIImage imageNamed:@"send_music_thumb"]];
+		//init url
+		WXWebpageObject * webpageObject = [WXWebpageObject object];
+		NSString* url = @"http://193.112.243.189:8000/open_app";
+		webpageObject.webpageUrl = [NSString initWithFormat:@"%@?room_num=%@&name=%@&rid=%@",url,roomNum,name,rid];
+		message.mediaObject = webpageObject;
+		SendMessageToWXReq * req = [[SendMessageToWXReq alloc] init];
+		req.bText = NO;
+		
+		req.message = message;
+		req.scene = WXSceneSession;
+		
+		[WXApi sendReq:req];
+	}else{
+		[SVProgressHUD showInfoWithStatus:@"你还没有安装微信"];
+	}
+}
+
 +(void)setLoadStatus:(int) LoadStatus{
 	[NativeOcClass sharedManager].LoadStatus = LoadStatus;
 }

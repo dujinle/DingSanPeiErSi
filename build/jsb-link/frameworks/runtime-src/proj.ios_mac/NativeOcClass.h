@@ -27,6 +27,8 @@
 //跳转微信登录
 + (void)iOSLoginWithWX;
 
++(void) WxShare:(NSString*) roomNum name:(NSString*) name rid:(NSString*) rid;
+
 + (void)setLoadStatus:(int) LoadStatus;
 //获取token
 + (NSString *)getWXCode;
