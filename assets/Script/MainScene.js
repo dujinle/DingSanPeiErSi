@@ -79,7 +79,7 @@ cc.Class({
 		if (cc.sys.os == cc.sys.OS_ANDROID) {
 			cc.director.end();
 		}else if(cc.sys.os == cc.sys.OS_IOS){
-			cc.director.popScene();
+			//cc.director.popScene();
 		}
 	},
 	onDestroy: function () {
