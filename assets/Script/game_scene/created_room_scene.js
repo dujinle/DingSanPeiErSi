@@ -69,11 +69,15 @@ cc.Class({
 			if(location != null && location != "null"){
 				var player_id = location.split("*")[0];
 				Servers.userInfoProcess("get_player",{player_id:player_id},function(data){
-					if(data.code == 200 && data.msg.head_img_url != null){
-						cc.loader.load({url:data.msg.head_img_url,type:'png'},function (err, texture) {
-							var frame = new cc.SpriteFrame(texture);
-							self.choice_sprite[i].getComponent("cc.Sprite").spriteFrame = frame;
-						});
+					if(data.code == 200){
+						if(data.msg.head_img_url != null && data.msg.head_img_url.length > 0){
+							cc.loader.load({url:data.msg.head_img_url,type:'png'},function (err, texture) {
+								var frame = new cc.SpriteFrame(texture);
+								self.choice_sprite[i].getComponent("cc.Sprite").spriteFrame = frame;
+							});
+						}else{
+							self.choice_sprite[i].getComponent("cc.Sprite").spriteFrame = g_assets["headimg"];
+						}
 					}
 				});
 				item.set_flag(true);
@@ -86,6 +90,8 @@ cc.Class({
 	share_button_cb(){
 		if(cc.sys.os == cc.sys.OS_ANDROID){
 			jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "WxShare", "(Ljava/lang/String;Ljava/lang/String;I)V",g_room_data["room_num"],g_room_data["fangzhu_name"],g_room_data["rid"]);
+		}else if(cc.sys.os == cc.sys.OS_IOS){
+			jsb.reflection.callStaticMethod("NativeOcClass", "WxShare:",,g_room_data["room_num"],g_room_data["fangzhu_name"],g_room_data["rid"]);
 		}
 	},
 	pomelo_on(){
@@ -104,11 +110,13 @@ cc.Class({
 		var item_com = this.enter_item.getComponent("player_select");
 		item_com.set_data(this.enter_player);
 		item_com.set_flag(true);
-		if(this.enter_player.head_img_url != null){
+		if(this.enter_player.head_img_url != null && this.enter_player.head_img_url.length > 0){
 			cc.loader.load({url:this.enter_player.head_img_url,type:'png'},function (err, texture) {
 				var frame = new cc.SpriteFrame(texture);
 				self.enter_item.getComponent("cc.Sprite").spriteFrame = frame;
 			});
+		}else{
+			self.enter_item.getComponent("cc.Sprite").spriteFrame = g_assets["headimg"];
 		}
 		self.player_num = self.player_num + 1;
 		//判断是否是自己，如果是自己则取消点击事件。

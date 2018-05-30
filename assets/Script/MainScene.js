@@ -33,7 +33,7 @@ cc.Class({
 		if(g_user.gender == 1){
 			this.sex_sprite.spriteFrame = g_assets["gender1"];
         }
-		if(g_user.headimgurl != null){
+		if(g_user.headimgurl != null && g_user.headimgurl.length > 0){
 			cc.loader.load({url:g_user.headimgurl,type:'png'},function (err, texture) {
 				 var frame = new cc.SpriteFrame(texture);
 				 g_assets["headimg"] = frame;

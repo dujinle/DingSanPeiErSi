@@ -123,14 +123,12 @@ cc.Class({
 					if(login_type == 1){
 						this.wxLogin();
 					}
-				}
-				/*else if(cc.sys.os == cc.sys.OS_IOS){
+				}else if(cc.sys.os == cc.sys.OS_IOS){
 					var login_type = jsb.reflection.callStaticMethod("NativeOcClass", "getLoginType");
 					if(login_type == 1){
 						this.wxLogin();
 					}
 				}
-				*/
 				this.button_login.getComponent("cc.Button").interactable = true;
 				return false;
 			}else{

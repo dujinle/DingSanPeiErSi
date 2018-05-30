@@ -37,11 +37,13 @@ cc.Class({
 		this.my_gold = params.my_gold;
 		this.nick_name_label.getComponent(cc.Label).string = this.nick_name;
 		this.gold_label.getComponent(cc.Label).string = this.my_gold;
-		if(params.head_img_url != null){
+		if(params.head_img_url != null && params.head_img_url.length > 0){
 			cc.loader.load({url:params.head_img_url,type:'png'},function (err, texture) {
 				var frame = new cc.SpriteFrame(texture);
 				self.head_sprite.spriteFrame = frame;
 			});
+		}else{
+			self.head_sprite.spriteFrame = g_assets["headimg"];
 		}
 		if(this.is_power == 1){
 			this.setSpriteStatus("yizhunbei");
