@@ -7,6 +7,7 @@ cc.Class({
         username_label:cc.Label,
         fangka_label:cc.Label,
         sex_sprite:cc.Sprite,
+		exit_node:cc.Node,
 		audio:{
             url: cc.AudioClip,
             default: null
@@ -23,6 +24,7 @@ cc.Class({
 		if (cc.sys.os == cc.sys.OS_ANDROID) {
 			jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "setLoadStatus", "(I)V",1);
 		}else if(cc.sys.os == cc.sys.OS_IOS){
+			this.exit_node.active = false;
 			jsb.reflection.callStaticMethod("NativeOcClass", "setLoadStatus:",1);
 		}
 		g_music_key = cc.sys.localStorage.getItem(MUSIC_KEY);
