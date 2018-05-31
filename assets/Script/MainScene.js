@@ -75,7 +75,10 @@ cc.Class({
 		cc.director.loadScene("MyGameInfoScene");
 	},
 	popHelpScene(){
-		cc.director.loadScene("PopHelpScene");
+		var size = cc.director.getWinSize();
+		this.pop_help_scene = cc.instantiate(g_assets["PopHelpScene"]);
+		this.node.addChild(this.pop_help_scene);
+		this.pop_help_scene.setPosition(this.node.convertToNodeSpaceAR(cc.p(size.width/2,size.height/2)));
 	},
 	exit(){
 		if (cc.sys.os == cc.sys.OS_ANDROID) {
