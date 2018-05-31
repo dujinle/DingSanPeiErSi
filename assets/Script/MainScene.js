@@ -74,8 +74,8 @@ cc.Class({
 	popMyGameScene(){
 		cc.director.loadScene("MyGameInfoScene");
 	},
-	feed_back_scene(){
-		cc.director.loadScene("FeedBack");
+	popHelpScene(){
+		cc.director.loadScene("PopHelpScene");
 	},
 	exit(){
 		if (cc.sys.os == cc.sys.OS_ANDROID) {
