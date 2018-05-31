@@ -82,4 +82,8 @@
 +(int)getNetType{
     return [NativeOcClass sharedManager].NetType;
 }
++(void)copy:(NSString *)str{
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    pasteboard.string = str;
+}
 @end

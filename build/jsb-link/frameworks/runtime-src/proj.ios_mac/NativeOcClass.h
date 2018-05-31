@@ -46,6 +46,8 @@
 + (NSString *)getRid;
 //获取登录方式
 +(int)getLoginType;
-
+//获取当前网络状态
 +(int)getNetType;
+//剪切板复制函数
++(void)copy:(NSString *)str;
 @end

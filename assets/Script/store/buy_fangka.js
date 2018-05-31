@@ -36,6 +36,8 @@ cc.Class({
 		var string = this.weixin_label.getComponent("cc.Label").string;
 		if(cc.sys.os == cc.sys.OS_ANDROID){
 			jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "copy", "(Ljava/lang/String;)V",string);
+		}else if(cc.sys.os == cc.sys.OS_IOS){
+			jsb.reflection.callStaticMethod("NativeOcClass", "copy:",string);
 		}
 	},
 });
