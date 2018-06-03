@@ -1,568 +1,1082 @@
-2018-04-07T23:25:34.504Z - normal: Load ~/.CocosCreator/settings.json
-2018-04-07T23:25:34.511Z - normal: checking language setting...
-2018-04-07T23:25:34.511Z - normal: Language: zh
-2018-04-07T23:25:36.165Z - success: protocol editor-framework registered
-2018-04-07T23:25:36.165Z - success: protocol app registered
-2018-04-07T23:25:36.165Z - success: protocol theme registered
-2018-04-07T23:25:36.165Z - success: protocol packages registered
-2018-04-07T23:25:36.166Z - success: protocol unpack registerred
-2018-04-07T23:25:36.166Z - success: protocol disable-commonjs registerred
-2018-04-07T23:25:36.346Z - normal: connected!
-2018-04-07T23:25:36.352Z - normal: Check project /Users/jinle/PaiJiuGame
-2018-04-07T23:25:36.376Z - normal: Initializing Cocos2d
-2018-04-07T23:25:36.839Z - normal: Initializing Asset Database
-2018-04-07T23:25:36.914Z - success: protocol uuid registerred
-2018-04-07T23:25:36.914Z - success: protocol db registerred
-2018-04-07T23:25:36.915Z - success: protocol thumbnail registerred
-2018-04-07T23:25:36.915Z - normal: Loading editor/builtin packages
-2018-04-07T23:25:36.972Z - success: anysdk loaded
-2018-04-07T23:25:37.238Z - success: assets loaded
-2018-04-07T23:25:37.245Z - success: builder loaded
-2018-04-07T23:25:37.249Z - success: cocos-analytics loaded
-2018-04-07T23:25:37.259Z - success: console loaded
-2018-04-07T23:25:37.336Z - success: fb-instant-games loaded
-2018-04-07T23:25:37.346Z - success: hierarchy loaded
-2018-04-07T23:25:37.356Z - success: inspector loaded
-2018-04-07T23:25:37.359Z - success: keystore loaded
-2018-04-07T23:25:37.379Z - success: node-library loaded
-2018-04-07T23:25:37.383Z - success: package-asset loaded
-2018-04-07T23:25:37.386Z - success: preferences loaded
-2018-04-07T23:25:37.393Z - success: project-exporter loaded
-2018-04-07T23:25:37.429Z - success: project-importer loaded
-2018-04-07T23:25:37.435Z - success: project-settings loaded
-2018-04-07T23:25:37.443Z - success: ui-kit loaded
-2018-04-07T23:25:37.452Z - success: ui-grid loaded
-2018-04-07T23:25:37.461Z - success: scene loaded
-2018-04-07T23:25:37.464Z - success: sprite-editor loaded
-2018-04-07T23:25:37.472Z - success: store loaded
-2018-04-07T23:25:37.484Z - success: timeline loaded
-2018-04-07T23:25:37.485Z - normal: Loading builtin packages
-2018-04-07T23:25:37.492Z - success: asset-db-debugger loaded
-2018-04-07T23:25:37.494Z - success: color-picker loaded
-2018-04-07T23:25:37.501Z - success: package-manager loaded
-2018-04-07T23:25:37.511Z - success: sdkbox loaded
-2018-04-07T23:25:37.523Z - success: tester loaded
-2018-04-07T23:25:37.531Z - success: ui-kit-preview-extra loaded
-2018-04-07T23:25:37.537Z - success: ui-kit-preview loaded
-2018-04-07T23:25:37.543Z - success: ui-tree loaded
-2018-04-07T23:25:39.926Z - normal: Initializing project /Users/jinle/PaiJiuGame
-2018-04-07T23:25:39.930Z - normal: Loading packages
-2018-04-07T23:25:39.940Z - normal: Watching packages
-2018-04-07T23:25:39.961Z - normal: Run Application
-2018-04-07T23:25:42.396Z - success: preview server running at http://localhost:7456
-2018-04-07T23:25:56.066Z - normal: 1.9.0
-2018-04-07T23:26:07.392Z - warn: Script attached to "tdk_player" in scene "TDKRoomScene.fire" is missing or invalid. Detailed information:
-Node path: "Canvas/tdk_player"
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Script UUID: "98d9c5f0-b8a5-4adb-8780-013fa3eb354d"
-Class ID: "98d9cXwuKVK24eAAT+j6zVN"
-
-2018-04-07T23:26:07.402Z - warn: Script attached to "tdk_player" in scene "TDKRoomScene.fire" is missing or invalid. Detailed information:
-Node path: "Canvas/tdk_player"
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Script UUID: "98d9c5f0-b8a5-4adb-8780-013fa3eb354d"
-Class ID: "98d9cXwuKVK24eAAT+j6zVN"
-
-2018-04-07T23:26:07.406Z - warn: Script attached to "tdk_player" in scene "TDKRoomScene.fire" is missing or invalid. Detailed information:
-Node path: "Canvas/tdk_player"
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Script UUID: "98d9c5f0-b8a5-4adb-8780-013fa3eb354d"
-Class ID: "98d9cXwuKVK24eAAT+j6zVN"
-
-2018-04-07T23:26:07.412Z - warn: Script attached to "tdk_player" in scene "TDKRoomScene.fire" is missing or invalid. Detailed information:
-Node path: "Canvas/tdk_player"
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Script UUID: "98d9c5f0-b8a5-4adb-8780-013fa3eb354d"
-Class ID: "98d9cXwuKVK24eAAT+j6zVN"
-
-2018-04-07T23:26:07.418Z - warn: Script attached to "tdk_player" in scene "TDKRoomScene.fire" is missing or invalid. Detailed information:
-Node path: "Canvas/tdk_player"
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Script UUID: "98d9c5f0-b8a5-4adb-8780-013fa3eb354d"
-Class ID: "98d9cXwuKVK24eAAT+j6zVN"
-
-2018-04-07T23:26:07.419Z - warn: Script attached to "Canvas" in scene "TDKRoomScene.fire" is missing or invalid. Detailed information:
-Node path: "Canvas"
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Script UUID: "02a67001-59eb-457d-a873-e63dc431dca0"
-Class ID: "02a67ABWetFfahz5j3EMdyg"
-
-2018-04-07T23:26:08.141Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.143Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.143Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.150Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.151Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.155Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.156Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.159Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.160Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.161Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.162Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.166Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.168Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.170Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.171Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.172Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.172Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.173Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.174Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.175Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.175Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.176Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.177Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.177Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.179Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.179Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.182Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.183Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.188Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.188Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.189Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.189Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.190Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.190Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.191Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.192Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.192Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.193Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.193Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.193Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.194Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.194Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.194Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.195Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.195Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.195Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.196Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.196Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.201Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.202Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.203Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.203Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.205Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.205Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.206Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.207Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.207Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.208Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.209Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:26:08.210Z - warn: The Asset used in scene "TDKRoomScene.fire" is missing. Detailed information:
-Asset url: "db://assets/Scene/TDKRoomScene.fire"
-Missing uuid: "8c25b8cb-13a5-4ef4-9c77-7e53218ba63f"
-
-2018-04-07T23:33:34.788Z - warn: Script attached to "tdk_player" is missing or invalid. Detailed information:
-Node path: "Canvas/tdk_player"
-Script UUID: "98d9c5f0-b8a5-4adb-8780-013fa3eb354d"
-Class ID: "98d9cXwuKVK24eAAT+j6zVN"
-
-2018-04-07T23:33:34.796Z - warn: Script attached to "tdk_player" is missing or invalid. Detailed information:
-Node path: "Canvas/tdk_player"
-Script UUID: "98d9c5f0-b8a5-4adb-8780-013fa3eb354d"
-Class ID: "98d9cXwuKVK24eAAT+j6zVN"
-
-2018-04-07T23:33:34.797Z - warn: Script attached to "tdk_player" is missing or invalid. Detailed information:
-Node path: "Canvas/tdk_player"
-Script UUID: "98d9c5f0-b8a5-4adb-8780-013fa3eb354d"
-Class ID: "98d9cXwuKVK24eAAT+j6zVN"
-
-2018-04-07T23:33:34.797Z - warn: Script attached to "tdk_player" is missing or invalid. Detailed information:
-Node path: "Canvas/tdk_player"
-Script UUID: "98d9c5f0-b8a5-4adb-8780-013fa3eb354d"
-Class ID: "98d9cXwuKVK24eAAT+j6zVN"
-
-2018-04-07T23:33:34.800Z - warn: Script attached to "tdk_player" is missing or invalid. Detailed information:
-Node path: "Canvas/tdk_player"
-Script UUID: "98d9c5f0-b8a5-4adb-8780-013fa3eb354d"
-Class ID: "98d9cXwuKVK24eAAT+j6zVN"
-
-2018-04-07T23:33:34.800Z - warn: Script attached to "Canvas" is missing or invalid. Detailed information:
-Node path: "Canvas"
-Script UUID: "02a67001-59eb-457d-a873-e63dc431dca0"
-Class ID: "02a67ABWetFfahz5j3EMdyg"
-
-2018-04-07T23:33:34.815Z - warn: The Node referenced by component "cc.MissingScript" is invalid. Detailed information:
-Node path: "Canvas"
-
-2018-04-07T23:33:34.816Z - warn: The Node referenced by component "cc.MissingScript" is invalid. Detailed information:
-Node path: "Canvas"
-
-2018-04-07T23:33:34.817Z - warn: The Node referenced by component "cc.MissingScript" is invalid. Detailed information:
-Node path: "Canvas"
-
-2018-04-07T23:33:34.817Z - warn: The Node referenced by component "cc.MissingScript" is invalid. Detailed information:
-Node path: "Canvas"
-
-2018-04-07T23:35:49.045Z - warn: Script attached to "tdk_player" is missing or invalid. Detailed information:
-Node path: "Canvas/tdk_player"
-Script UUID: "98d9c5f0-b8a5-4adb-8780-013fa3eb354d"
-Class ID: "98d9cXwuKVK24eAAT+j6zVN"
-
-2018-04-07T23:35:49.052Z - warn: Script attached to "tdk_player" is missing or invalid. Detailed information:
-Node path: "Canvas/tdk_player"
-Script UUID: "98d9c5f0-b8a5-4adb-8780-013fa3eb354d"
-Class ID: "98d9cXwuKVK24eAAT+j6zVN"
-
-2018-04-07T23:35:49.053Z - warn: Script attached to "tdk_player" is missing or invalid. Detailed information:
-Node path: "Canvas/tdk_player"
-Script UUID: "98d9c5f0-b8a5-4adb-8780-013fa3eb354d"
-Class ID: "98d9cXwuKVK24eAAT+j6zVN"
-
-2018-04-07T23:35:49.056Z - warn: Script attached to "tdk_player" is missing or invalid. Detailed information:
-Node path: "Canvas/tdk_player"
-Script UUID: "98d9c5f0-b8a5-4adb-8780-013fa3eb354d"
-Class ID: "98d9cXwuKVK24eAAT+j6zVN"
-
-2018-04-07T23:35:49.058Z - warn: Script attached to "tdk_player" is missing or invalid. Detailed information:
-Node path: "Canvas/tdk_player"
-Script UUID: "98d9c5f0-b8a5-4adb-8780-013fa3eb354d"
-Class ID: "98d9cXwuKVK24eAAT+j6zVN"
-
-2018-04-07T23:35:49.059Z - warn: Script attached to "Canvas" is missing or invalid. Detailed information:
-Node path: "Canvas"
-Script UUID: "02a67001-59eb-457d-a873-e63dc431dca0"
-Class ID: "02a67ABWetFfahz5j3EMdyg"
-
-2018-04-07T23:35:49.076Z - warn: The Node referenced by component "cc.MissingScript" is invalid. Detailed information:
-Node path: "Canvas"
-
-2018-04-07T23:35:49.077Z - warn: The Node referenced by component "cc.MissingScript" is invalid. Detailed information:
-Node path: "Canvas"
-
-2018-04-07T23:35:49.077Z - warn: The Node referenced by component "cc.MissingScript" is invalid. Detailed information:
-Node path: "Canvas"
-
-2018-04-07T23:35:49.078Z - warn: The Node referenced by component "cc.MissingScript" is invalid. Detailed information:
-Node path: "Canvas"
-
-2018-04-07T23:38:20.373Z - warn: Script attached to "tdk_player" is missing or invalid. Detailed information:
-Node path: "Canvas/tdk_player"
-Script UUID: "98d9c5f0-b8a5-4adb-8780-013fa3eb354d"
-Class ID: "98d9cXwuKVK24eAAT+j6zVN"
-
-2018-04-07T23:38:20.379Z - warn: Script attached to "tdk_player" is missing or invalid. Detailed information:
-Node path: "Canvas/tdk_player"
-Script UUID: "98d9c5f0-b8a5-4adb-8780-013fa3eb354d"
-Class ID: "98d9cXwuKVK24eAAT+j6zVN"
-
-2018-04-07T23:38:20.382Z - warn: Script attached to "tdk_player" is missing or invalid. Detailed information:
-Node path: "Canvas/tdk_player"
-Script UUID: "98d9c5f0-b8a5-4adb-8780-013fa3eb354d"
-Class ID: "98d9cXwuKVK24eAAT+j6zVN"
-
-2018-04-07T23:38:20.387Z - warn: Script attached to "tdk_player" is missing or invalid. Detailed information:
-Node path: "Canvas/tdk_player"
-Script UUID: "98d9c5f0-b8a5-4adb-8780-013fa3eb354d"
-Class ID: "98d9cXwuKVK24eAAT+j6zVN"
-
-2018-04-07T23:38:20.388Z - warn: Script attached to "tdk_player" is missing or invalid. Detailed information:
-Node path: "Canvas/tdk_player"
-Script UUID: "98d9c5f0-b8a5-4adb-8780-013fa3eb354d"
-Class ID: "98d9cXwuKVK24eAAT+j6zVN"
-
-2018-04-07T23:38:20.390Z - warn: Script attached to "Canvas" is missing or invalid. Detailed information:
-Node path: "Canvas"
-Script UUID: "02a67001-59eb-457d-a873-e63dc431dca0"
-Class ID: "02a67ABWetFfahz5j3EMdyg"
-
-2018-04-07T23:38:20.407Z - warn: The Node referenced by component "cc.MissingScript" is invalid. Detailed information:
-Node path: "Canvas"
-
-2018-04-07T23:38:20.408Z - warn: The Node referenced by component "cc.MissingScript" is invalid. Detailed information:
-Node path: "Canvas"
-
-2018-04-07T23:38:20.408Z - warn: The Node referenced by component "cc.MissingScript" is invalid. Detailed information:
-Node path: "Canvas"
-
-2018-04-07T23:38:20.409Z - warn: The Node referenced by component "cc.MissingScript" is invalid. Detailed information:
-Node path: "Canvas"
-
-2018-04-07T23:39:34.620Z - warn: Script attached to "tdk_player" is missing or invalid. Detailed information:
-Node path: "Canvas/tdk_player"
-Script UUID: "98d9c5f0-b8a5-4adb-8780-013fa3eb354d"
-Class ID: "98d9cXwuKVK24eAAT+j6zVN"
-
-2018-04-07T23:39:34.626Z - warn: Script attached to "tdk_player" is missing or invalid. Detailed information:
-Node path: "Canvas/tdk_player"
-Script UUID: "98d9c5f0-b8a5-4adb-8780-013fa3eb354d"
-Class ID: "98d9cXwuKVK24eAAT+j6zVN"
-
-2018-04-07T23:39:34.627Z - warn: Script attached to "tdk_player" is missing or invalid. Detailed information:
-Node path: "Canvas/tdk_player"
-Script UUID: "98d9c5f0-b8a5-4adb-8780-013fa3eb354d"
-Class ID: "98d9cXwuKVK24eAAT+j6zVN"
-
-2018-04-07T23:39:34.629Z - warn: Script attached to "tdk_player" is missing or invalid. Detailed information:
-Node path: "Canvas/tdk_player"
-Script UUID: "98d9c5f0-b8a5-4adb-8780-013fa3eb354d"
-Class ID: "98d9cXwuKVK24eAAT+j6zVN"
-
-2018-04-07T23:40:12.347Z - warn: Script attached to "tdk_player" is missing or invalid. Detailed information:
-Node path: "Canvas/tdk_player"
-Script UUID: "98d9c5f0-b8a5-4adb-8780-013fa3eb354d"
-Class ID: "98d9cXwuKVK24eAAT+j6zVN"
-
-2018-04-07T23:40:12.349Z - warn: Script attached to "tdk_player" is missing or invalid. Detailed information:
-Node path: "Canvas/tdk_player"
-Script UUID: "98d9c5f0-b8a5-4adb-8780-013fa3eb354d"
-Class ID: "98d9cXwuKVK24eAAT+j6zVN"
-
-2018-04-07T23:40:12.351Z - warn: Script attached to "tdk_player" is missing or invalid. Detailed information:
-Node path: "Canvas/tdk_player"
-Script UUID: "98d9c5f0-b8a5-4adb-8780-013fa3eb354d"
-Class ID: "98d9cXwuKVK24eAAT+j6zVN"
-
-2018-04-07T23:45:33.031Z - warn: Script attached to "msage_scroll" in prefab "msage_scroll.prefab" is missing or invalid. Detailed information:
-Node path: "msage_scroll"
-Asset url: "db://assets/resources/prefab/msage_scroll.prefab"
-Script UUID: "b5f0ae13-a20d-4b59-8392-24b226b00935"
-Class ID: "b5f0a4Tog1LWYOSJLImsAk1"
-
-2018-04-07T23:45:33.069Z - warn: The Asset used in prefab "msage_scroll.prefab" is missing. Detailed information:
-Asset url: "db://assets/resources/prefab/msage_scroll.prefab"
-Missing uuid: "30121f98-621d-4bcf-96b8-29eba6ed9b86"
-
-2018-04-07T23:45:33.070Z - warn: The Asset used in prefab "msage_scroll.prefab" is missing. Detailed information:
-Asset url: "db://assets/resources/prefab/msage_scroll.prefab"
-Missing uuid: "30121f98-621d-4bcf-96b8-29eba6ed9b86"
-
-2018-04-07T23:45:33.071Z - warn: The Asset used in prefab "msage_scroll.prefab" is missing. Detailed information:
-Asset url: "db://assets/resources/prefab/msage_scroll.prefab"
-Missing uuid: "30121f98-621d-4bcf-96b8-29eba6ed9b86"
-
-2018-04-07T23:45:33.072Z - warn: The Asset used in prefab "msage_scroll.prefab" is missing. Detailed information:
-Asset url: "db://assets/resources/prefab/msage_scroll.prefab"
-Missing uuid: "30121f98-621d-4bcf-96b8-29eba6ed9b86"
-
-2018-04-07T23:45:33.077Z - warn: The Asset used in prefab "msage_scroll.prefab" is missing. Detailed information:
-Asset url: "db://assets/resources/prefab/msage_scroll.prefab"
-Missing uuid: "30121f98-621d-4bcf-96b8-29eba6ed9b86"
-
-2018-04-07T23:46:18.468Z - warn: Script attached to "msage_scroll" is missing or invalid. Detailed information:
-Node path: "Canvas/msage_scroll"
-Script UUID: "b5f0ae13-a20d-4b59-8392-24b226b00935"
-Class ID: "b5f0a4Tog1LWYOSJLImsAk1"
-
-2018-04-07T23:46:38.077Z - warn: Script attached to "msage_scroll" is missing or invalid. Detailed information:
-Node path: "Canvas/msage_scroll"
-Script UUID: "b5f0ae13-a20d-4b59-8392-24b226b00935"
-Class ID: "b5f0a4Tog1LWYOSJLImsAk1"
-
-2018-04-07T23:47:33.867Z - warn: Script attached to "msage_scroll" is missing or invalid. Detailed information:
-Node path: "Canvas/msage_scroll"
-Script UUID: "b5f0ae13-a20d-4b59-8392-24b226b00935"
-Class ID: "b5f0a4Tog1LWYOSJLImsAk1"
-
-2018-04-07T23:56:29.944Z - warn: Script attached to "msage_scroll" in prefab "msage_scroll.prefab" is missing or invalid. Detailed information:
-Node path: "msage_scroll"
-Asset url: "db://assets/resources/prefab/msage_scroll.prefab"
-Script UUID: "b5f0ae13-a20d-4b59-8392-24b226b00935"
-Class ID: "b5f0a4Tog1LWYOSJLImsAk1"
-
-2018-04-07T23:56:29.980Z - warn: The Asset used in prefab "msage_scroll.prefab" is missing. Detailed information:
-Asset url: "db://assets/resources/prefab/msage_scroll.prefab"
-Missing uuid: "30121f98-621d-4bcf-96b8-29eba6ed9b86"
-
-2018-04-07T23:56:29.982Z - warn: The Asset used in prefab "msage_scroll.prefab" is missing. Detailed information:
-Asset url: "db://assets/resources/prefab/msage_scroll.prefab"
-Missing uuid: "30121f98-621d-4bcf-96b8-29eba6ed9b86"
-
-2018-04-07T23:56:29.982Z - warn: The Asset used in prefab "msage_scroll.prefab" is missing. Detailed information:
-Asset url: "db://assets/resources/prefab/msage_scroll.prefab"
-Missing uuid: "30121f98-621d-4bcf-96b8-29eba6ed9b86"
-
-2018-04-07T23:56:29.984Z - warn: The Asset used in prefab "msage_scroll.prefab" is missing. Detailed information:
-Asset url: "db://assets/resources/prefab/msage_scroll.prefab"
-Missing uuid: "30121f98-621d-4bcf-96b8-29eba6ed9b86"
-
-2018-04-07T23:56:29.984Z - warn: The Asset used in prefab "msage_scroll.prefab" is missing. Detailed information:
-Asset url: "db://assets/resources/prefab/msage_scroll.prefab"
-Missing uuid: "30121f98-621d-4bcf-96b8-29eba6ed9b86"
-
-2018-04-09T00:48:59.412Z - warn: Error: ipc timeout. message: scene:query-node, session: scene@renderer:81659
-2018-04-09T00:48:59.418Z - warn: Error: ipc timeout. message: scene:query-node, session: scene@renderer:81663
-2018-04-09T00:49:18.488Z - warn: Error: ipc timeout. message: scene:query-node, session: scene@renderer:81793
-2018-04-09T00:49:18.489Z - warn: Error: ipc timeout. message: scene:query-node, session: scene@renderer:81796
-2018-04-09T01:12:04.483Z - warn: Error: ipc timeout. message: scene:query-node, session: scene@renderer:106743
-2018-04-09T01:12:04.488Z - warn: Error: ipc timeout. message: scene:query-node, session: scene@renderer:106747
-2018-04-09T01:12:04.489Z - warn: Error: ipc timeout. message: scene:query-node, session: scene@renderer:106749
-2018-04-09T01:12:04.490Z - warn: Error: ipc timeout. message: scene:query-node, session: scene@renderer:106751
-2018-04-09T01:12:04.490Z - warn: Error: ipc timeout. message: scene:query-node, session: scene@renderer:106753
-2018-04-09T01:12:04.491Z - warn: Error: ipc timeout. message: scene:query-node, session: scene@renderer:106755
-2018-04-09T01:12:04.492Z - warn: Error: ipc timeout. message: scene:query-node, session: scene@renderer:106757
+2018-06-03T05:01:31.787Z - normal: Load ~/.CocosCreator/settings.json
+2018-06-03T05:01:31.792Z - normal: checking language setting...
+2018-06-03T05:01:31.793Z - normal: Language: zh
+2018-06-03T05:01:33.999Z - success: protocol editor-framework registered
+2018-06-03T05:01:33.999Z - success: protocol app registered
+2018-06-03T05:01:34.000Z - success: protocol theme registered
+2018-06-03T05:01:34.000Z - success: protocol packages registered
+2018-06-03T05:01:34.001Z - success: protocol unpack registerred
+2018-06-03T05:01:34.001Z - success: protocol disable-commonjs registerred
+2018-06-03T05:01:34.174Z - normal: connected!
+2018-06-03T05:01:34.180Z - normal: Check project F:\GitHub\xx_cc_g
+2018-06-03T05:01:34.188Z - normal: Initializing Cocos2d
+2018-06-03T05:01:34.512Z - normal: Initializing Asset Database
+2018-06-03T05:01:34.573Z - success: protocol uuid registerred
+2018-06-03T05:01:34.573Z - success: protocol db registerred
+2018-06-03T05:01:34.573Z - success: protocol thumbnail registerred
+2018-06-03T05:01:34.574Z - normal: Loading editor/builtin packages
+2018-06-03T05:01:34.603Z - success: anysdk loaded
+2018-06-03T05:01:34.778Z - success: assets loaded
+2018-06-03T05:01:34.781Z - success: builder loaded
+2018-06-03T05:01:34.784Z - success: cocos-analytics loaded
+2018-06-03T05:01:34.788Z - success: console loaded
+2018-06-03T05:01:34.846Z - success: fb-instant-games loaded
+2018-06-03T05:01:34.854Z - success: hierarchy loaded
+2018-06-03T05:01:34.858Z - success: inspector loaded
+2018-06-03T05:01:34.859Z - success: keystore loaded
+2018-06-03T05:01:34.862Z - success: node-library loaded
+2018-06-03T05:01:34.865Z - success: package-asset loaded
+2018-06-03T05:01:34.867Z - success: preferences loaded
+2018-06-03T05:01:34.869Z - success: project-exporter loaded
+2018-06-03T05:01:34.892Z - success: project-importer loaded
+2018-06-03T05:01:34.895Z - success: project-settings loaded
+2018-06-03T05:01:34.897Z - success: ui-kit loaded
+2018-06-03T05:01:34.899Z - success: ui-grid loaded
+2018-06-03T05:01:34.903Z - success: scene loaded
+2018-06-03T05:01:34.905Z - success: sprite-editor loaded
+2018-06-03T05:01:34.909Z - success: store loaded
+2018-06-03T05:01:34.914Z - success: timeline loaded
+2018-06-03T05:01:34.915Z - normal: Loading builtin packages
+2018-06-03T05:01:34.918Z - success: asset-db-debugger loaded
+2018-06-03T05:01:34.919Z - success: code-editor loaded
+2018-06-03T05:01:34.920Z - success: color-picker loaded
+2018-06-03T05:01:34.923Z - success: package-manager loaded
+2018-06-03T05:01:34.929Z - success: sdkbox loaded
+2018-06-03T05:01:34.933Z - success: tester loaded
+2018-06-03T05:01:34.934Z - success: ui-kit-preview-extra loaded
+2018-06-03T05:01:34.936Z - success: ui-kit-preview loaded
+2018-06-03T05:01:34.938Z - success: ui-tree loaded
+2018-06-03T05:01:36.611Z - normal: Initializing project F:\GitHub\xx_cc_g
+2018-06-03T05:01:36.614Z - normal: Loading packages
+2018-06-03T05:01:36.624Z - normal: Watching packages
+2018-06-03T05:01:36.657Z - normal: Run Application
+2018-06-03T05:01:38.675Z - success: preview server running at http://localhost:7456
+2018-06-03T05:01:46.008Z - normal: 1.9.1
+2018-06-03T05:02:04.109Z - normal: Start building with options : {
+  "androidStudio": true,
+  "apiLevel": "android-17",
+  "appABIs": [
+    "armeabi-v7a"
+  ],
+  "appKey": "",
+  "appSecret": "",
+  "buildPath": "F:\\GitHub\\xx_cc_g\\build",
+  "debug": true,
+  "dest": "F:\\GitHub\\xx_cc_g\\build\\jsb-link",
+  "encryptJs": true,
+  "excludeScenes": [],
+  "excludedModules": [],
+  "fb-instant-games": {},
+  "includeAnySDK": false,
+  "includeEruda": false,
+  "includeSDKBox": false,
+  "inlineSpriteFrames": true,
+  "inlineSpriteFrames_native": true,
+  "jailbreakPlatform": false,
+  "md5Cache": false,
+  "mergeStartScene": false,
+  "oauthLoginServer": "",
+  "optimizeHotUpdate": false,
+  "orientation": {
+    "landscapeLeft": true,
+    "landscapeRight": true,
+    "portrait": false,
+    "upsideDown": false
+  },
+  "packageName": "org.cocos2d.enjoypuke",
+  "platform": "android",
+  "previewHeight": "720",
+  "previewWidth": "1280",
+  "privateKey": "",
+  "qqplay": {
+    "REMOTE_SERVER_ROOT": "",
+    "orientation": "portrait"
+  },
+  "renderMode": "0",
+  "scenes": [
+    "0d8b73b6-1b8d-47c9-ab99-22752d675c83",
+    "7d94239f-98c7-42cc-a7af-59bab3881a2d",
+    "b5b75a57-d3be-476a-9447-e69dd1db4095",
+    "c114e2e7-b89c-4411-860c-7a2b64c3613f",
+    "1d29a30f-e1e3-4a34-85ca-f8f352c4f21e",
+    "0bc4e533-9b98-40ce-8957-b40efcb6bd33",
+    "5bdf5669-1f13-4694-8843-274846607cea",
+    "737f052d-9423-4a1a-bc31-506653f63d0b",
+    "a31bfca8-4f35-4bb8-94e0-4d73eff8c52e",
+    "79285c57-0779-4de4-bac9-b95516b4c8ec",
+    "f63d171f-a760-4858-a8f4-4a0fa4842a38",
+    "7ed4b2af-2b10-4bc5-a17c-c7b1e41b6c14",
+    "1821f834-75dc-42fd-981a-1f85c5c840c8",
+    "8646bb58-6795-4933-80ff-3ccad9fd2d2c",
+    "5adfb9a5-2ec3-422d-9e14-88097f7f4747",
+    "e11fb921-f8dc-40aa-a1cd-04e079367b05",
+    "3f625073-da56-4cb6-a861-35cd50f06bee",
+    "2688c90a-b850-498d-9b12-58f1e2221ebb",
+    "1b608e27-f6be-458f-8410-f0a109403710",
+    "51059387-9eac-43f3-952d-e56bf29d5074",
+    "366f1e85-1dea-42cd-8c34-397e75a61fc5",
+    "64905a0e-3e1b-4d76-955a-9ab1c5b773fe",
+    "33ab749e-1206-4f71-af8c-08ae989062ef",
+    "302eba62-6eca-433e-94da-876e0f139553",
+    "b9f5c213-751a-4254-ac8e-f48f7913e6ea",
+    "ab077a34-4759-446b-acdb-834b43b8534a",
+    "88a4297b-e327-4b1e-969b-41343a30c304"
+  ],
+  "sourceMaps": false,
+  "startScene": "0d8b73b6-1b8d-47c9-ab99-22752d675c83",
+  "template": "link",
+  "title": "hello_world",
+  "useDebugKeystore": true,
+  "vsVersion": "auto",
+  "webOrientation": "auto",
+  "wechatgame": {
+    "REMOTE_SERVER_ROOT": "",
+    "appid": "wx6ac3f5090a6b99c5",
+    "isSubdomain": false,
+    "orientation": "portrait",
+    "subContext": ""
+  },
+  "xxteaKey": "2cd67b5a-fd68-4a",
+  "zipCompressJs": true,
+  "project": "F:\\GitHub\\xx_cc_g",
+  "projectName": "hello_world",
+  "debugBuildWorker": false
+}
+2018-06-03T05:02:04.111Z - normal: Building F:\GitHub\xx_cc_g
+2018-06-03T05:02:04.111Z - normal: Destination F:\GitHub\xx_cc_g\build\jsb-link
+2018-06-03T05:02:04.553Z - normal: Delete F:\GitHub\xx_cc_g\build\jsb-link\res/**/*,F:\GitHub\xx_cc_g\build\jsb-link\src/*/
+2018-06-03T05:02:07.073Z - normal: Creating native cocos project to  F:\GitHub\xx_cc_g\build\jsb-link
+2018-06-03T05:02:29.848Z - normal: Compiled project javascript file successfully
+2018-06-03T05:02:29.849Z - normal: Start building assets
+2018-06-03T05:02:29.849Z - normal: Start spawn build-worker
+2018-06-03T05:02:30.926Z - normal: Finish spawn build-worker
+2018-06-03T05:02:30.926Z - normal: Start init build-worker
+2018-06-03T05:02:34.119Z - normal: 1.9.1
+2018-06-03T05:02:34.363Z - normal: Finish init build-worker
+2018-06-03T05:02:34.363Z - normal: Start build-assets in worker
+2018-06-03T05:02:34.527Z - info: Enable "内联所有 SpriteFrame" in native platform will increase the package size used in hot update.
+2018-06-03T05:02:36.497Z - normal: Finish build-assets in worker
+2018-06-03T05:02:36.509Z - normal: Finish building assets
+2018-06-03T05:02:36.721Z - normal: Start building raw assets
+2018-06-03T05:02:36.722Z - normal: Start building plugin scripts
+2018-06-03T05:02:36.755Z - normal: Finish building plugin scripts
+2018-06-03T05:02:37.234Z - normal: Finish building raw assets
+2018-06-03T05:02:37.249Z - normal: Generating main.js from E:\CocosCreator\resources\static\build-templates\shares\main.js
+2018-06-03T05:02:37.311Z - normal: Built to "F:\GitHub\xx_cc_g\build\jsb-link" successfully
+2018-06-03T05:31:34.230Z - normal: Start building with options : {
+  "androidStudio": true,
+  "apiLevel": "android-21",
+  "appABIs": [
+    "armeabi-v7a"
+  ],
+  "appKey": "",
+  "appSecret": "",
+  "buildPath": "F:\\GitHub\\xx_cc_g\\build",
+  "debug": true,
+  "dest": "F:\\GitHub\\xx_cc_g\\build\\jsb-link",
+  "encryptJs": true,
+  "excludeScenes": [],
+  "excludedModules": [],
+  "fb-instant-games": {},
+  "includeAnySDK": false,
+  "includeEruda": false,
+  "includeSDKBox": false,
+  "inlineSpriteFrames": true,
+  "inlineSpriteFrames_native": true,
+  "jailbreakPlatform": false,
+  "md5Cache": false,
+  "mergeStartScene": false,
+  "oauthLoginServer": "",
+  "optimizeHotUpdate": false,
+  "orientation": {
+    "landscapeLeft": true,
+    "landscapeRight": true,
+    "portrait": false,
+    "upsideDown": false
+  },
+  "packageName": "org.cocos2d.enjoypuke",
+  "platform": "android",
+  "previewHeight": "720",
+  "previewWidth": "1280",
+  "privateKey": "",
+  "qqplay": {
+    "REMOTE_SERVER_ROOT": "",
+    "orientation": "portrait"
+  },
+  "renderMode": "0",
+  "scenes": [
+    "0d8b73b6-1b8d-47c9-ab99-22752d675c83",
+    "7d94239f-98c7-42cc-a7af-59bab3881a2d",
+    "b5b75a57-d3be-476a-9447-e69dd1db4095",
+    "c114e2e7-b89c-4411-860c-7a2b64c3613f",
+    "1d29a30f-e1e3-4a34-85ca-f8f352c4f21e",
+    "0bc4e533-9b98-40ce-8957-b40efcb6bd33",
+    "5bdf5669-1f13-4694-8843-274846607cea",
+    "737f052d-9423-4a1a-bc31-506653f63d0b",
+    "a31bfca8-4f35-4bb8-94e0-4d73eff8c52e",
+    "79285c57-0779-4de4-bac9-b95516b4c8ec",
+    "f63d171f-a760-4858-a8f4-4a0fa4842a38",
+    "7ed4b2af-2b10-4bc5-a17c-c7b1e41b6c14",
+    "1821f834-75dc-42fd-981a-1f85c5c840c8",
+    "8646bb58-6795-4933-80ff-3ccad9fd2d2c",
+    "5adfb9a5-2ec3-422d-9e14-88097f7f4747",
+    "e11fb921-f8dc-40aa-a1cd-04e079367b05",
+    "3f625073-da56-4cb6-a861-35cd50f06bee",
+    "2688c90a-b850-498d-9b12-58f1e2221ebb",
+    "1b608e27-f6be-458f-8410-f0a109403710",
+    "51059387-9eac-43f3-952d-e56bf29d5074",
+    "366f1e85-1dea-42cd-8c34-397e75a61fc5",
+    "64905a0e-3e1b-4d76-955a-9ab1c5b773fe",
+    "33ab749e-1206-4f71-af8c-08ae989062ef",
+    "302eba62-6eca-433e-94da-876e0f139553",
+    "b9f5c213-751a-4254-ac8e-f48f7913e6ea",
+    "ab077a34-4759-446b-acdb-834b43b8534a",
+    "88a4297b-e327-4b1e-969b-41343a30c304"
+  ],
+  "sourceMaps": false,
+  "startScene": "0d8b73b6-1b8d-47c9-ab99-22752d675c83",
+  "template": "link",
+  "title": "hello_world",
+  "useDebugKeystore": true,
+  "vsVersion": "auto",
+  "webOrientation": "auto",
+  "wechatgame": {
+    "REMOTE_SERVER_ROOT": "",
+    "appid": "wx6ac3f5090a6b99c5",
+    "isSubdomain": false,
+    "orientation": "portrait",
+    "subContext": ""
+  },
+  "xxteaKey": "2cd67b5a-fd68-4a",
+  "zipCompressJs": true,
+  "project": "F:\\GitHub\\xx_cc_g",
+  "projectName": "hello_world",
+  "debugBuildWorker": false
+}
+2018-06-03T05:31:34.246Z - normal: Building F:\GitHub\xx_cc_g
+2018-06-03T05:31:34.246Z - normal: Destination F:\GitHub\xx_cc_g\build\jsb-link
+2018-06-03T05:31:34.248Z - normal: Delete F:\GitHub\xx_cc_g\build\jsb-link\res/**/*,F:\GitHub\xx_cc_g\build\jsb-link\src/*/
+2018-06-03T05:31:40.955Z - normal: Compiled project javascript file successfully
+2018-06-03T05:31:40.956Z - normal: Start building assets
+2018-06-03T05:31:40.957Z - normal: Start spawn build-worker
+2018-06-03T05:31:41.977Z - normal: Finish spawn build-worker
+2018-06-03T05:31:41.978Z - normal: Start init build-worker
+2018-06-03T05:31:45.112Z - normal: 1.9.1
+2018-06-03T05:31:45.347Z - normal: Finish init build-worker
+2018-06-03T05:31:45.347Z - normal: Start build-assets in worker
+2018-06-03T05:31:45.492Z - info: Enable "内联所有 SpriteFrame" in native platform will increase the package size used in hot update.
+2018-06-03T05:31:47.779Z - normal: Finish build-assets in worker
+2018-06-03T05:31:47.788Z - normal: Finish building assets
+2018-06-03T05:31:47.976Z - normal: Start building raw assets
+2018-06-03T05:31:47.977Z - normal: Start building plugin scripts
+2018-06-03T05:31:48.009Z - normal: Finish building plugin scripts
+2018-06-03T05:31:48.702Z - normal: Finish building raw assets
+2018-06-03T05:31:48.713Z - normal: Generating main.js from E:\CocosCreator\resources\static\build-templates\shares\main.js
+2018-06-03T05:31:48.757Z - normal: Built to "F:\GitHub\xx_cc_g\build\jsb-link" successfully
+2018-06-03T05:49:22.241Z - normal: Start to compile native project. Please wait...
+2018-06-03T05:49:22.245Z - normal: The log file path [ C:\Users\Administrator\.CocosCreator\logs\native.log ]
+2018-06-03T05:52:36.962Z - normal: Start to run project
+2018-06-03T05:52:38.194Z - normal: Start to run project. Please wait...
+2018-06-03T05:52:38.194Z - normal: The log file path [ C:\Users\Administrator\.CocosCreator\logs\native.log ]
+2018-06-03T05:54:19.181Z - failed: Error: Failed to run project. The log file path [ C:\Users\Administrator\.CocosCreator\logs\native.log ]
+    at ChildProcess.handleChildProcess (E:\CocosCreator\resources\app.asar\editor\core\native-utils.js:1:21645)
+    at ChildProcess.e.on (E:\CocosCreator\resources\app.asar\editor\core\native-utils.js:1:7685)
+    at emitTwo (events.js:106:13)
+    at ChildProcess.emit (events.js:194:7)
+    at maybeClose (internal/child_process.js:899:16)
+    at Process.ChildProcess._handle.onexit (internal/child_process.js:226:5)
+2018-06-03T05:54:21.014Z - failed: Error: Compile failed. The log file path [ C:\Users\Administrator\.CocosCreator\logs\native.log ]
+    at ChildProcess.handleChildProcess (E:\CocosCreator\resources\app.asar\editor\core\native-utils.js:1:20297)
+    at ChildProcess.e.on (E:\CocosCreator\resources\app.asar\editor\core\native-utils.js:1:7685)
+    at emitTwo (events.js:106:13)
+    at ChildProcess.emit (events.js:194:7)
+    at maybeClose (internal/child_process.js:899:16)
+    at Process.ChildProcess._handle.onexit (internal/child_process.js:226:5)
+2018-06-03T06:01:01.514Z - normal: Start building with options : {
+  "androidStudio": true,
+  "apiLevel": "android-21",
+  "appABIs": [
+    "armeabi-v7a"
+  ],
+  "appKey": "",
+  "appSecret": "",
+  "buildPath": "F:\\GitHub\\xx_cc_g\\build",
+  "debug": true,
+  "dest": "F:\\GitHub\\xx_cc_g\\build\\jsb-link",
+  "encryptJs": true,
+  "excludeScenes": [],
+  "excludedModules": [],
+  "fb-instant-games": {},
+  "includeAnySDK": false,
+  "includeEruda": false,
+  "includeSDKBox": false,
+  "inlineSpriteFrames": true,
+  "inlineSpriteFrames_native": true,
+  "jailbreakPlatform": false,
+  "md5Cache": false,
+  "mergeStartScene": false,
+  "oauthLoginServer": "",
+  "optimizeHotUpdate": false,
+  "orientation": {
+    "landscapeLeft": true,
+    "landscapeRight": true,
+    "portrait": false,
+    "upsideDown": false
+  },
+  "packageName": "org.cocos2d.enjoypuke",
+  "platform": "android",
+  "previewHeight": "720",
+  "previewWidth": "1280",
+  "privateKey": "",
+  "qqplay": {
+    "REMOTE_SERVER_ROOT": "",
+    "orientation": "portrait"
+  },
+  "renderMode": "0",
+  "scenes": [
+    "0d8b73b6-1b8d-47c9-ab99-22752d675c83",
+    "7d94239f-98c7-42cc-a7af-59bab3881a2d",
+    "b5b75a57-d3be-476a-9447-e69dd1db4095",
+    "c114e2e7-b89c-4411-860c-7a2b64c3613f",
+    "1d29a30f-e1e3-4a34-85ca-f8f352c4f21e",
+    "0bc4e533-9b98-40ce-8957-b40efcb6bd33",
+    "5bdf5669-1f13-4694-8843-274846607cea",
+    "737f052d-9423-4a1a-bc31-506653f63d0b",
+    "a31bfca8-4f35-4bb8-94e0-4d73eff8c52e",
+    "79285c57-0779-4de4-bac9-b95516b4c8ec",
+    "f63d171f-a760-4858-a8f4-4a0fa4842a38",
+    "7ed4b2af-2b10-4bc5-a17c-c7b1e41b6c14",
+    "1821f834-75dc-42fd-981a-1f85c5c840c8",
+    "8646bb58-6795-4933-80ff-3ccad9fd2d2c",
+    "5adfb9a5-2ec3-422d-9e14-88097f7f4747",
+    "e11fb921-f8dc-40aa-a1cd-04e079367b05",
+    "3f625073-da56-4cb6-a861-35cd50f06bee",
+    "2688c90a-b850-498d-9b12-58f1e2221ebb",
+    "1b608e27-f6be-458f-8410-f0a109403710",
+    "51059387-9eac-43f3-952d-e56bf29d5074",
+    "366f1e85-1dea-42cd-8c34-397e75a61fc5",
+    "64905a0e-3e1b-4d76-955a-9ab1c5b773fe",
+    "33ab749e-1206-4f71-af8c-08ae989062ef",
+    "302eba62-6eca-433e-94da-876e0f139553",
+    "b9f5c213-751a-4254-ac8e-f48f7913e6ea",
+    "ab077a34-4759-446b-acdb-834b43b8534a",
+    "88a4297b-e327-4b1e-969b-41343a30c304"
+  ],
+  "sourceMaps": false,
+  "startScene": "0d8b73b6-1b8d-47c9-ab99-22752d675c83",
+  "template": "link",
+  "title": "hello_world",
+  "useDebugKeystore": true,
+  "vsVersion": "auto",
+  "webOrientation": "auto",
+  "wechatgame": {
+    "REMOTE_SERVER_ROOT": "",
+    "appid": "wx6ac3f5090a6b99c5",
+    "isSubdomain": false,
+    "orientation": "portrait",
+    "subContext": ""
+  },
+  "xxteaKey": "2cd67b5a-fd68-4a",
+  "zipCompressJs": true,
+  "project": "F:\\GitHub\\xx_cc_g",
+  "projectName": "hello_world",
+  "debugBuildWorker": false
+}
+2018-06-03T06:01:01.529Z - normal: Building F:\GitHub\xx_cc_g
+2018-06-03T06:01:01.529Z - normal: Destination F:\GitHub\xx_cc_g\build\jsb-link
+2018-06-03T06:01:01.533Z - normal: Delete F:\GitHub\xx_cc_g\build\jsb-link\res/**/*,F:\GitHub\xx_cc_g\build\jsb-link\src/*/
+2018-06-03T06:01:08.228Z - normal: Compiled project javascript file successfully
+2018-06-03T06:01:08.228Z - normal: Start building assets
+2018-06-03T06:01:08.229Z - normal: Start spawn build-worker
+2018-06-03T06:01:09.258Z - normal: Finish spawn build-worker
+2018-06-03T06:01:09.258Z - normal: Start init build-worker
+2018-06-03T06:01:12.489Z - normal: 1.9.1
+2018-06-03T06:01:12.708Z - normal: Finish init build-worker
+2018-06-03T06:01:12.708Z - normal: Start build-assets in worker
+2018-06-03T06:01:12.858Z - info: Enable "内联所有 SpriteFrame" in native platform will increase the package size used in hot update.
+2018-06-03T06:01:15.437Z - normal: Finish build-assets in worker
+2018-06-03T06:01:15.444Z - normal: Finish building assets
+2018-06-03T06:01:15.642Z - normal: Start building raw assets
+2018-06-03T06:01:15.643Z - normal: Start building plugin scripts
+2018-06-03T06:01:15.681Z - normal: Finish building plugin scripts
+2018-06-03T06:01:16.713Z - normal: Finish building raw assets
+2018-06-03T06:01:16.723Z - normal: Generating main.js from E:\CocosCreator\resources\static\build-templates\shares\main.js
+2018-06-03T06:01:16.765Z - normal: Built to "F:\GitHub\xx_cc_g\build\jsb-link" successfully
+2018-06-03T06:01:19.770Z - normal: Start to compile native project. Please wait...
+2018-06-03T06:01:19.770Z - normal: The log file path [ C:\Users\Administrator\.CocosCreator\logs\native.log ]
+2018-06-03T06:02:30.461Z - normal: Compile native project successfully.
+2018-06-03T06:02:43.546Z - normal: Start to run project
+2018-06-03T06:02:44.821Z - normal: Start to run project. Please wait...
+2018-06-03T06:02:44.822Z - normal: The log file path [ C:\Users\Administrator\.CocosCreator\logs\native.log ]
+2018-06-03T09:19:48.195Z - warn: [db-task][sync-changes] Backup unused meta file: db://assets/Texture/login/xieyi_text_01.png.meta
+2018-06-03T09:19:48.225Z - warn: [db-task][sync-changes] Backup unused meta file: db://assets/Texture/login/xieyi_text_02.png.meta
+2018-06-03T09:19:48.253Z - warn: [db-task][sync-changes] Backup unused meta file: db://assets/Texture/login/xieyi_text_03.png.meta
+2018-06-03T09:19:48.279Z - warn: [db-task][sync-changes] Backup unused meta file: db://assets/Texture/login/xieyi_text_04.png.meta
+2018-06-03T09:19:48.301Z - warn: [db-task][sync-changes] Backup unused meta file: db://assets/Texture/login/xieyi_text_05.png.meta
+2018-06-03T09:19:48.328Z - warn: [db-task][sync-changes] Backup unused meta file: db://assets/Texture/login/xieyi_text_06.png.meta
+2018-06-03T09:19:48.350Z - warn: [db-task][sync-changes] Backup unused meta file: db://assets/Texture/login/xieyi_text_07.png.meta
+2018-06-03T09:19:48.374Z - warn: [db-task][sync-changes] Backup unused meta file: db://assets/Texture/login/xieyi_text_08.png.meta
+2018-06-03T09:19:48.396Z - warn: [db-task][sync-changes] Backup unused meta file: db://assets/Texture/login/xieyi_text_09.png.meta
+2018-06-03T09:19:48.420Z - warn: [db-task][sync-changes] Backup unused meta file: db://assets/Texture/login/xieyi_text_10.png.meta
+2018-06-03T09:19:48.443Z - warn: [db-task][sync-changes] Backup unused meta file: db://assets/Texture/login/xieyi_text_11.png.meta
+2018-06-03T09:19:48.465Z - warn: [db-task][sync-changes] Backup unused meta file: db://assets/Texture/login/xieyi_text_12.png.meta
+2018-06-03T09:19:48.491Z - warn: [db-task][sync-changes] Backup unused meta file: db://assets/Texture/login/xieyi_text_13.png.meta
+2018-06-03T09:19:48.514Z - warn: [db-task][sync-changes] Backup unused meta file: db://assets/Texture/login/xieyi_text_14.png.meta
+2018-06-03T09:19:48.538Z - warn: [db-task][sync-changes] Backup unused meta file: db://assets/Texture/login/xieyi_text_15.png.meta
+2018-06-03T09:19:48.561Z - warn: [db-task][sync-changes] Backup unused meta file: db://assets/Texture/login/xieyi_text_16.png.meta
+2018-06-03T09:19:48.586Z - warn: [db-task][sync-changes] Backup unused meta file: db://assets/Texture/login/xieyi_text_17.png.meta
+2018-06-03T09:19:48.609Z - warn: [db-task][sync-changes] Backup unused meta file: db://assets/Texture/login/xieyi_text_18.png.meta
+2018-06-03T09:19:48.633Z - warn: [db-task][sync-changes] Backup unused meta file: db://assets/Texture/login/xieyi_text_19.png.meta
+2018-06-03T09:19:48.655Z - warn: [db-task][sync-changes] Backup unused meta file: db://assets/Texture/login/xieyi_text_20.png.meta
+2018-06-03T09:20:11.403Z - warn: [db-task][sync-changes] Backup unused meta file: db://assets/Texture/login/xieyi_text.png.meta
+2018-06-03T09:21:51.949Z - warn: [db-task][sync-changes] Backup unused meta file: db://assets/resources/xieyi_png/xieyi_text_01.png.meta
+2018-06-03T09:21:51.987Z - warn: [db-task][sync-changes] Backup unused meta file: db://assets/resources/xieyi_png/xieyi_text_02.png.meta
+2018-06-03T09:21:52.010Z - warn: [db-task][sync-changes] Backup unused meta file: db://assets/resources/xieyi_png/xieyi_text_03.png.meta
+2018-06-03T09:21:52.036Z - warn: [db-task][sync-changes] Backup unused meta file: db://assets/resources/xieyi_png/xieyi_text_04.png.meta
+2018-06-03T09:21:52.059Z - warn: [db-task][sync-changes] Backup unused meta file: db://assets/resources/xieyi_png/xieyi_text_05.png.meta
+2018-06-03T09:21:52.084Z - warn: [db-task][sync-changes] Backup unused meta file: db://assets/resources/xieyi_png/xieyi_text_06.png.meta
+2018-06-03T09:21:52.106Z - warn: [db-task][sync-changes] Backup unused meta file: db://assets/resources/xieyi_png/xieyi_text_07.png.meta
+2018-06-03T09:21:52.131Z - warn: [db-task][sync-changes] Backup unused meta file: db://assets/resources/xieyi_png/xieyi_text_08.png.meta
+2018-06-03T09:21:52.155Z - warn: [db-task][sync-changes] Backup unused meta file: db://assets/resources/xieyi_png/xieyi_text_09.png.meta
+2018-06-03T09:21:54.765Z - warn: The Asset used by component "cc.Sprite" in prefab "PopXieyiScene.prefab" is missing. Detailed information:
+Node path: "PopXieyiScene/bg_sprite/xieyi_bg/scroll_view/view/content/text_sprite"
+Asset url: "db://assets/resources/prefab/PopXieyiScene.prefab"
+Missing uuid: "2d446c98-d606-49fa-934e-f184eb395b0a"
+
+2018-06-03T09:21:54.768Z - warn: The Asset used by component "cc.Sprite" is missing. Detailed information:
+Node path: "text_sprite"
+Missing uuid: "fb40fed8-fac5-40c9-b1f7-7b9dd5f1af01"
+
+2018-06-03T09:21:54.772Z - warn: The Asset used by component "cc.Sprite" is missing. Detailed information:
+Node path: "text_sprite"
+Missing uuid: "c1888aaa-9d03-4f28-ac0f-df1cb435cd12"
+
+2018-06-03T09:21:54.773Z - warn: The Asset used by component "cc.Sprite" is missing. Detailed information:
+Node path: "text_sprite"
+Missing uuid: "4d64c50c-eb40-4dc9-99fc-7eb6390a640c"
+
+2018-06-03T09:21:54.774Z - warn: The Asset used by component "cc.Sprite" is missing. Detailed information:
+Node path: "text_sprite"
+Missing uuid: "4f013ae4-8cec-4a76-9771-1897568e6577"
+
+2018-06-03T09:21:54.774Z - warn: The Asset used by component "cc.Sprite" is missing. Detailed information:
+Node path: "text_sprite"
+Missing uuid: "0a8002da-7b0b-478c-9032-b07bf80b77e8"
+
+2018-06-03T09:24:52.286Z - warn: The Asset used by component "cc.Sprite" in prefab "PopXieyiScene.prefab" is missing. Detailed information:
+Node path: "PopXieyiScene/bg_sprite/xieyi_bg/scroll_view/view/content/text_sprite"
+Asset url: "db://assets/resources/prefab/PopXieyiScene.prefab"
+Missing uuid: "2d446c98-d606-49fa-934e-f184eb395b0a"
+
+2018-06-03T09:28:16.197Z - warn: The Asset used by component "cc.Sprite" in prefab "PopXieyiScene.prefab" is missing. Detailed information:
+Node path: "PopXieyiScene/bg_sprite/xieyi_bg/scroll_view/view/content/text_sprite"
+Asset url: "db://assets/resources/prefab/PopXieyiScene.prefab"
+Missing uuid: "2d446c98-d606-49fa-934e-f184eb395b0a"
+
+2018-06-03T09:32:21.734Z - normal: Start building with options : {
+  "androidStudio": true,
+  "apiLevel": "android-21",
+  "appABIs": [
+    "armeabi-v7a"
+  ],
+  "appKey": "",
+  "appSecret": "",
+  "buildPath": "F:\\GitHub\\xx_cc_g\\build",
+  "debug": true,
+  "dest": "F:\\GitHub\\xx_cc_g\\build\\jsb-link",
+  "encryptJs": true,
+  "excludeScenes": [],
+  "excludedModules": [],
+  "fb-instant-games": {},
+  "includeAnySDK": false,
+  "includeEruda": false,
+  "includeSDKBox": false,
+  "inlineSpriteFrames": true,
+  "inlineSpriteFrames_native": true,
+  "jailbreakPlatform": false,
+  "md5Cache": false,
+  "mergeStartScene": false,
+  "oauthLoginServer": "",
+  "optimizeHotUpdate": false,
+  "orientation": {
+    "landscapeLeft": true,
+    "landscapeRight": true,
+    "portrait": false,
+    "upsideDown": false
+  },
+  "packageName": "org.cocos2d.enjoypuke",
+  "platform": "android",
+  "previewHeight": "720",
+  "previewWidth": "1280",
+  "privateKey": "",
+  "qqplay": {
+    "REMOTE_SERVER_ROOT": "",
+    "orientation": "portrait"
+  },
+  "renderMode": "0",
+  "scenes": [
+    "0d8b73b6-1b8d-47c9-ab99-22752d675c83",
+    "7d94239f-98c7-42cc-a7af-59bab3881a2d",
+    "b5b75a57-d3be-476a-9447-e69dd1db4095",
+    "c114e2e7-b89c-4411-860c-7a2b64c3613f",
+    "1d29a30f-e1e3-4a34-85ca-f8f352c4f21e",
+    "0bc4e533-9b98-40ce-8957-b40efcb6bd33",
+    "5bdf5669-1f13-4694-8843-274846607cea",
+    "737f052d-9423-4a1a-bc31-506653f63d0b",
+    "a31bfca8-4f35-4bb8-94e0-4d73eff8c52e",
+    "79285c57-0779-4de4-bac9-b95516b4c8ec",
+    "f63d171f-a760-4858-a8f4-4a0fa4842a38",
+    "7ed4b2af-2b10-4bc5-a17c-c7b1e41b6c14",
+    "1821f834-75dc-42fd-981a-1f85c5c840c8",
+    "8646bb58-6795-4933-80ff-3ccad9fd2d2c",
+    "5adfb9a5-2ec3-422d-9e14-88097f7f4747",
+    "e11fb921-f8dc-40aa-a1cd-04e079367b05",
+    "3f625073-da56-4cb6-a861-35cd50f06bee",
+    "2688c90a-b850-498d-9b12-58f1e2221ebb",
+    "1b608e27-f6be-458f-8410-f0a109403710",
+    "51059387-9eac-43f3-952d-e56bf29d5074",
+    "366f1e85-1dea-42cd-8c34-397e75a61fc5",
+    "64905a0e-3e1b-4d76-955a-9ab1c5b773fe",
+    "33ab749e-1206-4f71-af8c-08ae989062ef",
+    "302eba62-6eca-433e-94da-876e0f139553",
+    "b9f5c213-751a-4254-ac8e-f48f7913e6ea",
+    "ab077a34-4759-446b-acdb-834b43b8534a",
+    "88a4297b-e327-4b1e-969b-41343a30c304"
+  ],
+  "sourceMaps": false,
+  "startScene": "0d8b73b6-1b8d-47c9-ab99-22752d675c83",
+  "template": "link",
+  "title": "hello_world",
+  "useDebugKeystore": true,
+  "vsVersion": "auto",
+  "webOrientation": "auto",
+  "wechatgame": {
+    "REMOTE_SERVER_ROOT": "",
+    "appid": "wx6ac3f5090a6b99c5",
+    "isSubdomain": false,
+    "orientation": "portrait",
+    "subContext": ""
+  },
+  "xxteaKey": "2cd67b5a-fd68-4a",
+  "zipCompressJs": true,
+  "project": "F:\\GitHub\\xx_cc_g",
+  "projectName": "hello_world",
+  "debugBuildWorker": false
+}
+2018-06-03T09:32:21.745Z - normal: Building F:\GitHub\xx_cc_g
+2018-06-03T09:32:21.746Z - normal: Destination F:\GitHub\xx_cc_g\build\jsb-link
+2018-06-03T09:32:21.747Z - normal: Delete F:\GitHub\xx_cc_g\build\jsb-link\res/**/*,F:\GitHub\xx_cc_g\build\jsb-link\src/*/
+2018-06-03T09:32:28.066Z - normal: Compiled project javascript file successfully
+2018-06-03T09:32:28.067Z - normal: Start building assets
+2018-06-03T09:32:28.067Z - normal: Start spawn build-worker
+2018-06-03T09:32:29.097Z - normal: Finish spawn build-worker
+2018-06-03T09:32:29.097Z - normal: Start init build-worker
+2018-06-03T09:32:32.609Z - normal: 1.9.1
+2018-06-03T09:32:32.829Z - normal: Finish init build-worker
+2018-06-03T09:32:32.830Z - normal: Start build-assets in worker
+2018-06-03T09:32:32.979Z - info: Enable "内联所有 SpriteFrame" in native platform will increase the package size used in hot update.
+2018-06-03T09:32:35.250Z - normal: Finish build-assets in worker
+2018-06-03T09:32:35.261Z - normal: Finish building assets
+2018-06-03T09:32:35.460Z - normal: Start building raw assets
+2018-06-03T09:32:35.460Z - normal: Start building plugin scripts
+2018-06-03T09:32:35.502Z - normal: Finish building plugin scripts
+2018-06-03T09:32:36.096Z - normal: Finish building raw assets
+2018-06-03T09:32:36.109Z - normal: Generating main.js from E:\CocosCreator\resources\static\build-templates\shares\main.js
+2018-06-03T09:32:36.148Z - normal: Built to "F:\GitHub\xx_cc_g\build\jsb-link" successfully
+2018-06-03T09:37:19.196Z - normal: Start building with options : {
+  "androidStudio": true,
+  "apiLevel": "android-21",
+  "appABIs": [
+    "armeabi-v7a"
+  ],
+  "appKey": "",
+  "appSecret": "",
+  "buildPath": "F:\\GitHub\\xx_cc_g\\build",
+  "debug": true,
+  "dest": "F:\\GitHub\\xx_cc_g\\build\\jsb-link",
+  "encryptJs": true,
+  "excludeScenes": [],
+  "excludedModules": [],
+  "fb-instant-games": {},
+  "includeAnySDK": false,
+  "includeEruda": false,
+  "includeSDKBox": false,
+  "inlineSpriteFrames": true,
+  "inlineSpriteFrames_native": true,
+  "jailbreakPlatform": false,
+  "md5Cache": false,
+  "mergeStartScene": false,
+  "oauthLoginServer": "",
+  "optimizeHotUpdate": false,
+  "orientation": {
+    "landscapeLeft": true,
+    "landscapeRight": true,
+    "portrait": false,
+    "upsideDown": false
+  },
+  "packageName": "org.cocos2d.enjoypuke",
+  "platform": "android",
+  "previewHeight": "720",
+  "previewWidth": "1280",
+  "privateKey": "",
+  "qqplay": {
+    "REMOTE_SERVER_ROOT": "",
+    "orientation": "portrait"
+  },
+  "renderMode": "0",
+  "scenes": [
+    "0d8b73b6-1b8d-47c9-ab99-22752d675c83",
+    "7d94239f-98c7-42cc-a7af-59bab3881a2d",
+    "b5b75a57-d3be-476a-9447-e69dd1db4095",
+    "c114e2e7-b89c-4411-860c-7a2b64c3613f",
+    "1d29a30f-e1e3-4a34-85ca-f8f352c4f21e",
+    "0bc4e533-9b98-40ce-8957-b40efcb6bd33",
+    "5bdf5669-1f13-4694-8843-274846607cea",
+    "737f052d-9423-4a1a-bc31-506653f63d0b",
+    "a31bfca8-4f35-4bb8-94e0-4d73eff8c52e",
+    "79285c57-0779-4de4-bac9-b95516b4c8ec",
+    "f63d171f-a760-4858-a8f4-4a0fa4842a38",
+    "7ed4b2af-2b10-4bc5-a17c-c7b1e41b6c14",
+    "1821f834-75dc-42fd-981a-1f85c5c840c8",
+    "8646bb58-6795-4933-80ff-3ccad9fd2d2c",
+    "5adfb9a5-2ec3-422d-9e14-88097f7f4747",
+    "e11fb921-f8dc-40aa-a1cd-04e079367b05",
+    "3f625073-da56-4cb6-a861-35cd50f06bee",
+    "2688c90a-b850-498d-9b12-58f1e2221ebb",
+    "1b608e27-f6be-458f-8410-f0a109403710",
+    "51059387-9eac-43f3-952d-e56bf29d5074",
+    "366f1e85-1dea-42cd-8c34-397e75a61fc5",
+    "64905a0e-3e1b-4d76-955a-9ab1c5b773fe",
+    "33ab749e-1206-4f71-af8c-08ae989062ef",
+    "302eba62-6eca-433e-94da-876e0f139553",
+    "b9f5c213-751a-4254-ac8e-f48f7913e6ea",
+    "ab077a34-4759-446b-acdb-834b43b8534a",
+    "88a4297b-e327-4b1e-969b-41343a30c304"
+  ],
+  "sourceMaps": false,
+  "startScene": "0d8b73b6-1b8d-47c9-ab99-22752d675c83",
+  "template": "link",
+  "title": "hello_world",
+  "useDebugKeystore": true,
+  "vsVersion": "auto",
+  "webOrientation": "auto",
+  "wechatgame": {
+    "REMOTE_SERVER_ROOT": "",
+    "appid": "wx6ac3f5090a6b99c5",
+    "isSubdomain": false,
+    "orientation": "portrait",
+    "subContext": ""
+  },
+  "xxteaKey": "2cd67b5a-fd68-4a",
+  "zipCompressJs": true,
+  "project": "F:\\GitHub\\xx_cc_g",
+  "projectName": "hello_world",
+  "debugBuildWorker": false
+}
+2018-06-03T09:37:19.208Z - normal: Building F:\GitHub\xx_cc_g
+2018-06-03T09:37:19.208Z - normal: Destination F:\GitHub\xx_cc_g\build\jsb-link
+2018-06-03T09:37:19.209Z - normal: Delete F:\GitHub\xx_cc_g\build\jsb-link\res/**/*,F:\GitHub\xx_cc_g\build\jsb-link\src/*/
+2018-06-03T09:37:25.622Z - normal: Compiled project javascript file successfully
+2018-06-03T09:37:25.622Z - normal: Start building assets
+2018-06-03T09:37:25.623Z - normal: Start spawn build-worker
+2018-06-03T09:37:26.655Z - normal: Finish spawn build-worker
+2018-06-03T09:37:26.655Z - normal: Start init build-worker
+2018-06-03T09:37:29.852Z - normal: 1.9.1
+2018-06-03T09:37:30.068Z - normal: Finish init build-worker
+2018-06-03T09:37:30.068Z - normal: Start build-assets in worker
+2018-06-03T09:37:30.225Z - info: Enable "内联所有 SpriteFrame" in native platform will increase the package size used in hot update.
+2018-06-03T09:37:32.592Z - normal: Finish build-assets in worker
+2018-06-03T09:37:32.600Z - normal: Finish building assets
+2018-06-03T09:37:32.799Z - normal: Start building raw assets
+2018-06-03T09:37:32.800Z - normal: Start building plugin scripts
+2018-06-03T09:37:32.843Z - normal: Finish building plugin scripts
+2018-06-03T09:37:33.452Z - normal: Finish building raw assets
+2018-06-03T09:37:33.460Z - normal: Generating main.js from E:\CocosCreator\resources\static\build-templates\shares\main.js
+2018-06-03T09:37:33.500Z - normal: Built to "F:\GitHub\xx_cc_g\build\jsb-link" successfully
+2018-06-03T09:40:20.162Z - normal: Start to compile native project. Please wait...
+2018-06-03T09:40:20.164Z - normal: The log file path [ C:\Users\Administrator\.CocosCreator\logs\native.log ]
+2018-06-03T09:41:45.683Z - normal: Compile native project successfully.
+2018-06-03T09:41:49.196Z - normal: Start to run project
+2018-06-03T09:41:50.517Z - normal: Start to run project. Please wait...
+2018-06-03T09:41:50.517Z - normal: The log file path [ C:\Users\Administrator\.CocosCreator\logs\native.log ]
+2018-06-03T10:01:17.177Z - normal: Start building with options : {
+  "androidStudio": true,
+  "apiLevel": "android-21",
+  "appABIs": [
+    "armeabi-v7a"
+  ],
+  "appKey": "",
+  "appSecret": "",
+  "buildPath": "F:\\GitHub\\xx_cc_g\\build",
+  "debug": true,
+  "dest": "F:\\GitHub\\xx_cc_g\\build\\jsb-link",
+  "encryptJs": true,
+  "excludeScenes": [],
+  "excludedModules": [],
+  "fb-instant-games": {},
+  "includeAnySDK": false,
+  "includeEruda": false,
+  "includeSDKBox": false,
+  "inlineSpriteFrames": true,
+  "inlineSpriteFrames_native": true,
+  "jailbreakPlatform": false,
+  "md5Cache": false,
+  "mergeStartScene": false,
+  "oauthLoginServer": "",
+  "optimizeHotUpdate": false,
+  "orientation": {
+    "landscapeLeft": true,
+    "landscapeRight": true,
+    "portrait": false,
+    "upsideDown": false
+  },
+  "packageName": "org.cocos2d.enjoypuke",
+  "platform": "android",
+  "previewHeight": "720",
+  "previewWidth": "1280",
+  "privateKey": "",
+  "qqplay": {
+    "REMOTE_SERVER_ROOT": "",
+    "orientation": "portrait"
+  },
+  "renderMode": "0",
+  "scenes": [
+    "0d8b73b6-1b8d-47c9-ab99-22752d675c83",
+    "7d94239f-98c7-42cc-a7af-59bab3881a2d",
+    "b5b75a57-d3be-476a-9447-e69dd1db4095",
+    "c114e2e7-b89c-4411-860c-7a2b64c3613f",
+    "1d29a30f-e1e3-4a34-85ca-f8f352c4f21e",
+    "0bc4e533-9b98-40ce-8957-b40efcb6bd33",
+    "5bdf5669-1f13-4694-8843-274846607cea",
+    "737f052d-9423-4a1a-bc31-506653f63d0b",
+    "a31bfca8-4f35-4bb8-94e0-4d73eff8c52e",
+    "79285c57-0779-4de4-bac9-b95516b4c8ec",
+    "f63d171f-a760-4858-a8f4-4a0fa4842a38",
+    "7ed4b2af-2b10-4bc5-a17c-c7b1e41b6c14",
+    "1821f834-75dc-42fd-981a-1f85c5c840c8",
+    "8646bb58-6795-4933-80ff-3ccad9fd2d2c",
+    "5adfb9a5-2ec3-422d-9e14-88097f7f4747",
+    "e11fb921-f8dc-40aa-a1cd-04e079367b05",
+    "3f625073-da56-4cb6-a861-35cd50f06bee",
+    "2688c90a-b850-498d-9b12-58f1e2221ebb",
+    "1b608e27-f6be-458f-8410-f0a109403710",
+    "51059387-9eac-43f3-952d-e56bf29d5074",
+    "366f1e85-1dea-42cd-8c34-397e75a61fc5",
+    "64905a0e-3e1b-4d76-955a-9ab1c5b773fe",
+    "33ab749e-1206-4f71-af8c-08ae989062ef",
+    "302eba62-6eca-433e-94da-876e0f139553",
+    "b9f5c213-751a-4254-ac8e-f48f7913e6ea",
+    "ab077a34-4759-446b-acdb-834b43b8534a",
+    "88a4297b-e327-4b1e-969b-41343a30c304"
+  ],
+  "sourceMaps": false,
+  "startScene": "0d8b73b6-1b8d-47c9-ab99-22752d675c83",
+  "template": "link",
+  "title": "hello_world",
+  "useDebugKeystore": true,
+  "vsVersion": "auto",
+  "webOrientation": "auto",
+  "wechatgame": {
+    "REMOTE_SERVER_ROOT": "",
+    "appid": "wx6ac3f5090a6b99c5",
+    "isSubdomain": false,
+    "orientation": "portrait",
+    "subContext": ""
+  },
+  "xxteaKey": "2cd67b5a-fd68-4a",
+  "zipCompressJs": true,
+  "project": "F:\\GitHub\\xx_cc_g",
+  "projectName": "hello_world",
+  "debugBuildWorker": false
+}
+2018-06-03T10:01:17.191Z - normal: Building F:\GitHub\xx_cc_g
+2018-06-03T10:01:17.191Z - normal: Destination F:\GitHub\xx_cc_g\build\jsb-link
+2018-06-03T10:01:17.193Z - normal: Delete F:\GitHub\xx_cc_g\build\jsb-link\res/**/*,F:\GitHub\xx_cc_g\build\jsb-link\src/*/
+2018-06-03T10:01:23.589Z - normal: Compiled project javascript file successfully
+2018-06-03T10:01:23.589Z - normal: Start building assets
+2018-06-03T10:01:23.589Z - normal: Start spawn build-worker
+2018-06-03T10:01:24.604Z - normal: Finish spawn build-worker
+2018-06-03T10:01:24.604Z - normal: Start init build-worker
+2018-06-03T10:01:27.767Z - normal: 1.9.1
+2018-06-03T10:01:27.978Z - normal: Finish init build-worker
+2018-06-03T10:01:27.978Z - normal: Start build-assets in worker
+2018-06-03T10:01:28.125Z - info: Enable "内联所有 SpriteFrame" in native platform will increase the package size used in hot update.
+2018-06-03T10:01:30.405Z - normal: Finish build-assets in worker
+2018-06-03T10:01:30.413Z - normal: Finish building assets
+2018-06-03T10:01:30.615Z - normal: Start building raw assets
+2018-06-03T10:01:30.616Z - normal: Start building plugin scripts
+2018-06-03T10:01:30.658Z - normal: Finish building plugin scripts
+2018-06-03T10:01:31.307Z - normal: Finish building raw assets
+2018-06-03T10:01:31.343Z - normal: Generating main.js from E:\CocosCreator\resources\static\build-templates\shares\main.js
+2018-06-03T10:01:31.583Z - normal: Built to "F:\GitHub\xx_cc_g\build\jsb-link" successfully
+2018-06-03T10:09:16.167Z - normal: Simulator: SCREEN DPI = 96, SCREEN SCALE = 1.00
+2018-06-03T10:09:16.184Z - normal: Simulator: WORKAREA WIDTH 1672.00, HEIGHT 959.00
+2018-06-03T10:09:16.184Z - normal: Simulator: FRAME SCALE = 1.00
+2018-06-03T10:09:17.540Z - normal: Simulator: Ready for GLSL
+2018-06-03T10:09:17.541Z - normal: Simulator: Ready for OpenGL 2.0
+2018-06-03T10:09:17.541Z - normal: Simulator: 
+2018-06-03T10:09:17.541Z - normal: Simulator: {
+2018-06-03T10:09:17.541Z - normal: Simulator: 	gl.version: 4.5.0 NVIDIA 368.81
+2018-06-03T10:09:17.542Z - normal: Simulator: 	gl.supports_NPOT: true
+2018-06-03T10:09:17.542Z - normal: Simulator: 	cocos2d.x.version: Cocos2d-x-lite v1.8.2
+2018-06-03T10:09:17.542Z - normal: Simulator: 	cocos2d.x.compiled_with_profiler: false
+2018-06-03T10:09:17.542Z - normal: Simulator: 	cocos2d.x.build_type: DEBUG
+2018-06-03T10:09:17.542Z - normal: Simulator: 	cocos2d.x.compiled_with_gl_state_cache: true
+2018-06-03T10:09:17.543Z - normal: Simulator: 	gl.max_texture_size: 16384
+2018-06-03T10:09:17.543Z - normal: Simulator: 	gl.supports_OES_packed_depth_stencil: false
+2018-06-03T10:09:17.543Z - normal: Simulator: 	gl.vendor: NVIDIA Corporation
+2018-06-03T10:09:17.543Z - normal: Simulator: 	gl.renderer: GeForce GTX 750/PCIe/SSE2
+2018-06-03T10:09:17.543Z - normal: Simulator: 	gl.max_texture_units: 192
+2018-06-03T10:09:17.544Z - normal: Simulator: 	gl.supports_ETC1: false
+2018-06-03T10:09:17.544Z - normal: Simulator: 	gl.supports_PVRTC: false
+2018-06-03T10:09:17.544Z - normal: Simulator: 	gl.supports_BGRA8888: false
+2018-06-03T10:09:17.545Z - normal: Simulator: 	gl.supports_discard_framebuffer: false
+2018-06-03T10:09:17.545Z - normal: Simulator: 	gl.supports_vertex_array_object: true
+2018-06-03T10:09:17.545Z - normal: Simulator: 	gl.supports_OES_map_buffer: false
+2018-06-03T10:09:17.545Z - normal: Simulator: 	gl.supports_OES_depth24: false
+2018-06-03T10:09:17.546Z - normal: Simulator: }
+2018-06-03T10:09:17.546Z - normal: Simulator: 
+2018-06-03T10:09:17.546Z - normal: Simulator: 
+2018-06-03T10:09:17.546Z - normal: Simulator: cocos2d: warning, Director::setProjection() failed because size is 0
+2018-06-03T10:09:17.546Z - normal: Simulator: Project Config:
+2018-06-03T10:09:17.546Z - normal: Simulator:     project dir: E:\CocosCreator\resources\cocos2d-x\simulator\win32\
+2018-06-03T10:09:17.547Z - normal: Simulator:     writable path: $(PROJDIR)\
+2018-06-03T10:09:17.547Z - normal: Simulator:     script file: $(PROJDIR)\main.js
+2018-06-03T10:09:17.547Z - normal: Simulator:     frame size: 960 x 640
+2018-06-03T10:09:17.547Z - normal: Simulator:     frame scale: 1.00
+2018-06-03T10:09:17.547Z - normal: Simulator:     show console: NO
+2018-06-03T10:09:17.548Z - normal: Simulator:     write debug log: NO ()
+2018-06-03T10:09:17.548Z - normal: Simulator:     listen: 
+2018-06-03T10:09:17.548Z - normal: Simulator:     debugger: none
+2018-06-03T10:09:17.548Z - normal: Simulator:     add searching path:
+2018-06-03T10:09:17.548Z - normal: Simulator: 
+2018-06-03T10:09:17.549Z - normal: Simulator: 
+2018-06-03T10:09:17.549Z - normal: Simulator: 
+2018-06-03T10:09:17.549Z - normal: Simulator: ------------------------------------------------
+2018-06-03T10:09:17.549Z - normal: Simulator: LOAD Js FILE: main.js
+2018-06-03T10:09:17.549Z - normal: Simulator: ------------------------------------------------
+2018-06-03T10:09:17.549Z - normal: Simulator: D/jswrapper (364): Initializing V8, version: 6.0.286.52
+2018-06-03T10:09:17.746Z - normal: Simulator: D/jswrapper (813): libuv version: 1.13.1
+2018-06-03T10:09:17.747Z - normal: Simulator: D/jswrapper (112): Debugger listening..., visit [ chrome-devtools://devtools/bundled/inspector.html?v8only=true&ws=0.0.0.0:5086/00010002-0003-4004-8005-000600070008 ] in chrome browser to debug!
+2018-06-03T10:09:17.748Z - normal: Simulator: D/jswrapper (115): For help see https://nodejs.org/en/docs/inspector
+2018-06-03T10:09:18.155Z - normal: Simulator: D/jswrapper (125): JS: Cocos2d-x-lite v1.8.2
+2018-06-03T10:09:18.472Z - normal: Simulator: iShow!
+2018-06-03T10:09:18.768Z - normal: Simulator: D/jswrapper (125): JS: InitScene: 5.059999999999945ms
+2018-06-03T10:09:18.772Z - normal: Simulator: D/jswrapper (125): JS: AutoRelease: 0.23299999999994725ms
+2018-06-03T10:09:18.772Z - normal: Simulator: D/jswrapper (125): JS: Destroy: 0.13400000000001455ms
+2018-06-03T10:09:18.772Z - normal: Simulator: D/jswrapper (125): JS: AttachPersist: 0.012999999999919964ms
+2018-06-03T10:09:18.793Z - normal: Simulator: D/jswrapper (125): JS: [WARN]: Sorry, lineHeight of system font not supported on JSB.
+2018-06-03T10:09:18.818Z - normal: Simulator: D/jswrapper (125): JS: on load main scene.....
+2018-06-03T10:09:18.866Z - normal: Simulator: D/jswrapper (125): JS: Activate: 84.471ms
+2018-06-03T10:09:21.422Z - normal: Simulator: D/jswrapper (447): ScriptEngine::cleanup begin ...
+2018-06-03T10:09:21.423Z - normal: Simulator: D/jswrapper (588): GC begin ..., (js->native map) size: 117, all objects: 398
+2018-06-03T10:09:21.462Z - normal: Simulator: D/jswrapper (596): GC end ..., (js->native map) size: 96, all objects: 377
+2018-06-03T10:09:21.462Z - normal: Simulator: D/jswrapper (588): GC begin ..., (js->native map) size: 96, all objects: 377
+2018-06-03T10:09:21.509Z - normal: Simulator: D/jswrapper (596): GC end ..., (js->native map) size: 96, all objects: 377
+2018-06-03T10:09:21.509Z - normal: Simulator: D/jswrapper (588): GC begin ..., (js->native map) size: 0, all objects: 0
+2018-06-03T10:09:21.530Z - normal: Simulator: D/jswrapper (596): GC end ..., (js->native map) size: 0, all objects: 0
+2018-06-03T10:09:21.533Z - normal: Simulator: D/jswrapper (480): Starting to cleanup dragonbones object, count: 0
+2018-06-03T10:09:21.534Z - normal: Simulator: D/jswrapper (499): After first cleanup, dragonbones object remained count: 0
+2018-06-03T10:09:21.534Z - normal: Simulator: D/jswrapper (515): After second cleanup, dragonbones object remained count: 0
+2018-06-03T10:09:21.534Z - normal: Simulator: D/jswrapper (510): ScriptEngine::cleanup end ...
+2018-06-03T10:09:26.187Z - normal: Simulator: SCREEN DPI = 96, SCREEN SCALE = 1.00
+2018-06-03T10:09:26.188Z - normal: Simulator: WORKAREA WIDTH 1672.00, HEIGHT 959.00
+2018-06-03T10:09:26.188Z - normal: Simulator: FRAME SCALE = 1.00
+2018-06-03T10:09:27.076Z - normal: Simulator: Ready for GLSL
+2018-06-03T10:09:27.076Z - normal: Simulator: Ready for OpenGL 2.0
+2018-06-03T10:09:27.076Z - normal: Simulator: 
+2018-06-03T10:09:27.076Z - normal: Simulator: {
+2018-06-03T10:09:27.076Z - normal: Simulator: 	gl.version: 4.5.0 NVIDIA 368.81
+2018-06-03T10:09:27.077Z - normal: Simulator: 	gl.supports_NPOT: true
+2018-06-03T10:09:27.077Z - normal: Simulator: 	cocos2d.x.version: Cocos2d-x-lite v1.8.2
+2018-06-03T10:09:27.077Z - normal: Simulator: 	cocos2d.x.compiled_with_profiler: false
+2018-06-03T10:09:27.077Z - normal: Simulator: 	cocos2d.x.build_type: DEBUG
+2018-06-03T10:09:27.078Z - normal: Simulator: 	cocos2d.x.compiled_with_gl_state_cache: true
+2018-06-03T10:09:27.078Z - normal: Simulator: 	gl.max_texture_size: 16384
+2018-06-03T10:09:27.078Z - normal: Simulator: 	gl.supports_OES_packed_depth_stencil: false
+2018-06-03T10:09:27.078Z - normal: Simulator: 	gl.vendor: NVIDIA Corporation
+2018-06-03T10:09:27.078Z - normal: Simulator: 	gl.renderer: GeForce GTX 750/PCIe/SSE2
+2018-06-03T10:09:27.079Z - normal: Simulator: 	gl.max_texture_units: 192
+2018-06-03T10:09:27.079Z - normal: Simulator: 	gl.supports_ETC1: false
+2018-06-03T10:09:27.079Z - normal: Simulator: 	gl.supports_PVRTC: false
+2018-06-03T10:09:27.079Z - normal: Simulator: 	gl.supports_BGRA8888: false
+2018-06-03T10:09:27.079Z - normal: Simulator: 	gl.supports_discard_framebuffer: false
+2018-06-03T10:09:27.080Z - normal: Simulator: 	gl.supports_vertex_array_object: true
+2018-06-03T10:09:27.080Z - normal: Simulator: 	gl.supports_OES_map_buffer: false
+2018-06-03T10:09:27.080Z - normal: Simulator: 	gl.supports_OES_depth24: false
+2018-06-03T10:09:27.080Z - normal: Simulator: }
+2018-06-03T10:09:27.080Z - normal: Simulator: 
+2018-06-03T10:09:27.081Z - normal: Simulator: 
+2018-06-03T10:09:27.081Z - normal: Simulator: cocos2d: warning, Director::setProjection() failed because size is 0
+2018-06-03T10:09:27.081Z - normal: Simulator: Project Config:
+2018-06-03T10:09:27.081Z - normal: Simulator:     project dir: E:\CocosCreator\resources\cocos2d-x\simulator\win32\
+2018-06-03T10:09:27.081Z - normal: Simulator:     writable path: $(PROJDIR)\
+2018-06-03T10:09:27.082Z - normal: Simulator:     script file: $(PROJDIR)\main.js
+2018-06-03T10:09:27.082Z - normal: Simulator:     frame size: 960 x 640
+2018-06-03T10:09:27.082Z - normal: Simulator:     frame scale: 1.00
+2018-06-03T10:09:27.082Z - normal: Simulator:     show console: NO
+2018-06-03T10:09:27.082Z - normal: Simulator:     write debug log: NO ()
+2018-06-03T10:09:27.082Z - normal: Simulator:     listen: 
+2018-06-03T10:09:27.083Z - normal: Simulator:     debugger: none
+2018-06-03T10:09:27.083Z - normal: Simulator:     add searching path:
+2018-06-03T10:09:27.083Z - normal: Simulator: 
+2018-06-03T10:09:27.083Z - normal: Simulator: 
+2018-06-03T10:09:27.083Z - normal: Simulator: 
+2018-06-03T10:09:27.084Z - normal: Simulator: ------------------------------------------------
+2018-06-03T10:09:27.084Z - normal: Simulator: LOAD Js FILE: main.js
+2018-06-03T10:09:27.084Z - normal: Simulator: ------------------------------------------------
+2018-06-03T10:09:27.084Z - normal: Simulator: D/jswrapper (364): Initializing V8, version: 6.0.286.52
+2018-06-03T10:09:27.225Z - normal: Simulator: D/jswrapper (813): libuv version: 1.13.1
+2018-06-03T10:09:27.226Z - normal: Simulator: D/jswrapper (112): Debugger listening..., visit [ chrome-devtools://devtools/bundled/inspector.html?v8only=true&ws=0.0.0.0:5086/00010002-0003-4004-8005-000600070008 ] in chrome browser to debug!
+2018-06-03T10:09:27.226Z - normal: Simulator: D/jswrapper (115): For help see https://nodejs.org/en/docs/inspector
+2018-06-03T10:09:27.330Z - normal: Simulator: D/jswrapper (125): JS: Cocos2d-x-lite v1.8.2
+2018-06-03T10:09:27.654Z - normal: Simulator: iShow!
+2018-06-03T10:09:27.935Z - normal: Simulator: D/jswrapper (125): JS: InitScene: 5.336999999999989ms
+2018-06-03T10:09:27.938Z - normal: Simulator: D/jswrapper (125): JS: AutoRelease: 0.22699999999997544ms
+2018-06-03T10:09:27.938Z - normal: Simulator: D/jswrapper (125): JS: Destroy: 0.13400000000001455ms
+2018-06-03T10:09:27.939Z - normal: Simulator: D/jswrapper (125): JS: AttachPersist: 0.012000000000057298ms
+2018-06-03T10:09:27.965Z - normal: Simulator: D/jswrapper (125): JS: [WARN]: Sorry, lineHeight of system font not supported on JSB.
+2018-06-03T10:09:27.965Z - normal: Simulator: D/jswrapper (125): JS: [WARN]: Sorry, lineHeight of system font not supported on JSB.
+2018-06-03T10:09:27.983Z - normal: Simulator: D/jswrapper (125): JS: [WARN]: Sorry, lineHeight of system font not supported on JSB.
+2018-06-03T10:09:27.983Z - normal: Simulator: D/jswrapper (125): JS: [WARN]: Sorry, lineHeight of system font not supported on JSB.
+2018-06-03T10:09:27.984Z - normal: Simulator: D/jswrapper (125): JS: onLoadfalse
+2018-06-03T10:09:28.308Z - normal: Simulator: D/jswrapper (125): JS: Activate: 368.86900000000014ms
+2018-06-03T10:09:28.683Z - normal: Simulator: D/jswrapper (125): JS: load res :1
+2018-06-03T10:09:28.683Z - normal: Simulator: D/jswrapper (125): JS: load res :10
+2018-06-03T10:09:28.684Z - normal: Simulator: D/jswrapper (125): JS: load res :11
+2018-06-03T10:09:28.684Z - normal: Simulator: D/jswrapper (125): JS: load res :12
+2018-06-03T10:09:28.685Z - normal: Simulator: D/jswrapper (125): JS: load res :13
+2018-06-03T10:09:28.685Z - normal: Simulator: D/jswrapper (125): JS: load res :14
+2018-06-03T10:09:28.685Z - normal: Simulator: D/jswrapper (125): JS: load res :15
+2018-06-03T10:09:28.685Z - normal: Simulator: D/jswrapper (125): JS: load res :16
+2018-06-03T10:09:28.686Z - normal: Simulator: D/jswrapper (125): JS: load res :17
+2018-06-03T10:09:28.686Z - normal: Simulator: D/jswrapper (125): JS: load res :18
+2018-06-03T10:09:28.686Z - normal: Simulator: D/jswrapper (125): JS: load res :19
+2018-06-03T10:09:28.686Z - normal: Simulator: D/jswrapper (125): JS: load res :2
+2018-06-03T10:09:28.687Z - normal: Simulator: D/jswrapper (125): JS: load res :20
+2018-06-03T10:09:28.687Z - normal: Simulator: D/jswrapper (125): JS: load res :21
+2018-06-03T10:09:28.687Z - normal: Simulator: D/jswrapper (125): JS: load res :22
+2018-06-03T10:09:28.687Z - normal: Simulator: D/jswrapper (125): JS: load res :23
+2018-06-03T10:09:28.687Z - normal: Simulator: D/jswrapper (125): JS: load res :24
+2018-06-03T10:09:28.688Z - normal: Simulator: D/jswrapper (125): JS: load res :25
+2018-06-03T10:09:28.688Z - normal: Simulator: D/jswrapper (125): JS: load res :26
+2018-06-03T10:09:28.688Z - normal: Simulator: D/jswrapper (125): JS: load res :27
+2018-06-03T10:09:28.689Z - normal: Simulator: D/jswrapper (125): JS: load res :28
+2018-06-03T10:09:28.689Z - normal: Simulator: D/jswrapper (125): JS: load res :29
+2018-06-03T10:09:28.689Z - normal: Simulator: D/jswrapper (125): JS: load res :3
+2018-06-03T10:09:28.689Z - normal: Simulator: D/jswrapper (125): JS: load res :30
+2018-06-03T10:09:28.690Z - normal: Simulator: D/jswrapper (125): JS: load res :31
+2018-06-03T10:09:28.690Z - normal: Simulator: D/jswrapper (125): JS: load res :32
+2018-06-03T10:09:28.690Z - normal: Simulator: D/jswrapper (125): JS: load res :4
+2018-06-03T10:09:28.691Z - normal: Simulator: D/jswrapper (125): JS: load res :5
+2018-06-03T10:09:28.691Z - normal: Simulator: D/jswrapper (125): JS: load res :6
+2018-06-03T10:09:28.691Z - normal: Simulator: D/jswrapper (125): JS: load res :7
+2018-06-03T10:09:28.691Z - normal: Simulator: D/jswrapper (125): JS: load res :8
+2018-06-03T10:09:28.691Z - normal: Simulator: D/jswrapper (125): JS: load res :9
+2018-06-03T10:09:28.691Z - normal: Simulator: D/jswrapper (125): JS: load res :chumen
+2018-06-03T10:09:28.701Z - normal: Simulator: D/jswrapper (125): JS: load res :equal
+2018-06-03T10:09:28.701Z - normal: Simulator: D/jswrapper (125): JS: load res :loser
+2018-06-03T10:09:28.701Z - normal: Simulator: D/jswrapper (125): JS: load res :momen
+2018-06-03T10:09:28.701Z - normal: Simulator: D/jswrapper (125): JS: load res :qiang
+2018-06-03T10:09:28.702Z - normal: Simulator: D/jswrapper (125): JS: load res :tianmen
+2018-06-03T10:09:28.702Z - normal: Simulator: D/jswrapper (125): JS: load res :wait_1
+2018-06-03T10:09:28.702Z - normal: Simulator: D/jswrapper (125): JS: load res :wait_2
+2018-06-03T10:09:28.703Z - normal: Simulator: D/jswrapper (125): JS: load res :wait_3
+2018-06-03T10:09:28.703Z - normal: Simulator: D/jswrapper (125): JS: load res :wait_4
+2018-06-03T10:09:28.703Z - normal: Simulator: D/jswrapper (125): JS: load res :winner
+2018-06-03T10:09:28.704Z - normal: Simulator: D/jswrapper (125): JS: load res :yizhunbei
+2018-06-03T10:09:28.704Z - normal: Simulator: D/jswrapper (125): JS: load res :zhuang
+2018-06-03T10:09:28.704Z - normal: Simulator: D/jswrapper (125): JS: load res :set_close
+2018-06-03T10:09:28.705Z - normal: Simulator: D/jswrapper (125): JS: load res :set_open
+2018-06-03T10:09:28.705Z - normal: Simulator: D/jswrapper (125): JS: load res :gender1
+2018-06-03T10:09:28.705Z - normal: Simulator: D/jswrapper (125): JS: load res :shaizi_1
+2018-06-03T10:09:28.705Z - normal: Simulator: D/jswrapper (125): JS: load res :shaizi_2
+2018-06-03T10:09:28.705Z - normal: Simulator: D/jswrapper (125): JS: load res :shaizi_3
+2018-06-03T10:09:28.706Z - normal: Simulator: D/jswrapper (125): JS: load res :shaizi_4
+2018-06-03T10:09:28.706Z - normal: Simulator: D/jswrapper (125): JS: load res :shaizi_5
+2018-06-03T10:09:28.706Z - normal: Simulator: D/jswrapper (125): JS: load res :shaizi_6
+2018-06-03T10:09:28.706Z - normal: Simulator: D/jswrapper (125): JS: load res :tdk_1
+2018-06-03T10:09:28.706Z - normal: Simulator: D/jswrapper (125): JS: load res :tdk_2
+2018-06-03T10:09:28.706Z - normal: Simulator: D/jswrapper (125): JS: load res :tdk_3
+2018-06-03T10:09:28.707Z - normal: Simulator: D/jswrapper (125): JS: load res :tdk_4
+2018-06-03T10:09:28.707Z - normal: Simulator: D/jswrapper (125): JS: load res :xieyi_text_1
+2018-06-03T10:09:28.707Z - normal: Simulator: D/jswrapper (125): JS: load res :xieyi_text_10
+2018-06-03T10:09:28.707Z - normal: Simulator: D/jswrapper (125): JS: load res :xieyi_text_11
+2018-06-03T10:09:28.707Z - normal: Simulator: D/jswrapper (125): JS: load res :xieyi_text_12
+2018-06-03T10:09:28.708Z - normal: Simulator: D/jswrapper (125): JS: load res :xieyi_text_13
+2018-06-03T10:09:28.708Z - normal: Simulator: D/jswrapper (125): JS: load res :xieyi_text_14
+2018-06-03T10:09:28.708Z - normal: Simulator: D/jswrapper (125): JS: load res :xieyi_text_15
+2018-06-03T10:09:28.709Z - normal: Simulator: D/jswrapper (125): JS: load res :xieyi_text_16
+2018-06-03T10:09:28.709Z - normal: Simulator: D/jswrapper (125): JS: load res :xieyi_text_17
+2018-06-03T10:09:28.710Z - normal: Simulator: D/jswrapper (125): JS: load res :xieyi_text_18
+2018-06-03T10:09:28.710Z - normal: Simulator: D/jswrapper (125): JS: load res :xieyi_text_19
+2018-06-03T10:09:28.710Z - normal: Simulator: D/jswrapper (125): JS: load res :xieyi_text_2
+2018-06-03T10:09:28.710Z - normal: Simulator: D/jswrapper (125): JS: load res :xieyi_text_20
+2018-06-03T10:09:28.710Z - normal: Simulator: D/jswrapper (125): JS: load res :xieyi_text_3
+2018-06-03T10:09:28.711Z - normal: Simulator: D/jswrapper (125): JS: load res :xieyi_text_4
+2018-06-03T10:09:28.711Z - normal: Simulator: D/jswrapper (125): JS: load res :xieyi_text_5
+2018-06-03T10:09:28.712Z - normal: Simulator: D/jswrapper (125): JS: load res :xieyi_text_6
+2018-06-03T10:09:28.712Z - normal: Simulator: D/jswrapper (125): JS: load res :xieyi_text_7
+2018-06-03T10:09:28.712Z - normal: Simulator: D/jswrapper (125): JS: load res :xieyi_text_8
+2018-06-03T10:09:28.712Z - normal: Simulator: D/jswrapper (125): JS: load res :xieyi_text_9
+2018-06-03T10:09:28.713Z - normal: Simulator: D/jswrapper (125): JS: load res :PopBuyFangKaScene
+2018-06-03T10:09:28.713Z - normal: Simulator: D/jswrapper (125): JS: load res :PopCreatRoomScene
+2018-06-03T10:09:28.713Z - normal: Simulator: D/jswrapper (125): JS: load res :PopEnterRoomScene
+2018-06-03T10:09:28.713Z - normal: Simulator: D/jswrapper (125): JS: load res :PopHelpScene
+2018-06-03T10:09:28.713Z - normal: Simulator: D/jswrapper (125): JS: load res :PopXieyiScene
+2018-06-03T10:09:28.714Z - normal: Simulator: D/jswrapper (125): JS: load res :bomb_active
+2018-06-03T10:09:28.714Z - normal: Simulator: D/jswrapper (125): JS: load res :cheers_active
+2018-06-03T10:09:28.714Z - normal: Simulator: D/jswrapper (125): JS: load res :chip
+2018-06-03T10:09:28.714Z - normal: Simulator: D/jswrapper (125): JS: load res :chip_bg_1
+2018-06-03T10:09:28.714Z - normal: Simulator: D/jswrapper (125): JS: load res :chip_bg_2
+2018-06-03T10:09:28.715Z - normal: Simulator: D/jswrapper (125): JS: load res :chip_bg_3
+2018-06-03T10:09:28.715Z - normal: Simulator: D/jswrapper (125): JS: load res :chip_bg_4
+2018-06-03T10:09:28.715Z - normal: Simulator: D/jswrapper (125): JS: load res :chip_bg_zhuang
+2018-06-03T10:09:28.715Z - normal: Simulator: D/jswrapper (125): JS: load res :count_timer_circle
+2018-06-03T10:09:28.716Z - normal: Simulator: D/jswrapper (125): JS: load res :egg_active
+2018-06-03T10:09:28.716Z - normal: Simulator: D/jswrapper (125): JS: load res :flower_active
+2018-06-03T10:09:28.716Z - normal: Simulator: D/jswrapper (125): JS: load res :game_history_item_layout
+2018-06-03T10:09:28.716Z - normal: Simulator: D/jswrapper (125): JS: load res :kiss_active
+2018-06-03T10:09:28.716Z - normal: Simulator: D/jswrapper (125): JS: load res :msage_scroll
+2018-06-03T10:09:28.717Z - normal: Simulator: D/jswrapper (125): JS: load res :pj_card
+2018-06-03T10:09:28.717Z - normal: Simulator: D/jswrapper (125): JS: load res :pop_add_chip
+2018-06-03T10:09:28.717Z - normal: Simulator: D/jswrapper (125): JS: load res :pop_game_finish
+2018-06-03T10:09:28.717Z - normal: Simulator: D/jswrapper (125): JS: load res :pop_game_user
+2018-06-03T10:09:28.717Z - normal: Simulator: D/jswrapper (125): JS: load res :pop_isok_scene
+2018-06-03T10:09:28.717Z - normal: Simulator: D/jswrapper (125): JS: load res :pop_net_error
+2018-06-03T10:09:28.718Z - normal: Simulator: D/jswrapper (125): JS: load res :pop_setting_scene
+2018-06-03T10:09:28.718Z - normal: Simulator: D/jswrapper (125): JS: load res :prop_error_scene
+2018-06-03T10:09:28.718Z - normal: Simulator: D/jswrapper (125): JS: load res :record_item_layout
+2018-06-03T10:09:28.718Z - normal: Simulator: D/jswrapper (125): JS: load res :shoe_active
+2018-06-03T10:09:28.718Z - normal: Simulator: D/jswrapper (125): JS: load res :yaoshaizi
+2018-06-03T10:09:29.177Z - normal: Simulator: D/jswrapper (125): JS: this.rate:108
+2018-06-03T10:09:29.177Z - normal: Simulator: D/jswrapper (125): JS: Storage path for remote asset : E:\CocosCreator\resources\cocos2d-x\simulator\win32\blackjack-remote-asset
+2018-06-03T10:09:29.178Z - normal: Simulator: D/jswrapper (125): JS: Local manifest URL : F:/GitHub/xx_cc_g/assets/project.manifest
+2018-06-03T10:09:29.384Z - normal: Simulator: D/jswrapper (125): JS: Code: 5
+2018-06-03T10:09:29.388Z - normal: Simulator: D/jswrapper (125): JS: JS Custom Version Compare: version A is 0.0.2, version B is 0.0.2
+2018-06-03T10:09:29.408Z - normal: Simulator: D/jswrapper (125): JS: Code: 4
+2018-06-03T10:09:32.563Z - normal: Simulator: D/jswrapper (125): JS: wxLogin
+2018-06-03T10:09:32.564Z - normal: Simulator: D/jswrapper (125): JS: go into on login......{"nickname":"杜1111","fangka":10,"gender":1,"player_id":"1111","headimgurl":"http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJ0J3Obq3uG2qg6QKp19xJXG8fpmDnC383WzI0fXLtfsGA6JibtpreNd98vzG1vr0oibibhiab6b1wzCw/132"}
+2018-06-03T10:09:32.703Z - normal: Simulator: D/jswrapper (125): JS: get login info succ:{"code":200,"token":"8e02e055765fec10b5c47dfbb4f60cf3","player_id":3}
+2018-06-03T10:09:32.885Z - normal: Simulator: D/jswrapper (125): JS: init gate server ok
+2018-06-03T10:09:32.953Z - normal: Simulator: D/jswrapper (125): JS: gate info:{"code":200,"host":"193.112.243.189","port":3050}
+2018-06-03T10:09:33.339Z - normal: Simulator: D/jswrapper (125): JS: LoadScene 8646bb58-6795-4933-80ff-3ccad9fd2d2c: 85.98999999999978ms
+2018-06-03T10:09:33.355Z - normal: Simulator: D/jswrapper (125): JS: InitScene: 4.096999999999753ms
+2018-06-03T10:09:33.356Z - normal: Simulator: D/jswrapper (125): JS: AutoRelease: 0.7799999999997453ms
+2018-06-03T10:09:33.376Z - normal: Simulator: D/jswrapper (125): JS: Destroy: 17.719999999999345ms
+2018-06-03T10:09:33.377Z - normal: Simulator: D/jswrapper (125): JS: AttachPersist: 0.4739999999992506ms
+2018-06-03T10:09:33.377Z - normal: Simulator: D/jswrapper (125): JS: [WARN]: Sorry, lineHeight of system font not supported on JSB.
+2018-06-03T10:09:33.398Z - normal: Simulator: D/jswrapper (125): JS: on load main scene.....
+2018-06-03T10:09:33.436Z - normal: Simulator: D/jswrapper (125): JS: Activate: 66.41899999999987ms
+2018-06-03T10:09:39.878Z - normal: Simulator: D/jswrapper (447): ScriptEngine::cleanup begin ...
+2018-06-03T10:09:39.879Z - normal: Simulator: D/jswrapper (588): GC begin ..., (js->native map) size: 1179, all objects: 1465
+2018-06-03T10:09:39.928Z - normal: Simulator: D/jswrapper (596): GC end ..., (js->native map) size: 1107, all objects: 1397
+2018-06-03T10:09:39.931Z - normal: Simulator: D/jswrapper (588): GC begin ..., (js->native map) size: 1107, all objects: 1391
+2018-06-03T10:09:39.976Z - normal: Simulator: D/jswrapper (596): GC end ..., (js->native map) size: 1107, all objects: 1391
+2018-06-03T10:09:39.976Z - normal: Simulator: D/jswrapper (588): GC begin ..., (js->native map) size: 0, all objects: 0
+2018-06-03T10:09:40.017Z - normal: Simulator: D/jswrapper (596): GC end ..., (js->native map) size: 0, all objects: 0
+2018-06-03T10:09:40.030Z - normal: Simulator: D/jswrapper (480): Starting to cleanup dragonbones object, count: 0
+2018-06-03T10:09:40.030Z - normal: Simulator: D/jswrapper (499): After first cleanup, dragonbones object remained count: 0
+2018-06-03T10:09:40.031Z - normal: Simulator: D/jswrapper (515): After second cleanup, dragonbones object remained count: 0
+2018-06-03T10:09:40.042Z - normal: Simulator: D/jswrapper (510): ScriptEngine::cleanup end ...
+2018-06-03T10:23:36.045Z - info: shutdown preview server
