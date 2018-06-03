@@ -149,7 +149,7 @@ public class AppActivity extends Cocos2dxActivity implements NetWorkBroadcastRec
     public static void WxShare(String rnum,String name,int rid){
         if(wxapi.getWXAppSupportAPI() >= 0x21020001){
             WXWebpageObject webpage = new WXWebpageObject();
-            webpage.webpageUrl = "http://193.112.243.189:8000/open_app?room_num=" + rnum + "&name=" + name + "&rid=" + rid;
+            webpage.webpageUrl = "http://www.enjoymygame.com/open_app?room_num=" + rnum + "&name=" + name + "&rid=" + rid;
             WXMediaMessage msg = new WXMediaMessage(webpage);
             msg.title = "点击链接进入房间";
             msg.description = "房间号：" + rnum;

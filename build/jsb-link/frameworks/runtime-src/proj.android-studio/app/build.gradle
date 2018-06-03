@@ -3,8 +3,8 @@ import org.apache.tools.ant.taskdefs.condition.Os
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion '27.0.3'
+    compileSdkVersion 22
+    buildToolsVersion '26.0.2'
 
     defaultConfig {
         applicationId "org.cocos2d.enjoypuke"
@@ -64,7 +64,7 @@ android {
             }
             keyAlias 'dujinle'
             keyPassword 'dujinle'
-            storeFile file('F:/gitdata/xx_cc_g/dujinle.jks')
+            storeFile file('F:/GitHub/xx_cc_g/dujinle.jks')
             storePassword 'dujinle'
         }
     }
@@ -81,6 +81,7 @@ android {
                     arguments 'NDK_DEBUG=0'
                 }
             }
+            signingConfig signingConfigs.release
         }
         debug {
             externalNativeBuild {
