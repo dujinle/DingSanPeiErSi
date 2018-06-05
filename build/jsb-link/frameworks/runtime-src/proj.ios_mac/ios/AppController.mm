@@ -111,15 +111,12 @@ static AppDelegate* s_sharedApplication = nullptr;
         NSString *scene = [dic objectForKey:@"scene"];
         
         if (scene.length > 0 && roomID.length > 0 && rid.length > 0) {
-            NSString *room = [[roomID stringByReplacingOccurrencesOfString:@"{{" withString:@""] stringByReplacingOccurrencesOfString:@"}}" withString:@""];
-            NSString *r = [[rid stringByReplacingOccurrencesOfString:@"{{" withString:@""] stringByReplacingOccurrencesOfString:@"}}" withString:@""];
-            NSString *scene = [[scene stringByReplacingOccurrencesOfString:@"{{" withString:@""] stringByReplacingOccurrencesOfString:@"}}" withString:@""];
             
-            NSString *funcName = [NSString stringWithFormat:@"onGameEnterRoom(%@,%@)",room,r];
+            NSString *funcName = [NSString stringWithFormat:@"onGameEnterRoom(%@,%@)",roomID,rid];
             [NativeOcClass sharedManager].LoginType = 1;
-            [NativeOcClass sharedManager].roomNum = room;
+            [NativeOcClass sharedManager].roomNum = roomID;
             [NativeOcClass sharedManager].scene = scene;
-            [NativeOcClass sharedManager].rid = r;
+            [NativeOcClass sharedManager].rid = rid;
             se::ScriptEngine::getInstance()->evalString(funcName.UTF8String);
             return YES;
         }

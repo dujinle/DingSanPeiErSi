@@ -19,6 +19,8 @@ cc.Class({
 		}else if(cc.sys.os == cc.sys.OS_IOS){
 			jsb.reflection.callStaticMethod("NativeOcClass", "iOSLoginWithWX");
 			this.login_flag = true;
+		}else{
+			this.onLogin();
 		}
 	},
 	update(){
@@ -110,7 +112,7 @@ cc.Class({
 	onInitLogin(){
 		this.button_login.getComponent("cc.Button").interactable = false;
 		if(cc.sys.os == cc.sys.OS_WINDOWS){
-			this.onLogin();
+			this.button_login.getComponent("cc.Button").interactable = true;
 		}else if(cc.sys.isNative){
 			this.login_flag = false;
 			var refresh_token = Storage.getData("refresh_token");
@@ -141,7 +143,7 @@ cc.Class({
 	onLogin(){
 		var self = this;
 		this.debug_label.string = "go into on login......";
-		var size = cc.director.getVisibleSize();
+		cc.log("go into on login......" + JSON.stringify(g_user));
 		Servers.getLogin(g_user['player_id'],g_user['nickname'],g_user['gender'],g_user['headimgurl'], function (data) {
 			console.log("get login info succ:" + JSON.stringify(data));
 			if(data.code != 200){
