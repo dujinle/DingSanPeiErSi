@@ -7,7 +7,7 @@
 
 #import "NativeOcClass.h"
 #import "WXApi.h"
-
+static NSString const * kbaseShareUrl = @"http://www.enjoymygame.com/open_app";
 @implementation NativeOcClass
 
 +(instancetype)sharedManager {
@@ -36,13 +36,13 @@
 		//init title
 		message.title = @"点击链接进入房间";
         NSString* roomLabel = @"房间号:";
-        message.description = [NSString stringWithFormat:@"%@%@",roomLabel,rid];
+        message.description = [NSString stringWithFormat:@"%@%@",roomLabel,roomNum];
 		//init image
 		[message setThumbImage:[UIImage imageNamed:@"send_music_thumb"]];
 		//init url
 		WXWebpageObject * webpageObject = [WXWebpageObject object];
-		NSString* url = @"http://193.112.243.189:8000/open_app";
-        webpageObject.webpageUrl = [NSString stringWithFormat:@"%@?room_num=%@&name=%@&rid=%@",url,roomNum,name,rid];
+        
+        webpageObject.webpageUrl = [NSString stringWithFormat:@"%@?room_num=%@&name=%@&rid=%@",kbaseShareUrl,roomNum,name,rid];
 		message.mediaObject = webpageObject;
         
 		SendMessageToWXReq * req = [[SendMessageToWXReq alloc] init];
