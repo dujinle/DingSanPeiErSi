@@ -4,7 +4,6 @@ cc.Class({
     properties: {
 		version_label:cc.Node,
 		login_flag:false,
-		debug_label:cc.Label,
 		button_login:cc.Node,
 		load_update:cc.Node,
 		callback:null,
@@ -12,7 +11,6 @@ cc.Class({
 	wxLogin(){
 		cc.log("wxLogin");
 		this.button_login.getComponent("cc.Button").interactable = false;
-		this.debug_label.string = "wxLogin.......";
 		if(cc.sys.os == cc.sys.OS_ANDROID){
 			jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "WxLogin", "()V");
 			this.login_flag = true;
@@ -36,13 +34,11 @@ cc.Class({
 				var app_id = jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "getAppId", "()Ljava/lang/String;");
 				var app_secret = jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "getAppSecret", "()Ljava/lang/String;");
 				var wx_code = jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "getWXCode", "()Ljava/lang/String;");
-				this.debug_label.string = "appid:" + app_id + " app_secret:" + app_secret + " wx_code:" + wx_code;
 
 				if(wx_code != null && wx_code != "null"){
 					Storage.setData("app_id",app_id);
 					Storage.setData("app_secret",app_secret);
 					this.callback = this.get_access_token;
-					this.debug_label.string = "wx_code:" + wx_code;
 					util.get("https://api.weixin.qq.com/sns/oauth2/access_token",
 						"appid=" + app_id + "&secret=" + app_secret + "&code=" + wx_code + "&grant_type=authorization_code",this);
 				}else{
@@ -52,13 +48,11 @@ cc.Class({
 				var app_id = jsb.reflection.callStaticMethod("NativeOcClass", "getAppId");
 				var app_secret = jsb.reflection.callStaticMethod("NativeOcClass", "getAppSecret");
 				var wx_code = jsb.reflection.callStaticMethod("NativeOcClass", "getWXCode");
-				this.debug_label.string = "appid:" + app_id + " app_secret:" + app_secret + " wx_code:" + wx_code;
 
 				if(wx_code != null && wx_code != "null"){
 					Storage.setData("app_id",app_id);
 					Storage.setData("app_secret",app_secret);
 					this.callback = this.get_access_token;
-					this.debug_label.string = "wx_code:" + wx_code;
 					util.get("https://api.weixin.qq.com/sns/oauth2/access_token",
 						"appid=" + app_id + "&secret=" + app_secret + "&code=" + wx_code + "&grant_type=authorization_code",this);
 				}else{
@@ -69,7 +63,6 @@ cc.Class({
 	},
 	get_access_token(data){
 		cc.log("get_access_token:" + data);
-		this.debug_label.string = "access_token:" + JSON.stringify(data);
 		if(data.access_token != null && data.openid != null){
 			/*保存信息下次直接登录不用授权*/
 			Storage.setData("access_token",data.access_token);
@@ -85,13 +78,11 @@ cc.Class({
 	get_wxuser_info(data){
 		cc.log("get_wxuser_info:" + JSON.stringify(data));
 		if(data.openid != null){
-			this.debug_label.string = "get_wxuser_info:" + JSON.stringify(data);
 			g_user['nickname'] = data.nickname;
 			g_user['fangka'] = 0;
 			g_user['gender'] = data.sex;
 			g_user['player_id'] = data.unionid;
 			g_user['headimgurl'] = data.headimgurl;
-			this.debug_label.string = "start on login......";
 			this.onLogin();
 		}else{
 			this.error_code(data);
@@ -117,7 +108,6 @@ cc.Class({
 			this.login_flag = false;
 			var refresh_token = Storage.getData("refresh_token");
 			var app_id = Storage.getData("app_id");
-			this.debug_label.string = "onInitLogin:" + refresh_token;
 			if(refresh_token == null){
 				//这里需要确定 是否是通过其他渠道打开的游戏如果是需要自动登录操作
 				if(cc.sys.os == cc.sys.OS_ANDROID){
@@ -142,20 +132,16 @@ cc.Class({
 	},
 	onLogin(){
 		var self = this;
-		this.debug_label.string = "go into on login......";
 		cc.log("go into on login......" + JSON.stringify(g_user));
 		Servers.getLogin(g_user['player_id'],g_user['nickname'],g_user['gender'],g_user['headimgurl'], function (data) {
 			console.log("get login info succ:" + JSON.stringify(data));
 			if(data.code != 200){
-				self.debug_label.string = data.msg;
 				return;
 			}
 			var token = data.token;
 			Servers.getEntry(token,function(data){
 				if(data.code == 200){
 					self.saveUserInfo(data.player);
-				}else{
-					self.debug_label.string = data.msg;
 				}
 			});
 		});
