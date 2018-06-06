@@ -4,7 +4,7 @@
 		let hotUpdateSearchPaths = cc.sys.localStorage.getItem('HotUpdateSearchPaths');
 		if (hotUpdateSearchPaths) {
 			jsb.fileUtils.setSearchPaths(JSON.parse(hotUpdateSearchPaths));
-			cc.log('[main.js] 热更新SearchPath: ' + JSON.parse(hotUpdateSearchPaths));
+			console.log('[main.js] 热更新SearchPath: ' + JSON.parse(hotUpdateSearchPaths));
         }
     }
     // 这是为了解决一个重启的 bug 而添加的

@@ -69,6 +69,7 @@ cc.Class({
 		this.schedule(this.showRoomMessageUpdate,1.0/60,cc.REPEAT_FOREVER,0);
 		this.node.on("pressed", this.switchRadio, this);
 	},
+
 	start(){
 		cc.log("go into pj game room scene start");
 		g_music_key = cc.sys.localStorage.getItem(MUSIC_KEY);
@@ -95,13 +96,6 @@ cc.Class({
 	},
 	initButtonEnableAfterComeInRoom(){
 		this.get_one_button("ready",true);
-		/*
-		if(g_room_data["fangka_type"] == 1){
-			this.get_one_button("qiang",true);
-			var call_back_function = cc.callFunc(this.auto_qiangzhuang,this);
-			this.qiangzhang_button.runAction(cc.sequence(cc.fadeOut(20),call_back_function));
-		}
-		*/
 		this.qieguo_button.active = false;
 		this.buqie_button.active = false;
     },
@@ -253,6 +247,7 @@ cc.Class({
 		my_button.active = true;
 		my_button.getComponent(cc.Button).interactable = flag;
 	},
+
 	//按钮回调函数
 	callback_zhunbei(){
 		this.zhunbei_button.active = false;
@@ -263,7 +258,7 @@ cc.Class({
 			cc.log(data.msg);
 		});
     },
-	
+
 	callback_xiazhu(){
 		this.xiazhu_button.getComponent(cc.Button).interactable = false;
 		//find myself player
@@ -284,6 +279,7 @@ cc.Class({
 		}
 		this.get_one_button("queding",false);
     },
+
 	callback_queding(){
 		this.chip_layout.active = false;
 		this.chip_layout.destroy();
@@ -305,6 +301,7 @@ cc.Class({
 			}
 		}
     },
+
 	callback_peipai(){
 		this.peipai_button.active = false;
 		var size = cc.director.getVisibleSize();
@@ -347,6 +344,7 @@ cc.Class({
 			return;
 		}
 	},
+
 	callback_kaipai(){
 		this.kaipai_button.active = false;
 		pomelo.request(util.getGameRoute(),{
@@ -356,6 +354,7 @@ cc.Class({
 			cc.log(data.msg);
 		});
 	},
+
 	callback_qieguo(){
 		this.qieguo_button.active = false;
 		this.buqie_button.active = false;
@@ -367,6 +366,7 @@ cc.Class({
 			cc.log(data.msg);
 		});
 	},
+
 	callback_buqie(){
 		this.qieguo_button.active = false;
 		this.buqie_button.active = false;
@@ -378,6 +378,7 @@ cc.Class({
 			cc.log(data.msg);
 		});
 	},
+
 	callback_setting(){
 		var self = this;
 		var size = cc.director.getVisibleSize();
@@ -400,6 +401,7 @@ cc.Class({
 		this.node.addChild(pop_setting);
 		pop_setting.setPosition(this.node.convertToNodeSpaceAR(cc.p(x,y)));
 	},
+
 	callback_gameback(){
 		var self = this;
 		pomelo.request(util.getGameRoute(),{
@@ -410,6 +412,7 @@ cc.Class({
             cc.director.loadScene("MainScene");
         })
 	},
+
 	callback_uinfo(event,id){
 		var player = this.players[id];
 		var player_com = player.getComponent("tdk_player");
@@ -421,12 +424,12 @@ cc.Class({
             console.log("-----quit------"+JSON.stringify(data));
         })
 	},
-	
+
 	showRoomMessageUpdate(){
 		this.zhuang_label.string = this.sumBet;
 		this.huihe_label.string = this.count;
 	},
-	
+
 	repairFapai_function(){
 		this.myselfCards.splice(0,this.myselfCards.length);
 		this.myselfCards.push(JSON.parse(g_room_data["pai1"]));
@@ -495,7 +498,7 @@ cc.Class({
 		}
 		this.get_one_button("peipai",true);
 	},
-	
+
 	repairPeipai_function(){
 		var flag = true;
 		for(var i = 0;i < g_players.length;i++){
@@ -533,10 +536,9 @@ cc.Class({
 		this.peipai_button.active = false;
 		this.peipai_button.getComponent("cc.Button").interactable = false;
 	},
-	
+
 	repairOpenpai_function(){
 		//说明是一锅中的第二把需要把上一把的牌显示出来
-		var varm_player = new Array();
 		for(var i = 0;i < this.players.length;i++){
 			var player = this.players[i];
 			var player_com = player.getComponent("tdk_player");
@@ -570,7 +572,7 @@ cc.Class({
 			}
 		}
 	},
-	
+
 	repairQieguo_function(){
 		this.repairOpenpai_function();
 		var scores = [g_room_data["left_score_1"],g_room_data["left_score_2"],g_room_data["left_score_3"],g_room_data["left_score_4"]];
@@ -580,6 +582,7 @@ cc.Class({
 		}
 		this.onQieguo_function({"scores":scores,"flag":is_qie});
 	},
+
 	pomelo_on(){
     	pomelo.on('onReady',this.onReady_function.bind(this));
 		pomelo.on('onGetZhuang',this.onGetZhuang_function.bind(this));
@@ -595,10 +598,10 @@ cc.Class({
 		pomelo.on('onEnd',this.onEnd_function.bind(this));
 		pomelo.on('onActBroadcast',this.onUserBroadcast_function.bind(this));
     },
-	
+
 	onReady_function(data){
 		cc.log("pomelo on Ready:" + data.location+" is ready");
-		/*如果玩家进来时正在游戏中则准备后 放入g_players中*/
+		//如果玩家进来时正在游戏中则准备后 放入g_players中
 		for(var i = 0;i < g_players.length;i++){
 			var player = g_players[i];
 			var player_com = player.getComponent("tdk_player");
@@ -610,7 +613,7 @@ cc.Class({
 			}
 		}
 	},
-	
+
 	onGetZhuang_function(data){
 		cc.log("pomelo onGetzhuang_function:" + JSON.stringify(data));
 		var size = cc.director.getWinSize();
@@ -633,7 +636,7 @@ cc.Class({
 			}
 		}
 	},
-	
+
 	onXiazhu_function(data){
 		cc.log("onXiazhu_function:" + JSON.stringify(data));
 		var location = data.location;
@@ -648,13 +651,13 @@ cc.Class({
 			}
 		}
 	},
-	
+
 	onFapai_function(data){
 		cc.log("onFapai" + JSON.stringify(data));
 		var size = cc.director.getWinSize();
 		this.cur_turn = data["cur_turn"];
 		//如果是第一次发牌则清空已经用过的牌
-		/*更新房间状态和玩家信息*/
+		//更新房间状态和玩家信息
 		if(this.cur_turn == 0){
 			for(var i = 0;i < this.left_cards.length;i++){
 				var card = this.left_cards[i];
@@ -678,12 +681,12 @@ cc.Class({
 		}
 		this.sumBet = data["all_chip"];
 
-		/*初始化玩家手中的牌（背面），权限isPower,开牌checkCard弃牌abandon,失败提示精灵loserSprite*/
+		//初始化玩家手中的牌（背面），权限isPower,开牌checkCard弃牌abandon,失败提示精灵loserSprite
 		for(var i=0;i < g_players.length;i++){
 			var player_com = g_players[i].getComponent("tdk_player");
 			player_com.hide_game_sprite();
 		}
-		/*摇色子动作 并显示发牌开始玩家*/
+		//摇色子动作 并显示发牌开始玩家
 		for(var i = 0;i < this.players.length;i++){
 			//清除玩家手中上一局的牌，
 			var player = this.players[i];
@@ -700,7 +703,7 @@ cc.Class({
 			}
 		}
 	},
-	
+
 	onShoupai_function(data){
 		cc.log("onShoupai:" + JSON.stringify(data));
 
@@ -727,7 +730,7 @@ cc.Class({
 		cc.log("fapai_order:" + JSON.stringify(fapai_order));
 		this.actionFaPai(this,fapai_order);
 	},
-	
+
 	onPeiPai_function(data){
 		cc.log("onPeipai_function:" + JSON.stringify(data));
 		var player_position = data.location;
@@ -790,7 +793,7 @@ cc.Class({
 			}
 		}
 	},
-	
+
 	onPeiPaiFinish_function(data){
 		if(g_myselfPlayerPos == this.zhuang_serverPosition){
 			this.get_one_button("kaipai",true);
@@ -1032,7 +1035,7 @@ cc.Class({
 		var callFunc = cc.callFunc(this.actionFaPai,this,fapai_order);
 		this.node.runAction(cc.sequence(cc.delayTime(0.45),callFunc));
     },
-	
+
 	fapai_finish(){
 		//打开自己的牌开始配牌
 		for(var i = 0;i < g_players.length;i++){
@@ -1084,6 +1087,7 @@ cc.Class({
 			}
 		}
     },
+	
 	calc_player_chip_position(player){
 		var player_com = player.getComponent("tdk_player");
 		var x = 0;
@@ -1104,6 +1108,7 @@ cc.Class({
 		cc.log("calc x:" + x + " y:" + y);
 		return cc.p(x,y);
 	},
+	
 	calc_player_card_position(player,m){
 		var player_com = player.getComponent("tdk_player");
 		var x = 0;
@@ -1130,6 +1135,7 @@ cc.Class({
 		cc.log("calc player_com:" + player_com.player_position +"x:" + x + " y:" + y);
 		return cc.p(x,y);
 	},
+	
 	calc_hpeipai_position(player,m){
 		var player_com = player.getComponent("tdk_player");
 		var x = 0;
@@ -1161,6 +1167,7 @@ cc.Class({
 		cc.log("calc player_com:" + player_com.player_position +"x:" + x + " y:" + y);
 		return cc.p(x,y);
 	},
+	
 	calc_wpeipai_position(player,m){
 		var player_com = player.getComponent("tdk_player");
 		var x = 0;
@@ -1229,7 +1236,7 @@ cc.Class({
 		var callback = cc.callFunc(this.ready_next_turn,this);
 		this.node.runAction(cc.sequence(cc.delayTime(1),callback));
     },
-	
+
 	ready_next_turn(){
 		if(this.cur_turn == 0){
 			for(var i = 0;i < this.myselfCards.length;i++){
@@ -1278,6 +1285,7 @@ cc.Class({
 			}
 		}
 	},
+	
 	set_cards_w(player,cards){
 		cc.log("set_cards_w:" + cards.length);
 		for(var i = 0;i < cards.length;i++){
@@ -1289,6 +1297,7 @@ cc.Class({
 			card.runAction(action_spawn);
 		}
 	},
+	
 	set_cards_h(player,cards){
 		cc.log("set_cards_h:" + cards.length);
 		for(var i = 0;i < cards.length;i++){
@@ -1298,6 +1307,7 @@ cc.Class({
 			card.runAction(acMoveTo);
 		}
 	},
+	
 	getzhuang_callback(){
 		cc.log("getzhuang_callback");
 		this.suiji_qiangzhuang.active = false;
@@ -1340,6 +1350,7 @@ cc.Class({
 			this.zhunbei_button.active = false;
 		}
 	},
+	
 	silder_callback(pthis,idx,silder_progress){
 		cc.log("pj_game_scene silder1:" + silder_progress);
 		for(var i = 0;i < g_players.length;i++){
@@ -1363,7 +1374,7 @@ cc.Class({
 		pomelo.removeListener('onFapai');
 		pomelo.removeListener('onGetUinfo');
 		pomelo.removeListener('onShoupai');
-		pomelo.removeListener('onSendGift');		
+		pomelo.removeListener('onSendGift');
         pomelo.removeListener('onOpen');
         pomelo.removeListener('onQieguo');
         pomelo.removeListener('onEnd');

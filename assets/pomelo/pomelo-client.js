@@ -67,7 +67,7 @@
     if(port) {
       url +=  ':' + port;
     }
-
+	console.log("pomelo init:" + url);
     handshakeBuffer.user = params.user;
     handshakeCallback = params.handshakeCallback;
     initWebSocket(url, cb);
@@ -79,6 +79,7 @@
       send(obj);
     };
     var onmessage = function(event) {
+	  console.log("pomelo onmessage........");
       processPackage(Package.decode(event.data), cb);
       // new package arrived, update the heartbeat timeout
       if(heartbeatTimeout) {
@@ -87,12 +88,12 @@
     };
     var onerror = function(event) {
       pomelo.emit('io-error', event);
-      cc.error('socket error: ', event);
+      console.log('socket error: ', event);
     };
     var onclose = function(event){
       pomelo.emit('close',event);
       pomelo.emit('disconnect', event);
-      cc.error('socket close: ', event);
+      console.log('socket close: ', event);
     };
     socket = new WebSocket(url);
     socket.binaryType = 'arraybuffer';
@@ -100,13 +101,14 @@
     socket.onmessage = onmessage;
     socket.onerror = onerror;
     socket.onclose = onclose;
+	console.log("pomelo init finish");
   };
 
   pomelo.disconnect = function() {
     if(socket) {
       if(socket.disconnect) socket.disconnect();
       if(socket.close) socket.close();
-      cc.log('disconnect');
+      console.log('disconnect');
       socket = null;
     }
 
