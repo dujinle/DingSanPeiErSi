@@ -64,14 +64,13 @@ cc.Class({
 		var self = this;
 		var param = {
 			"id":this.data["id"],
-			"danjia":this.danjia,
+			"danjia":this.danjia_str,
 			"xuanyan":this.xuanyan_str,
 			"gonggao":this.gonggao_str
 		};
 		Servers.gonghuiProcess("update_gonghui",param,function(data){
 			if(data.code == 200){
 				util.show_error_info(self.parent,size,"公会信息更新完成");
-				self.init(data.msg);
 			}else{
 				util.show_error_info(self.parent,size,data.msg);
 			}
