@@ -15,7 +15,6 @@ cc.Class({
 		use_num_node:cc.Node,
 		left_num_node:cc.Node,
 		invalid_num_node:cc.Node,
-		debug_label:cc.Label,
 		pthis:null,
     },
     onLoad () {
@@ -34,6 +33,9 @@ cc.Class({
 		// 获取整个列表的高度
         this.content.height = this.totalCount * (this.itemHeight + this.spacing) + this.spacing;
     	for (let i = 0; i < this.spawnCount; ++i) { // spawn items, we only need to do this once
+			if(this.data_list.length <= i){
+				break;
+			}
     		let item = cc.instantiate(g_assets["record_item_layout"]);
             this.content.addChild(item);
             // 设置该item的坐标（注意父节点content的Anchor坐标是(0.5, 1)，所以item的y坐标总是负值）
@@ -124,7 +126,6 @@ cc.Class({
 		if(this.items == null){
 			return ;
 		}
-		this.debug_label.string = "";
 		for (let i = 0; i < this.items.length; i++) { // spawn items, we only need to do this once
 			let item = this.items[i];
 			item.removeFromParent();

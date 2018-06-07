@@ -16,7 +16,6 @@ cc.Class({
 		win_node:cc.Node,
 		lose_node:cc.Node,
 		equal_node:cc.Node,
-		debug_label:cc.Label,
 		pthis:null,
     },
     onLoad () {
