@@ -25,7 +25,7 @@ cc.Class({
 		}
 	},
 	my_gonghui_button_cb(){
-		cc.log("my_gonghui_button_cb");
+		cc.log("my_gonghui_button_cb" + JSON.stringify(g_user));
 		var self = this;
 		self.unable_one_button("gonghui");
 		if(g_user["gonghui_id"] == null){
@@ -33,8 +33,8 @@ cc.Class({
 			empty_node_com.set_text("no_g");
 			self.show_one_node("empty");
 		}else{
-			Servers.gonghuiProcess("getGonghui",{"gonghui_id":g_user.gonghui_id},function(data){
-				if(data.code == 200){
+			Servers.gonghuiProcess("getGonghuiGongHuiId",{"gonghui_id":g_user.gonghui_id},function(data){
+				if(data.code == 200 && data.msg != null){
 					var gonghui_data = data.msg;
 					if(gonghui_data["player_id"] != g_user["id"]){
 						var my_gonghui_com = self.my_gonghui_node.getComponent("gonghui_yuan");
@@ -45,6 +45,10 @@ cc.Class({
 						my_gonghui_com.init(gonghui_data,self);
 						self.show_one_node("gonghui_zhang");
 					}
+				}else{
+					var empty_node_com = self.empty_node.getComponent("gonghui_empty");
+					empty_node_com.set_text("no_g");
+					self.show_one_node("empty");
 				}
 			});
 		}
@@ -114,7 +118,12 @@ cc.Class({
             onTouchEnded: function (touch, event) {            // 点击事件结束处理
 			}
          }, self.game_sprite);
-		 this.my_gonghui_button_cb();
+		 Servers.gonghuiProcess("getGonghuiPlayerId",{"player_id":g_user["id"]},function(data){
+			if(data.code == 200 && data.msg != null){
+				g_user["gonghui_id"] = data.msg["gonghui_id"];
+			}
+			self.my_gonghui_button_cb();
+		 });
 	},
 	close_scene(){
 		this.node.active = false;

@@ -10,28 +10,23 @@ cc.Class({
 		danjia:cc.Node,
 		xuanyan:cc.Node,
 		pthis:null,
+		data:null,
     },
 	init(data,pthis){
 		this.pthis = pthis;
-		this.gonghui_id.getComponent("cc.Label").string = data["gonghui_id"];
-		this.gonghui_name.getComponent("cc.Label").string = data["gonghui_name"];
-		this.gonghui_zhang.getComponent("cc.Label").string = data["player_name"];
-		this.fangka_num.getComponent("cc.Label").string = data["fangka_num"];
-		this.renshu.getComponent("cc.Label").string = data["renshu"];
-		this.danjia.getComponent("cc.Label").string = data["danjia"];
-		this.xuanyan.getComponent("cc.Label").string = data["xuanyan"];
-		this.gonggao.getComponent("cc.Label").string = data["gonggao"];
+		this.data = data;
+		if(this.data != null){
+			this.gonghui_id.getComponent("cc.Label").string = this.data["gonghui_id"];
+			this.gonghui_name.getComponent("cc.Label").string = this.data["gonghui_name"];
+			this.gonghui_zhang.getComponent("cc.Label").string = this.data["player_name"];
+			this.fangka_num.getComponent("cc.Label").string = this.data["fangka_num"];
+			this.renshu.getComponent("cc.Label").string = this.data["renshu"];
+			this.danjia.getComponent("cc.Label").string = this.data["danjia"];
+			this.xuanyan.getComponent("cc.Label").string = this.data["xuanyan"];
+			this.gonggao.getComponent("cc.Label").string = this.data["gonggao"];
+		}
 	},
 	tuichu_cb(){
 		
 	},
-    onLoad () {
-		
-	},
-
-    start () {
-
-    },
-
-    // update (dt) {},
 });

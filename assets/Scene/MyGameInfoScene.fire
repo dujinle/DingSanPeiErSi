@@ -3186,7 +3186,6 @@
     "equal_node": {
       "__id__": 51
     },
-    "debug_label": null,
     "pthis": null
   },
   {
@@ -5145,7 +5144,6 @@
     "invalid_num_node": {
       "__id__": 109
     },
-    "debug_label": null,
     "pthis": null
   },
   {
