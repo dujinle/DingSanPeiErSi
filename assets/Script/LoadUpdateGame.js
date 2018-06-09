@@ -4,7 +4,6 @@ cc.Class({
     properties: {
         loadBar:cc.ProgressBar,
         precent:cc.Label,
-		debug_label:cc.Label,
 		process_type:0,
 		rate:0,
 		_update_flag:false,

@@ -123,12 +123,9 @@ util.get = function(url,param,pthis){
     }else{
     	xhr.open("GET", url + "?" + param,false);
     }
-    pthis.debug_label.string = url + "?" + param;
     xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
     xhr.onreadystatechange = function () {
-        pthis.debug_label.string = "onreadystatechange:" + xhr.readyState + " status:" + xhr.status;
         if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status <= 207)) {
-            pthis.debug_label.string = pthis.debug_label.string + "resp:" + xhr.responseText;
             var result = JSON.parse(xhr.responseText);
             pthis.callback(result);
         }

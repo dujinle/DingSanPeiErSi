@@ -18,16 +18,18 @@ cc.Class({
 	init(data,pthis){
 		this.pthis = pthis;
 		this.data = data;
-		this.gonghui_id.getComponent("cc.Label").string = data["gonghui_id"];
-		this.gonghui_name.getComponent("cc.Label").string = data["gonghui_name"];
-		this.fangka_num.getComponent("cc.Label").string = data["fangka_num"];
-		this.renshu.getComponent("cc.Label").string = data["renshu"];
-		this.danjia.getComponent("cc.EditBox").string = data["danjia"];
-		this.xuanyan.getComponent("cc.EditBox").string = data["xuanyan"];
-		this.gonghui_zhang.getComponent("cc.Label").string = data["player_name"];
-		this.xuka_status = data["xuka_status"];
-		this.xuanyan_str = data["xuanyan"];
-		this.danjia_str = data["danjia"];
+		if(this.data != null){
+			this.gonghui_id.getComponent("cc.Label").string = this.data["gonghui_id"];
+			this.gonghui_name.getComponent("cc.Label").string = this.data["gonghui_name"];
+			this.fangka_num.getComponent("cc.Label").string = this.data["fangka_num"];
+			this.renshu.getComponent("cc.Label").string = this.data["renshu"];
+			this.danjia.getComponent("cc.EditBox").string = this.data["danjia"];
+			this.xuanyan.getComponent("cc.EditBox").string = this.data["xuanyan"];
+			this.gonghui_zhang.getComponent("cc.Label").string = this.data["player_name"];
+			this.xuka_status = this.data["xuka_status"];
+			this.xuanyan_str = this.data["xuanyan"];
+			this.danjia_str = this.data["danjia"];
+		}
 	},
 	onChangeDanjia(){
 		this.danjia_str = this.danjia.getComponent("cc.EditBox").string;
@@ -62,14 +64,13 @@ cc.Class({
 		var self = this;
 		var param = {
 			"id":this.data["id"],
-			"danjia":this.danjia,
+			"danjia":this.danjia_str,
 			"xuanyan":this.xuanyan_str,
 			"gonggao":this.gonggao_str
 		};
 		Servers.gonghuiProcess("update_gonghui",param,function(data){
 			if(data.code == 200){
 				util.show_error_info(self.parent,size,"公会信息更新完成");
-				self.init(data.msg);
 			}else{
 				util.show_error_info(self.parent,size,data.msg);
 			}

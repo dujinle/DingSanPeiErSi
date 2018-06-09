@@ -7,7 +7,7 @@
   "includeAnySDK": false,
   "includeSDKBox": false,
   "inlineSpriteFrames": true,
-  "inlineSpriteFrames_native": true,
+  "inlineSpriteFrames_native": false,
   "jailbreakPlatform": false,
   "md5Cache": false,
   "mergeStartScene": false,
@@ -30,12 +30,9 @@
   "title": "hello_world",
   "webOrientation": "auto",
   "wechatgame": {
-    "REMOTE_SERVER_ROOT": "",
-    "appid": "wx6ac3f5090a6b99c5",
-    "isSubdomain": false,
-    "orientation": "portrait",
-    "subContext": ""
+    "appid": "",
+    "orientation": "portrait"
   },
-  "xxteaKey": "2cd67b5a-fd68-4a",
+  "xxteaKey": "363d60ed-9a8f-46",
   "zipCompressJs": true
 }
