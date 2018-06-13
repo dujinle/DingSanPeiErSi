@@ -1,0 +1,285 @@
+2018-06-03T10:31:11.997Z - normal: Load ~/.CocosCreator/settings.json
+2018-06-03T10:31:12.002Z - normal: checking language setting...
+2018-06-03T10:31:12.002Z - normal: Language: zh
+2018-06-03T10:31:14.221Z - success: protocol editor-framework registered
+2018-06-03T10:31:14.221Z - success: protocol app registered
+2018-06-03T10:31:14.222Z - success: protocol theme registered
+2018-06-03T10:31:14.222Z - success: protocol packages registered
+2018-06-03T10:31:14.222Z - success: protocol unpack registerred
+2018-06-03T10:31:14.222Z - success: protocol disable-commonjs registerred
+2018-06-03T10:31:14.384Z - normal: connected!
+2018-06-03T10:31:14.390Z - normal: Check project F:\GitHub\xx_cc_g
+2018-06-03T10:31:14.405Z - normal: Initializing Cocos2d
+2018-06-03T10:31:14.727Z - normal: Initializing Asset Database
+2018-06-03T10:31:14.788Z - success: protocol uuid registerred
+2018-06-03T10:31:14.788Z - success: protocol db registerred
+2018-06-03T10:31:14.789Z - success: protocol thumbnail registerred
+2018-06-03T10:31:14.789Z - normal: Loading editor/builtin packages
+2018-06-03T10:31:14.826Z - success: anysdk loaded
+2018-06-03T10:31:15.001Z - success: assets loaded
+2018-06-03T10:31:15.004Z - success: builder loaded
+2018-06-03T10:31:15.007Z - success: cocos-analytics loaded
+2018-06-03T10:31:15.011Z - success: console loaded
+2018-06-03T10:31:15.065Z - success: fb-instant-games loaded
+2018-06-03T10:31:15.069Z - success: hierarchy loaded
+2018-06-03T10:31:15.072Z - success: inspector loaded
+2018-06-03T10:31:15.074Z - success: keystore loaded
+2018-06-03T10:31:15.077Z - success: node-library loaded
+2018-06-03T10:31:15.079Z - success: package-asset loaded
+2018-06-03T10:31:15.082Z - success: preferences loaded
+2018-06-03T10:31:15.084Z - success: project-exporter loaded
+2018-06-03T10:31:15.107Z - success: project-importer loaded
+2018-06-03T10:31:15.110Z - success: project-settings loaded
+2018-06-03T10:31:15.112Z - success: ui-kit loaded
+2018-06-03T10:31:15.114Z - success: ui-grid loaded
+2018-06-03T10:31:15.118Z - success: scene loaded
+2018-06-03T10:31:15.120Z - success: sprite-editor loaded
+2018-06-03T10:31:15.124Z - success: store loaded
+2018-06-03T10:31:15.130Z - success: timeline loaded
+2018-06-03T10:31:15.130Z - normal: Loading builtin packages
+2018-06-03T10:31:15.133Z - success: asset-db-debugger loaded
+2018-06-03T10:31:15.135Z - success: code-editor loaded
+2018-06-03T10:31:15.135Z - success: color-picker loaded
+2018-06-03T10:31:15.138Z - success: package-manager loaded
+2018-06-03T10:31:15.145Z - success: sdkbox loaded
+2018-06-03T10:31:15.148Z - success: tester loaded
+2018-06-03T10:31:15.150Z - success: ui-kit-preview-extra loaded
+2018-06-03T10:31:15.152Z - success: ui-kit-preview loaded
+2018-06-03T10:31:15.154Z - success: ui-tree loaded
+2018-06-03T10:31:16.827Z - normal: Initializing project F:\GitHub\xx_cc_g
+2018-06-03T10:31:16.831Z - normal: Loading packages
+2018-06-03T10:31:16.839Z - normal: Watching packages
+2018-06-03T10:31:16.866Z - normal: Run Application
+2018-06-03T10:31:18.969Z - success: preview server running at http://localhost:7456
+2018-06-03T10:31:26.432Z - normal: 1.9.1
+2018-06-03T10:32:11.136Z - normal: Start building with options : {
+  "androidStudio": true,
+  "apiLevel": "android-25",
+  "appABIs": [
+    "armeabi-v7a"
+  ],
+  "appKey": "",
+  "appSecret": "",
+  "buildPath": "F:\\GitHub\\xx_cc_g\\build",
+  "debug": true,
+  "dest": "F:\\GitHub\\xx_cc_g\\build\\jsb-link",
+  "encryptJs": true,
+  "excludeScenes": [],
+  "excludedModules": [],
+  "fb-instant-games": {},
+  "includeAnySDK": false,
+  "includeEruda": false,
+  "includeSDKBox": false,
+  "inlineSpriteFrames": true,
+  "inlineSpriteFrames_native": true,
+  "jailbreakPlatform": false,
+  "md5Cache": false,
+  "mergeStartScene": false,
+  "oauthLoginServer": "",
+  "optimizeHotUpdate": false,
+  "orientation": {
+    "landscapeLeft": true,
+    "landscapeRight": true,
+    "portrait": false,
+    "upsideDown": false
+  },
+  "packageName": "org.cocos2d.enjoypuke",
+  "platform": "android",
+  "previewHeight": "720",
+  "previewWidth": "1280",
+  "privateKey": "",
+  "qqplay": {
+    "REMOTE_SERVER_ROOT": "",
+    "orientation": "portrait"
+  },
+  "renderMode": "0",
+  "scenes": [
+    "0d8b73b6-1b8d-47c9-ab99-22752d675c83",
+    "7d94239f-98c7-42cc-a7af-59bab3881a2d",
+    "b5b75a57-d3be-476a-9447-e69dd1db4095",
+    "c114e2e7-b89c-4411-860c-7a2b64c3613f",
+    "1d29a30f-e1e3-4a34-85ca-f8f352c4f21e",
+    "0bc4e533-9b98-40ce-8957-b40efcb6bd33",
+    "5bdf5669-1f13-4694-8843-274846607cea",
+    "737f052d-9423-4a1a-bc31-506653f63d0b",
+    "a31bfca8-4f35-4bb8-94e0-4d73eff8c52e",
+    "79285c57-0779-4de4-bac9-b95516b4c8ec",
+    "f63d171f-a760-4858-a8f4-4a0fa4842a38",
+    "7ed4b2af-2b10-4bc5-a17c-c7b1e41b6c14",
+    "1821f834-75dc-42fd-981a-1f85c5c840c8",
+    "8646bb58-6795-4933-80ff-3ccad9fd2d2c",
+    "5adfb9a5-2ec3-422d-9e14-88097f7f4747",
+    "e11fb921-f8dc-40aa-a1cd-04e079367b05",
+    "3f625073-da56-4cb6-a861-35cd50f06bee",
+    "2688c90a-b850-498d-9b12-58f1e2221ebb",
+    "1b608e27-f6be-458f-8410-f0a109403710",
+    "51059387-9eac-43f3-952d-e56bf29d5074",
+    "366f1e85-1dea-42cd-8c34-397e75a61fc5",
+    "64905a0e-3e1b-4d76-955a-9ab1c5b773fe",
+    "33ab749e-1206-4f71-af8c-08ae989062ef",
+    "302eba62-6eca-433e-94da-876e0f139553",
+    "b9f5c213-751a-4254-ac8e-f48f7913e6ea",
+    "ab077a34-4759-446b-acdb-834b43b8534a",
+    "88a4297b-e327-4b1e-969b-41343a30c304"
+  ],
+  "sourceMaps": false,
+  "startScene": "0d8b73b6-1b8d-47c9-ab99-22752d675c83",
+  "template": "link",
+  "title": "hello_world",
+  "useDebugKeystore": true,
+  "vsVersion": "auto",
+  "webOrientation": "auto",
+  "wechatgame": {
+    "REMOTE_SERVER_ROOT": "",
+    "appid": "wx6ac3f5090a6b99c5",
+    "isSubdomain": false,
+    "orientation": "portrait",
+    "subContext": ""
+  },
+  "xxteaKey": "2cd67b5a-fd68-4a",
+  "zipCompressJs": true,
+  "project": "F:\\GitHub\\xx_cc_g",
+  "projectName": "hello_world",
+  "debugBuildWorker": false
+}
+2018-06-03T10:32:11.139Z - normal: Building F:\GitHub\xx_cc_g
+2018-06-03T10:32:11.139Z - normal: Destination F:\GitHub\xx_cc_g\build\jsb-link
+2018-06-03T10:32:11.642Z - normal: Delete F:\GitHub\xx_cc_g\build\jsb-link\res/**/*,F:\GitHub\xx_cc_g\build\jsb-link\src/*/
+2018-06-03T10:32:12.947Z - normal: Creating native cocos project to  F:\GitHub\xx_cc_g\build\jsb-link
+2018-06-03T10:32:18.097Z - normal: Compiled project javascript file successfully
+2018-06-03T10:32:18.098Z - normal: Start building assets
+2018-06-03T10:32:18.098Z - normal: Start spawn build-worker
+2018-06-03T10:32:19.114Z - normal: Finish spawn build-worker
+2018-06-03T10:32:19.114Z - normal: Start init build-worker
+2018-06-03T10:32:22.236Z - normal: 1.9.1
+2018-06-03T10:32:22.456Z - normal: Finish init build-worker
+2018-06-03T10:32:22.457Z - normal: Start build-assets in worker
+2018-06-03T10:32:22.606Z - info: Enable "内联所有 SpriteFrame" in native platform will increase the package size used in hot update.
+2018-06-03T10:32:24.584Z - normal: Finish build-assets in worker
+2018-06-03T10:32:24.591Z - normal: Finish building assets
+2018-06-03T10:32:24.791Z - normal: Start building raw assets
+2018-06-03T10:32:24.793Z - normal: Start building plugin scripts
+2018-06-03T10:32:24.825Z - normal: Finish building plugin scripts
+2018-06-03T10:32:25.231Z - normal: Finish building raw assets
+2018-06-03T10:32:25.239Z - normal: Generating main.js from E:\CocosCreator\resources\static\build-templates\shares\main.js
+2018-06-03T10:32:25.283Z - normal: Built to "F:\GitHub\xx_cc_g\build\jsb-link" successfully
+2018-06-03T10:32:43.755Z - normal: Start to compile native project. Please wait...
+2018-06-03T10:32:43.755Z - normal: The log file path [ C:\Users\Administrator\.CocosCreator\logs\native.log ]
+2018-06-03T10:36:18.262Z - normal: Compile native project successfully.
+2018-06-03T10:51:08.834Z - normal: Start to run project
+2018-06-03T10:51:10.096Z - normal: Start to run project. Please wait...
+2018-06-03T10:51:10.096Z - normal: The log file path [ C:\Users\Administrator\.CocosCreator\logs\native.log ]
+2018-06-03T10:53:05.477Z - normal: Start building with options : {
+  "androidStudio": true,
+  "apiLevel": "android-25",
+  "appABIs": [
+    "armeabi-v7a"
+  ],
+  "appKey": "",
+  "appSecret": "",
+  "buildPath": "F:\\GitHub\\xx_cc_g\\build",
+  "debug": false,
+  "dest": "F:\\GitHub\\xx_cc_g\\build\\jsb-link",
+  "encryptJs": true,
+  "excludeScenes": [],
+  "excludedModules": [],
+  "fb-instant-games": {},
+  "includeAnySDK": false,
+  "includeEruda": false,
+  "includeSDKBox": false,
+  "inlineSpriteFrames": true,
+  "inlineSpriteFrames_native": true,
+  "jailbreakPlatform": false,
+  "md5Cache": false,
+  "mergeStartScene": false,
+  "oauthLoginServer": "",
+  "optimizeHotUpdate": false,
+  "orientation": {
+    "landscapeLeft": true,
+    "landscapeRight": true,
+    "portrait": false,
+    "upsideDown": false
+  },
+  "packageName": "org.cocos2d.enjoypuke",
+  "platform": "android",
+  "previewHeight": "720",
+  "previewWidth": "1280",
+  "privateKey": "",
+  "qqplay": {
+    "REMOTE_SERVER_ROOT": "",
+    "orientation": "portrait"
+  },
+  "renderMode": "0",
+  "scenes": [
+    "0d8b73b6-1b8d-47c9-ab99-22752d675c83",
+    "7d94239f-98c7-42cc-a7af-59bab3881a2d",
+    "b5b75a57-d3be-476a-9447-e69dd1db4095",
+    "c114e2e7-b89c-4411-860c-7a2b64c3613f",
+    "1d29a30f-e1e3-4a34-85ca-f8f352c4f21e",
+    "0bc4e533-9b98-40ce-8957-b40efcb6bd33",
+    "5bdf5669-1f13-4694-8843-274846607cea",
+    "737f052d-9423-4a1a-bc31-506653f63d0b",
+    "a31bfca8-4f35-4bb8-94e0-4d73eff8c52e",
+    "79285c57-0779-4de4-bac9-b95516b4c8ec",
+    "f63d171f-a760-4858-a8f4-4a0fa4842a38",
+    "7ed4b2af-2b10-4bc5-a17c-c7b1e41b6c14",
+    "1821f834-75dc-42fd-981a-1f85c5c840c8",
+    "8646bb58-6795-4933-80ff-3ccad9fd2d2c",
+    "5adfb9a5-2ec3-422d-9e14-88097f7f4747",
+    "e11fb921-f8dc-40aa-a1cd-04e079367b05",
+    "3f625073-da56-4cb6-a861-35cd50f06bee",
+    "2688c90a-b850-498d-9b12-58f1e2221ebb",
+    "1b608e27-f6be-458f-8410-f0a109403710",
+    "51059387-9eac-43f3-952d-e56bf29d5074",
+    "366f1e85-1dea-42cd-8c34-397e75a61fc5",
+    "64905a0e-3e1b-4d76-955a-9ab1c5b773fe",
+    "33ab749e-1206-4f71-af8c-08ae989062ef",
+    "302eba62-6eca-433e-94da-876e0f139553",
+    "b9f5c213-751a-4254-ac8e-f48f7913e6ea",
+    "ab077a34-4759-446b-acdb-834b43b8534a",
+    "88a4297b-e327-4b1e-969b-41343a30c304"
+  ],
+  "sourceMaps": false,
+  "startScene": "0d8b73b6-1b8d-47c9-ab99-22752d675c83",
+  "template": "link",
+  "title": "hello_world",
+  "useDebugKeystore": true,
+  "vsVersion": "auto",
+  "webOrientation": "auto",
+  "wechatgame": {
+    "REMOTE_SERVER_ROOT": "",
+    "appid": "wx6ac3f5090a6b99c5",
+    "isSubdomain": false,
+    "orientation": "portrait",
+    "subContext": ""
+  },
+  "xxteaKey": "2cd67b5a-fd68-4a",
+  "zipCompressJs": true,
+  "project": "F:\\GitHub\\xx_cc_g",
+  "projectName": "hello_world",
+  "debugBuildWorker": false
+}
+2018-06-03T10:53:05.491Z - normal: Building F:\GitHub\xx_cc_g
+2018-06-03T10:53:05.491Z - normal: Destination F:\GitHub\xx_cc_g\build\jsb-link
+2018-06-03T10:53:05.494Z - normal: Delete F:\GitHub\xx_cc_g\build\jsb-link\res/**/*,F:\GitHub\xx_cc_g\build\jsb-link\src/*/
+2018-06-03T10:53:41.715Z - normal: Compiled project javascript file successfully
+2018-06-03T10:53:41.717Z - normal: Start building assets
+2018-06-03T10:53:41.718Z - normal: Start spawn build-worker
+2018-06-03T10:53:42.754Z - normal: Finish spawn build-worker
+2018-06-03T10:53:42.755Z - normal: Start init build-worker
+2018-06-03T10:53:45.903Z - normal: 1.9.1
+2018-06-03T10:53:46.126Z - normal: Finish init build-worker
+2018-06-03T10:53:46.127Z - normal: Start build-assets in worker
+2018-06-03T10:53:46.272Z - info: Enable "内联所有 SpriteFrame" in native platform will increase the package size used in hot update.
+2018-06-03T10:53:48.540Z - normal: Finish build-assets in worker
+2018-06-03T10:53:48.553Z - normal: Finish building assets
+2018-06-03T10:53:48.769Z - normal: Start building raw assets
+2018-06-03T10:53:48.770Z - normal: Start building plugin scripts
+2018-06-03T10:53:49.348Z - normal: Finish building plugin scripts
+2018-06-03T10:53:49.978Z - normal: Finish building raw assets
+2018-06-03T10:53:49.986Z - normal: Generating main.js from E:\CocosCreator\resources\static\build-templates\shares\main.js
+2018-06-03T10:53:51.565Z - normal: Built to "F:\GitHub\xx_cc_g\build\jsb-link" successfully
+2018-06-03T10:59:04.107Z - normal: Start to compile native project. Please wait...
+2018-06-03T10:59:04.109Z - normal: The log file path [ C:\Users\Administrator\.CocosCreator\logs\native.log ]
+2018-06-03T11:00:25.028Z - normal: Compile native project successfully.
+2018-06-03T11:15:46.888Z - info: shutdown preview server
