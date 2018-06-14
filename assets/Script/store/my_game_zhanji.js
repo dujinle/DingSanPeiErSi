@@ -117,6 +117,7 @@ cc.Class({
 			"length":this.totalCount
 		};
 		Servers.gameInfoProcess("getGameHistoryList",param,function(data){
+            cc.log(data);
 			if(data.code == 200){
 				self.data_list = data.msg;
 				self.totalCount = self.data_list.length;
