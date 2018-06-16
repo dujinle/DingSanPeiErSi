@@ -70,9 +70,9 @@ cc.Class({
 		};
 		Servers.gonghuiProcess("update_gonghui",param,function(data){
 			if(data.code == 200){
-				util.show_error_info(self.parent,size,"公会信息更新完成");
+				util.show_error_info(null,null,"公会信息更新完成");
 			}else{
-				util.show_error_info(self.parent,size,data.msg);
+				util.show_error_info(null,null,data.msg);
 			}
 		});
 	},
