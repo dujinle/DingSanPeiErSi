@@ -14,11 +14,14 @@ cc.Class({
         }
     },
 
-    // LIFE-CYCLE CALLBACKS:
-
     onLoad () {
         cc.log("on load main scene.....");
 		g_current_scene = SCENE_TAG.MAIN;
+		var size = cc.director.getWinSize();
+		this.gongao_scene = cc.instantiate(g_assets["GonggaoScene"]);
+		this.node.addChild(this.gongao_scene);
+		this.gongao_scene.setPosition(this.node.convertToNodeSpaceAR(cc.p(size.width/2,size.height/2)));
+		
 		g_root_node = cc.director.getScene().getChildByName('RootNode');
 		var self = this;
 		if (cc.sys.os == cc.sys.OS_ANDROID) {

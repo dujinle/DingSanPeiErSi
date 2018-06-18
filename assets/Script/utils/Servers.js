@@ -12,6 +12,7 @@ var loginRouter    = "login.loginHandler.login"; //用户登录
 var gonghuiRouter = "user.gonghuiHandler.gonghuiProcess";
 var storeRouter = "user.storeHandler.storeProcess";
 var gameInfoRouter = "user.gameInfoHandler.gameInfoProcess";
+var gongGaoRouter = "broadcast.gonggaoHandler.gongGaoProcess";
 var userInfoRouter = "user.userHandler.userInfoProcess";
 
 var gameRouter = "game.gameHandler.gameProcess";
@@ -67,6 +68,13 @@ Servers.gameInfoProcess = function(process,param,cb){
         cb(data);
     });
 };
+
+Servers.gongGaoProcess = function(process,param,cb){
+    pomelo.request(gongGaoRouter,{process:process,data:param},function(data){
+        cb(data);
+    });
+};
+
 Servers.userInfoProcess = function(process,param,cb){
 	pomelo.request(userInfoRouter,{process:process,data:param},function(data){
         cb(data);

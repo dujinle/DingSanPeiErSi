@@ -13,9 +13,10 @@ cc.Class({
 
     properties: {
         bg_sprite:cc.Node,
+		time_node:cc.Label,
+		content_node:cc.Node,
+		left_time:4,
     },
-
-    // LIFE-CYCLE CALLBACKS:
     onLoad() {
         cc.log("start go into pop game gonggao js");
         var self = this;
@@ -30,7 +31,7 @@ cc.Class({
             },
             onTouchEnded: function (touch, event) {            // 点击事件结束处理
                 var target=event.getCurrentTarget();
-                var local=target.convertToNodeSpace(touch.getLocation());
+                var local=target.convertToNodeSpaceAR(touch.getLocation());
                 var s = target.getContentSize();
                 var rect = cc.rect(0, 0, s.width, s.height);
                 if (cc.rectContainsPoint(rect, local)){
@@ -40,8 +41,24 @@ cc.Class({
                     self.node.active = false;
                 }
             }
-         }, self.bg_sprite);
+        }, self.bg_sprite);
+		this.time_node.string = "(" + this.left_time + "s)";
+		this.schedule(this.hidde_time,1);
+		Servers.gongGaoProcess("get_gonggao",{"type":1},function(data){
+			cc.log(JSON.stringify(data));
+			if(data.code == 200){
+				var rich_text = self.content_node.getComponent(cc.RichText);
+				rich_text.string = data.msg;
+			}
+		});
     },
-
-    // update (dt) {},
+	hidde_time(){
+		this.left_time = this.left_time - 1;
+		this.time_node.string = "(" + this.left_time + "s)";
+		if(this.left_time <= 0){
+			this.unschedule(this.hidde_time);
+			this.node.active = false;
+			this.node.destroy();
+		}
+	},
 });

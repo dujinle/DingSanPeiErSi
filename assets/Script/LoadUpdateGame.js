@@ -40,7 +40,7 @@ cc.Class({
             }
          }, this.node);
 		this.updateInterval = 0.2;
-		this.source_leng = 108;
+		this.source_leng = 109;
 		this.load_res();
         this.schedule(this.load_update,0.5);
     },
