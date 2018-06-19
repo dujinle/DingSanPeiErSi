@@ -22,8 +22,7 @@ cc.Class({
 			this.fangka_num.getComponent("cc.Label").string = this.data["fangka_num"];
 			this.renshu.getComponent("cc.Label").string = this.data["renshu"];
 			this.danjia.getComponent("cc.Label").string = this.data["danjia"];
-			this.xuanyan.getComponent("cc.Label").string = this.data["xuanyan"];
-			this.gonggao.getComponent("cc.Label").string = this.data["gonggao"];
+			this.xuanyan.getComponent("cc.Label").string = this.data["gonggao"];
 		}
 	},
 	tuichu_cb(){

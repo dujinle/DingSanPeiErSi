@@ -65,8 +65,7 @@ cc.Class({
 		var param = {
 			"id":this.data["id"],
 			"danjia":this.danjia_str,
-			"xuanyan":this.xuanyan_str,
-			"gonggao":this.gonggao_str
+			"xuanyan":this.xuanyan_str
 		};
 		Servers.gonghuiProcess("update_gonghui",param,function(data){
 			if(data.code == 200){

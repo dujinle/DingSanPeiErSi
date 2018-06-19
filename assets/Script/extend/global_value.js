@@ -9,6 +9,7 @@ var g_is_login = false;
 var g_next_scene = null;
 var g_next_data = null;
 var g_login_auto = false;
+var g_gonggao_tag = false;
 var g_DEBUG = true;
 var g_root_node = null;
 //房间中玩家存储数据
