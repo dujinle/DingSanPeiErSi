@@ -23,10 +23,11 @@
  THE SOFTWARE.
  ****************************************************************************/
 #import <UIKit/UIKit.h>
-
+//微信SDK
+#import "WXApi.h"
 @class RootViewController;
 
-@interface AppController : NSObject <UIApplicationDelegate>
+@interface AppController : NSObject <UIApplicationDelegate,WXApiDelegate>
 {
 }
 
