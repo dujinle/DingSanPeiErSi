@@ -51,18 +51,7 @@ cc.Class({
 		if(this.rate >= this.source_leng){
 			this.precent.string = "加载完成......";
 			this.unschedule(this.load_update);
-			if (cc.sys.os == cc.sys.OS_ANDROID){
-				var login_type = jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "getNetType", "()I");
-				if(login_type != -1){
-					this.init_update();
-				}else{
-					util.show_net_error("当前网络不可用，请检查自己的网络状态",function(){
-						self.init_update();
-					});
-				}
-			}else{
-				this.init_update();
-			}
+			this.init_update();
 		}
 	},
 	update(dt){
@@ -98,10 +87,12 @@ cc.Class({
 	},
 	init_update(){
 		try{
+			/*
 			if (!cc.sys.isNative) {
 				this._update_flag = true;
 				return;
 			}
+			*/
 			this._storagePath = ((jsb.fileUtils ? jsb.fileUtils.getWritablePath() : '/') + 'blackjack-remote-asset');
 			cc.log('Storage path for remote asset : ' + this._storagePath);
 
