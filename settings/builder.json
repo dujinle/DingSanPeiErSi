@@ -9,7 +9,7 @@
   "inlineSpriteFrames": true,
   "inlineSpriteFrames_native": false,
   "jailbreakPlatform": false,
-  "md5Cache": false,
+  "md5Cache": true,
   "mergeStartScene": false,
   "oauthLoginServer": "",
   "optimizeHotUpdate": false,
@@ -30,8 +30,9 @@
   "title": "hello_world",
   "webOrientation": "auto",
   "wechatgame": {
-    "appid": "",
-    "orientation": "portrait"
+    "REMOTE_SERVER_ROOT": "http://www.enjoymygame.com/xiaochengxu",
+    "appid": "wxcc483092644e1691",
+    "orientation": "landscape"
   },
   "xxteaKey": "363d60ed-9a8f-46",
   "zipCompressJs": true
