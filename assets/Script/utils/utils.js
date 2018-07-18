@@ -2,7 +2,7 @@
  * Created by WTF Wei on 2016/4/21.
  * Function :
  */
-var util = util || {};
+util = {};
 
 /**
  * 等级 充值金额判断等级

@@ -87,12 +87,10 @@ cc.Class({
 	},
 	init_update(){
 		try{
-			/*
 			if (!cc.sys.isNative) {
 				this._update_flag = true;
 				return;
 			}
-			*/
 			this._storagePath = ((jsb.fileUtils ? jsb.fileUtils.getWritablePath() : '/') + 'blackjack-remote-asset');
 			cc.log('Storage path for remote asset : ' + this._storagePath);
 

@@ -1709,7 +1709,10 @@
     "load_update": {
       "__id__": 31
     },
-    "callback": null
+    "callback": null,
+    "wx_code": null,
+    "app_id": "",
+    "app_secret": ""
   },
   {
     "__type__": "cc.Node",
