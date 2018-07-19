@@ -7,31 +7,36 @@ cc.Class({
 		button_login:cc.Node,
 		load_update:cc.Node,
 		callback:null,
-		wx_code:null,
-		app_id:"wx6c145967bc25e278",
-		app_secret:"58e5b95e019569937536d937d4f680f5",
+		_wx_code:null,
+		_app_id:"wxcc483092644e1691",
+		_app_secret:"f070d7d52322077434b53827041be68c",
     },
 	wxLogin(){
-		cc.log("wxLogin");
 		var self = this;
 		this.button_login.getComponent("cc.Button").interactable = false;
+		this.login_flag = false;
 		wx.login({
-      		success: function(res) {
-        		if (res.code) {
-        			self.wx_code = res.code;
-        			this.login_flag == true;
-          		}
-          	}
-    	});
+			success: function(res) {
+				cc.log("success:" + JSON.stringify(res));
+				if (res.code) {
+					self._wx_code = res.code;
+					self.login_flag = true;
+				}
+			},
+			error: function(res){
+				cc.log("error:" + JSON.stringify(res));
+			}
+		});
 	},
 	update(){
 		this.version_label.getComponent("cc.Label").string = g_version;
+
 		if(this.login_flag == true){
 			this.login_flag = false;
-			var app_id = this.app_id;
-			var app_secret = this.app_secret;
-			var wx_code = this.wx_code;
-
+			var app_id = this._app_id;
+			var app_secret = this._app_secret;
+			var wx_code = this._wx_code;
+			cc.log("app_id:" + app_id + " app_secret:" + app_secret + " wx_code:" + wx_code);
 			if(wx_code != null && wx_code != "null"){
 				Storage.setData("app_id",app_id);
 				Storage.setData("app_secret",app_secret);
@@ -44,7 +49,7 @@ cc.Class({
 		}
 	},
 	get_access_token(data){
-		cc.log("get_access_token:" + data);
+		cc.log("get_access_token:" + JSON.stringify(data));
 		if(data.access_token != null && data.openid != null){
 			/*保存信息下次直接登录不用授权*/
 			Storage.setData("access_token",data.access_token);
@@ -84,7 +89,6 @@ cc.Class({
 	},
 	onInitLogin(){
 		this.button_login.getComponent("cc.Button").interactable = false;
-		this.login_flag = false;
 		var refresh_token = Storage.getData("refresh_token");
 		var app_id = Storage.getData("app_id");
 		if(refresh_token == null){
