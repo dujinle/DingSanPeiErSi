@@ -15,22 +15,25 @@ cc.Class({
 		var self = this;
 		this.button_login.getComponent("cc.Button").interactable = false;
 		this.login_flag = false;
-		wx.login({
-			success: function(res) {
-				cc.log("success:" + JSON.stringify(res));
-				if (res.code) {
-					self._wx_code = res.code;
-					self.login_flag = true;
-				}
-			},
-			error: function(res){
-				cc.log("error:" + JSON.stringify(res));
-			}
-		});
+		console.log('logining..........');
+    	//调用登录接口
+    	wx.login({
+        	success: function (e) {
+            	console.log('wxlogin successd........');
+            	var code = e.code;
+            	wx.getUserInfo({
+                	success: function (res) {
+                    	console.log('wxgetUserInfo successd........');
+                    	var encryptedData = encodeURIComponent(res.encryptedData);
+                    	//thirdLogin(code,encryptedData,res.iv);//调用服务器api
+                	}
+            	})
+        	}
+    	});
 	},
 	update(){
 		this.version_label.getComponent("cc.Label").string = g_version;
-
+		/*
 		if(this.login_flag == true){
 			this.login_flag = false;
 			var app_id = this._app_id;
@@ -41,12 +44,13 @@ cc.Class({
 				Storage.setData("app_id",app_id);
 				Storage.setData("app_secret",app_secret);
 				this.callback = this.get_access_token;
-				util.get("https://api.weixin.qq.com/sns/oauth2/access_token",
+				util.get("https://api.weixin.qq.com/sns/jscode2session",
 					"appid=" + app_id + "&secret=" + app_secret + "&code=" + wx_code + "&grant_type=authorization_code",this);
 			}else{
 				this.login_flag = true;
 			}
 		}
+		*/
 	},
 	get_access_token(data){
 		cc.log("get_access_token:" + JSON.stringify(data));
