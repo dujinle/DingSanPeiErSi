@@ -78,6 +78,7 @@ cc.Class({
 			Servers.getEntry(token,function(data){
 				if(data.code == 200){
 					wx.setStorageSync("session_key",session_key);
+					wx.setStorageSync("token",token);
 					self.saveUserInfo(data.player);
 				}
 			});

@@ -35,30 +35,15 @@ cc.Class({
          }, this.error_sprite);
     },
 	show_error_info(message,cb){
+		var self = this;
 		this.message.string = message;
 		this.cb = cb;
-	},
-	update(dt){
-		this.updateTimer += dt;
-        if (this.updateTimer < this.updateInterval) {
-            return; // we don't need to do the math every frame
-        }
-		this.updateTimer = 0;
-		//获取底层的网络状态
-		if(cc.sys.os == cc.sys.OS_ANDROID){
-			var login_type = jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "getNetType", "()I");
-			if(login_type != -1){
-				this.cb();
-				this.node.active = false;
-				this.node.destroy();
+		wx.onNetworkStatusChange(function(res){
+			if(res.isConnected == true){
+				self.cb();
+				self.node.active = false;
+				self.node.destroy();
 			}
-		}else if(cc.sys.os == cc.sys.OS_IOS){
-			var login_type = jsb.reflection.callStaticMethod("NativeOcClass", "getNetType");
-			if(login_type != -1){
-				this.cb();
-				this.node.active = false;
-				this.node.destroy();
-			}
-		}
+		});
 	}
 });
