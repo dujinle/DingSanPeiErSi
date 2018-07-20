@@ -1,7 +1,7 @@
 /**
  * Created by dujinle on 1/28/18.
  */
-var room_create = function(param,pthis){
+room_create = function(param,pthis){
 	cc.log("start create room playerId:" + JSON.stringify(param));
 	var size = cc.director.getVisibleSize();
 	pomelo.request(util.getCreateRoute(), param, function(data) {
@@ -18,7 +18,7 @@ var room_create = function(param,pthis){
 	});
 }
 
-var enter_wait_room = function(param,pthis){
+enter_wait_room = function(param,pthis){
     pomelo.request(util.getEnterWaitRoomRoute(), param, function(data) {
 		cc.log(JSON.stringify(data));
         if(data.code != 200) {
@@ -32,7 +32,7 @@ var enter_wait_room = function(param,pthis){
     });
 }
 
-var onGameEnterRoom = function(room_num,rid){
+onGameEnterRoom = function(room_num,rid){
 	//这是回调函数如果已经登录则直接进入相应的界面
 	if(g_is_login == true){
 		var param = {
@@ -66,7 +66,7 @@ var onGameEnterRoom = function(room_num,rid){
 }
 
 //断线重连请求
-var onReconnect = function(){
+onReconnect = function(){
 	cc.log("g_current_scene:" + g_current_scene);
 	util.show_net_error("当前网络不可用，请检查自己的网络状态",function(){
 		//在主界面断开连接进行重新登录

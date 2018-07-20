@@ -1,13 +1,13 @@
 
-var gateHost       = "193.112.243.189";
-var loginHost      = "193.112.243.189";
+var gateHost       = "www.enjoymygame.com";
+var loginHost      = "www.enjoymygame.com";
 
 var gatePort       = "3014";
 var gateRouter     = "gate.gateHandler.queryEntry";
 var entryRouter    = "connector.entryHandler.entry";
 
 var loginPort      = "8210";
-var loginRouter    = "login.loginHandler.login"; //用户登录
+var loginRouter    = "login.loginHandler.wxlogin"; //用户登录
 
 var gonghuiRouter = "user.gonghuiHandler.gonghuiProcess";
 var storeRouter = "user.storeHandler.storeProcess";
@@ -25,7 +25,7 @@ var feedbackRouter = 'user.userHandler.feedback';
 
 
 
-var Servers = Servers || {};
+Servers = {};
 
 /***
  * 获取其他用户信息
@@ -81,12 +81,12 @@ Servers.userInfoProcess = function(process,param,cb){
     });
 };
 
-Servers.getLogin = function(playerId,nickName,gender,img_url, cb) {
+Servers.getWxLogin = function(param, cb) {
     pomelo.init({
         host: loginHost,
         port: loginPort
     }, function () {
-        pomelo.request(loginRouter, {player_id:playerId, nick_name: nickName,sex:gender,head_img:img_url}, function (data) {
+        pomelo.request(loginRouter, param, function (data) {
             cb(data);
         });
     });
