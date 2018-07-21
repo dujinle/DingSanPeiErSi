@@ -89,6 +89,7 @@ cc.Class({
 			g_user[key] = data[key];
         }
 		cc.log('saveUserInfo:' + JSON.stringify(g_user));
+		g_is_login = true;
 		cc.director.loadScene("MainScene");
 	},
 	error_code(data){
