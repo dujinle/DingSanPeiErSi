@@ -41,3 +41,32 @@ wxapi.get_wx_code(){
 	}
 	return wx_code;
 };
+
+wxapi.get_wx_uinfo(app_id,app_secret,wx_code,cb){
+	var url = "https://api.weixin.qq.com/sns/oauth2/access_token";
+	var param = "appid=" + app_id + "&secret=" + app_secret + "&code=" + wx_code + "&grant_type=authorization_code";
+	util.http_get(url,param,function(err,result){
+		if(err != null){
+			cb({"errcode":-1,"errmsg":"未知的登陆错误"});
+		}else if(result.errcode != null){
+			cb(result);
+		}else{
+			/*保存信息下次直接登录不用授权*/
+			Storage.setData("access_token",result.access_token);
+			Storage.setData("openid",result.openid);
+			Storage.setData("unionid",result.unionid);
+			Storage.setData("refresh_token",result.refresh_token);
+			url = "https://api.weixin.qq.com/sns/userinfo";
+			param = "access_token=" + result.access_token + "&openid=" + result.openid;
+			util.http_get(url,param,function(err,result){
+				if(err != null){
+					cb({"errcode":-1,"errmsg":"未知的登陆错误"});
+				}else if(result.errcode != null){
+					cb(result);
+				}else{
+					cb(result);
+				}
+			});
+		}
+	});
+}

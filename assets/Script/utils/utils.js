@@ -105,6 +105,16 @@ util.show_error_info = function(pp,size,msg){
 	error_tip.setPosition(root_node.convertToNodeSpaceAR(cc.p(size.width/2,size.height/2)));
 }
 
+util.show_error_info = function(msg){
+	var size = cc.director.getVisibleSize();
+	var error_tip = cc.instantiate(g_assets["prop_error_scene"]);
+	var error_tip_com = error_tip.getComponent("prop_error_info");
+    error_tip_com.show_error_info(msg);
+    var root_node = cc.director.getScene().getChildByName('RootNode');
+	root_node.addChild(error_tip);
+	error_tip.setPosition(root_node.convertToNodeSpaceAR(cc.p(size.width/2,size.height/2)));
+}
+
 util.show_isok_info = function(callback,msg){
 	var size = cc.director.getVisibleSize();
 	var error_tip = cc.instantiate(g_assets["pop_isok_scene"]);
@@ -129,6 +139,25 @@ util.get = function(url,param,pthis){
             var result = JSON.parse(xhr.responseText);
             pthis.callback(result);
         }
+    };
+    xhr.send(null);
+}
+
+util.http_get = function(url,param,cb){
+	var xhr = cc.loader.getXMLHttpRequest();
+    if(param == null){
+    	xhr.open("GET", url,false);
+    }else{
+    	xhr.open("GET", url + "?" + param,false);
+    }
+    xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status <= 207)) {
+            var result = JSON.parse(xhr.responseText);
+            cb(null,result);
+        }else{
+			cb(xhr.status,null);
+		}
     };
     xhr.send(null);
 }
