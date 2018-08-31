@@ -29,6 +29,7 @@ var g_assets = {};
 //游戏设置全局变量
 var g_version = "0.0.1";
 var g_current_scene = null;
+var g_current_os = null;
 SCENE_TAG = {
 	"LOAD":0,
 	"MAIN":1,
