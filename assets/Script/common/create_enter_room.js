@@ -54,14 +54,6 @@ var onGameEnterRoom = function(room_num,rid){
 			g_next_data = null;
 			cc.director.loadScene("CreatedRoomScene");
 		});
-	}else{
-		//如果没有登录则执行登录操作并进入相应的界面
-		g_next_scene = "enter_room";
-		g_next_data = {
-			"room_num":room_num,
-			"rid":rid
-		};
-		g_login_auto = true;
 	}
 }
 

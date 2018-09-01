@@ -126,6 +126,7 @@ util.show_isok_info = function(callback,msg){
 	error_tip_com.show_error_info(msg);
 }
 
+/*
 util.get = function(url,param,pthis){
 	var xhr = cc.loader.getXMLHttpRequest();
     if(param == null){
@@ -142,6 +143,7 @@ util.get = function(url,param,pthis){
     };
     xhr.send(null);
 }
+*/
 
 util.http_get = function(url,param,cb){
 	var xhr = cc.loader.getXMLHttpRequest();

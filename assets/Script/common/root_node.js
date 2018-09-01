@@ -8,6 +8,7 @@ cc.Class({
     // use this for initialization
     onLoad: function () {
 		cc.game.addPersistRootNode(this.node);
+
 		pomelo.on('disconnect', function(){
 			console.log('掉线了');
 			var login_type = -1;

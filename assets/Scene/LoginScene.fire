@@ -1708,8 +1708,7 @@
     },
     "load_update": {
       "__id__": 31
-    },
-    "callback": null
+    }
   },
   {
     "__type__": "cc.Node",
