@@ -86,6 +86,27 @@ cc.Class({
 		this.node.addChild(this.pop_help_scene);
 		this.pop_help_scene.setPosition(this.node.convertToNodeSpaceAR(cc.p(size.width/2,size.height/2)));
 	},
+	popSettingScene(){
+		var self = this;
+		var size = cc.director.getVisibleSize();
+		var pop_setting = cc.instantiate(g_assets["pop_setting_scene"]);
+		var pop_setting_com = pop_setting.getComponent("pop_set_scene");
+		
+		pop_setting_com.set_callback(function(index){
+			if(index == 0){
+				if(g_music_key == BOOL.NO && self.current != null){
+					cc.audioEngine.stop(self.current);
+					self.current = null;
+				}else if(self.current == null){
+					self.current = cc.audioEngine.play(self.audio, true, 1);
+				}
+			}
+		});
+		var x = size.width/2;
+		var y = size.height/2;
+		this.node.addChild(pop_setting);
+		pop_setting.setPosition(this.node.convertToNodeSpaceAR(cc.p(x,y)));
+	},
 	exit(){
 		if (cc.sys.os == cc.sys.OS_ANDROID) {
 			cc.director.end();
