@@ -62,7 +62,7 @@ cc.Class({
 		}
 	},
 	get_access_token(data){
-		cc.log("get_access_token:" + data);
+		cc.log("get_access_token:" + JSON.stringify(data));
 		if(data.access_token != null && data.openid != null){
 			/*保存信息下次直接登录不用授权*/
 			Storage.setData("access_token",data.access_token);
