@@ -99,3 +99,43 @@ wxapi.get_wx_ruinfo = function(app_id,refresh_token,cb){
 		}
 	});
 }
+
+wxapi.get_jsb_login_type = function(){
+	var login_type = 0;
+	if(g_current_os == cc.sys.OS_ANDROID){
+		login_type = jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "getLoginType", "()I");
+	}else if(g_current_os == cc.sys.OS_IOS){
+		login_type = jsb.reflection.callStaticMethod("NativeOcClass", "getLoginType");
+	}
+	return login_type;
+}
+
+wxapi.get_jsb_room_num = function(){
+	var room_num = null;
+	if(g_current_os == cc.sys.OS_ANDROID){
+		room_num = jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "getRoomNum", "()Ljava/lang/String;");
+	}else if(g_current_os == cc.sys.OS_IOS){
+		room_num = jsb.reflection.callStaticMethod("NativeOcClass", "getRoomNum");
+	}
+	return room_num;
+}
+
+wxapi.get_jsb_scene = function(){
+	var scene = null;
+	if(g_current_os == cc.sys.OS_ANDROID){
+		scene = jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "getScene", "()Ljava/lang/String;");
+	}else if(g_current_os == cc.sys.OS_IOS){
+		scene = jsb.reflection.callStaticMethod("NativeOcClass", "getScene");
+	}
+	return scene;
+}
+
+wxapi.get_jsb_rid = function(){
+	var rid = null;
+	if(g_current_os == cc.sys.OS_ANDROID){
+		rid = jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "getRid", "()Ljava/lang/String;");
+	}else if(g_current_os == cc.sys.OS_IOS){
+		rid = jsb.reflection.callStaticMethod("NativeOcClass", "getRid");
+	}
+	return rid;
+}

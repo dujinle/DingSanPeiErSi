@@ -46,15 +46,16 @@ cc.Class({
 		g_current_scene = SCENE_TAG.LOAD;
 		var self = this;
 		this.xieyi_select = true;
-    	cc.log("onLoad" + this.login_flag);
+    	console.log("onLoad" + this.login_flag);
 		self.node.on("pressed", self.switchRadio, self);
 		var load_update_com = this.load_update.getComponent("LoadUpdateGame");
 		var load_sources_com = this.load_sources.getComponent("LoadSources");
 		load_update_com.init(function(){
 			cc.log("update finish callback");
-			this.load_update.destory();
+			self.load_update.destroy();
 			load_sources_com.onStart(function(){
 				cc.log("load sources finish callback");
+				self.load_sources.destroy();
 				self.onInitLogin();
 			});
 		});
@@ -70,7 +71,6 @@ cc.Class({
 			var app_id = Storage.getData("app_id");
 			if(refresh_token == null){
 				this.button_login.getComponent("cc.Button").interactable = true;
-				this.wxLogin();
 			}else{
 				wxapi.get_wx_ruinfo(app_id,refresh_token,function(result){
 					cc.log("get_wxuser_info:" + JSON.stringify(result));
@@ -92,7 +92,7 @@ cc.Class({
 		var self = this;
 		cc.log("go into on login......" + JSON.stringify(g_user));
 		Servers.getLogin(g_user['player_id'],g_user['nickname'],g_user['gender'],g_user['headimgurl'], function (data) {
-			console.log("get login info succ:" + JSON.stringify(data));
+			cc.log("get login info succ:" + JSON.stringify(data));
 			if(data.code != 200){
 				return;
 			}
@@ -110,27 +110,12 @@ cc.Class({
         }
 		g_is_login = true;
 		//这里确定通过其他渠道登录的游戏
-		var login_type = 0;
-		if(cc.sys.os == cc.sys.OS_ANDROID){
-			login_type = jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "getLoginType", "()I");
-			if(login_type == 1){
-				var room_num = jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "getRoomNum", "()Ljava/lang/String;");
-				var scene = jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "getScene", "()Ljava/lang/String;");
-				var rid = jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "getRid", "()Ljava/lang/String;");
-				onGameEnterRoom(room_num,rid);
-			}else{
-				cc.director.loadScene("MainScene");
-			}
-		}else if(cc.sys.os == cc.sys.OS_IOS){
-			login_type = jsb.reflection.callStaticMethod("NativeOcClass", "getLoginType");
-			if(login_type == 1){
-				var room_num = jsb.reflection.callStaticMethod("NativeOcClass", "getRoomNum");
-				var scene = jsb.reflection.callStaticMethod("NativeOcClass", "getScene");
-				var rid = jsb.reflection.callStaticMethod("NativeOcClass", "getRid");
-				onGameEnterRoom(room_num,rid);
-			}else{
-				cc.director.loadScene("MainScene");
-			}
+		var login_type = wxapi.get_jsb_login_type();
+		if(login_type == 1){
+			var room_num = wxapi.get_jsb_room_num();
+			var scene = wxapi.get_jsb_scene();
+			var rid = wxapi.get_jsb_rid();
+			onGameEnterRoom(room_num,rid);
 		}else{
 			cc.director.loadScene("MainScene");
 		}

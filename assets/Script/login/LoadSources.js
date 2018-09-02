@@ -11,14 +11,14 @@ cc.Class({
     // onLoad () {},
 	
     onStart (callback) {
-		this.loadBar.progress = 0;
+		this.load_bar.progress = 0;
 		this.source_leng = 109;
 		this.load_res();
 		this.callback = callback;
         this.schedule(this.load_update,0.5);
     },
 	load_update(){
-		this.loadBar.progress = this.rate/this.source_leng * 100;
+		this.load_bar.progress = this.rate/this.source_leng * 100;
 		cc.log("this.rate:" + this.rate);
 		if(this.rate >= this.source_leng){
 			this.precent.string = "加载完成......";
