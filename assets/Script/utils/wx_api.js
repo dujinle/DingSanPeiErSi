@@ -70,8 +70,8 @@ wxapi.get_wx_uinfo = function(app_id,app_secret,wx_code,cb){
 		}
 	});
 }
-
-wxapi.get_wx_uinfo = function(app_id,refresh_token,cb){
+//刷新token 继续微信登录获取信息
+wxapi.get_wx_ruinfo = function(app_id,refresh_token,cb){
 	var url = "https://api.weixin.qq.com/sns/oauth2/refresh_token";
 	var param = "appid=" + app_id + "&grant_type=refresh_token&refresh_token=" + refresh_token;
 	util.http_get(url,param,function(err,result){

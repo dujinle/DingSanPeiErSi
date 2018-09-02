@@ -6,6 +6,7 @@ cc.Class({
 		login_flag:false,
 		button_login:cc.Node,
 		load_update:cc.Node,
+		load_sources:cc.Node,
     },
 	wxLogin(){
 		cc.log("wxLogin");
@@ -15,11 +16,6 @@ cc.Class({
 	update(){
 		var self = this;
 		this.version_label.getComponent("cc.Label").string = g_version;
-		if(g_login_auto == true){
-			//这里就要自动进行登录操作
-			this.wxLogin();
-			g_login_auto = false;
-		}
 		//刷新获取wx_code 然后进行用户信息获取
 		var wx_code = wxapi.get_wx_code();
 		var app_id = wxapi.get_appid();
@@ -51,11 +47,16 @@ cc.Class({
 		var self = this;
 		this.xieyi_select = true;
     	cc.log("onLoad" + this.login_flag);
-		this.version_label.getComponent("cc.Label").string = g_version;
 		self.node.on("pressed", self.switchRadio, self);
 		var load_update_com = this.load_update.getComponent("LoadUpdateGame");
+		var load_sources_com = this.load_sources.getComponent("LoadSources");
 		load_update_com.init(function(){
-			self.onInitLogin();
+			cc.log("update finish callback");
+			this.load_update.destory();
+			load_sources_com.onStart(function(){
+				cc.log("load sources finish callback");
+				self.onInitLogin();
+			});
 		});
 	},
 	onInitLogin(){
@@ -71,7 +72,7 @@ cc.Class({
 				this.button_login.getComponent("cc.Button").interactable = true;
 				this.wxLogin();
 			}else{
-				wxapi.get_wx_uinfo(app_id,refresh_token,function(result){
+				wxapi.get_wx_ruinfo(app_id,refresh_token,function(result){
 					cc.log("get_wxuser_info:" + JSON.stringify(result));
 					if(result.openid != null){
 						g_user['nickname'] = result.nickname;

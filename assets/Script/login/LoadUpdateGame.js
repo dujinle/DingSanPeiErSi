@@ -2,18 +2,17 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        loadBar:cc.ProgressBar,
+        load_bar:cc.ProgressBar,
         precent:cc.Label,
 		process_type:0,
-		rate:0,
-		_update_flag:false,
-		source_leng:0,
-		_storagePath: '',
-		manifestUrl: cc.RawAsset,
+		storage_path: '',
+		manifest_url: cc.RawAsset,
 		callback:null,
     },
 	init(callback){
 		this.callback = callback;
+		//开始检查更新
+		this.init_update();
 	},
     onLoad () {
 		var self = this;
@@ -27,88 +26,18 @@ cc.Class({
             onTouchMoved: function (touch, event) {            // 触摸移动时触发
             },
             onTouchEnded: function (touch, event) {            // 点击事件结束处理
-				var target=event.getCurrentTarget();
-				var local=target.convertToNodeSpaceAR(touch.getLocation());
-				var s = target.getContentSize();
-				var rect = cc.rect(0, 0, s.width, s.height);
-				if (cc.rectContainsPoint(rect, local)){
-					cc.log("ok touch in the region......");
-				}else{
-					cc.log("touch remove from parent");
-					//self.node.active = false;
-				}
             }
          }, this.node);
-		this.updateInterval = 0.2;
-		this.source_leng = 109;
-		this.load_res();
-        this.schedule(this.load_update,0.5);
     },
-	load_update(){
-		var self = this;
-		this.loadBar.progress = this.rate/this.source_leng * 100;
-		cc.log("this.rate:" + this.rate);
-		if(this.rate >= this.source_leng){
-			this.precent.string = "加载完成......";
-			this.unschedule(this.load_update);
-			if (cc.sys.os == cc.sys.OS_ANDROID){
-				var login_type = jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "getNetType", "()I");
-				if(login_type != -1){
-					this.init_update();
-				}else{
-					util.show_net_error("当前网络不可用，请检查自己的网络状态",function(){
-						self.init_update();
-					});
-				}
-			}else{
-				this.init_update();
-			}
-		}
-	},
-	update(dt){
-		this.updateTimer += dt;
-        if (this.updateTimer < this.updateInterval) {
-            return; // we don't need to do the math every frame
-        }
-        this.updateTimer = 0;
-		if(this._update_flag == true){
-			this._update_flag == false;
-			this.node.active = false;
-			this.callback();
-		}
-	},
-	load_res(){
-		var self = this;
-		cc.loader.loadResDir("",cc.SpriteFrame,function (err, assets) {
-			for(var i = 0;i < assets.length;i++){
-				g_assets[assets[i].name] = assets[i];
-				self.rate = self.rate + 1;
-				self.precent.string = "加载文件中......";
-				cc.log("load res :" + assets[i].name);
-			}
-		});
-		cc.loader.loadResDir("prefab",function (err, assets) {
-			for(var i = 0;i < assets.length;i++){
-				g_assets[assets[i].name] = assets[i];
-				self.rate = self.rate + 1;
-				self.precent.string = "加载文件中......";
-				cc.log("load res :" + assets[i].name);
-			}
-		});
-	},
 	init_update(){
 		try{
 			if (!cc.sys.isNative) {
-				this._update_flag = true;
+				this.callback();
 				return;
 			}
-			this._storagePath = ((jsb.fileUtils ? jsb.fileUtils.getWritablePath() : '/') + 'blackjack-remote-asset');
-			cc.log('Storage path for remote asset : ' + this._storagePath);
-
-			// Setup your own version compare handler, versionA and B is versions in string
-			// if the return value greater than 0, versionA is greater than B,
-			// if the return value equals 0, versionA equals to B,
-			// if the return value smaller than 0, versionA is smaller than B.
+			this.storage_path = ((jsb.fileUtils ? jsb.fileUtils.getWritablePath() : '/') + 'blackjack-remote-asset');
+			cc.log('Storage path for remote asset : ' + this.storage_path);
+			
 			this.versionCompareHandle = function (versionA, versionB) {
 				cc.log("JS Custom Version Compare: version A is " + versionA + ', version B is ' + versionB);
 				g_version = versionA;
@@ -133,8 +62,8 @@ cc.Class({
 			};
 
 			// Init with empty manifest url for testing custom manifest
-			cc.log('Local manifest URL : ' + this.manifestUrl);
-			this._am = new jsb.AssetsManager("", this._storagePath, this.versionCompareHandle);
+			cc.log('Local manifest URL : ' + this.manifest_url);
+			this._am = new jsb.AssetsManager("", this.storage_path, this.versionCompareHandle);
 			if (!cc.sys.ENABLE_GC_FOR_NATIVE_OBJECTS) {
 				this._am.retain();
 			}
@@ -167,7 +96,6 @@ cc.Class({
 			}
 			this.checkUpdate();
 		}catch(err){
-			this._update_flag = true;
 			cc.log("ERROR:" + err.message);
 		}
 	},
@@ -188,16 +116,14 @@ cc.Class({
 				case jsb.EventAssetsManager.NEW_VERSION_FOUND:
 					this.precent.string = "开始更新......";
 					this.process_type = 1;
-					this.loadBar.progress = 0;
+					this.load_bar.progress = 0;
 					break;
 				default:
 					return;
 			}
 			cc.eventManager.removeListener(this._checkListener);
 			this._checkListener = null;
-			if(this.process_type == 0){
-				this._update_flag = true;
-			}else{
+			if(this.process_type == 1){
 				this.hotUpdate();
 			}
 		}catch(err){
@@ -208,11 +134,10 @@ cc.Class({
 	checkUpdate(){
 		try{
 			if (this._am.getState() === jsb.AssetsManager.State.UNINITED) {
-				this._am.loadLocalManifest(this.manifestUrl);
+				this._am.loadLocalManifest(this.manifest_url);
 			}
 			if (!this._am.getLocalManifest() || !this._am.getLocalManifest().isLoaded()) {
-				this.precent.string = '加载配置文件失败 ...';
-				this._update_flag = true;
+				this.callback();
 				return;
 			}
 			this._checkListener = new jsb.EventListenerAssetsManager(this._am, this.checkCb.bind(this));
@@ -220,7 +145,6 @@ cc.Class({
 	
 			this._am.checkUpdate();
 		}catch(err){
-			this._update_flag = true;
 			cc.log("ERROR:" + err.message);
 		}
     },
@@ -230,7 +154,7 @@ cc.Class({
             cc.eventManager.addListener(this._updateListener, 1);
 
             if (this._am.getState() === jsb.AssetsManager.State.UNINITED) {
-                this._am.loadLocalManifest(this.manifestUrl);
+                this._am.loadLocalManifest(this.manifest_url);
             }
 
             this._failCount = 0;
@@ -247,7 +171,7 @@ cc.Class({
                 failed = true;
                 break;
             case jsb.EventAssetsManager.UPDATE_PROGRESSION:
-                this.loadBar.progress = event.getPercent();
+                this.load_bar.progress = event.getPercent();
                 var msg = event.getMessage();
                 if (msg) {
                     this.precent.string = '更新文件中.....';
@@ -286,7 +210,7 @@ cc.Class({
 
         if (failed) {
             cc.eventManager.removeListener(this._updateListener);
-            this._update_flag = true;
+			this.callback();
         }
         if (needRestart) {
 			this.precent.string = "准备重新启动......";
