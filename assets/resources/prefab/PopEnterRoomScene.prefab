@@ -3,10 +3,12 @@
     "__type__": "cc.Prefab",
     "_name": "",
     "_objFlags": 0,
-    "_rawFiles": null,
+    "_native": "",
     "data": {
       "__id__": 1
-    }
+    },
+    "optimizationPolicy": 0,
+    "asyncLoadAssets": false
   },
   {
     "__type__": "cc.Node",
@@ -49,7 +51,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 1280,
-      "height": 800
+      "height": 720
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -109,8 +111,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 650,
-      "height": 600
+      "width": 614,
+      "height": 577
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -3168,7 +3170,10 @@
       {
         "__id__": 91
       }
-    ]
+    ],
+    "bg_sprite": {
+      "__id__": 2
+    }
   },
   {
     "__type__": "cc.PrefabInfo",

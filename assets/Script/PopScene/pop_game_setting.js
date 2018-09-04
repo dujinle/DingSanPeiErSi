@@ -7,13 +7,13 @@ cc.Class({
 			default:[],
 		},
 		callback:null,
+		bg_sprite:cc.Node,
     },
     onLoad () {
 		cc.log("start go into create game js");
 		var self = this;
 		this.init_back_info();
 		self.node.on("pressed", self.switchRadio, self);
-		var bg_sprite =  self.node.getChildByName("bg_sprite");
         cc.eventManager.addListener({
             event: cc.EventListener.TOUCH_ONE_BY_ONE,
             swallowTouches: true,
@@ -24,8 +24,8 @@ cc.Class({
             onTouchMoved: function (touch, event) {            // 触摸移动时触发
             },
             onTouchEnded: function (touch, event) {            // 点击事件结束处理
-				var target=event.getCurrentTarget();
-				var local=target.convertToNodeSpaceAR(touch.getLocation());
+				var target = self.bg_sprite;//event.getCurrentTarget();
+				var local=target.convertToNodeSpace(touch.getLocation());
 				var s = target.getContentSize();
 				var rect = cc.rect(0, 0, s.width, s.height);
 				if (cc.rectContainsPoint(rect, local)){
@@ -35,7 +35,7 @@ cc.Class({
 					self.node.active = false;
 				}
 			}
-         }, bg_sprite);
+         }, self.bg_sprite);
 	},
 	init_back_info(){
 		g_music_key = cc.sys.localStorage.getItem(MUSIC_KEY);

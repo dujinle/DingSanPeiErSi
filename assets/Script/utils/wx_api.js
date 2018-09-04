@@ -139,3 +139,11 @@ wxapi.get_jsb_rid = function(){
 	}
 	return rid;
 }
+
+wxapi.set_load_status = function(status){
+	if (cc.sys.os == cc.sys.OS_ANDROID) {
+		jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "setLoadStatus", "(I)V",status);
+	}else if(cc.sys.os == cc.sys.OS_IOS){
+		jsb.reflection.callStaticMethod("NativeOcClass", "setLoadStatus:",status);
+	}
+}

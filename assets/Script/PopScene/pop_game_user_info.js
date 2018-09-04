@@ -31,8 +31,8 @@ cc.Class({
             onTouchMoved: function (touch, event) {            // 触摸移动时触发
             },
             onTouchEnded: function (touch, event) {            // 点击事件结束处理
-				var target=event.getCurrentTarget();
-				var local=target.convertToNodeSpaceAR(touch.getLocation());
+				var target = self.bg_sprite;//event.getCurrentTarget();
+				var local=target.convertToNodeSpace(touch.getLocation());
 				var s = target.getContentSize();
 				var rect = cc.rect(0, 0, s.width, s.height);
 				if (cc.rectContainsPoint(rect, local)){

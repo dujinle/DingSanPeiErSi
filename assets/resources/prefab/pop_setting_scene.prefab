@@ -3,10 +3,12 @@
     "__type__": "cc.Prefab",
     "_name": "",
     "_objFlags": 0,
-    "_rawFiles": null,
+    "_native": "",
     "data": {
       "__id__": 1
-    }
+    },
+    "optimizationPolicy": 0,
+    "asyncLoadAssets": false
   },
   {
     "__type__": "cc.Node",
@@ -2246,7 +2248,10 @@
         "__id__": 60
       }
     ],
-    "callback": null
+    "callback": null,
+    "bg_sprite": {
+      "__id__": 3
+    }
   },
   {
     "__type__": "cc.PrefabInfo",

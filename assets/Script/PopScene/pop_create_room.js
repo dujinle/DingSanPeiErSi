@@ -13,7 +13,8 @@ cc.Class({
 		choice_radios:{
 			type:cc.Node,
 			default:[],
-		}
+		},
+		room_bg:cc.Node,
     },
     onLoad () {
 		cc.log("start go into create game js");
@@ -32,8 +33,19 @@ cc.Class({
             onTouchMoved: function (touch, event) {            // 触摸移动时触发
             },
             onTouchEnded: function (touch, event) {            // 点击事件结束处理
+				var target = self.room_bg;//event.getCurrentTarget();
+				var local=target.convertToNodeSpace(touch.getLocation());
+				var s = target.getContentSize();
+				var rect = cc.rect(0, 0, s.width, s.height);
+				if (cc.rectContainsPoint(rect, local)){
+					cc.log("ok touch in the region......");
+				}else{
+					cc.log("touch remove from parent");
+					self.node.active = false;
+					self.node.destroy();
+				}
 			}
-         }, this.node);
+         }, this.room_bg);
 	},
 	switchRadio(event) {
         var index = event.target.getComponent("one_choice").index;

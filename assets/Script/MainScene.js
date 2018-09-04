@@ -27,12 +27,7 @@ cc.Class({
 		
 		g_root_node = cc.director.getScene().getChildByName('RootNode');
 		var self = this;
-		if (cc.sys.os == cc.sys.OS_ANDROID) {
-			jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "setLoadStatus", "(I)V",1);
-		}else if(cc.sys.os == cc.sys.OS_IOS){
-			this.exit_node.active = false;
-			jsb.reflection.callStaticMethod("NativeOcClass", "setLoadStatus:",1);
-		}
+		wxapi.set_load_status(1);
 		g_music_key = cc.sys.localStorage.getItem(MUSIC_KEY);
 		if(g_music_key == null || g_music_key == BOOL.YES){
 			cc.audioEngine.stopAll();
@@ -90,7 +85,7 @@ cc.Class({
 		var self = this;
 		var size = cc.director.getVisibleSize();
 		var pop_setting = cc.instantiate(g_assets["pop_setting_scene"]);
-		var pop_setting_com = pop_setting.getComponent("pop_set_scene");
+		var pop_setting_com = pop_setting.getComponent("pop_game_setting");
 		
 		pop_setting_com.set_callback(function(index){
 			if(index == 0){

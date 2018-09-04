@@ -97,8 +97,8 @@ util.show_net_error = function(msg,cb){
 
 util.show_error_info = function(pp,size,msg){
 	var size = cc.director.getVisibleSize();
-	var error_tip = cc.instantiate(g_assets["prop_error_scene"]);
-	var error_tip_com = error_tip.getComponent("prop_error_info");
+	var error_tip = cc.instantiate(g_assets["PopErrorScene"]);
+	var error_tip_com = error_tip.getComponent("pop_error_info");
     error_tip_com.show_error_info(msg);
     var root_node = cc.director.getScene().getChildByName('RootNode');
 	root_node.addChild(error_tip);
@@ -107,8 +107,8 @@ util.show_error_info = function(pp,size,msg){
 
 util.show_error_info = function(msg){
 	var size = cc.director.getVisibleSize();
-	var error_tip = cc.instantiate(g_assets["prop_error_scene"]);
-	var error_tip_com = error_tip.getComponent("prop_error_info");
+	var error_tip = cc.instantiate(g_assets["PopErrorScene"]);
+	var error_tip_com = error_tip.getComponent("pop_error_info");
     error_tip_com.show_error_info(msg);
     var root_node = cc.director.getScene().getChildByName('RootNode');
 	root_node.addChild(error_tip);
@@ -118,7 +118,7 @@ util.show_error_info = function(msg){
 util.show_isok_info = function(callback,msg){
 	var size = cc.director.getVisibleSize();
 	var error_tip = cc.instantiate(g_assets["pop_isok_scene"]);
-	var error_tip_com = error_tip.getComponent("prop_isok_info");
+	var error_tip_com = error_tip.getComponent("pop_isok_info");
 	error_tip_com.init(callback);
 	var root_node = cc.director.getScene().getChildByName('RootNode');
 	root_node.addChild(error_tip);
