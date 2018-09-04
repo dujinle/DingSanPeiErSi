@@ -12,7 +12,7 @@ cc.Class({
 	
     onStart (callback) {
 		this.load_bar.progress = 0;
-		this.source_leng = 109;
+		this.source_leng = 105;
 		this.load_res();
 		this.callback = callback;
         this.schedule(this.load_update,0.5);

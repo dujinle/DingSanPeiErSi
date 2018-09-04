@@ -36,7 +36,7 @@ cc.Class({
 			default:[],
 		},
 		audio:{
-            url: cc.AudioClip,
+            type: cc.AudioClip,
             default: null
         }
     },
