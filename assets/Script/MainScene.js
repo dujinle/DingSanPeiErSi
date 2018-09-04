@@ -9,7 +9,7 @@ cc.Class({
         sex_sprite:cc.Sprite,
 		exit_node:cc.Node,
 		audio:{
-            url: cc.AudioClip,
+            type: cc.AudioClip,
             default: null
         }
     },

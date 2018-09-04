@@ -11,17 +11,22 @@ cc.Class({
 	wxLogin(){
 		cc.log("wxLogin");
 		this.button_login.getComponent("cc.Button").interactable = false;
-		wxapi.wx_login();
+		if(cc.sys.os == cc.sys.OS_WINDOWS){
+			this.onLogin();
+		}else{
+			wxapi.wx_login();
+		}
 	},
 	update(){
 		var self = this;
 		this.version_label.getComponent("cc.Label").string = g_version;
-		//刷新获取wx_code 然后进行用户信息获取
-		var wx_code = wxapi.get_wx_code();
-		var app_id = wxapi.get_appid();
-		var app_secret = wxapi.get_app_secret();
 		if(this.login_flag == false){
+			//刷新获取wx_code 然后进行用户信息获取
+			var wx_code = wxapi.get_wx_code();
+			var app_id = wxapi.get_appid();
+			var app_secret = wxapi.get_app_secret();
 			if(wx_code != null && wx_code != "null"){
+				cc.log("update:" + app_id + " " + app_secret + " " + wx_code);
 				this.login_flag = true;
 				wxapi.get_wx_uinfo(app_id,app_secret,wx_code,function(result){
 					cc.log("get_wxuser_info:" + JSON.stringify(result));
@@ -68,10 +73,11 @@ cc.Class({
 		}else if(cc.sys.isNative){
 			this.login_flag = false;
 			var refresh_token = Storage.getData("refresh_token");
-			var app_id = Storage.getData("app_id");
+			var app_id = wxapi.get_appid();
 			if(refresh_token == null){
 				this.button_login.getComponent("cc.Button").interactable = true;
 			}else{
+				cc.log("refresh_token:" + refresh_token + "app_id"  + app_id);
 				wxapi.get_wx_ruinfo(app_id,refresh_token,function(result){
 					cc.log("get_wxuser_info:" + JSON.stringify(result));
 					if(result.openid != null){

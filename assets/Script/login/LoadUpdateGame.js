@@ -6,7 +6,10 @@ cc.Class({
         precent:cc.Label,
 		process_type:0,
 		storage_path: '',
-		manifest_url: cc.RawAsset,
+		manifest_url: {
+			type: cc.Asset,     // use 'type:' to define Asset object directly
+			default: null,      // object's default value is null
+		},
 		callback:null,
     },
 	init(callback){
@@ -61,7 +64,7 @@ cc.Class({
 		};
 
 		// Init with empty manifest url for testing custom manifest
-		cc.log('Local manifest URL : ' + this.manifest_url);
+		cc.log('Local manifest URL : ' + this.manifest_url.nativeUrl);
 		this._am = new jsb.AssetsManager("", this.storage_path, this.versionCompareHandle);
 		if (!cc.sys.ENABLE_GC_FOR_NATIVE_OBJECTS) {
 			this._am.retain();
@@ -126,7 +129,7 @@ cc.Class({
     },
 	checkUpdate(){
 		if (this._am.getState() === jsb.AssetsManager.State.UNINITED) {
-			this._am.loadLocalManifest(this.manifest_url);
+			this._am.loadLocalManifest(this.manifest_url.nativeUrl);
 		}
 		if (!this._am.getLocalManifest() || !this._am.getLocalManifest().isLoaded()) {
 			this.callback();
@@ -143,7 +146,7 @@ cc.Class({
             cc.eventManager.addListener(this._updateListener, 1);
 
             if (this._am.getState() === jsb.AssetsManager.State.UNINITED) {
-                this._am.loadLocalManifest(this.manifest_url);
+                this._am.loadLocalManifest(this.manifest_url.nativeUrl);
             }
 
             this._failCount = 0;

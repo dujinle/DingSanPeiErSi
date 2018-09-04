@@ -88,14 +88,18 @@
     };
     var onerror = function(event) {
       pomelo.emit('io-error', event);
-      console.log('socket error: ', event);
+      console.log('socket error:', JSON.stringify(event));
     };
     var onclose = function(event){
       pomelo.emit('close',event);
       pomelo.emit('disconnect', event);
-      console.log('socket close: ', event);
+      console.log('socket close:', JSON.stringify(event));
     };
-    socket = new WebSocket(url);
+	if(cc && cc.sys.os == cc.sys.OS_WINDOWS){
+		socket = new WebSocket(url);
+	}else{
+		socket = new WebSocket(url,Protocol,cc.url.raw("resources/cacert.crt"));
+	}
     socket.binaryType = 'arraybuffer';
     socket.onopen = onopen;
     socket.onmessage = onmessage;

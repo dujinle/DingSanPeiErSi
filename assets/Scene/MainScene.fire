@@ -3,7 +3,7 @@
     "__type__": "cc.SceneAsset",
     "_name": "",
     "_objFlags": 0,
-    "_rawFiles": null,
+    "_native": "",
     "scene": {
       "__id__": 1
     }
@@ -588,7 +588,7 @@
       "__id__": 4
     },
     "_enabled": true,
-    "isAlignOnce": true,
+    "alignMode": 0,
     "_target": null,
     "_alignFlags": 9,
     "_left": 449,
@@ -698,7 +698,7 @@
       "__id__": 15
     },
     "_enabled": true,
-    "isAlignOnce": true,
+    "alignMode": 0,
     "_target": null,
     "_alignFlags": 33,
     "_left": 0,
@@ -1022,7 +1022,7 @@
       "__id__": 23
     },
     "_enabled": true,
-    "isAlignOnce": true,
+    "alignMode": 0,
     "_target": null,
     "_alignFlags": 36,
     "_left": 0,
@@ -1074,7 +1074,7 @@
       "__id__": 20
     },
     "_enabled": true,
-    "isAlignOnce": true,
+    "alignMode": 0,
     "_target": null,
     "_alignFlags": 9,
     "_left": 65.5,
@@ -1177,7 +1177,7 @@
       "__id__": 28
     },
     "_enabled": true,
-    "isAlignOnce": true,
+    "alignMode": 0,
     "_target": null,
     "_alignFlags": 1,
     "_left": 0,
@@ -2254,7 +2254,7 @@
       "__id__": 15
     },
     "audio": {
-      "__uuid__": "3a895d77-6614-4016-8f0e-ecb44a05bb6f"
+      "__uuid__": "26d8973e-70b1-4c69-89f3-7caf57ed255d"
     }
   }
 ]
