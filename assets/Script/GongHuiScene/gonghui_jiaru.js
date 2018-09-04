@@ -19,7 +19,7 @@ cc.Class({
 		var self = this;
 		var size = cc.director.getWinSize();
 		if(this.gid == null || this.gid.length < 4){
-			util.show_error_info(self.pthis,size,"输入正确的公会ID");
+			util.show_error_info("输入正确的公会ID");
 		}
 		var param = {
 			"player_id":g_user["id"],
@@ -31,7 +31,7 @@ cc.Class({
 				g_user["gonghui_id"] = data.msg["gonghui_id"];
 				self.pthis.my_gonghui_button_cb();
 			}else{
-				util.show_error_info(self.pthis,size,"没有找到对应的公会信息");
+				util.show_error_info("没有找到对应的公会信息");
 			}
 		});
 	},

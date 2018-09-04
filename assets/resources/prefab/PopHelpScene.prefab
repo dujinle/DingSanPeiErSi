@@ -3,10 +3,12 @@
     "__type__": "cc.Prefab",
     "_name": "",
     "_objFlags": 0,
-    "_rawFiles": null,
+    "_native": "",
     "data": {
       "__id__": 1
-    }
+    },
+    "optimizationPolicy": 0,
+    "asyncLoadAssets": false
   },
   {
     "__type__": "cc.Node",
@@ -728,7 +730,7 @@
       "__id__": 5
     },
     "_enabled": true,
-    "isAlignOnce": true,
+    "alignMode": 0,
     "_target": null,
     "_alignFlags": 37,
     "_left": 350.07654921020657,
@@ -974,7 +976,7 @@
     "target": {
       "__id__": 1
     },
-    "component": "pop_help",
+    "component": "pop_game_help",
     "handler": "onClose",
     "customEventData": ""
   },

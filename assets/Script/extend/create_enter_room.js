@@ -7,7 +7,7 @@ var room_create = function(param,pthis){
 	pomelo.request(util.getCreateRoute(), param, function(data) {
 		cc.log(JSON.stringify(data));
 		if(data.code != 200){
-			util.show_error_info(pthis,size,data.msg);
+			util.show_error_info(data.msg);
 			//cc.director.loadScene("MainScene");
 			return ;
 		}
@@ -22,7 +22,7 @@ var enter_wait_room = function(param,pthis){
     pomelo.request(util.getEnterWaitRoomRoute(), param, function(data) {
 		cc.log(JSON.stringify(data));
         if(data.code != 200) {
-			util.show_error_info(pthis,null,data.msg);
+			util.show_error_info(data.msg);
 			cc.director.loadScene("MainScene");
 			return ;
         }
@@ -44,7 +44,7 @@ var onGameEnterRoom = function(room_num,rid){
 		pomelo.request(util.getEnterWaitRoomRoute(), param, function(data) {
 			cc.log(JSON.stringify(data));
 			if(data.code != 200){
-				util.show_error_info(null,size,data.msg);
+				util.show_error_info(data.msg);
 				cc.director.loadScene("MainScene");
 				return ;
 			}
@@ -61,12 +61,15 @@ var onGameEnterRoom = function(room_num,rid){
 var onReconnect = function(){
 	cc.log("g_current_scene:" + g_current_scene);
 	util.show_net_error("当前网络不可用，请检查自己的网络状态",function(){
+		if(g_current_scene == SCENE_TAG.LOAD){
+			cc.director.loadScene("LoginScene");
+		}
 		//在主界面断开连接进行重新登录
-		if(g_current_scene == SCENE_TAG.MAIN){
+		else if(g_current_scene == SCENE_TAG.MAIN){
 			Servers.getLogin(g_user['player_id'],g_user['nickname'],g_user['gender'],g_user['headimgurl'], function (data) {
 				console.log("get login info succ:" + JSON.stringify(data));
 				if(data.code != 200){
-					util.show_error_info(null,null,data.msg);
+					util.show_error_info(data.msg);
 					return;
 				}
 				var token = data.token;
@@ -74,7 +77,7 @@ var onReconnect = function(){
 					if(data.code == 200){
 						cc.director.loadScene("MainScene");
 					}else{
-						util.show_error_info(null,null,data.msg);
+						util.show_error_info(data.msg);
 					}
 				});
 			});
@@ -83,7 +86,7 @@ var onReconnect = function(){
 			Servers.getLogin(g_user['player_id'],g_user['nickname'],g_user['gender'],g_user['headimgurl'], function (data) {
 				console.log("get login info succ:" + JSON.stringify(data));
 				if(data.code != 200){
-					util.show_error_info(null,null,data.msg);
+					util.show_error_info(data.msg);
 					return;
 				}
 				var token = data.token;
@@ -91,7 +94,7 @@ var onReconnect = function(){
 					if(data.code == 200){
 						cc.director.loadScene("GongHuiScene");
 					}else{
-						util.show_error_info(null,null,data.msg);
+						util.show_error_info(data.msg);
 					}
 				});
 			});
@@ -100,7 +103,7 @@ var onReconnect = function(){
 			Servers.getLogin(g_user['player_id'],g_user['nickname'],g_user['gender'],g_user['headimgurl'], function (data) {
 				console.log("get login info succ:" + JSON.stringify(data));
 				if(data.code != 200){
-					util.show_error_info(null,null,data.msg);
+					util.show_error_info(data.msg);
 					return;
 				}
 				var token = data.token;
@@ -108,7 +111,7 @@ var onReconnect = function(){
 					if(data.code == 200){
 						cc.director.loadScene("MyGameInfoScene");
 					}else{
-						util.show_error_info(null,null,data.msg);
+						util.show_error_info(data.msg);
 					}
 				});
 			});
@@ -117,13 +120,13 @@ var onReconnect = function(){
 			Servers.getLogin(g_user['player_id'],g_user['nickname'],g_user['gender'],g_user['headimgurl'], function (data) {
 				console.log("get login info succ:" + JSON.stringify(data));
 				if(data.code != 200){
-					util.show_error_info(null,null,data.msg);
+					util.show_error_info(data.msg);
 					return;
 				}
 				var token = data.token;
 				Servers.getEntry(token,function(data){
 					if(data.code == 200){
-						util.show_error_info(null,null,"重新连接成功");
+						util.show_error_info("重新连接成功");
 						var param = {
 							player_id:g_user.id,
 							room_num: g_room_data["room_num"],
@@ -131,7 +134,7 @@ var onReconnect = function(){
 						};
 						enter_wait_room(param,null);
 					}else{
-						util.show_error_info(null,null,data.msg);
+						util.show_error_info(data.msg);
 					}
 				});
 			});
@@ -140,13 +143,13 @@ var onReconnect = function(){
 			Servers.getLogin(g_user['player_id'],g_user['nickname'],g_user['gender'],g_user['headimgurl'], function (data) {
 				console.log("get login info succ:" + JSON.stringify(data));
 				if(data.code != 200){
-					util.show_error_info(null,null,data.msg);
+					util.show_error_info(data.msg);
 					return;
 				}
 				var token = data.token;
 				Servers.getEntry(token,function(data){
 					if(data.code == 200){
-						util.show_error_info(null,null,"重新连接成功");
+						util.show_error_info("重新连接成功");
 						var param = {
 							"rid":g_room_data["rid"],
 							"player_id":g_user["id"]
@@ -169,15 +172,15 @@ var onReconnect = function(){
 										}
 										cc.director.loadScene("PJRoomScene");
 									}else{
-										util.show_error_info(null,null,data.msg);
+										util.show_error_info(data.msg);
 									}
 								});
 							}else{
-								util.show_error_info(null,null,data.msg);
+								util.show_error_info(data.msg);
 							}
 						});
 					}else{
-						util.show_error_info(null,null,data.msg);
+						util.show_error_info(data.msg);
 					}
 				});
 			});

@@ -84,7 +84,7 @@ cc.Class({
 	popSettingScene(){
 		var self = this;
 		var size = cc.director.getVisibleSize();
-		var pop_setting = cc.instantiate(g_assets["pop_setting_scene"]);
+		var pop_setting = cc.instantiate(g_assets["PopSettingScene"]);
 		var pop_setting_com = pop_setting.getComponent("pop_game_setting");
 		
 		pop_setting_com.set_callback(function(index){

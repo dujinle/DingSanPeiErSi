@@ -18,14 +18,5 @@ cc.Class({
 		}if(tid == "adding_g"){
 			this.tip_label.string = this.adding_g;
 		}
-	},
-    onLoad () {
-		
-	},
-
-    start () {
-
-    },
-
-    // update (dt) {},
+	}
 });

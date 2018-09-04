@@ -133,9 +133,9 @@ cc.Class({
 				item.set_flag(true);
 			}
 			if(self.enter_player.id == g_user["id"]){
-				util.show_error_info(null,null,"房间人员已经到齐，请点击开始游戏，进入游戏！");
+				util.show_error_info("房间人员已经到齐，请点击开始游戏，进入游戏！");
 			}else{
-				util.show_error_info(null,null,"房间人员已经到齐，请等待房主开始游戏，进入游戏！");
+				util.show_error_info("房间人员已经到齐，请等待房主开始游戏，进入游戏！");
 			}
 		}
 	},
@@ -155,7 +155,7 @@ cc.Class({
 	},
 	onDissolveRoom_function(data){
 		this.pomelo_removeListener();
-		util.show_error_info(null,null,"房主已经解散了该房间,所有玩家退出房间！");
+		util.show_error_info("房主已经解散了该房间,所有玩家退出房间！");
 		g_room_data = null;
 		cc.director.loadScene("MainScene");
 	},
@@ -194,7 +194,7 @@ cc.Class({
 				self.pomelo_removeListener();
 				cc.director.loadScene("PJRoomScene");
 			}else{
-				util.show_error_info(null,null,data.msg);
+				util.show_error_info(data.msg);
 			}
 		});
 	},
@@ -260,7 +260,7 @@ cc.Class({
 			});
 		}else{
 			this.start_button.getComponent("cc.Button").interactable = true;
-			util.show_error_info(null,null,"人员不够，无法开始游戏，请等待玩家加入！");
+			util.show_error_info("人员不够，无法开始游戏，请等待玩家加入！");
 		}
 	},
 	goout_game(){
@@ -336,7 +336,7 @@ cc.Class({
 							g_user["fangka_num"] = data.fangka_num;
 						}else{
 							item.set_flag(false);
-							util.show_error_info(null,null,data.msg);
+							util.show_error_info(data.msg);
 						}
 						cc.log(JSON.stringify(data));
 					});

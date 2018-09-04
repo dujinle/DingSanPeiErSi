@@ -13,10 +13,8 @@ cc.Class({
 		xuanyan_str:null,
 		xuka_status:null,
 		data:null,
-		pthis:null,
     },
-	init(data,pthis){
-		this.pthis = pthis;
+	init(data){
 		this.data = data;
 		if(this.data != null){
 			this.gonghui_id.getComponent("cc.Label").string = this.data["gonghui_id"];
@@ -54,9 +52,9 @@ cc.Class({
 		};
 		Servers.gonghuiProcess("xuka",param,function(data){
 			if(data.code == 200){
-				util.show_error_info(self.parent,size,"申请续卡已经提交，等待工作人员确认信息。");
+				util.show_error_info("申请续卡已经提交，等待工作人员确认信息。");
 			}else{
-				util.show_error_info(self.parent,size,data.msg);
+				util.show_error_info(data.msg);
 			}
 		});
 	},
@@ -69,9 +67,9 @@ cc.Class({
 		};
 		Servers.gonghuiProcess("update_gonghui",param,function(data){
 			if(data.code == 200){
-				util.show_error_info(null,null,"公会信息更新完成");
+				util.show_error_info("公会信息更新完成");
 			}else{
-				util.show_error_info(null,null,data.msg);
+				util.show_error_info(data.msg);
 			}
 		});
 	},

@@ -22,13 +22,13 @@ cc.Class({
 				Servers.getLogin(g_user['player_id'],g_user['nickname'],g_user['gender'],g_user['headimgurl'], function (data) {
 					console.log("get login info succ:" + JSON.stringify(data));
 					if(data.code != 200){
-						util.show_error_info(null,null,data.msg);
+						util.show_error_info(data.msg);
 						return;
 					}
 					var token = data.token;
 					Servers.getEntry(token,function(data){
 						if(data.code != 200){
-							util.show_error_info(null,null,data.msg);
+							util.show_error_info(data.msg);
 						}
 					});
 				});

@@ -38,11 +38,11 @@ cc.Class({
 					var gonghui_data = data.msg;
 					if(gonghui_data["player_id"] != g_user["id"]){
 						var my_gonghui_com = self.my_gonghui_node.getComponent("gonghui_yuan");
-						my_gonghui_com.init(gonghui_data,self);
+						my_gonghui_com.init(gonghui_data);
 						self.show_one_node("gonghui");
 					}else{
 						var my_gonghui_com = self.my_gonghui_zhang_node.getComponent("gonghui_zhang");
-						my_gonghui_com.init(gonghui_data,self);
+						my_gonghui_com.init(gonghui_data);
 						self.show_one_node("gonghui_zhang");
 					}
 				}else{
@@ -106,18 +106,6 @@ cc.Class({
     onLoad () {
 		var self = this;
 		g_current_scene = SCENE_TAG.GONGHUI;
-		cc.eventManager.addListener({
-            event: cc.EventListener.TOUCH_ONE_BY_ONE,
-            swallowTouches: true,
-            // 设置是否吞没事件，在 onTouchBegan 方法返回 true 时吞没
-            onTouchBegan: function (touch, event) {
-                return true;
-            },
-            onTouchMoved: function (touch, event) {            // 触摸移动时触发
-            },
-            onTouchEnded: function (touch, event) {            // 点击事件结束处理
-			}
-         }, self.game_sprite);
 		 Servers.gonghuiProcess("getGonghuiPlayerId",{"player_id":g_user["id"]},function(data){
 			if(data.code == 200 && data.msg != null){
 				g_user["gonghui_id"] = data.msg["gonghui_id"];

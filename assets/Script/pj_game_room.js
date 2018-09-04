@@ -263,7 +263,7 @@ cc.Class({
 		this.xiazhu_button.getComponent(cc.Button).interactable = false;
 		//find myself player
 		this.chip_layout = cc.instantiate(g_assets["pop_add_chip"]);
-		var chip_layout_com = this.chip_layout.getComponent("add_chip");
+		var chip_layout_com = this.chip_layout.getComponent("pop_add_chip");
 		chip_layout_com.init_callback(this,this.sumBet,this.silder_callback);
 		this.node.addChild(this.chip_layout);
 		
@@ -339,7 +339,7 @@ cc.Class({
 				console.log(data.msg);
 			});
 		}else{
-			util.show_error_info(this,size,"只能选择两张牌");
+			util.show_error_info("只能选择两张牌");
 			this.peipai_button.active = true;
 			return;
 		}

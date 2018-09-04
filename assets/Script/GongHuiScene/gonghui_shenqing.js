@@ -34,7 +34,7 @@ cc.Class({
 		var self = this;
 		var size = cc.director.getWinSize();
 		if(this.phone_num == null || this.gonghui_name == null){
-			util.show_error_info(self.pthis,size,"请完善信息在次提交");
+			util.show_error_info("请完善信息在次提交");
 			return;
 		}
 		var param = {
@@ -49,7 +49,7 @@ cc.Class({
 				self.node.active = false;
 				self.pthis.add_gonghui_button_cb();
 			}else{
-				util.show_error_info(self.pthis,size,data.msg);
+				util.show_error_info(data.msg);
 			}
 		});
 	},

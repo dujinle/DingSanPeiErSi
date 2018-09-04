@@ -95,16 +95,6 @@ util.show_net_error = function(msg,cb){
 	error_tip.setPosition(root_node.convertToNodeSpaceAR(cc.p(size.width/2,size.height/2)));
 }
 
-util.show_error_info = function(pp,size,msg){
-	var size = cc.director.getVisibleSize();
-	var error_tip = cc.instantiate(g_assets["PopErrorScene"]);
-	var error_tip_com = error_tip.getComponent("pop_error_info");
-    error_tip_com.show_error_info(msg);
-    var root_node = cc.director.getScene().getChildByName('RootNode');
-	root_node.addChild(error_tip);
-	error_tip.setPosition(root_node.convertToNodeSpaceAR(cc.p(size.width/2,size.height/2)));
-}
-
 util.show_error_info = function(msg){
 	var size = cc.director.getVisibleSize();
 	var error_tip = cc.instantiate(g_assets["PopErrorScene"]);
@@ -173,7 +163,7 @@ util.post = function(url,str,cb){
         if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status <= 207)) {            
             var result = JSON.parse(xhr.responseText);
             if(result["act"]=="erro") {
-                cb(result["msg"]);                
+                cb(result["msg"]);
                 return;
             }
             cb(result);

@@ -9,11 +9,9 @@ cc.Class({
 		renshu:cc.Node,
 		danjia:cc.Node,
 		xuanyan:cc.Node,
-		pthis:null,
 		data:null,
     },
-	init(data,pthis){
-		this.pthis = pthis;
+	init(data){
 		this.data = data;
 		if(this.data != null){
 			this.gonghui_id.getComponent("cc.Label").string = this.data["gonghui_id"];

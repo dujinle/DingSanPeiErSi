@@ -53,11 +53,11 @@
     "_parent": {
       "__id__": 1
     },
-    "_id": "cerj8nUxtIqKNCxhKxN14X",
+    "_id": "84HV9pz1FIIbJO2soiGZdQ",
     "_prefab": {
       "__id__": 3
     },
-    "_name": "pop_setting_scene",
+    "_name": "PopSettingScene",
     "_active": true,
     "_position": {
       "__type__": "cc.Vec2",
@@ -75,9 +75,9 @@
       "__id__": 2
     },
     "asset": {
-      "__uuid__": "4f01cc5e-acdc-4bb1-b751-37518a29d6d1"
+      "__uuid__": "665457a3-e774-4e72-8f3f-1185ffbbcc17"
     },
-    "fileId": "cerj8nUxtIqKNCxhKxN14X",
+    "fileId": "84HV9pz1FIIbJO2soiGZdQ",
     "sync": true
   }
 ]
