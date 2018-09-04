@@ -107,7 +107,7 @@ util.show_error_info = function(msg){
 
 util.show_isok_info = function(callback,msg){
 	var size = cc.director.getVisibleSize();
-	var error_tip = cc.instantiate(g_assets["pop_isok_scene"]);
+	var error_tip = cc.instantiate(g_assets["PopIsOkScene"]);
 	var error_tip_com = error_tip.getComponent("pop_isok_info");
 	error_tip_com.init(callback);
 	var root_node = cc.director.getScene().getChildByName('RootNode');

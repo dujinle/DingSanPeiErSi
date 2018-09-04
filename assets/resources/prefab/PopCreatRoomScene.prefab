@@ -6403,7 +6403,7 @@
     "target": {
       "__id__": 1
     },
-    "component": "pj_create_game",
+    "component": "pop_create_room",
     "handler": "create_game",
     "customEventData": ""
   },
@@ -6649,7 +6649,7 @@
     "target": {
       "__id__": 1
     },
-    "component": "pj_create_game",
+    "component": "pop_create_room",
     "handler": "close_scene",
     "customEventData": ""
   },
