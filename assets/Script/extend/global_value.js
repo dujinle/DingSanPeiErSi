@@ -23,7 +23,7 @@ g_roomMasterName = "";
 g_game_type = "ZJH";
 g_fapaiNum = 3;
 g_totalCount = 0;
-g_user = null;
+g_user = {};
 g_assets = {};
 
 //游戏设置全局变量

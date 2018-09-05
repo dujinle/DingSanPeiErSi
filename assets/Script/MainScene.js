@@ -27,14 +27,8 @@ cc.Class({
 		
 		g_root_node = cc.director.getScene().getChildByName('RootNode');
 		var self = this;
-		if (cc.sys.os == cc.sys.OS_ANDROID) {
-			jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "setLoadStatus", "(I)V",1);
-		}else if(cc.sys.os == cc.sys.OS_IOS){
-			this.exit_node.active = false;
-			jsb.reflection.callStaticMethod("NativeOcClass", "setLoadStatus:",1);
-		}
 		g_music_key = cc.sys.localStorage.getItem(MUSIC_KEY);
-		if(g_music_key == null || g_music_key == BOOL.YES){
+		if(g_music_key == null || g_music_key == BOOL.YES || g_music_key == ''){
 			cc.audioEngine.stopAll();
 			this.current = cc.audioEngine.play(this.audio, true, 1);
 		}
@@ -87,11 +81,7 @@ cc.Class({
 		this.pop_help_scene.setPosition(this.node.convertToNodeSpaceAR(cc.p(size.width/2,size.height/2)));
 	},
 	exit(){
-		if (cc.sys.os == cc.sys.OS_ANDROID) {
-			cc.director.end();
-		}else if(cc.sys.os == cc.sys.OS_IOS){
-			//cc.director.popScene();
-		}
+		cc.director.end();
 	},
 	onDestroy: function () {
         cc.audioEngine.stop(this.current);

@@ -73,7 +73,7 @@ cc.Class({
 	start(){
 		cc.log("go into pj game room scene start");
 		g_music_key = cc.sys.localStorage.getItem(MUSIC_KEY);
-		if(g_music_key == null || g_music_key == BOOL.YES){
+		if(g_music_key == null || g_music_key == BOOL.YES || g_music_key.length == 0){
 			cc.audioEngine.stopAll();
 			this.current = cc.audioEngine.play(this.audio, true, 1);
 		}

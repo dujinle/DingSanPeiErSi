@@ -64,7 +64,11 @@ quick_gen_project_*_autogen.sh.meta
 #//////////////////////////
 
 .vscode/
+<<<<<<< HEAD
 wx_build/wechatgame/cocos2d-js.82204.js
 settings/builder.json
 settings/project.json
 assets/project.manifest
+=======
+*.meta
+>>>>>>> d5268422ddc4eed24cf47845d34dec5cb6e35f2d

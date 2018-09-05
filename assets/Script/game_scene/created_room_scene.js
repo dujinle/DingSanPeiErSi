@@ -88,11 +88,11 @@ cc.Class({
 		}
 	},
 	share_button_cb(){
-		if(cc.sys.os == cc.sys.OS_ANDROID){
-			jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "WxShare", "(Ljava/lang/String;Ljava/lang/String;I)V",g_room_data["room_num"],g_room_data["fangzhu_name"],g_room_data["rid"]);
-		}else if(cc.sys.os == cc.sys.OS_IOS){
-			jsb.reflection.callStaticMethod("NativeOcClass", "WxShare:masterName:roomId:",g_room_data["room_num"],g_room_data["fangzhu_name"],g_room_data["rid"]);
-		}
+		wx.shareAppMessage({
+			title: "点击进入房间" + g_room_data['room_num'],
+			imageUrl: "https://www.enjoymygame.com/xiaochengxu/share_logo.png",
+			query: "room_num=" + g_room_data['room_num']  + "&name=" + g_room_data['fangzhu_name'] + "&rid=" + g_room_data['rid']
+		});
 	},
 	pomelo_on(){
 		pomelo.on('onStartGame',this.onStartGame_function.bind(this));
