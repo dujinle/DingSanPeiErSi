@@ -262,7 +262,7 @@ cc.Class({
 	callback_xiazhu(){
 		this.xiazhu_button.getComponent(cc.Button).interactable = false;
 		//find myself player
-		this.chip_layout = cc.instantiate(g_assets["pop_add_chip"]);
+		this.chip_layout = cc.instantiate(g_assets["PopAddChip"]);
 		var chip_layout_com = this.chip_layout.getComponent("pop_add_chip");
 		chip_layout_com.init_callback(this,this.sumBet,this.silder_callback);
 		this.node.addChild(this.chip_layout);
@@ -403,7 +403,9 @@ cc.Class({
 	},
 
 	callback_gameback(){
-		var self = this;
+		this.onExit();
+        cc.director.loadScene("MainScene");
+		/*
 		pomelo.request(util.getGameRoute(),{
             process : 'quitRoom'
         },function(data){
@@ -411,6 +413,7 @@ cc.Class({
 			self.onExit();
             cc.director.loadScene("MainScene");
         })
+		*/
 	},
 
 	callback_uinfo(event,id){

@@ -81,6 +81,12 @@ cc.Class({
 		this.node.addChild(this.pop_help_scene);
 		this.pop_help_scene.setPosition(this.node.convertToNodeSpaceAR(cc.p(size.width/2,size.height/2)));
 	},
+	popFeedBackScene(){
+		var size = cc.director.getWinSize();
+		this.pop_feedback_scene = cc.instantiate(g_assets["PopFeedBack"]);
+		this.node.addChild(this.pop_feedback_scene);
+		this.pop_feedback_scene.setPosition(this.node.convertToNodeSpaceAR(cc.p(size.width/2,size.height/2)));
+	},
 	popSettingScene(){
 		var self = this;
 		var size = cc.director.getVisibleSize();

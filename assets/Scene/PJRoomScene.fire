@@ -3,7 +3,7 @@
     "__type__": "cc.SceneAsset",
     "_name": "",
     "_objFlags": 0,
-    "_rawFiles": null,
+    "_native": "",
     "scene": {
       "__id__": 1
     }
@@ -45,7 +45,7 @@
     "_globalZOrder": 0,
     "_opacityModifyRGB": false,
     "groupIndex": 0,
-    "autoReleaseAssets": null
+    "autoReleaseAssets": false
   },
   {
     "__type__": "cc.Node",
@@ -414,7 +414,7 @@
     "target": {
       "__id__": 2
     },
-    "component": "tdk_game_room",
+    "component": "pj_game_room",
     "handler": "callback_gameback",
     "customEventData": ""
   },
@@ -1807,7 +1807,7 @@
       "__id__": 4
     },
     "_enabled": true,
-    "isAlignOnce": true,
+    "alignMode": 0,
     "_target": null,
     "_alignFlags": 1,
     "_left": 0,
@@ -4340,7 +4340,7 @@
       "__id__": 97
     },
     "_enabled": true,
-    "isAlignOnce": true,
+    "alignMode": 0,
     "_target": null,
     "_alignFlags": 45,
     "_left": 0,
@@ -5245,7 +5245,7 @@
       "__id__": 96
     },
     "_enabled": true,
-    "isAlignOnce": true,
+    "alignMode": 0,
     "_target": null,
     "_alignFlags": 12,
     "_left": 400,
@@ -5825,7 +5825,7 @@
       "__id__": 144
     },
     "_enabled": true,
-    "isAlignOnce": true,
+    "alignMode": 0,
     "_target": null,
     "_alignFlags": 45,
     "_left": 0,
@@ -6689,7 +6689,7 @@
       "__id__": 143
     },
     "_enabled": true,
-    "isAlignOnce": true,
+    "alignMode": 0,
     "_target": null,
     "_alignFlags": 36,
     "_left": 0,
@@ -7310,7 +7310,7 @@
       "__id__": 191
     },
     "_enabled": true,
-    "isAlignOnce": true,
+    "alignMode": 0,
     "_target": null,
     "_alignFlags": 45,
     "_left": 0,
@@ -8215,7 +8215,7 @@
       "__id__": 190
     },
     "_enabled": true,
-    "isAlignOnce": true,
+    "alignMode": 0,
     "_target": null,
     "_alignFlags": 9,
     "_left": 400,
@@ -8795,7 +8795,7 @@
       "__id__": 238
     },
     "_enabled": true,
-    "isAlignOnce": true,
+    "alignMode": 0,
     "_target": null,
     "_alignFlags": 45,
     "_left": 0,
@@ -9659,7 +9659,7 @@
       "__id__": 237
     },
     "_enabled": true,
-    "isAlignOnce": true,
+    "alignMode": 0,
     "_target": null,
     "_alignFlags": 12,
     "_left": 180,
@@ -10061,7 +10061,7 @@
       "__id__": 289
     },
     "_enabled": true,
-    "isAlignOnce": true,
+    "alignMode": 0,
     "_target": null,
     "_alignFlags": 32,
     "_left": 0,

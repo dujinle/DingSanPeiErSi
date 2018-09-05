@@ -21,7 +21,7 @@
     "_active": true,
     "_components": [],
     "_prefab": null,
-    "_id": "c114e2e7-b89c-4411-860c-7a2b64c3613f",
+    "_id": "297628de-e624-42e5-a51d-e3be10f3dac6",
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
@@ -53,16 +53,16 @@
     "_parent": {
       "__id__": 1
     },
-    "_id": "743/rqy1ZNh7BpXOKve2gU",
+    "_id": "abVr1omxtLkZD4BVles50a",
     "_prefab": {
       "__id__": 3
     },
-    "_name": "PopAddChip",
+    "_name": "PopFeedBack",
     "_active": true,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 669,
-      "y": 204
+      "x": 480,
+      "y": 320
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -75,9 +75,9 @@
       "__id__": 2
     },
     "asset": {
-      "__uuid__": "5b826975-a508-469a-9180-0cab546c52b7"
+      "__uuid__": "bfbba72c-6ca4-446a-9c88-728aeaed6ff7"
     },
-    "fileId": "743/rqy1ZNh7BpXOKve2gU",
+    "fileId": "abVr1omxtLkZD4BVles50a",
     "sync": true
   }
 ]

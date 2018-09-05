@@ -3,14 +3,16 @@
     "__type__": "cc.Prefab",
     "_name": "",
     "_objFlags": 0,
-    "_rawFiles": null,
+    "_native": "",
     "data": {
       "__id__": 1
-    }
+    },
+    "optimizationPolicy": 0,
+    "asyncLoadAssets": false
   },
   {
     "__type__": "cc.Node",
-    "_name": "pop_add_chip",
+    "_name": "PopAddChip",
     "_objFlags": 0,
     "_parent": null,
     "_children": [
@@ -278,9 +280,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "2683cf7a-76ea-44c9-b7ed-0280aefeef78"
+      "__uuid__": "5b826975-a508-469a-9180-0cab546c52b7"
     },
-    "fileId": "951kKlTshG+qV3C0INGIMc",
+    "fileId": "2cgS7Sgm9Pk5a3aTgpo94q",
     "sync": false
   },
   {
@@ -436,9 +438,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "2683cf7a-76ea-44c9-b7ed-0280aefeef78"
+      "__uuid__": "5b826975-a508-469a-9180-0cab546c52b7"
     },
-    "fileId": "2aZbEIX3NNz7rmtjaErPyI",
+    "fileId": "59FMQi+sREFrssrjS9AVs4",
     "sync": false
   },
   {
@@ -465,7 +467,7 @@
     "target": {
       "__id__": 1
     },
-    "component": "add_chip",
+    "component": "pop_add_chip",
     "handler": "silder1_callback",
     "customEventData": ""
   },
@@ -475,9 +477,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "2683cf7a-76ea-44c9-b7ed-0280aefeef78"
+      "__uuid__": "5b826975-a508-469a-9180-0cab546c52b7"
     },
-    "fileId": "2fiWNwKkRIcL1ExGBpSe9y",
+    "fileId": "15jIKX08dBlLE2ZG9cX2rH",
     "sync": false
   },
   {
@@ -627,9 +629,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "2683cf7a-76ea-44c9-b7ed-0280aefeef78"
+      "__uuid__": "5b826975-a508-469a-9180-0cab546c52b7"
     },
-    "fileId": "59V7QWAq1MaJNfcEjUDo8J",
+    "fileId": "72MKwNc85LpoaWO56fg9co",
     "sync": false
   },
   {
@@ -785,9 +787,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "2683cf7a-76ea-44c9-b7ed-0280aefeef78"
+      "__uuid__": "5b826975-a508-469a-9180-0cab546c52b7"
     },
-    "fileId": "e3DJIeG/xG/KfJXpbGyu4E",
+    "fileId": "d7rw7GCt1Ff5CSdTnwwE4k",
     "sync": false
   },
   {
@@ -814,7 +816,7 @@
     "target": {
       "__id__": 1
     },
-    "component": "add_chip",
+    "component": "pop_add_chip",
     "handler": "silder2_callback",
     "customEventData": ""
   },
@@ -824,9 +826,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "2683cf7a-76ea-44c9-b7ed-0280aefeef78"
+      "__uuid__": "5b826975-a508-469a-9180-0cab546c52b7"
     },
-    "fileId": "00n4cmk/BNXon1xlrOHKfb",
+    "fileId": "34lmEan+VDRIVug72uEIfT",
     "sync": false
   },
   {
@@ -890,9 +892,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "2683cf7a-76ea-44c9-b7ed-0280aefeef78"
+      "__uuid__": "5b826975-a508-469a-9180-0cab546c52b7"
     },
-    "fileId": "97Cd8mMVtFjpkC8/kW8Ldk",
+    "fileId": "8a57zedOtAH5uQ4RqwBjmV",
     "sync": false
   },
   {
@@ -939,7 +941,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "2683cf7a-76ea-44c9-b7ed-0280aefeef78"
+      "__uuid__": "5b826975-a508-469a-9180-0cab546c52b7"
     },
     "fileId": "743/rqy1ZNh7BpXOKve2gU",
     "sync": false
