@@ -43,6 +43,10 @@ while ( i < process.argv.length) {
         dest = process.argv[i+1];
         i += 2;
         break;
+	case '--help' :
+    case '-h' :
+		console.log("node version_generator.js -v 0.0.3 -u http://193.112.243.189:8080/ -s build\jsb-link\ -d assets\");
+		break;
     default :
         i++;
         break;
