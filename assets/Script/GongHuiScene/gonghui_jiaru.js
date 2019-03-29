@@ -17,18 +17,18 @@ cc.Class({
 	},
 	jiaru_cb(){
 		var self = this;
-		var size = cc.director.getWinSize();
+		var size = cc.winSize;
 		if(this.gid == null || this.gid.length < 4){
 			util.show_error_info("输入正确的公会ID");
 		}
 		var param = {
-			"player_id":g_user["id"],
+			"player_id":GlobalData.MyUserInfo["id"],
 			"gonghui_id":this.gid
 		};
 		Servers.gonghuiProcess("join_gonghui",param,function(data){
 			if(data.code == 200){
 				self.node.active = false;
-				g_user["gonghui_id"] = data.msg["gonghui_id"];
+				GlobalData.MyUserInfo["gonghui_id"] = data.msg["gonghui_id"];
 				self.pthis.my_gonghui_button_cb();
 			}else{
 				util.show_error_info("没有找到对应的公会信息");

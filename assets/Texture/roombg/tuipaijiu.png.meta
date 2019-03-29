@@ -1,9 +1,10 @@
 {
-  "ver": "2.0.0",
+  "ver": "2.2.0",
   "uuid": "218e280f-5e29-4b2f-af05-b37135386ce6",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
+  "premultiplyAlpha": false,
   "subMetas": {
     "tuipaijiu": {
       "ver": "1.0.3",

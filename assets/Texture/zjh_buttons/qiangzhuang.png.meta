@@ -1,9 +1,10 @@
 {
-  "ver": "2.0.0",
+  "ver": "2.2.0",
   "uuid": "c0034f18-3ba8-4db7-80c6-1d24abe3b667",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
+  "premultiplyAlpha": false,
   "subMetas": {
     "qiangzhuang": {
       "ver": "1.0.3",

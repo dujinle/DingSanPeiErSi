@@ -14,9 +14,9 @@ cc.Class({
 	initCardSprite(rank){
 		//this.sprite.active = false;
 		this.num = rank;
-        this.suit = g_paixing[rank][1];
-        this.rank = g_paixing[rank][0];
-		this.sprite.getComponent("cc.Sprite").spriteFrame = g_assets[rank.toString()];
+        this.suit = GlobalData.CardPaiXing[rank][1];
+        this.rank = GlobalData.CardPaiXing[rank][0];
+		this.sprite.getComponent("cc.Sprite").spriteFrame = GlobalData.assets[rank.toString()];
 		this.sprite.runAction(cc.hide());
     },
     onLoad () {
@@ -35,17 +35,17 @@ cc.Class({
 	menuCallbackButton(){
 		console.log("start move the card......");
 		if(this.touch_tag == false){
-			var x = this.node.getPositionX();
-			var y = this.node.getPositionY() + 10;
+			var x = this.node.x;
+			var y = this.node.y + 10;
 			console.log("start move the card up......x:" + x + " y:" + y);
-			var acToUp = cc.moveTo(0.1,cc.p(x,y));
+			var acToUp = cc.moveTo(0.1,cc.v2(x,y));
 			console.log("start move the card up......");
 			this.node.runAction(acToUp);
 			this.touch_tag = true;
 		}else{
-			var x = this.node.getPositionX();
-			var y = this.node.getPositionY() - 10;
-			var acToDown = cc.moveTo(0.1,cc.p(x,y));
+			var x = this.node.x;
+			var y = this.node.y - 10;
+			var acToDown = cc.moveTo(0.1,cc.v2(x,y));
 			console.log("start move the card down......x:" + x + " y:" + y);
 			this.node.runAction(acToDown);
 			this.touch_tag = false;

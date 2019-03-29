@@ -38,8 +38,8 @@ cc.Class({
 			return;
 		}
 		var param = {
-			"player_id":g_user["id"],
-			"player_name":g_user["nickname"],
+			"player_id":GlobalData.MyUserInfo["id"],
+			"player_name":GlobalData.MyUserInfo["nickname"],
 			"gonghui_name":this.gonghui_name,
 			"telphone":this.phone_num,
 			"level":this.level

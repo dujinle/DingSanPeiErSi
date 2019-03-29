@@ -1,9 +1,10 @@
 {
-  "ver": "2.0.0",
+  "ver": "2.2.0",
   "uuid": "64bec247-d7ef-469c-a50b-7f477c417500",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
+  "premultiplyAlpha": false,
   "subMetas": {
     "xieyi_text_4": {
       "ver": "1.0.3",

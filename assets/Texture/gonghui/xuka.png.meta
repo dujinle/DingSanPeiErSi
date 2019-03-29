@@ -1,9 +1,10 @@
 {
-  "ver": "2.0.0",
+  "ver": "2.2.0",
   "uuid": "396a35dc-7c5c-4287-a413-6bb1dc2fdb12",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
+  "premultiplyAlpha": false,
   "subMetas": {
     "xuka": {
       "ver": "1.0.3",

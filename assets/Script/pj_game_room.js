@@ -43,17 +43,17 @@ cc.Class({
 
     onLoad () {
 		cc.log("go into pj game room scene onload");
-		g_current_scene = SCENE_TAG.ROOM;
+		GlobalData.RunTimeParams.CurrentScene = GlobalData.SCENE_TAG.ROOM;
 		this.pomelo_removeListener();
-		this.sumBet = g_room_data["zhuang_score"];
-		this.count = g_room_data["round"];
-		this.qieguo = g_room_data["qieguo"];
-		this.roomNum = g_room_data["room_num"];
-        this.roomState = g_room_data["is_gaming"];
-		this.master_name = g_room_data["fangzhu_name"];
-		this.startDealCardPosition = g_room_data["first_fapai"];
-		this.zhuang_serverPosition = g_room_data["zhuang_location"];
-		this.cur_turn = g_room_data["cur_turn"];
+		this.sumBet = GlobalData.RunTimeParams.RoomData["zhuang_score"];
+		this.count = GlobalData.RunTimeParams.RoomData["round"];
+		this.qieguo = GlobalData.RunTimeParams.RoomData["qieguo"];
+		this.roomNum = GlobalData.RunTimeParams.RoomData["room_num"];
+        this.roomState = GlobalData.RunTimeParams.RoomData["is_gaming"];
+		this.master_name = GlobalData.RunTimeParams.RoomData["fangzhu_name"];
+		this.startDealCardPosition = GlobalData.RunTimeParams.RoomData["first_fapai"];
+		this.zhuang_serverPosition = GlobalData.RunTimeParams.RoomData["zhuang_location"];
+		this.cur_turn = GlobalData.RunTimeParams.RoomData["cur_turn"];
 		this.myselfCards = new Array();
 		this.left_cards = new Array();
 		this.betPhotoArray = new Array();
@@ -81,7 +81,7 @@ cc.Class({
 		this.init_count_timer();
 	},
 	init_head_info(){
-		var size = cc.director.getWinSize();
+		var size = cc.winSize;
 		var lmaster = this.master_label.getComponent(cc.Label);
 		lmaster.string = this.master_name;
 		
@@ -102,17 +102,17 @@ cc.Class({
 	
 	init_game_status(){
 		var player_com = null;
-		for(var i = 0;i < g_players.length;i++){
-			var player = g_players[i];
+		for(var i = 0;i < RoomInfos.TotalPlayers.length;i++){
+			var player = RoomInfos.TotalPlayers[i];
 			player_com = player.getComponent("tdk_player");
-			if(player_com.position_server == g_myselfPlayerPos){
+			if(player_com.position_server == GlobalData.RoomInfos.MySelfPlayerLocation){
 				cc.log("init_game_status: location:" + player_com.position_server + " is_power:" + player_com.is_power);
 				break;
 			}
 		}
 		if(player_com.is_power >= 1){
-			for(var i = 0;i < g_players.length;i++){
-				var player = g_players[i];
+			for(var i = 0;i < RoomInfos.TotalPlayers.length;i++){
+				var player = RoomInfos.TotalPlayers[i];
 				var t_player_com = player.getComponent("tdk_player");
 				cc.log("setSpriteStatus: location:" + t_player_com.position_server + " is_power:" + t_player_com.is_power);
 				if(t_player_com.is_power >= 1){
@@ -122,13 +122,13 @@ cc.Class({
 		}
 		if(player_com.is_power >= 2){
 			this.getzhuang_callback();
-			for(var i = 0;i < g_players.length;i++){
-				var player = g_players[i];
+			for(var i = 0;i < RoomInfos.TotalPlayers.length;i++){
+				var player = RoomInfos.TotalPlayers[i];
 				var t_player_com = player.getComponent("tdk_player");
 				cc.log("getzhuang_callback: location:" + t_player_com.position_server + " is_power:" + t_player_com.is_power);
 				if(t_player_com.is_power >= 3){
 					var pos_server = t_player_com.position_server;
-					var score_str = g_room_data["score_" + pos_server];
+					var score_str = GlobalData.RunTimeParams.RoomData["score_" + pos_server];
 					if(score_str != null && score_str != "null"){
 						var chips = JSON.parse(score_str);
 						t_player_com.set_chips(1,parseInt(chips[0]));
@@ -152,26 +152,26 @@ cc.Class({
 	},
 	
 	initPlayersAndPlayer_noPower(){
-		cc.log("initPlayersAndPlayer_noPower" + JSON.stringify(g_players_data));
-		g_players.splice(0,g_players.length);
-		for(var i = 0;i < g_players_data.length;i++){
-			if(g_players_data[i].id == g_user["id"]){
-				g_myselfPlayerPos = g_players_data[i].location;
+		cc.log("initPlayersAndPlayer_noPower" + JSON.stringify(GlobalData.RunTimeParams.AllPlayers));
+		RoomInfos.TotalPlayers.splice(0,RoomInfos.TotalPlayers.length);
+		for(var i = 0;i < GlobalData.RunTimeParams.AllPlayers.length;i++){
+			if(GlobalData.RunTimeParams.AllPlayers[i].id == GlobalData.MyUserInfo["id"]){
+				GlobalData.RoomInfos.MySelfPlayerLocation = GlobalData.RunTimeParams.AllPlayers[i].location;
 				break;
 			}
 		}
 
 		var position = new Array();
 		//寻找玩家自己，确定自己的服务器位置和客户端位置
-		for(var i = 0;i < g_players_data.length;i++){
+		for(var i = 0;i < GlobalData.RunTimeParams.AllPlayers.length;i++){
 			var idx = -1;
-			var player_stc = g_players_data[i];
-			if(player_stc.location == g_myselfPlayerPos){
+			var player_stc = GlobalData.RunTimeParams.AllPlayers[i];
+			if(player_stc.location == GlobalData.RoomInfos.MySelfPlayerLocation){
 				idx = 0;
-			}else if(player_stc.location > g_myselfPlayerPos){
-				var idx = player_stc.location - g_myselfPlayerPos;
-			}else if(player_stc.location < g_myselfPlayerPos){
-				var idx = this.players.length - g_myselfPlayerPos + player_stc.location;
+			}else if(player_stc.location > GlobalData.RoomInfos.MySelfPlayerLocation){
+				var idx = player_stc.location - GlobalData.RoomInfos.MySelfPlayerLocation;
+			}else if(player_stc.location < GlobalData.RoomInfos.MySelfPlayerLocation){
+				var idx = this.players.length - GlobalData.RoomInfos.MySelfPlayerLocation + player_stc.location;
 			}
 			if(idx >= 0){
 				position[idx] = player_stc;
@@ -194,26 +194,26 @@ cc.Class({
 				continue;
 			}
 			left_local = player_stc.location;
-			player_stc["is_power"] = g_room_data["is_game_" + player_stc.location];
+			player_stc["is_power"] = GlobalData.RunTimeParams.RoomData["is_game_" + player_stc.location];
 			if(this.zhuang_serverPosition == player_stc.location){
-				player_stc["my_gold"] = g_room_data["zhuang_score"];
+				player_stc["my_gold"] = GlobalData.RunTimeParams.RoomData["zhuang_score"];
 			}else{
-				player_stc["my_gold"] = g_room_data["left_score_" + player_stc.location];
+				player_stc["my_gold"] = GlobalData.RunTimeParams.RoomData["left_score_" + player_stc.location];
 			}
 			player_com.init(player_stc);
 			player_com.player_position = i + 1;
 			cc.log("set player_com: player_position:" + player_com.player_position + " position_server:" + player_com.position_server);
 			cc.log("player_com: is_power:" + player_com.is_power);
-			g_players.push(player);
+			RoomInfos.TotalPlayers.push(player);
 			player.active = true;
 		}
 	},
     
 	init_count_timer(){
-		cc.log("g_players:" + g_players.length);
-    	for(var i = 0;i < g_players.length;i++){
-			var player_com = g_players[i].getComponent("tdk_player");
-			if(player_com.position_server == g_myselfPlayerPos){
+		cc.log("RoomInfos.TotalPlayers:" + RoomInfos.TotalPlayers.length);
+    	for(var i = 0;i < RoomInfos.TotalPlayers.length;i++){
+			var player_com = RoomInfos.TotalPlayers[i].getComponent("tdk_player");
+			if(player_com.position_server == GlobalData.RoomInfos.MySelfPlayerLocation){
 				player_com.start_timer();
     			break;
     		}
@@ -253,7 +253,7 @@ cc.Class({
 		this.zhunbei_button.active = false;
 		pomelo.request(util.getGameRoute(),{
 			process:"ready",
-			location:g_myselfPlayerPos
+			location:GlobalData.RoomInfos.MySelfPlayerLocation
 		},function(data){
 			cc.log(data.msg);
 		});
@@ -262,15 +262,15 @@ cc.Class({
 	callback_xiazhu(){
 		this.xiazhu_button.getComponent(cc.Button).interactable = false;
 		//find myself player
-		this.chip_layout = cc.instantiate(g_assets["PopAddChip"]);
+		this.chip_layout = cc.instantiate(GlobalData.assets["PopAddChip"]);
 		var chip_layout_com = this.chip_layout.getComponent("pop_add_chip");
 		chip_layout_com.init_callback(this,this.sumBet,this.silder_callback);
 		this.node.addChild(this.chip_layout);
 		
-		for(var i = 0;i < g_players.length;i++){
-			var player = g_players[i];
+		for(var i = 0;i < RoomInfos.TotalPlayers.length;i++){
+			var player = RoomInfos.TotalPlayers[i];
 			var player_com = player.getComponent("tdk_player");
-			if(player_com.position_server == g_myselfPlayerPos){
+			if(player_com.position_server == GlobalData.RoomInfos.MySelfPlayerLocation){
 				var x = 0;
 				var y = this.button_layout.getPositionY() + this.button_layout.getContentSize().height/2 + 10 + this.chip_layout.getContentSize().height/2;
 				this.chip_layout.setPosition(cc.p(x,y));
@@ -284,16 +284,16 @@ cc.Class({
 		this.chip_layout.active = false;
 		this.chip_layout.destroy();
 		this.queding_button.active = false;
-		for(var i = 0;i < g_players.length;i++){
-			var player = g_players[i];
+		for(var i = 0;i < RoomInfos.TotalPlayers.length;i++){
+			var player = RoomInfos.TotalPlayers[i];
 			var player_com = player.getComponent("tdk_player");
-			if(player_com.position_server == g_myselfPlayerPos){
+			if(player_com.position_server == GlobalData.RoomInfos.MySelfPlayerLocation){
 				var chip1 = player_com.my_chip1;
 				var chip2 = player_com.my_chip2;
 				pomelo.request(util.getGameRoute(),{
 					process:"xiazhu",
 					chips:[chip1,chip2],
-					location:g_myselfPlayerPos
+					location:GlobalData.RoomInfos.MySelfPlayerLocation
 				},function(data){
 					cc.log(data.msg);
 				});
@@ -304,17 +304,17 @@ cc.Class({
 
 	callback_peipai(){
 		this.peipai_button.active = false;
-		var size = cc.director.getVisibleSize();
+		var size = cc.winSize;
 		var playerPosition = -1;
-		for(var i = 0;i < g_players.length;i++){
-			var player = g_players[i];
+		for(var i = 0;i < RoomInfos.TotalPlayers.length;i++){
+			var player = RoomInfos.TotalPlayers[i];
 			var player_com = player.getComponent("tdk_player");
-			if(player_com.position_server == g_myselfPlayerPos){
+			if(player_com.position_server == GlobalData.RoomInfos.MySelfPlayerLocation){
 				playerPosition = i;
 				break;
 			}
 		}
-		var player = g_players[playerPosition];
+		var player = RoomInfos.TotalPlayers[playerPosition];
 		var player_com = player.getComponent("tdk_player");
 		var selectCards = player_com.selected_cards;
 		if(selectCards.length == 2){
@@ -334,7 +334,7 @@ cc.Class({
 				process:"peipai",
 				peipai:mark,
 				select:select,
-				location:g_myselfPlayerPos
+				location:GlobalData.RoomInfos.MySelfPlayerLocation
 			},function(data){
 				console.log(data.msg);
 			});
@@ -349,7 +349,7 @@ cc.Class({
 		this.kaipai_button.active = false;
 		pomelo.request(util.getGameRoute(),{
 			process:"open",
-			location:g_myselfPlayerPos
+			location:GlobalData.RoomInfos.MySelfPlayerLocation
 		},function(data){
 			cc.log(data.msg);
 		});
@@ -360,7 +360,7 @@ cc.Class({
 		this.buqie_button.active = false;
 		pomelo.request(util.getGameRoute(),{
 			process:"qieguo",
-			location:g_myselfPlayerPos,
+			location:GlobalData.RoomInfos.MySelfPlayerLocation,
 			flag:true
 		},function(data){
 			cc.log(data.msg);
@@ -372,7 +372,7 @@ cc.Class({
 		this.buqie_button.active = false;
 		pomelo.request(util.getGameRoute(),{
 			process:"qieguo",
-			location:g_myselfPlayerPos,
+			location:GlobalData.RoomInfos.MySelfPlayerLocation,
 			flag:false
 		},function(data){
 			cc.log(data.msg);
@@ -381,8 +381,8 @@ cc.Class({
 
 	callback_setting(){
 		var self = this;
-		var size = cc.director.getVisibleSize();
-		var pop_setting = cc.instantiate(g_assets["pop_setting_scene"]);
+		var size = cc.winSize;
+		var pop_setting = cc.instantiate(GlobalData.assets["pop_setting_scene"]);
 		var pop_setting_com = pop_setting.getComponent("pop_set_scene");
 		
 		pop_setting_com.set_callback(function(index){
@@ -421,7 +421,7 @@ cc.Class({
 		var player_com = player.getComponent("tdk_player");
 		pomelo.request(util.getGameRoute(),{
             process : 'get_user_info',
-			"send_from":g_myselfPlayerPos,
+			"send_from":GlobalData.RoomInfos.MySelfPlayerLocation,
 			"location":player_com.position_server
         },function(data){
             console.log("-----quit------"+JSON.stringify(data));
@@ -435,10 +435,10 @@ cc.Class({
 
 	repairFapai_function(){
 		this.myselfCards.splice(0,this.myselfCards.length);
-		this.myselfCards.push(JSON.parse(g_room_data["pai1"]));
-		this.myselfCards.push(JSON.parse(g_room_data["pai2"]));
-		this.myselfCards.push(JSON.parse(g_room_data["pai3"]));
-		this.myselfCards.push(JSON.parse(g_room_data["pai4"]));
+		this.myselfCards.push(JSON.parse(GlobalData.RunTimeParams.RoomData["pai1"]));
+		this.myselfCards.push(JSON.parse(GlobalData.RunTimeParams.RoomData["pai2"]));
+		this.myselfCards.push(JSON.parse(GlobalData.RunTimeParams.RoomData["pai3"]));
+		this.myselfCards.push(JSON.parse(GlobalData.RunTimeParams.RoomData["pai4"]));
 		//说明是一锅中的第二把需要把上一把的牌显示出来
 		if(this.cur_turn == 1){
 			for(var i = 1;i < 33;i++){
@@ -452,7 +452,7 @@ cc.Class({
 					}
 				}
 				if(flag == false){
-					var card = cc.instantiate(g_assets["pj_card"]);
+					var card = cc.instantiate(GlobalData.assets["pj_card"]);
 					var card_com = card.getComponent("pj_card");
 					card_com.initCardSprite(i);
 					card_com.sprite.runAction(cc.show());
@@ -472,7 +472,7 @@ cc.Class({
 				var card = player_com.addPlayerCard();
 				var card_com = card.getComponent("pj_card");
 				var position = this.calc_player_card_position(player,j);
-				if(player_com.position_server == g_myselfPlayerPos){
+				if(player_com.position_server == GlobalData.RoomInfos.MySelfPlayerLocation){
 					card_com.installTouch();
 					player_com.set_card_sprite(j,card_type[j]);
 					card_com.sprite_back.node.runAction(cc.hide());
@@ -481,12 +481,12 @@ cc.Class({
 				card.setPosition(position);
 			}
 		}
-		for(var i = 0;i < g_players.length;i++){
-			var player = g_players[i];
+		for(var i = 0;i < RoomInfos.TotalPlayers.length;i++){
+			var player = RoomInfos.TotalPlayers[i];
 			var player_com = player.getComponent("tdk_player");
 			var unselect_cards = new Array();
 			var select_cards = new Array();
-			if(player_com.is_power >= 5 && player_com.position_server != g_myselfPlayerPos){
+			if(player_com.is_power >= 5 && player_com.position_server != GlobalData.RoomInfos.MySelfPlayerLocation){
 				for(var j = 0;j < 4;j++){
 					var card = player_com.my_cards[j];
 					if(j < 2){
@@ -504,12 +504,12 @@ cc.Class({
 
 	repairPeipai_function(){
 		var flag = true;
-		for(var i = 0;i < g_players.length;i++){
-			var player = g_players[i];
+		for(var i = 0;i < RoomInfos.TotalPlayers.length;i++){
+			var player = RoomInfos.TotalPlayers[i];
 			var player_com = player.getComponent("tdk_player");
 			var unselect_cards = new Array();
 			var select_cards = new Array();
-			if(player_com.is_power >= 5 && player_com.position_server == g_myselfPlayerPos){
+			if(player_com.is_power >= 5 && player_com.position_server == GlobalData.RoomInfos.MySelfPlayerLocation){
 				for(var j = 0;j < 4;j++){
 					var card = player_com.my_cards[j];
 					if(j < 2){
@@ -522,8 +522,8 @@ cc.Class({
 				this.set_cards_h(player,unselect_cards);
 			}
 		}
-		for(var i = 0;i < g_players.length;i++){
-			var player = g_players[i];
+		for(var i = 0;i < RoomInfos.TotalPlayers.length;i++){
+			var player = RoomInfos.TotalPlayers[i];
 			var player_com = player.getComponent("tdk_player");
 			cc.log("repairPeipai_function : is_power:" + player_com.is_power);
 			if(player_com.is_power >= 5){
@@ -532,8 +532,8 @@ cc.Class({
 				flag = false;
 			}
 		}
-		cc.log("repairPeipai_function:" + this.zhuang_serverPosition  + " " + g_myselfPlayerPos + " " + flag);
-		if(this.zhuang_serverPosition == g_myselfPlayerPos && flag == true){
+		cc.log("repairPeipai_function:" + this.zhuang_serverPosition  + " " + GlobalData.RoomInfos.MySelfPlayerLocation + " " + flag);
+		if(this.zhuang_serverPosition == GlobalData.RoomInfos.MySelfPlayerLocation && flag == true){
 			this.get_one_button("kaipai",true);
 		}
 		this.peipai_button.active = false;
@@ -554,11 +554,11 @@ cc.Class({
 				card_com.sprite.runAction(cc.show());
 			}
 		}
-		var scores = [g_room_data["left_score_1"],g_room_data["left_score_2"],g_room_data["left_score_3"],g_room_data["left_score_4"]];
-		this.qieguo = g_room_data["qieguo"];
+		var scores = [GlobalData.RunTimeParams.RoomData["left_score_1"],GlobalData.RunTimeParams.RoomData["left_score_2"],GlobalData.RunTimeParams.RoomData["left_score_3"],GlobalData.RunTimeParams.RoomData["left_score_4"]];
+		this.qieguo = GlobalData.RunTimeParams.RoomData["qieguo"];
 		this.sumBet = this.sumBet + scores[this.zhuang_serverPosition - 1];
-		for(var i = 0;i < g_players.length;i++){
-			var player = g_players[i];
+		for(var i = 0;i < RoomInfos.TotalPlayers.length;i++){
+			var player = RoomInfos.TotalPlayers[i];
 			var player_com = player.getComponent("tdk_player");
 			player_com.resetMoneyLabel(player_com.my_gold + scores[player_com.position_server - 1]);
 			if(player_com.position_server != this.zhuang_serverPosition){
@@ -578,9 +578,9 @@ cc.Class({
 
 	repairQieguo_function(){
 		this.repairOpenpai_function();
-		var scores = [g_room_data["left_score_1"],g_room_data["left_score_2"],g_room_data["left_score_3"],g_room_data["left_score_4"]];
+		var scores = [GlobalData.RunTimeParams.RoomData["left_score_1"],GlobalData.RunTimeParams.RoomData["left_score_2"],GlobalData.RunTimeParams.RoomData["left_score_3"],GlobalData.RunTimeParams.RoomData["left_score_4"]];
 		var is_qie = false;
-		if(g_room_data["qieguo_flag"] == 1){
+		if(GlobalData.RunTimeParams.RoomData["qieguo_flag"] == 1){
 			is_qie = true;
 		}
 		this.onQieguo_function({"scores":scores,"flag":is_qie});
@@ -604,9 +604,9 @@ cc.Class({
 
 	onReady_function(data){
 		cc.log("pomelo on Ready:" + data.location+" is ready");
-		//如果玩家进来时正在游戏中则准备后 放入g_players中
-		for(var i = 0;i < g_players.length;i++){
-			var player = g_players[i];
+		//如果玩家进来时正在游戏中则准备后 放入RoomInfos.TotalPlayers中
+		for(var i = 0;i < RoomInfos.TotalPlayers.length;i++){
+			var player = RoomInfos.TotalPlayers[i];
 			var player_com = player.getComponent("tdk_player");
 			if(player_com.position_server == data.location){
 				player_com.setSpriteStatus("yizhunbei");
@@ -619,7 +619,7 @@ cc.Class({
 
 	onGetZhuang_function(data){
 		cc.log("pomelo onGetzhuang_function:" + JSON.stringify(data));
-		var size = cc.director.getWinSize();
+		var size = cc.winSize;
 		var num1 = data.nums[0];
 		var num2 = data.nums[1];
 		this.zhuang_serverPosition = data.zhuang_local;
@@ -628,7 +628,7 @@ cc.Class({
 			var player = this.players[i];
 			var player_com = player.getComponent("tdk_player");
 			if(player_com.position_server == this.zhuang_serverPosition){
-				var yao_shaizi = cc.instantiate(g_assets["yaoshaizi"]);
+				var yao_shaizi = cc.instantiate(GlobalData.assets["yaoshaizi"]);
 				var yao_shaizi_com = yao_shaizi.getComponent("shai_zhong_active");
 				yao_shaizi_com.init_start(null,num1,num2,player.getPosition());
 				this.node.addChild(yao_shaizi);
@@ -644,8 +644,8 @@ cc.Class({
 		cc.log("onXiazhu_function:" + JSON.stringify(data));
 		var location = data.location;
 		var chips = data.chips;
-		for(var i = 0;i < g_players.length;i++){
-			var player = g_players[i];
+		for(var i = 0;i < RoomInfos.TotalPlayers.length;i++){
+			var player = RoomInfos.TotalPlayers[i];
 			var player_com = player.getComponent("tdk_player");
 			if(player_com.position_server == data.location){
 				player_com.set_chips(1,chips[0]);
@@ -657,7 +657,7 @@ cc.Class({
 
 	onFapai_function(data){
 		cc.log("onFapai" + JSON.stringify(data));
-		var size = cc.director.getWinSize();
+		var size = cc.winSize;
 		this.cur_turn = data["cur_turn"];
 		//如果是第一次发牌则清空已经用过的牌
 		//更新房间状态和玩家信息
@@ -685,8 +685,8 @@ cc.Class({
 		this.sumBet = data["all_chip"];
 
 		//初始化玩家手中的牌（背面），权限isPower,开牌checkCard弃牌abandon,失败提示精灵loserSprite
-		for(var i=0;i < g_players.length;i++){
-			var player_com = g_players[i].getComponent("tdk_player");
+		for(var i=0;i < RoomInfos.TotalPlayers.length;i++){
+			var player_com = RoomInfos.TotalPlayers[i].getComponent("tdk_player");
 			player_com.hide_game_sprite();
 		}
 		//摇色子动作 并显示发牌开始玩家
@@ -697,7 +697,7 @@ cc.Class({
 			if(player_com.position_server == this.startDealCardPosition){
 				var shaizi_1 = data["nums"][0];
 				var shaizi_2 = data["nums"][1];
-				var yao_shaizi = cc.instantiate(g_assets["yaoshaizi"]);
+				var yao_shaizi = cc.instantiate(GlobalData.assets["yaoshaizi"]);
 				var yao_shaizi_com = yao_shaizi.getComponent("shai_zhong_active");
 				yao_shaizi_com.init_start(null,shaizi_1,shaizi_2,player.getPosition());
 				this.node.addChild(yao_shaizi);
@@ -739,8 +739,8 @@ cc.Class({
 		var player_position = data.location;
 		var card_select_ids = data.select;
 		var head_flag = data.flag;
-		for(var m = 0;m < g_players.length;m++){
-			var player = g_players[m];
+		for(var m = 0;m < RoomInfos.TotalPlayers.length;m++){
+			var player = RoomInfos.TotalPlayers[m];
 			var player_com = player.getComponent("tdk_player");
 			if(player_com.position_server == player_position){
 				//如果是自己则执行配牌动作
@@ -798,7 +798,7 @@ cc.Class({
 	},
 
 	onPeiPaiFinish_function(data){
-		if(g_myselfPlayerPos == this.zhuang_serverPosition){
+		if(GlobalData.RoomInfos.MySelfPlayerLocation == this.zhuang_serverPosition){
 			this.get_one_button("kaipai",true);
 		}
 	},
@@ -809,8 +809,8 @@ cc.Class({
 		var scores = data["scores"];
 		this.qieguo = data["isqie"];
 		this.sumBet = this.sumBet + scores[this.zhuang_serverPosition - 1];
-		for(var i = 0;i < g_players.length;i++){
-			var player = g_players[i];
+		for(var i = 0;i < RoomInfos.TotalPlayers.length;i++){
+			var player = RoomInfos.TotalPlayers[i];
 			var player_com = player.getComponent("tdk_player");
 			player_com.resetMoneyLabel(player_com.my_gold + scores[player_com.position_server - 1]);
 			if(player_com.position_server != this.zhuang_serverPosition){
@@ -830,14 +830,14 @@ cc.Class({
 
 	onQieguo_function(data){
 		cc.log("onQieguo_function:" + JSON.stringify(data));
-		var size = cc.director.getVisibleSize();
+		var size = cc.winSize;
 		var flag = data.flag;
 		if(flag == false){
-			if(g_myselfPlayerPos != this.zhuang_serverPosition){
+			if(GlobalData.RoomInfos.MySelfPlayerLocation != this.zhuang_serverPosition){
 				for(var i = 0;i < this.players.length;i++){
 					var player = this.players[i];
 					var player_com = player.getComponent("tdk_player");
-					if(player_com.position_server == g_myselfPlayerPos){
+					if(player_com.position_server == GlobalData.RoomInfos.MySelfPlayerLocation){
 						player_com.set_chips(1,0);
 						player_com.set_chips(2,0);
 					}
@@ -847,8 +847,8 @@ cc.Class({
 		}else{
 			var scores = data.scores;
 			var results = new Array();
-			for(var i = 0;i < g_players_data.length;i++){
-				var player_item = g_players_data[i];
+			for(var i = 0;i < GlobalData.RunTimeParams.AllPlayers.length;i++){
+				var player_item = GlobalData.RunTimeParams.AllPlayers[i];
 				if(player_item != null && player_item != "null"){
 					var item = new Array();
 					item.push(player_item.nick_name);
@@ -860,19 +860,19 @@ cc.Class({
 					}
 					item.push(scores[player_item.location - 1]);
 					//如果是自己则执行更新游戏记录操作
-					if(player_item.location == g_myselfPlayerPos){
+					if(player_item.location == GlobalData.RoomInfos.MySelfPlayerLocation){
 						var param = {
-							player_id:g_user["id"],
-							renshu:g_room_data["real_num"],
+							player_id:GlobalData.MyUserInfo["id"],
+							renshu:GlobalData.RunTimeParams.RoomData["real_num"],
 							game_status:item[3] - item[2],
 							status:item[3] - item[2],
-							creat_time:g_room_data["creat_time"],
-							room_num:g_room_data["room_num"],
+							creat_time:GlobalData.RunTimeParams.RoomData["creat_time"],
+							room_num:GlobalData.RunTimeParams.RoomData["room_num"],
 							use_fangka:1
 						};
-						if(g_room_data["fangka_type"] == 2){
-							if(g_myselfPlayerPos == this.zhuang_serverPosition){
-								param["use_fangka"] = g_room_data["fangka_num"];
+						if(GlobalData.RunTimeParams.RoomData["fangka_type"] == 2){
+							if(GlobalData.RoomInfos.MySelfPlayerLocation == this.zhuang_serverPosition){
+								param["use_fangka"] = GlobalData.RunTimeParams.RoomData["fangka_num"];
 							}else{
 								param["use_fangka"] = 0;
 							}
@@ -887,7 +887,7 @@ cc.Class({
 			var self = this;
 			var x = size.width/2;
 			var y = size.height/2;
-			var pop_game_finish = cc.instantiate(g_assets["pop_game_finish"]);
+			var pop_game_finish = cc.instantiate(GlobalData.assets["pop_game_finish"]);
 			var pop_game_finish_com = pop_game_finish.getComponent("pop_game_finish");
 			this.node.addChild(pop_game_finish);
 			pop_game_finish_com.init_info(results,function(){
@@ -904,7 +904,7 @@ cc.Class({
 			var player = this.players[i];
 			var player_com = player.getComponent("tdk_player");
 			var cardString = paixing[player_com.position_server - 1];
-			if(player_com.position_server != g_myselfPlayerPos){
+			if(player_com.position_server != GlobalData.RoomInfos.MySelfPlayerLocation){
 				for(var m = 0;m < 4;m++){
 					var card = player_com.my_cards[m].getComponent("pj_card");
 					card.initCardSprite(cardString[card.id]);
@@ -929,10 +929,10 @@ cc.Class({
 
 	onGetUinfo_function(data){
 		console.log("onGetUinfo_function:"+JSON.stringify(data));
-		var size = cc.director.getWinSize();
+		var size = cc.winSize;
 		//显示玩家信息
-		if(data["send_from"] == g_myselfPlayerPos){
-			this.uinfo = cc.instantiate(g_assets["pop_game_user"]);
+		if(data["send_from"] == GlobalData.RoomInfos.MySelfPlayerLocation){
+			this.uinfo = cc.instantiate(GlobalData.assets["pop_game_user"]);
 			var uinfo_com = this.uinfo.getComponent("pop_game_user_info");
 			
 			uinfo_com.init_info(data,this.actionSendGift);
@@ -950,35 +950,35 @@ cc.Class({
 		if(send_from == send_to){
 			return false;
 		}
-		for(var i = 0;i < g_players.length;i++){
-			var player_com = g_players[i].getComponent("tdk_player");
+		for(var i = 0;i < RoomInfos.TotalPlayers.length;i++){
+			var player_com = RoomInfos.TotalPlayers[i].getComponent("tdk_player");
 			if(player_com.position_server == send_from){
-				s_player = g_players[i];
+				s_player = RoomInfos.TotalPlayers[i];
 			}
 			if(player_com.position_server == send_to){
-				e_player = g_players[i];
+				e_player = RoomInfos.TotalPlayers[i];
 			}
 		}
 		var active = null;
 		var active_name = null;
 		//送鸡蛋
 		if(type == 1){
-			active = cc.instantiate(g_assets["shoe_active"]);
+			active = cc.instantiate(GlobalData.assets["shoe_active"]);
 			active_name = "shoe_active";
 		}else if(type == 2){
-			active = cc.instantiate(g_assets["egg_active"]);
+			active = cc.instantiate(GlobalData.assets["egg_active"]);
 			active_name = "egg_active";
 		}else if(type == 3){
-			active = cc.instantiate(g_assets["bomb_active"]);
+			active = cc.instantiate(GlobalData.assets["bomb_active"]);
 			active_name = "bomb_active";
 		}else if(type == 4){
-			active = cc.instantiate(g_assets["kiss_active"]);
+			active = cc.instantiate(GlobalData.assets["kiss_active"]);
 			active_name = "kiss_active";
 		}else if(type == 5){
-			active = cc.instantiate(g_assets["flower_active"]);
+			active = cc.instantiate(GlobalData.assets["flower_active"]);
 			active_name = "flower_active";
 		}else if(type == 6){
-			active = cc.instantiate(g_assets["cheers_active"]);
+			active = cc.instantiate(GlobalData.assets["cheers_active"]);
 			active_name = "cheers_active";
 		}
 		this.node.addChild(active);
@@ -1008,7 +1008,7 @@ cc.Class({
 	
 	actionFaPai(pthis,fapai_order){
 		cc.log("actionFaPai:" + JSON.stringify(fapai_order));
-    	var size = cc.director.getVisibleSize();
+    	var size = cc.winSize;
 		var local = fapai_order.shift();
 		for(var i = 0;i < this.players.length;i++){
 			var player = this.players[i];
@@ -1019,7 +1019,7 @@ cc.Class({
 				for(var j = 0;j < 4;j++){
 					var card = player_com.addPlayerCard();
 					var card_com = card.getComponent("pj_card");
-					if(player_com.position_server == g_myselfPlayerPos){
+					if(player_com.position_server == GlobalData.RoomInfos.MySelfPlayerLocation){
 						card_com.installTouch();
 						player_com.set_card_sprite(j,card_type[j]);
 					}
@@ -1041,10 +1041,10 @@ cc.Class({
 
 	fapai_finish(){
 		//打开自己的牌开始配牌
-		for(var i = 0;i < g_players.length;i++){
-			var player = g_players[i];
+		for(var i = 0;i < RoomInfos.TotalPlayers.length;i++){
+			var player = RoomInfos.TotalPlayers[i];
 			var player_com = player.getComponent("tdk_player");
-			if(player_com.position_server == g_myselfPlayerPos){
+			if(player_com.position_server == GlobalData.RoomInfos.MySelfPlayerLocation){
 				for(var j = 0;j < 4;j++){
 					var backCardSeq = cc.sequence(cc.delayTime(0.45),cc.hide());
 					var backCamera = cc.rotateBy(0.45,0,-90);
@@ -1068,10 +1068,10 @@ cc.Class({
 		var rank = event.target.getComponent("pj_card").rank;
 		cc.log("switchRadio : suit:" + suit + " rank:" + rank);
 		var player_com = null;
-		for(var i = 0;i < g_players.length;i++){
-			var player = g_players[i];
+		for(var i = 0;i < RoomInfos.TotalPlayers.length;i++){
+			var player = RoomInfos.TotalPlayers[i];
 			var player_com = player.getComponent("tdk_player");
-    		if(player_com.position_server == g_myselfPlayerPos){
+    		if(player_com.position_server == GlobalData.RoomInfos.MySelfPlayerLocation){
     			break;
     		}
     	}
@@ -1219,8 +1219,8 @@ cc.Class({
 		if(flag == true){
 			var player_from = null;
 			var player_end = null;
-			for(var i = 0;i < g_players.length;i++){
-				var player = g_players[i];
+			for(var i = 0;i < RoomInfos.TotalPlayers.length;i++){
+				var player = RoomInfos.TotalPlayers[i];
 				var player_com = player.getComponent("tdk_player");
 				if(player_com.position_server == location_from){
 					player_from = player;
@@ -1229,7 +1229,7 @@ cc.Class({
 				}
 			}
 			
-			var chip = cc.instantiate(g_assets["chip"]);
+			var chip = cc.instantiate(GlobalData.assets["chip"]);
 			this.node.addChild(chip);
 			this.betPhotoArray.push(chip);
 			chip.setPosition(player_from.getPosition());
@@ -1245,7 +1245,7 @@ cc.Class({
 			for(var i = 0;i < this.myselfCards.length;i++){
 				var item = this.myselfCards[i];
 				for(var j = 0;j < item.length;j++){
-					var card = cc.instantiate(g_assets["pj_card"]);
+					var card = cc.instantiate(GlobalData.assets["pj_card"]);
 					var card_com = card.getComponent("pj_card");
 					card_com.initCardSprite(item[j]);
 					card_com.sprite.runAction(cc.show());
@@ -1261,7 +1261,7 @@ cc.Class({
 			player_com.remove_cards();
 			player_com.remove_select_cards();
 		}
-		if(g_myselfPlayerPos == this.zhuang_serverPosition){
+		if(GlobalData.RoomInfos.MySelfPlayerLocation == this.zhuang_serverPosition){
 			if(this.qieguo == 1){
 				this.qieguo_button.active = true;
 				this.buqie_button.active = true;
@@ -1274,12 +1274,12 @@ cc.Class({
 				this.buqie_button.getComponent("cc.Button").interactable = false;
 			}
 		}
-		if(g_myselfPlayerPos != this.zhuang_serverPosition){
+		if(GlobalData.RoomInfos.MySelfPlayerLocation != this.zhuang_serverPosition){
 			if(this.qieguo == 0){
 				for(var i = 0;i < this.players.length;i++){
 					var player = this.players[i];
 					var player_com = player.getComponent("tdk_player");
-					if(player_com.position_server == g_myselfPlayerPos){
+					if(player_com.position_server == GlobalData.RoomInfos.MySelfPlayerLocation){
 						player_com.set_chips(1,0);
 						player_com.set_chips(2,0);
 					}
@@ -1338,11 +1338,11 @@ cc.Class({
 				player_com.chips_label.setPosition(pos);
 			}
 		}
-		if(g_myselfPlayerPos != this.zhuang_serverPosition){
+		if(GlobalData.RoomInfos.MySelfPlayerLocation != this.zhuang_serverPosition){
 			for(var i = 0;i < this.players.length;i++){
 				var player = this.players[i];
 				var player_com = player.getComponent("tdk_player");
-				if(player_com.position_server == g_myselfPlayerPos){
+				if(player_com.position_server == GlobalData.RoomInfos.MySelfPlayerLocation){
 					player_com.set_chips(1,0);
 					player_com.set_chips(2,0);
 				}
@@ -1356,10 +1356,10 @@ cc.Class({
 	
 	silder_callback(pthis,idx,silder_progress){
 		cc.log("pj_game_scene silder1:" + silder_progress);
-		for(var i = 0;i < g_players.length;i++){
-			var player = g_players[i];
+		for(var i = 0;i < RoomInfos.TotalPlayers.length;i++){
+			var player = RoomInfos.TotalPlayers[i];
 			var player_com = player.getComponent("tdk_player");
-			if(player_com.position_server == g_myselfPlayerPos){
+			if(player_com.position_server == GlobalData.RoomInfos.MySelfPlayerLocation){
 				player_com.set_chips(idx,silder_progress);
 				break;
 			}
@@ -1389,9 +1389,9 @@ cc.Class({
 		if(g_music_key == null || g_music_key == BOOL.YES){
 			cc.audioEngine.stop(this.current);
 		}
-        g_players_data.splice(0,g_players_data.length);
-		g_room_data = null;
-		g_players.splice(0,g_players.length);
+        GlobalData.RunTimeParams.AllPlayers.splice(0,GlobalData.RunTimeParams.AllPlayers.length);
+		GlobalData.RunTimeParams.RoomData = null;
+		RoomInfos.TotalPlayers.splice(0,RoomInfos.TotalPlayers.length);
 		console.log("exit from the room......");
         //释放资源
         //this.releaseMember();

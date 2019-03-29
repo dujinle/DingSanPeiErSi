@@ -37,7 +37,7 @@ cc.Class({
 			if(this.data_list.length <= i){
 				break;
 			}
-    		let item = cc.instantiate(g_assets["game_history_item_layout"]);
+    		let item = cc.instantiate(GlobalData.assets["game_history_item_layout"]);
             this.content.addChild(item);
             // 设置该item的坐标（注意父节点content的Anchor坐标是(0.5, 1)，所以item的y坐标总是负值）
     		item.setPosition(0, -item.height * (0.5 + i) - this.spacing * (i + 1));

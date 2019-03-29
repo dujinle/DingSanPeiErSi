@@ -14,7 +14,7 @@ cc.Class({
 		this.scroll_label.node.stopAllActions();
 		this.scroll_label.string = string;
 		this.scroll_label.node.x = this.scroll_parent.getContentSize().width/2 +
-			this.scroll_parent.getPositionX() +
+			this.scroll_parent.x +
 			this.scroll_label.node.getContentSize().width;
 		this.start_scroll();
 	},

@@ -8,8 +8,6 @@ cc.Class({
 		callback:null,
 		source_leng:0,
     },
-    // onLoad () {},
-	
     onStart (callback) {
 		this.load_bar.progress = 0;
 		this.source_leng = 106;
@@ -30,7 +28,7 @@ cc.Class({
 		var self = this;
 		cc.loader.loadResDir("",cc.SpriteFrame,function (err, assets) {
 			for(var i = 0;i < assets.length;i++){
-				g_assets[assets[i].name] = assets[i];
+				GlobalData.assets[assets[i].name] = assets[i];
 				self.rate = self.rate + 1;
 				self.precent.string = "加载文件中......";
 				cc.log("load res :" + assets[i].name);
@@ -38,7 +36,7 @@ cc.Class({
 		});
 		cc.loader.loadResDir("prefab",function (err, assets) {
 			for(var i = 0;i < assets.length;i++){
-				g_assets[assets[i].name] = assets[i];
+				GlobalData.assets[assets[i].name] = assets[i];
 				self.rate = self.rate + 1;
 				self.precent.string = "加载文件中......";
 				cc.log("load res :" + assets[i].name);

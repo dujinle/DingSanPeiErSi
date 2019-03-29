@@ -18,21 +18,10 @@ cc.Class({
 		this.init_update();
 	},
     onLoad () {
-		var self = this;
-        cc.eventManager.addListener({
-            event: cc.EventListener.TOUCH_ONE_BY_ONE,
-            swallowTouches: true,
-            // 设置是否吞没事件，在 onTouchBegan 方法返回 true 时吞没
-            onTouchBegan: function (touch, event) {
-                return true;
-            },
-            onTouchMoved: function (touch, event) {            // 触摸移动时触发
-            },
-            onTouchEnded: function (touch, event) {            // 点击事件结束处理
-            }
-         }, this.node);
     },
 	init_update(){
+		this.callback();
+		return;
 		if (!cc.sys.isNative) {
 			this.callback();
 			return;
@@ -42,7 +31,7 @@ cc.Class({
 		
 		this.versionCompareHandle = function (versionA, versionB) {
 			cc.log("JS Custom Version Compare: version A is " + versionA + ', version B is ' + versionB);
-			g_version = versionA;
+			GlobalData.RunTimeParams.VersionNum = versionA;
 			var vA = versionA.split('.');
 			var vB = versionB.split('.');
 			for (var i = 0; i < vA.length; ++i) {

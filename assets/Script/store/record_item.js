@@ -31,7 +31,7 @@ cc.Class({
 	button_callback(){
 		this.pthis.node.active = false;
 		this.pthis.node.destroy();
-		var pop_order = cc.instantiate(g_assets["PopBuyOrderScene"]);
+		var pop_order = cc.instantiate(GlobalData.assets["PopBuyOrderScene"]);
 		var pop_order_com = pop_order.getComponent("buy_order");
 		pop_order_com.init(this.data);
 		pthis.parent.node.addChild(pop_order);

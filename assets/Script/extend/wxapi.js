@@ -2,21 +2,22 @@
  * Created by WTF Wei on 2016/4/21.
  * Function :
  */
+var ThirdAPI = require('ThirdAPI');
 var wxapi = wxapi || {};
 
 wxapi.wx_login = function(){
-	if(g_current_os == cc.sys.OS_ANDROID){
+	if(cc.sys.os == cc.sys.OS_ANDROID){
 		jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "WxLogin", "()V");
-	}else if(g_current_os == cc.sys.OS_IOS){
+	}else if(cc.sys.os == cc.sys.OS_IOS){
 		jsb.reflection.callStaticMethod("NativeOcClass", "iOSLoginWithWX");
 	}
 }
 
 wxapi.get_appid = function(){
 	var app_id = null;
-	if(g_current_os == cc.sys.OS_ANDROID){
+	if(cc.sys.os == cc.sys.OS_ANDROID){
 		app_id = jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "getAppId", "()Ljava/lang/String;");
-	}else if(g_current_os == cc.sys.OS_IOS){
+	}else if(cc.sys.os == cc.sys.OS_IOS){
 		app_id = jsb.reflection.callStaticMethod("NativeOcClass", "getAppId");
 	}
 	return app_id;
@@ -24,9 +25,9 @@ wxapi.get_appid = function(){
 
 wxapi.get_app_secret = function(){
 	var app_secret = null;
-	if(g_current_os == cc.sys.OS_ANDROID){
+	if(cc.sys.os == cc.sys.OS_ANDROID){
 		app_secret = jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "getAppSecret", "()Ljava/lang/String;");
-	}else if(g_current_os == cc.sys.OS_IOS){
+	}else if(cc.sys.os == cc.sys.OS_IOS){
 		app_secret = jsb.reflection.callStaticMethod("NativeOcClass", "getAppSecret");
 	}
 	return app_secret;
@@ -34,9 +35,9 @@ wxapi.get_app_secret = function(){
 
 wxapi.get_wx_code = function(){
 	var wx_code = null;
-	if(g_current_os == cc.sys.OS_ANDROID){
+	if(cc.sys.os == cc.sys.OS_ANDROID){
 		wx_code = jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "getWXCode", "()Ljava/lang/String;");
-	}else if(g_current_os == cc.sys.OS_IOS){
+	}else if(cc.sys.os == cc.sys.OS_IOS){
 		wx_code = jsb.reflection.callStaticMethod("NativeOcClass", "getWXCode");
 	}
 	return wx_code;
@@ -52,10 +53,11 @@ wxapi.get_wx_uinfo = function(app_id,app_secret,wx_code,cb){
 			cb(result);
 		}else{
 			/*保存信息下次直接登录不用授权*/
-			Storage.setData("access_token",result.access_token);
-			Storage.setData("openid",result.openid);
-			Storage.setData("unionid",result.unionid);
-			Storage.setData("refresh_token",result.refresh_token);
+			GlobalData.WXLoginParams["access_token"] = result.access_token;
+			GlobalData.WXLoginParams["openid"] = result.openid;
+			GlobalData.WXLoginParams["unionid"] = result.unionid;
+			GlobalData.WXLoginParams["refresh_token"] = result.refresh_token;
+			ThirdAPI.updateLocalData();
 			url = "https://api.weixin.qq.com/sns/userinfo";
 			param = "access_token=" + result.access_token + "&openid=" + result.openid;
 			util.http_get(url,param,function(err,result){
@@ -81,10 +83,11 @@ wxapi.get_wx_ruinfo = function(app_id,refresh_token,cb){
 			cb(result);
 		}else{
 			/*保存信息下次直接登录不用授权*/
-			Storage.setData("access_token",result.access_token);
-			Storage.setData("openid",result.openid);
-			Storage.setData("unionid",result.unionid);
-			Storage.setData("refresh_token",result.refresh_token);
+			GlobalData.WXLoginParams["access_token"] = result.access_token;
+			GlobalData.WXLoginParams["openid"] = result.openid;
+			GlobalData.WXLoginParams["unionid"] = result.unionid;
+			GlobalData.WXLoginParams["refresh_token"] = result.refresh_token;
+			ThirdAPI.updateLocalData();
 			url = "https://api.weixin.qq.com/sns/userinfo";
 			param = "access_token=" + result.access_token + "&openid=" + result.openid;
 			util.http_get(url,param,function(err,result){
@@ -102,9 +105,9 @@ wxapi.get_wx_ruinfo = function(app_id,refresh_token,cb){
 
 wxapi.get_jsb_login_type = function(){
 	var login_type = 0;
-	if(g_current_os == cc.sys.OS_ANDROID){
+	if(cc.sys.os == cc.sys.OS_ANDROID){
 		login_type = jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "getLoginType", "()I");
-	}else if(g_current_os == cc.sys.OS_IOS){
+	}else if(cc.sys.os == cc.sys.OS_IOS){
 		login_type = jsb.reflection.callStaticMethod("NativeOcClass", "getLoginType");
 	}
 	return login_type;
@@ -112,9 +115,9 @@ wxapi.get_jsb_login_type = function(){
 
 wxapi.get_jsb_room_num = function(){
 	var room_num = null;
-	if(g_current_os == cc.sys.OS_ANDROID){
+	if(cc.sys.os == cc.sys.OS_ANDROID){
 		room_num = jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "getRoomNum", "()Ljava/lang/String;");
-	}else if(g_current_os == cc.sys.OS_IOS){
+	}else if(cc.sys.os == cc.sys.OS_IOS){
 		room_num = jsb.reflection.callStaticMethod("NativeOcClass", "getRoomNum");
 	}
 	return room_num;
@@ -122,9 +125,9 @@ wxapi.get_jsb_room_num = function(){
 
 wxapi.get_jsb_scene = function(){
 	var scene = null;
-	if(g_current_os == cc.sys.OS_ANDROID){
+	if(cc.sys.os == cc.sys.OS_ANDROID){
 		scene = jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "getScene", "()Ljava/lang/String;");
-	}else if(g_current_os == cc.sys.OS_IOS){
+	}else if(cc.sys.os == cc.sys.OS_IOS){
 		scene = jsb.reflection.callStaticMethod("NativeOcClass", "getScene");
 	}
 	return scene;
@@ -132,9 +135,9 @@ wxapi.get_jsb_scene = function(){
 
 wxapi.get_jsb_rid = function(){
 	var rid = null;
-	if(g_current_os == cc.sys.OS_ANDROID){
+	if(cc.sys.os == cc.sys.OS_ANDROID){
 		rid = jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "getRid", "()Ljava/lang/String;");
-	}else if(g_current_os == cc.sys.OS_IOS){
+	}else if(cc.sys.os == cc.sys.OS_IOS){
 		rid = jsb.reflection.callStaticMethod("NativeOcClass", "getRid");
 	}
 	return rid;
@@ -147,3 +150,4 @@ wxapi.set_load_status = function(status){
 		jsb.reflection.callStaticMethod("NativeOcClass", "setLoadStatus:",status);
 	}
 }
+module.exports = wxapi;

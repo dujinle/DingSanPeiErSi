@@ -42,12 +42,12 @@ cc.Class({
 		this.xuanyan_str = this.xuanyan.getComponent("cc.EditBox").string;
 	},
 	onXuka(){
-		var size = cc.director.getWinSize();
+		var size = cc.winSize;
 		var self = this;
 		var param = {
 			"gonghui_id":this.data["id"],
-			"player_id":g_user["id"],
-			"player_name":g_user["nickname"],
+			"player_id":GlobalData.MyUserInfo["id"],
+			"player_name":GlobalData.MyUserInfo["nickname"],
 			"telphone":this.data["telphone"]
 		};
 		Servers.gonghuiProcess("xuka",param,function(data){

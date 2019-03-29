@@ -20,29 +20,6 @@ cc.Class({
 
     onLoad() {
         cc.log("start go into pop game player js");
-		var self = this;
-        cc.eventManager.addListener({
-            event: cc.EventListener.TOUCH_ONE_BY_ONE,
-            swallowTouches: true,
-            // 设置是否吞没事件，在 onTouchBegan 方法返回 true 时吞没
-            onTouchBegan: function (touch, event) {
-                return true;
-            },
-            onTouchMoved: function (touch, event) {            // 触摸移动时触发
-            },
-            onTouchEnded: function (touch, event) {            // 点击事件结束处理
-				var target = self.bg_sprite;//event.getCurrentTarget();
-				var local=target.convertToNodeSpace(touch.getLocation());
-				var s = target.getContentSize();
-				var rect = cc.rect(0, 0, s.width, s.height);
-				if (cc.rectContainsPoint(rect, local)){
-					cc.log("ok touch in the region......");
-				}else{
-					cc.log("touch remove from parent");
-					self.node.active = false;
-				}
-            }
-         }, self.bg_sprite);
     },
 	init_info(data,call_back){
 		var self = this;
@@ -63,6 +40,13 @@ cc.Class({
 		this.call_back = call_back;
 		this.location = data["location"];
 		this.send_from = data["send_from"];
+	},
+	onExit(){
+		if(GlobalData.RunTimeParams.RootNode != null){
+			GlobalData.RunTimeParams.RootNode.getComponent('root_node').play(GlobalData.AudioIdx.ClickButton);
+		}
+		this.node.removeFromParent();
+		this.node.destroy();
 	},
 	hide(){
 		this.node.active = false;

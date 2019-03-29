@@ -12,11 +12,11 @@ cc.Class({
     },
     onLoad () {
 		var self = this;
-		g_current_scene = SCENE_TAG.GAMEINFO;
-		Servers.userInfoProcess("get_player",{player_id:g_user["id"]},function(data){
+		GlobalData.RunTimeParams.CurrentScene = GlobalData.SCENE_TAG.GAMEINFO;
+		Servers.userInfoProcess("get_player",{player_id:GlobalData.MyUserInfo["id"]},function(data){
 			if(data.code == 200){
 				for(var key in data.msg) {
-					g_user[key] = data.msg[key];
+					GlobalData.MyUserInfo[key] = data.msg[key];
 				}
 				self.zhanji_button_cb();
 			}
@@ -27,7 +27,7 @@ cc.Class({
 		this.record_button.getComponent("cc.Button").interactable = true;
 		//init zhanji info
 		var zhanji_node_com = this.zhanji_node.getComponent("my_game_zhanji");
-		zhanji_node_com.init_zhanji_info(g_user,this);
+		zhanji_node_com.init_zhanji_info(GlobalData.MyUserInfo,this);
 		this.zhanji_node.active = true;
 		//清空隐藏node的数据
 		var record_node_com = this.record_node.getComponent("my_game_record");
@@ -39,7 +39,7 @@ cc.Class({
 		this.record_button.getComponent("cc.Button").interactable = false;
 		this.zhanji_button.getComponent("cc.Button").interactable = true;
 		var record_node_com = this.record_node.getComponent("my_game_record");
-		record_node_com.init_record_info(g_user,this);
+		record_node_com.init_record_info(GlobalData.MyUserInfo,this);
 		this.record_node.active = true;
 		
 		var zhanji_node_com = this.zhanji_node.getComponent("my_game_zhanji");
@@ -49,8 +49,6 @@ cc.Class({
 		cc.log("record_button_cb");
 	},
 	close_scene(){
-		this.node.active = false;
-		this.node.destroy();
 		cc.director.loadScene("MainScene");
 	},
     // update (dt) {},

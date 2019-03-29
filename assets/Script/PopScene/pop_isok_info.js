@@ -8,18 +8,9 @@ cc.Class({
 		flag:false,
     },
     onLoad () {
-        cc.eventManager.addListener({
-            event: cc.EventListener.TOUCH_ONE_BY_ONE,
-            swallowTouches: true,
-            // 设置是否吞没事件，在 onTouchBegan 方法返回 true 时吞没
-            onTouchBegan: function (touch, event) {
-                return true;
-            },
-            onTouchMoved: function (touch, event) {            // 触摸移动时触发
-            },
-            onTouchEnded: function (touch, event) {            // 点击事件结束处理
-			}
-         }, this.node);
+		this.node.on(cc.Node.EventType.TOUCH_START,function(e){
+			e.stopPropagation();
+		})
     },
 	show_error_info(message){
 		this.message.string = message;
@@ -30,11 +21,17 @@ cc.Class({
 		this.callback = cb;
 	},
 	button_ok(){
+		if(GlobalData.RunTimeParams.RootNode != null){
+			GlobalData.RunTimeParams.RootNode.getComponent('root_node').play(GlobalData.AudioIdx.ClickButton);
+		}
 		this.flag = true;
 		this.callback(this.flag);
 		this.node.destroy();
 	},
 	button_no(){
+		if(GlobalData.RunTimeParams.RootNode != null){
+			GlobalData.RunTimeParams.RootNode.getComponent('root_node').play(GlobalData.AudioIdx.ClickButton);
+		}
 		this.flag = false;
 		this.callback(this.flag);
 		this.node.destroy();

@@ -44,18 +44,18 @@ util.getGameRoute = function(){
 	return "game.gameHandler.game_process";
 }
 
-util.getCreateRoute = function(){
+util.getCreateRoomRoute = function(){
 	return "connector.entryHandler.create";
 }
 
 util.getEnterWaitRoomRoute = function(){
 	return "connector.entryHandler.enter_wait_room";
 }
-
+/*
 util.getRoomInfoRoute = function(){
 	return "connector.entryHandler.get_room";
 }
-
+*/
 util.getEnterRoute = function(){
 	return "connector.entryHandler.enter";
 }
@@ -86,33 +86,33 @@ util.getLeaveRoomRoute = function(){
 }
 
 util.show_net_error = function(msg,cb){
-	var size = cc.director.getVisibleSize();
-	var error_tip = cc.instantiate(g_assets["pop_net_error"]);
+	var size = cc.winSize;
+	var error_tip = cc.instantiate(GlobalData.assets["pop_net_error"]);
 	var error_tip_com = error_tip.getComponent("pop_net_error");
     error_tip_com.show_error_info(msg,cb);
     var root_node = cc.director.getScene().getChildByName('RootNode');
 	root_node.addChild(error_tip);
-	error_tip.setPosition(root_node.convertToNodeSpaceAR(cc.p(size.width/2,size.height/2)));
+	error_tip.setPosition(root_node.convertToNodeSpaceAR(cc.v2(size.width/2,size.height/2)));
 }
 
 util.show_error_info = function(msg){
-	var size = cc.director.getVisibleSize();
-	var error_tip = cc.instantiate(g_assets["PopErrorScene"]);
+	var size = cc.winSize;
+	var error_tip = cc.instantiate(GlobalData.assets["PopErrorScene"]);
 	var error_tip_com = error_tip.getComponent("pop_error_info");
     error_tip_com.show_error_info(msg);
     var root_node = cc.director.getScene().getChildByName('RootNode');
 	root_node.addChild(error_tip);
-	error_tip.setPosition(root_node.convertToNodeSpaceAR(cc.p(size.width/2,size.height/2)));
+	error_tip.setPosition(root_node.convertToNodeSpaceAR(cc.v2(size.width/2,size.height/2)));
 }
 
 util.show_isok_info = function(callback,msg){
-	var size = cc.director.getVisibleSize();
-	var error_tip = cc.instantiate(g_assets["PopIsOkScene"]);
+	var size = cc.winSize;
+	var error_tip = cc.instantiate(GlobalData.assets["PopIsOkScene"]);
 	var error_tip_com = error_tip.getComponent("pop_isok_info");
 	error_tip_com.init(callback);
 	var root_node = cc.director.getScene().getChildByName('RootNode');
 	root_node.addChild(error_tip);
-	error_tip.setPosition(root_node.convertToNodeSpaceAR(cc.p(size.width/2,size.height/2)));
+	error_tip.setPosition(root_node.convertToNodeSpaceAR(cc.v2(size.width/2,size.height/2)));
 	error_tip_com.show_error_info(msg);
 }
 

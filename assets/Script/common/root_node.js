@@ -3,6 +3,18 @@ cc.Class({
 
     properties: {
         data:null,
+		audioSources:{
+			type:cc.AudioSource,
+			default:[]
+		},
+		mainAudio:{
+            type: cc.AudioClip,
+            default: null
+        },
+		gameAudio:{
+			type: cc.AudioClip,
+            default: null
+		}
     },
 
     // use this for initialization
@@ -11,6 +23,7 @@ cc.Class({
 
 		pomelo.on('disconnect', function(){
 			console.log('掉线了');
+			/*
 			var login_type = -1;
 			if(cc.sys.os == cc.sys.OS_ANDROID){
 				login_type = jsb.reflection.callStaticMethod("org.cocos2dx.javascript.AppActivity", "getNetType", "()I");
@@ -19,30 +32,58 @@ cc.Class({
 			}
 			console.log('掉线了' + login_type);
 			if(login_type != -1){
-				Servers.getLogin(g_user['player_id'],g_user['nickname'],g_user['gender'],g_user['headimgurl'], function (data) {
-					console.log("get login info succ:" + JSON.stringify(data));
-					if(data.code != 200){
-						util.show_error_info(data.msg);
-						return;
-					}
-					var token = data.token;
-					Servers.getEntry(token,function(data){
+				Servers.getLogin(
+					GlobalData.MyUserInfo['player_id'],
+					GlobalData.MyUserInfo['nickname'],
+					GlobalData.MyUserInfo['gender'],
+					GlobalData.MyUserInfo['headimgurl'],
+					function (data) {
+						console.log("get login info succ:" + JSON.stringify(data));
 						if(data.code != 200){
 							util.show_error_info(data.msg);
+							return;
 						}
-					});
-				});
+						var token = data.token;
+						Servers.getEntry(token,function(data){
+							if(data.code != 200){
+								util.show_error_info(data.msg);
+							}
+						});
+					}
+				);
 			}
+			*/
 		});
 		pomelo.on('heartbeat timeout',function(){
 			console.log('心跳超时');
 		});
     },
     //自定义的两个函数。将值保存在this变量里  
-    setdata : function(json){  
+    setdata : function(json){
         this.data = json;    
-    },  
+    },
     getdata : function(){
         return this.data;    
     },
+	play(type){
+		if(GlobalData.AudioParams.SOUND_KEY == 1){
+			this.audioSources[type].getComponent(cc.AudioSource).play();
+		}
+	},
+	playBg(type){
+		if(GlobalData.AudioParams.MUSIC_KEY == 1){
+			cc.audioEngine.stopAll();
+			if(type == GlobalData.AudioIdx.MainAudioBg){
+				this.current = cc.audioEngine.play(this.mainAudio, true, 1);
+			}else if(type == GlobalData.AudioIdx.GameAudioBg){
+				this.current = cc.audioEngine.play(this.gameAudio, true, 1);
+			}
+			
+		}
+	},
+	stopBg(){
+		if(this.current != null){
+			cc.audioEngine.stop(this.current);
+		}
+	}
 });

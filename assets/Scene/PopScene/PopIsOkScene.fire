@@ -17,11 +17,10 @@
         "__id__": 2
       }
     ],
-    "_tag": -1,
     "_active": true,
+    "_level": 0,
     "_components": [],
     "_prefab": null,
-    "_id": "5bdf5669-1f13-4694-8843-274846607cea",
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
@@ -30,22 +29,33 @@
       "b": 255,
       "a": 255
     },
-    "_cascadeOpacityEnabled": true,
-    "_anchorPoint": {
-      "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
-    },
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 0,
       "height": 0
     },
-    "_localZOrder": 0,
-    "_globalZOrder": 0,
-    "_opacityModifyRGB": false,
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_scale": {
+      "__type__": "cc.Vec3",
+      "x": 0.45625,
+      "y": 0.45625,
+      "z": 1
+    },
+    "_quat": {
+      "__type__": "cc.Quat",
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "w": 1
+    },
+    "_zIndex": 0,
     "groupIndex": 0,
-    "autoReleaseAssets": false
+    "autoReleaseAssets": false,
+    "_id": "5bdf5669-1f13-4694-8843-274846607cea"
   },
   {
     "__type__": "cc.Node",
@@ -60,14 +70,13 @@
     "_name": "PopIsOkScene",
     "_active": true,
     "_position": {
-      "__type__": "cc.Vec2",
+      "__type__": "cc.Vec3",
       "x": 640,
-      "y": 400
+      "y": 400,
+      "z": 0
     },
     "_rotationX": 0,
-    "_rotationY": 0,
-    "_localZOrder": 0,
-    "_globalZOrder": 0
+    "_rotationY": 0
   },
   {
     "__type__": "cc.PrefabInfo",

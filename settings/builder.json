@@ -1,4 +1,12 @@
 {
+  "android-instant": {
+    "REMOTE_SERVER_ROOT": "",
+    "host": "",
+    "pathPattern": "",
+    "recordPath": "",
+    "scheme": "https",
+    "skipRecord": false
+  },
   "appKey": "",
   "appSecret": "",
   "encryptJs": true,
@@ -25,9 +33,8 @@
     "REMOTE_SERVER_ROOT": "",
     "orientation": "portrait"
   },
-  "renderMode": "0",
   "startScene": "0d8b73b6-1b8d-47c9-ab99-22752d675c83",
-  "title": "hello_world",
+  "title": "DingSanPeiErSi",
   "webOrientation": "auto",
   "wechatgame": {
     "appid": "",

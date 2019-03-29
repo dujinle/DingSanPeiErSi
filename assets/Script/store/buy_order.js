@@ -46,7 +46,7 @@ cc.Class({
 			if(data.code == 200){
 				self.node.active = false;
 				self.node.destroy();
-				g_user["fangka_num"] = data["fangka_num"];
+				GlobalData.MyUserInfo["fangka_num"] = data["fangka_num"];
 				cc.director.loadScene("MainScene");
 			}
 		});

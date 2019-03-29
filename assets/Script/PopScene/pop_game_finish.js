@@ -10,22 +10,13 @@ cc.Class({
     },
     onLoad () {
 		cc.log("start go into pop game finish js");
+		this.node.on(cc.Node.EventType.TOUCH_START,function(e){
+			e.stopPropagation();
+		})
 		for(var i = 0;i < this.items.length;i++){
 			var item = this.items[i];
 			item.active = false;
 		}
-		cc.eventManager.addListener({
-            event: cc.EventListener.TOUCH_ONE_BY_ONE,
-            swallowTouches: true,
-            // 设置是否吞没事件，在 onTouchBegan 方法返回 true 时吞没
-            onTouchBegan: function (touch, event) {
-                return true;
-            },
-            onTouchMoved: function (touch, event) {            // 触摸移动时触发
-            },
-            onTouchEnded: function (touch, event) {            // 点击事件结束处理
-			}
-         }, this.node);
 	},
 	init_info(players,cb){
 		this.cb = cb;
@@ -58,13 +49,12 @@ cc.Class({
 	callback_tuichu(){
 		var self = this;
 		var param = {
-			rid:g_room_data["rid"],
-			player_id:g_user["id"],
+			rid:GlobalData.RunTimeParams.RoomData["rid"],
+			player_id:GlobalData.MyUserInfo["id"],
 			location:null
 		};
 		pomelo.request(util.getLeaveRoomRoute(), param, function(data) {
 			cc.log(JSON.stringify(data));
-			self.node.active = false;
 			self.cb();
 			cc.director.loadScene("MainScene");
 		});

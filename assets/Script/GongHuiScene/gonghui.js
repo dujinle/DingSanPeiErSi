@@ -25,18 +25,18 @@ cc.Class({
 		}
 	},
 	my_gonghui_button_cb(){
-		cc.log("my_gonghui_button_cb" + JSON.stringify(g_user));
+		cc.log("my_gonghui_button_cb" + JSON.stringify(GlobalData.MyUserInfo));
 		var self = this;
 		self.unable_one_button("gonghui");
-		if(g_user["gonghui_id"] == null){
+		if(GlobalData.MyUserInfo["gonghui_id"] == null){
 			var empty_node_com = self.empty_node.getComponent("gonghui_empty");
 			empty_node_com.set_text("no_g");
 			self.show_one_node("empty");
 		}else{
-			Servers.gonghuiProcess("getGonghuiGongHuiId",{"gonghui_id":g_user.gonghui_id},function(data){
+			Servers.gonghuiProcess("getGonghuiGongHuiId",{"gonghui_id":GlobalData.MyUserInfo.gonghui_id},function(data){
 				if(data.code == 200 && data.msg != null){
 					var gonghui_data = data.msg;
-					if(gonghui_data["player_id"] != g_user["id"]){
+					if(gonghui_data["player_id"] != GlobalData.MyUserInfo["id"]){
 						var my_gonghui_com = self.my_gonghui_node.getComponent("gonghui_yuan");
 						my_gonghui_com.init(gonghui_data);
 						self.show_one_node("gonghui");
@@ -57,12 +57,12 @@ cc.Class({
 		cc.log("add_gonghui_button_cb");
 		var self = this;
 		this.unable_one_button("add_gonghui");
-		if(g_user["gonghui_id"] != null){
+		if(GlobalData.MyUserInfo["gonghui_id"] != null){
 			var empty_node_com = this.empty_node.getComponent("gonghui_empty");
 			empty_node_com.set_text("has_g");
 			this.show_one_node("empty");
 		}else{
-			Servers.gonghuiProcess("getGonghuiAns",{"player_id":g_user["id"]},function(data){
+			Servers.gonghuiProcess("getGonghuiAns",{"player_id":GlobalData.MyUserInfo["id"]},function(data){
 				if(data.code == 200){
 					var gonghui_ans = data.msg;
 					if(gonghui_ans.status == 0){
@@ -82,12 +82,12 @@ cc.Class({
 		cc.log("join_gonghui_button_cb");
 		this.unable_one_button("join_gonghui");
 		var self = this;
-		if(g_user["gonghui_id"] != null){
+		if(GlobalData.MyUserInfo["gonghui_id"] != null){
 			var empty_node_com = this.empty_node.getComponent("gonghui_empty");
 			empty_node_com.set_text("join_g");
 			this.show_one_node("empty");
 		}else{
-			Servers.gonghuiProcess("getGonghuiAns",{"player_id":g_user["id"]},function(data){
+			Servers.gonghuiProcess("getGonghuiAns",{"player_id":GlobalData.MyUserInfo["id"]},function(data){
 				if(data.code == 200){
 					var gonghui_ans = data.msg;
 					if(gonghui_ans.status == 0){
@@ -105,17 +105,15 @@ cc.Class({
 	},
     onLoad () {
 		var self = this;
-		g_current_scene = SCENE_TAG.GONGHUI;
-		 Servers.gonghuiProcess("getGonghuiPlayerId",{"player_id":g_user["id"]},function(data){
+		GlobalData.RunTimeParams.CurrentScene = GlobalData.SCENE_TAG.GONGHUI;
+		 Servers.gonghuiProcess("getGonghuiPlayerId",{"player_id":GlobalData.MyUserInfo["id"]},function(data){
 			if(data.code == 200 && data.msg != null){
-				g_user["gonghui_id"] = data.msg["gonghui_id"];
+				GlobalData.MyUserInfo["gonghui_id"] = data.msg["gonghui_id"];
 			}
 			self.my_gonghui_button_cb();
 		 });
 	},
 	close_scene(){
-		this.node.active = false;
-		this.node.destroy();
 		cc.director.loadScene("MainScene");
 	},
 	show_one_node(tag){

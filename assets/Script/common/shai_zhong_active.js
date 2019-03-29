@@ -31,13 +31,14 @@ cc.Class({
 		this.animStatus.wrapMode = cc.WrapMode.Loop;
 		// 设置动画循环次数为2次
 		this.animStatus.repeatCount = 3;
+		
 	},
 	onFinished(){
 		var self = this;
 		cc.log("shoe active finish",this.isValid);
 		self.shaizi_layout.active = true;
-		self.shaizi_1.spriteFrame = g_assets["shaizi_" + self.sz_num_1];
-		self.shaizi_2.spriteFrame = g_assets["shaizi_" + self.sz_num_2];
+		self.shaizi_1.spriteFrame = GlobalData.assets["shaizi_" + self.sz_num_1];
+		self.shaizi_2.spriteFrame = GlobalData.assets["shaizi_" + self.sz_num_2];
 		self.shai_zhong.runAction(cc.sequence(cc.fadeOut(1),cc.callFunc(function(){
 			var moveAc = cc.moveTo(0.5,self.position);
 			self.shaizi_layout.runAction(cc.sequence(moveAc,cc.fadeOut(2),cc.callFunc(function(){

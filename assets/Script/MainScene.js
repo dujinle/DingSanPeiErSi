@@ -6,116 +6,143 @@ cc.Class({
 		touxiang_sprite:cc.Sprite,
         username_label:cc.Label,
         fangka_label:cc.Label,
+		gold:cc.Label,
         sex_sprite:cc.Sprite,
 		exit_node:cc.Node,
-		audio:{
-            type: cc.AudioClip,
-            default: null
-        }
+		freshTime:0,
     },
 
     onLoad () {
         cc.log("on load main scene.....");
-		g_current_scene = SCENE_TAG.MAIN;
-		var size = cc.director.getWinSize();
-		if(g_gonggao_tag == false){
-			this.gongao_scene = cc.instantiate(g_assets["GonggaoScene"]);
+		GlobalData.RunTimeParams.CurrentScene = GlobalData.SCENE_TAG.MAIN;
+		var size = cc.winSize ;
+		if(GlobalData.RunTimeParams.GongGaoTag == false){
+			this.gongao_scene = cc.instantiate(GlobalData.assets["GonggaoScene"]);
 			this.node.addChild(this.gongao_scene);
-			this.gongao_scene.setPosition(this.node.convertToNodeSpaceAR(cc.p(size.width/2,size.height/2)));
-			g_gonggao_tag = true;
+			this.gongao_scene.setPosition(this.node.convertToNodeSpaceAR(cc.v2(size.width/2,size.height/2)));
+			GlobalData.RunTimeParams.GongGaoTag = true;
 		}
 		
-		g_root_node = cc.director.getScene().getChildByName('RootNode');
-		var self = this;
-		wxapi.set_load_status(1);
-		g_music_key = cc.sys.localStorage.getItem(MUSIC_KEY);
-		if(g_music_key == null || g_music_key == BOOL.YES){
-			cc.audioEngine.stopAll();
-			this.current = cc.audioEngine.play(this.audio, true, 1);
+		if(GlobalData.RunTimeParams.RootNode != null){
+			GlobalData.RunTimeParams.RootNode.getComponent('root_node').playBg(GlobalData.AudioIdx.MainAudioBg);
 		}
-		this.username_label.string = g_user.nick_name;
-        this.fangka_label.string = g_user.fangka_num;
-		if(g_user.gender == 1){
-			this.sex_sprite.spriteFrame = g_assets["gender1"];
+		
+		//wxapi.set_load_status(1);
+		this.username_label.string = GlobalData.MyUserInfo.nick_name;
+        this.fangka_label.string = GlobalData.MyUserInfo.fangka_num;
+		this.gold.string = GlobalData.MyUserInfo.gold;
+		if(GlobalData.MyUserInfo.gender == 1){
+			this.sex_sprite.spriteFrame = GlobalData.assets["gender1"];
         }
-		if(g_user.headimgurl != null && g_user.headimgurl.length > 0){
-			cc.loader.load({url:g_user.headimgurl,type:'png'},function (err, texture) {
+		var self = this;
+		if(GlobalData.MyUserInfo.headimgurl != null && GlobalData.MyUserInfo.headimgurl.length > 0){
+			cc.loader.load({url:GlobalData.MyUserInfo.headimgurl,type:'png'},function (err, texture) {
 				 var frame = new cc.SpriteFrame(texture);
-				 g_assets["headimg"] = frame;
+				 GlobalData.assets["headimg"] = frame;
 				 self.touxiang_sprite.spriteFrame = frame;
 			});
 		}else{
-			g_assets["headimg"] = self.touxiang_sprite.spriteFrame;
+			GlobalData.assets["headimg"] = self.touxiang_sprite.spriteFrame;
 		}
+		Servers.userInfoProcess("get_player",{player_id:GlobalData.MyUserInfo["id"]},function(data){
+			if(data.code == 200){
+				for(var key in data.msg) {
+					GlobalData.MyUserInfo[key] = data.msg[key];
+				}
+			}
+		});
     },
-	update(){
-		this.fangka_label.string = g_user.fangka_num;
+	update(dt){
+		if(this.freshTime >= 1.5){
+			this.fangka_label.string = GlobalData.MyUserInfo.fangka_num;
+			this.gold.string = GlobalData.MyUserInfo.gold;
+			this.freshTime = 0;
+		}
+		this.freshTime += dt;
 	},
 	buy_fangka_scene(){
-		var size = cc.director.getWinSize();
-		this.pop_buyfangka = cc.instantiate(g_assets["PopBuyFangKaScene"]);
+		var size = cc.winSize;
+		this.pop_buyfangka = cc.instantiate(GlobalData.assets["PopBuyFangKaScene"]);
 		this.node.addChild(this.pop_buyfangka);
-		this.pop_buyfangka.setPosition(this.node.convertToNodeSpaceAR(cc.p(size.width/2,size.height/2)));
+		this.pop_buyfangka.setPosition(this.node.convertToNodeSpaceAR(cc.v2(size.width/2,size.height/2)));
 	},
 	popCreatScene(){
-		var size = cc.director.getWinSize();
-		this.pop_creat_scene = cc.instantiate(g_assets["PopCreatRoomScene"]);
+		if(GlobalData.RunTimeParams.RootNode != null){
+			GlobalData.RunTimeParams.RootNode.getComponent('root_node').play(GlobalData.AudioIdx.ClickButton);
+		}
+		var size = cc.winSize;
+		this.pop_creat_scene = cc.instantiate(GlobalData.assets["PopCreatRoomScene"]);
 		this.node.addChild(this.pop_creat_scene);
-		this.pop_creat_scene.setPosition(this.node.convertToNodeSpaceAR(cc.p(size.width/2,size.height/2)));
+		this.pop_creat_scene.setPosition(this.node.convertToNodeSpaceAR(cc.v2(size.width/2,size.height/2)));
 	},
 	popEnterScene(){
-		var size = cc.director.getWinSize();
-		this.pop_enter_scene = cc.instantiate(g_assets["PopEnterRoomScene"]);
-		this.node.addChild(this.pop_enter_scene);
-		this.pop_enter_scene.setPosition(this.node.convertToNodeSpaceAR(cc.p(size.width/2,size.height/2)));
+		if(GlobalData.RunTimeParams.RootNode != null){
+			GlobalData.RunTimeParams.RootNode.getComponent('root_node').play(GlobalData.AudioIdx.ClickButton);
+			GlobalData.RunTimeParams.RootNode.getComponent('root_node').stopBg();
+		}
+		cc.director.loadScene("WaitGameScene");
 	},
 	popGonghuiScene(){
+		if(GlobalData.RunTimeParams.RootNode != null){
+			GlobalData.RunTimeParams.RootNode.getComponent('root_node').play(GlobalData.AudioIdx.ClickButton);
+			GlobalData.RunTimeParams.RootNode.getComponent('root_node').stopBg();
+		}
 		cc.director.loadScene("GongHuiScene");
 	},
 	popMyGameScene(){
+		if(GlobalData.RunTimeParams.RootNode != null){
+			GlobalData.RunTimeParams.RootNode.getComponent('root_node').play(GlobalData.AudioIdx.ClickButton);
+			GlobalData.RunTimeParams.RootNode.getComponent('root_node').stopBg();
+		}
 		cc.director.loadScene("MyGameInfoScene");
 	},
 	popHelpScene(){
-		var size = cc.director.getWinSize();
-		this.pop_help_scene = cc.instantiate(g_assets["PopHelpScene"]);
+		if(GlobalData.RunTimeParams.RootNode != null){
+			GlobalData.RunTimeParams.RootNode.getComponent('root_node').play(GlobalData.AudioIdx.ClickButton);
+		}
+		var size = cc.winSize;
+		this.pop_help_scene = cc.instantiate(GlobalData.assets["PopHelpScene"]);
 		this.node.addChild(this.pop_help_scene);
-		this.pop_help_scene.setPosition(this.node.convertToNodeSpaceAR(cc.p(size.width/2,size.height/2)));
+		this.pop_help_scene.setPosition(this.node.convertToNodeSpaceAR(cc.v2(size.width/2,size.height/2)));
 	},
 	popFeedBackScene(){
-		var size = cc.director.getWinSize();
-		this.pop_feedback_scene = cc.instantiate(g_assets["PopFeedBack"]);
+		if(GlobalData.RunTimeParams.RootNode != null){
+			GlobalData.RunTimeParams.RootNode.getComponent('root_node').play(GlobalData.AudioIdx.ClickButton);
+		}
+		var size = cc.winSize;
+		this.pop_feedback_scene = cc.instantiate(GlobalData.assets["PopFeedBack"]);
 		this.node.addChild(this.pop_feedback_scene);
-		this.pop_feedback_scene.setPosition(this.node.convertToNodeSpaceAR(cc.p(size.width/2,size.height/2)));
+		this.pop_feedback_scene.setPosition(this.node.convertToNodeSpaceAR(cc.v2(size.width/2,size.height/2)));
 	},
 	popSettingScene(){
+		if(GlobalData.RunTimeParams.RootNode != null){
+			GlobalData.RunTimeParams.RootNode.getComponent('root_node').play(GlobalData.AudioIdx.ClickButton);
+		}
 		var self = this;
-		var size = cc.director.getVisibleSize();
-		var pop_setting = cc.instantiate(g_assets["PopSettingScene"]);
+		var size = cc.winSize;
+		var pop_setting = cc.instantiate(GlobalData.assets["PopSettingScene"]);
 		var pop_setting_com = pop_setting.getComponent("pop_game_setting");
 		
 		pop_setting_com.set_callback(function(index){
 			if(index == 0){
-				if(g_music_key == BOOL.NO && self.current != null){
-					cc.audioEngine.stop(self.current);
-					self.current = null;
-				}else if(self.current == null){
-					self.current = cc.audioEngine.play(self.audio, true, 1);
+				if(GlobalData.AudioParams.MUSIC_KEY == 0){
+					GlobalData.RunTimeParams.RootNode.getComponent('root_node').stopBg();
+				}else if(GlobalData.AudioParams.MUSIC_KEY == 1){
+					GlobalData.RunTimeParams.RootNode.getComponent('root_node').playBg(GlobalData.AudioIdx.MainAudioBg);
 				}
 			}
 		});
 		var x = size.width/2;
 		var y = size.height/2;
 		this.node.addChild(pop_setting);
-		pop_setting.setPosition(this.node.convertToNodeSpaceAR(cc.p(x,y)));
+		pop_setting.setPosition(this.node.convertToNodeSpaceAR(cc.v2(x,y)));
 	},
 	exit(){
 		if (cc.sys.os == cc.sys.OS_ANDROID) {
 			cc.director.end();
+			cc.game.end();
 		}else if(cc.sys.os == cc.sys.OS_IOS){
 			//cc.director.popScene();
 		}
-	},
-	onDestroy: function () {
-        cc.audioEngine.stop(this.current);
-    }
+	}
 });

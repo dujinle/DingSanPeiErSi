@@ -88,13 +88,16 @@ cc.Class({
 		this.room_num.splice(0,this.room_num.length);
 		
 		var param = {
-			player_id:g_user.id,
+			player_id:GlobalData.MyUserInfo.id,
 			room_num: roomNum,
 			rid: null
 		};
 		enter_wait_room(param,this);
 	},
 	close_scene(){
+		if(GlobalData.RunTimeParams.RootNode != null){
+			GlobalData.RunTimeParams.RootNode.getComponent('root_node').play(GlobalData.AudioIdx.ClickButton);
+		}
 		this.node.active = false;
 		this.node.destroy();
 	},

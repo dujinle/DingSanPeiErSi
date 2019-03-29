@@ -43,7 +43,7 @@ cc.Class({
 				self.head_sprite.spriteFrame = frame;
 			});
 		}else{
-			self.head_sprite.spriteFrame = g_assets["headimg"];
+			self.head_sprite.spriteFrame = GlobalData.assets["headimg"];
 		}
 		if(this.is_power == 1){
 			this.setSpriteStatus("yizhunbei");
@@ -59,34 +59,35 @@ cc.Class({
 	},
     setSpriteStatus(status){
 		console.log("zjh_player setSpriteStatus:" + status);
-		this.status_sprite.spriteFrame = g_assets[status];
+		this.status_sprite.spriteFrame = GlobalData.assets[status];
 		this.status_sprite.node.active = true;
 	},
 	setGameStatus(status){
 		console.log("zjh_player setSpriteStatus:" + status);
-		this.game_sprite.spriteFrame = g_assets[status];
+		this.game_sprite.spriteFrame = GlobalData.assets[status];
 		this.game_sprite.node.active = true;
 	},
 	install_chip_label(flag){
 		cc.log("install_chip_label");
 		if(flag == true){
 			cc.log("install chips_label zhuang");
-			this.chips_label = cc.instantiate(g_assets["chip_bg_zhuang"]);
+			this.chips_label = cc.instantiate(GlobalData.assets["chip_bg_zhuang"]);
 		}else if(this.player_position == 1){
 			cc.log("install chips_label 1");
-			this.chips_label = cc.instantiate(g_assets["chip_bg_1"]);
+			this.chips_label = cc.instantiate(GlobalData.assets["chip_bg_1"]);
 		}else if(this.player_position == 2){
 			cc.log("install chips_label 2");
-			this.chips_label = cc.instantiate(g_assets["chip_bg_2"]);
+			this.chips_label = cc.instantiate(GlobalData.assets["chip_bg_2"]);
 		}else if(this.player_position == 3){
 			cc.log("install chips_label 3");
-			this.chips_label = cc.instantiate(g_assets["chip_bg_3"]);
+			this.chips_label = cc.instantiate(GlobalData.assets["chip_bg_3"]);
 		}else if(this.player_position == 4){
 			cc.log("install chips_label 4");
-			this.chips_label = cc.instantiate(g_assets["chip_bg_4"]);
+			this.chips_label = cc.instantiate(GlobalData.assets["chip_bg_4"]);
 		}
 
-		this.node.parent.addChild(this.chips_label);
+		this.node.addChild(this.chips_label);
+		this.set_chip_position();
 		if(flag == false){
 			var label_1 = this.chips_label.getChildByName("chip_up");
 			label_1.getComponent(cc.Label).string = 0;
@@ -127,10 +128,10 @@ cc.Class({
 		this.selected_cards.splice(0,this.selected_cards.length);
 	},
 	addPlayerCard(){
-		var card = cc.instantiate(g_assets["pj_card"]);
+		var card = cc.instantiate(GlobalData.assets["pj_card"]);
 		var card_com = card.getComponent("pj_card");
 		card_com.id = this.my_cards.length;
-		this.node.parent.addChild(card);
+		this.chips_label.addChild(card);
 		this.my_cards.push(card);
 		return card;
 	},
@@ -155,5 +156,76 @@ cc.Class({
 	resetMoneyLabel(money){
 		this.my_gold = money;
 		this.gold_label.string = money;
+	},
+	set_chip_position(){
+		var x = 0;
+		var y = 0;
+		var mobileSize = this.mobile_sprite.node.getContentSize();
+		var mobilePos = this.mobile_sprite.node.getPosition();
+		if(this.player_position == 1){
+			x = mobileSize.width/2 + this.chips_label.getContentSize().width /2 + 10;
+			y = mobilePos.y;
+		}else if(this.player_position == 2){
+			x = mobilePos.x;
+			y = mobileSize.height/2 + this.chips_label.getContentSize().height /2 + 10;
+		}else if(this.player_position == 3){
+			x = mobileSize.width/2 + this.chips_label.getContentSize().width /2 + 10;
+			y = mobilePos.y;
+		}else if(this.player_position == 4){
+			x = mobilePos.x;
+			y = mobileSize.height/2 + this.chips_label.getContentSize().height /2 + 10;
+		}
+		cc.log("calc x:" + x + " y:" + y);
+		this.chips_label.setPosition(cc.v2(x,y));
+		//return cc.v2(x,y);
+	},
+	set_card_position(card,zhuang_serverPosition,m,pai_back_size){
+		if(this.position_server == zhuang_serverPosition){
+			var pos = GlobalData.CardPosInfo.FaPaiPos.ZH[m];
+			card.setPosition(cc.v2(pos[0],pos[1]));
+		}else{
+			var pos = GlobalData.CardPosInfo.FaPaiPos[this.player_position][m];
+			card.setPosition(cc.v2(pos[0],pos[1]));
+		}
+	},
+	set_card_head(cards,zhuang_serverPosition){
+		for(var i = 0;i < cards.length;i++){
+			var card = cards[i];
+			if(this.position_server == zhuang_serverPosition){
+				var headPos = GlobalData.CardPosInfo.PeiPaiPos['ZH' + this.player_position]['Head'];
+				var pos = cc.v2(headPos[i][0],headPos[i][1]);
+				var acMoveTo = cc.moveTo(0.45,pos);
+				var acrotateBy = cc.rotateBy(0.45,90,90);
+				var action_spawn = cc.spawn(acMoveTo,acrotateBy);
+				card.runAction(action_spawn);
+			}else{
+				var headPos = GlobalData.CardPosInfo.PeiPaiPos[this.player_position]['Head'];
+				var pos = cc.v2(headPos[i][0],headPos[i][1]);
+				var acMoveTo = cc.moveTo(0.45,pos);
+				var acrotateBy = cc.rotateBy(0.45,90,90);
+				var action_spawn = cc.spawn(acMoveTo,acrotateBy);
+				card.runAction(action_spawn);
+			}
+		}
+	},
+	set_card_tail(cards,zhuang_serverPosition){
+		for(var i = 0;i < cards.length;i++){
+			var card = cards[i];
+			if(this.position_server == zhuang_serverPosition){
+				var tailPos = GlobalData.CardPosInfo.PeiPaiPos['ZH' + this.player_position]['Tail'];
+				var pos = cc.v2(tailPos[i][0],tailPos[i][1]);
+				var acMoveTo = cc.moveTo(0.45,pos);
+				card.runAction(acMoveTo);
+			}else{
+				var tailPos = GlobalData.CardPosInfo.PeiPaiPos[this.player_position]['Tail'];
+				var pos = cc.v2(tailPos[i][0],tailPos[i][1]);
+				var acMoveTo = cc.moveTo(0.45,pos);
+				card.runAction(acMoveTo);
+			}
+		}
+	},
+	setInvalid(){
+		this.counter_timer.active = false;
+		this.mobile_sprite.node.active = false;
 	}
 });
