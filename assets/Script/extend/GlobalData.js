@@ -90,13 +90,13 @@ var GlobalData = {
 		IsLogin:false,
 		GongGaoTag:false,
 		RoomData:null,
-		AllPlayers:new Array(),
+		AllPlayers:new Array(),//接收游戏开始的玩家信息
 	},
 	MyUserInfo:null,
 	//房间中玩家存储数据
 	RoomInfos:{
 		ZhuangServerLocaltion:0,
-		TotalPlayers:new Array(),
+		TotalPlayers:new Array(),//游戏进行中玩家的信息
 		MySelfPlayerLocation:-1,
 	},
 	//存储加载的场景和图片资源

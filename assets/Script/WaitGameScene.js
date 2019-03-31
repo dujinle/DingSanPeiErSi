@@ -102,6 +102,9 @@ cc.Class({
 		});
 	},
 	initRoomView(room_datas){
+		if(room_datas == null){
+			return;
+		}
 		for(var i = 0;i < room_datas.length;i++){
 			var data = room_datas[i];
 			var item = cc.instantiate(GlobalData.assets['roomItem']);

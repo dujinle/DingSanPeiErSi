@@ -19,6 +19,7 @@ cc.Class({
 		huihe_label:cc.Label,
 		msage_scroll:cc.Node,
 		left_card_layout:cc.Node,
+		suiji_qiangzhuang:cc.Node,
 		//buttons for game
 		button_layout:cc.Node,
 		zhunbei_button:cc.Node,
@@ -83,6 +84,7 @@ cc.Class({
 		
 		var lhuihe = this.huihe_label.getComponent(cc.Label);
 		lhuihe.string = this.count;
+		this.suiji_qiangzhuang.active = false;
 	},
 	initButtonEnableAfterComeInRoom(){
 		this.get_one_button("ready",true);
@@ -571,7 +573,7 @@ cc.Class({
 
 	pomelo_on(){
     	pomelo.on('onReady',this.onReady_function.bind(this));
-		pomelo.on('onGetXiaZhu',this.onGetXiaZhu_function.bind(this));
+		pomelo.on('onGetZhuang',this.onGetZhuang_function.bind(this));
 		pomelo.on('onXiazhu',this.onXiazhu_function.bind(this));
 		pomelo.on('onPeiPai',this.onPeiPai_function.bind(this));
 		pomelo.on('onPeiPaiFinish',this.onPeiPaiFinish_function.bind(this));
@@ -621,20 +623,6 @@ cc.Class({
 			}
 		}
 	},
-	onGetXiaZhu_function(data){
-		console.log('onGetXiaZhu_function',data);
-		if(GlobalData.RoomInfos.MySelfPlayerLocation != this.zhuang_serverPosition){
-			for(var i = 0;i < this.players.length;i++){
-				var player = this.players[i];
-				var player_com = player.getComponent("tdk_player");
-				if(player_com.position_server == GlobalData.RoomInfos.MySelfPlayerLocation){
-					player_com.set_chips(1,0);
-					player_com.set_chips(2,0);
-				}
-			}
-			this.get_one_button("xiazhu",true);
-		}
-	},
 	onXiazhu_function(data){
 		cc.log("onXiazhu_function:" + JSON.stringify(data));
 		var location = data.location;
@@ -654,6 +642,7 @@ cc.Class({
 		cc.log("onFapai" + JSON.stringify(data));
 		var size = cc.winSize;
 		this.cur_turn = data["cur_turn"];
+		GlobalData.RunTimeParams.RoomData['mingpai'] = data.mingpai;
 		//如果是第一次发牌则清空已经用过的牌
 		//更新房间状态和玩家信息
 		if(this.cur_turn == 0){
@@ -899,19 +888,24 @@ cc.Class({
 			var player = this.players[i];
 			var player_com = player.getComponent("tdk_player");
 			var cardString = paixing[player_com.position_server - 1];
-			if(player_com.position_server != GlobalData.RoomInfos.MySelfPlayerLocation){
-				for(var m = 0;m < 4;m++){
-					var card = player_com.my_cards[m].getComponent("pj_card");
-					card.initCardSprite(cardString[card.id]);
-					var backCardSeq = cc.sequence(cc.delayTime(0.45),cc.hide());
-					var backCamera = cc.rotateBy(0.45,0,-90);
-					var backSpawn = cc.spawn(backCardSeq,backCamera);
-					var frontSeq = cc.sequence(cc.delayTime(0.45),cc.show());
-					var frontCamera = cc.rotateBy(0.6,0,-360);
-					var frontSpawn = cc.spawn(frontSeq,frontCamera);
-					card.sprite_back.node.runAction(backSpawn);
-					card.sprite.runAction(frontSpawn);
-				}
+			if(GlobalData.RunTimeParams.RoomData['mingpai'] == 1 && player_com.position_server == this.zhuang_serverPosition){
+				continue;
+			}
+			if(player_com.position_server == GlobalData.RoomInfos.MySelfPlayerLocation){
+				continue;
+			}
+				
+			for(var m = 0;m < 4;m++){
+				var card = player_com.my_cards[m].getComponent("pj_card");
+				card.initCardSprite(cardString[card.id]);
+				var backCardSeq = cc.sequence(cc.delayTime(0.45),cc.hide());
+				var backCamera = cc.rotateBy(0.45,0,-90);
+				var backSpawn = cc.spawn(backCardSeq,backCamera);
+				var frontSeq = cc.sequence(cc.delayTime(0.45),cc.show());
+				var frontCamera = cc.rotateBy(0.6,0,-360);
+				var frontSpawn = cc.spawn(frontSeq,frontCamera);
+				card.sprite_back.node.runAction(backSpawn);
+				card.sprite.runAction(frontSpawn);
 			}
 		}
 	},
@@ -1020,6 +1014,10 @@ cc.Class({
 						card_com.installTouch();
 						player_com.set_card_sprite(j,card_type[j]);
 					}
+					//如果明牌了 则接收庄家的牌信息
+					if(GlobalData.RunTimeParams.RoomData['mingpai'] == 1 && player_com.position_server == this.zhuang_serverPosition){
+						player_com.set_card_sprite(j,card_type[j]);
+					}
 					player_com.set_card_position(card,this.zhuang_serverPosition,j,pai_back_size);
 				}
 				break;
@@ -1052,9 +1050,27 @@ cc.Class({
 					card.sprite_back.node.runAction(backSpawn);
 					card.sprite.runAction(frontSpawn);
                 }
-                break;
             }
+			//如果玩家下注满了则庄家明牌
+			if(player_com.position_server == this.zhuang_serverPosition && GlobalData.RunTimeParams.RoomData['mingpai'] == 1){
+				for(var j = 0;j < 4;j++){
+					var backCardSeq = cc.sequence(cc.delayTime(0.45),cc.hide());
+					var backCamera = cc.rotateBy(0.45,0,-90);
+					var backSpawn = cc.spawn(backCardSeq,backCamera);
+					var frontSeq = cc.sequence(cc.delayTime(0.45),cc.show());
+					var frontCamera = cc.rotateBy(0.6,0,-360);
+					var frontSpawn = cc.spawn(frontSeq,frontCamera);
+					var card = player_com.my_cards[j].getComponent("pj_card");
+					card.sprite_back.node.runAction(backSpawn);
+					card.sprite.runAction(frontSpawn);
+                }
+				if(player_com.id == GlobalData.MyUserInfo["id"]){
+					util.show_error_info("注意玩家下注满，你已经明牌，注意等玩家配完牌在配牌！");
+				}
+			}
         }
+		//如果玩家下注满了则庄家明牌 并对庄家进行提示 避免发忘记 从而配牌太早
+		
 		this.get_one_button("peipai",true);
 	},
 
@@ -1216,7 +1232,7 @@ cc.Class({
 	pomelo_removeListener(){
 		cc.log("remove listener");
         pomelo.removeListener('onReady');
-		pomelo.removeListener('onGetXiaZhu');
+		pomelo.removeListener('onGetZhuang');
 		pomelo.removeListener('onXiazhu');
 		pomelo.removeListener('onPeiPai');
 		pomelo.removeListener('onPeiPaiFinish');
