@@ -53,10 +53,16 @@ cc.Class({
 			player_id:GlobalData.MyUserInfo["id"],
 			location:null
 		};
-		pomelo.request(util.getLeaveRoomRoute(), param, function(data) {
-			cc.log(JSON.stringify(data));
-			self.cb();
-			cc.director.loadScene("MainScene");
-		});
+		if(GlobalData.RoomInfos.LunZhuangFlag == true){
+			this.node.removeFromParent();
+			this.node.destroy();
+			this.cb();
+		}else{
+			pomelo.request(util.getLeaveRoomRoute(), param, function(data) {
+				cc.log(JSON.stringify(data));
+				self.cb();
+				cc.director.loadScene("MainScene");
+			});
+		}
 	},
 });

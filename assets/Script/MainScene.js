@@ -1,4 +1,4 @@
-
+var wxapi = require('wxapi');
 cc.Class({
     extends: cc.Component,
 
@@ -26,8 +26,7 @@ cc.Class({
 		if(GlobalData.RunTimeParams.RootNode != null){
 			GlobalData.RunTimeParams.RootNode.getComponent('root_node').playBg(GlobalData.AudioIdx.MainAudioBg);
 		}
-		
-		//wxapi.set_load_status(1);
+		wxapi.set_load_status(1);
 		this.username_label.string = GlobalData.MyUserInfo.nick_name;
         this.fangka_label.string = GlobalData.MyUserInfo.fangka_num;
 		this.gold.string = GlobalData.MyUserInfo.gold;
@@ -53,7 +52,7 @@ cc.Class({
 		});
     },
 	update(dt){
-		if(this.freshTime >= 1.5){
+		if(this.freshTime >= 0.3){
 			this.fangka_label.string = GlobalData.MyUserInfo.fangka_num;
 			this.gold.string = GlobalData.MyUserInfo.gold;
 			this.freshTime = 0;

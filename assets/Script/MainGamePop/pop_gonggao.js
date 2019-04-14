@@ -15,7 +15,7 @@ cc.Class({
 		this.schedule(this.hidde_time,1);
 		Servers.gongGaoProcess("get_gonggao",{"type":1},function(data){
 			cc.log(JSON.stringify(data));
-			if(data.code == 200){
+			if(data.code == 200 && self.node){
 				var rich_text = self.content_node.getComponent(cc.RichText);
 				rich_text.string = data.msg;
 			}
@@ -26,7 +26,7 @@ cc.Class({
 		this.time_node.string = "(" + this.left_time + "s)";
 		if(this.left_time <= 0){
 			this.unschedule(this.hidde_time);
-			this.node.active = false;
+			this.node.removeFromParent();
 			this.node.destroy();
 		}
 	},

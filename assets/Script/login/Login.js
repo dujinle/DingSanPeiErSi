@@ -44,9 +44,11 @@ cc.Class({
 						self.onLogin();
 					}else{
 						util.show_error_info(result.errmsg);
+						self.buttonLogin.getComponent("cc.Button").interactable = true;
 					}
 				});
 			}else{
+				self.buttonLogin.getComponent("cc.Button").interactable = true;
 				this.loginFlag = false;
 			}
 		}
@@ -55,8 +57,7 @@ cc.Class({
 		ThirdAPI.loadLocalData();
 		GlobalData.RunTimeParams.CurrentScene = GlobalData.SCENE_TAG.LOAD;
 		GlobalData.RunTimeParams.RootNode = cc.director.getScene().getChildByName('RootNode');
-		
-		
+
 		this.loginFlag = false;
 		this.loadUpdate.active = true;
 		this.loadSources.active = true;
@@ -114,12 +115,15 @@ cc.Class({
 			function (data) {
 				cc.log("get login info succ:" + JSON.stringify(data));
 				if(data.code != 200){
+					self.buttonLogin.getComponent("cc.Button").interactable = true;
 					return;
 				}
 				var token = data.token;
 				Servers.getEntry(token,function(data){
 					if(data.code == 200){
 						self.saveUserInfo(data.player);
+					}else{
+						self.buttonLogin.getComponent("cc.Button").interactable = true;
 					}
 				});
 			}

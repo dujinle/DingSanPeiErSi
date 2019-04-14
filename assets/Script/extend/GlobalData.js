@@ -88,6 +88,7 @@ var GlobalData = {
 		CurrentScene:null,//当前场景
 		XieYiSelect:true,//加载页面的协议按钮默认勾选
 		IsLogin:false,
+		DisConnect:false,
 		GongGaoTag:false,
 		RoomData:null,
 		AllPlayers:new Array(),//接收游戏开始的玩家信息
@@ -98,6 +99,7 @@ var GlobalData = {
 		ZhuangServerLocaltion:0,
 		TotalPlayers:new Array(),//游戏进行中玩家的信息
 		MySelfPlayerLocation:-1,
+		LunZhuangFlag:false
 	},
 	//存储加载的场景和图片资源
 	assets:{},

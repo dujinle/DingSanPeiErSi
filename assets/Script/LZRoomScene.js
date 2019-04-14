@@ -13,13 +13,13 @@ cc.Class({
 		qieguo:0,
 		//head label info
 		pai_back_sprite:cc.Sprite,
+		suiji_qiangzhuang:cc.Node,
 		master_label:cc.Label,
 		room_num_label:cc.Label,
 		zhuang_label:cc.Label,
 		huihe_label:cc.Label,
 		msage_scroll:cc.Node,
 		left_card_layout:cc.Node,
-		suiji_qiangzhuang:cc.Node,
 		//buttons for game
 		button_layout:cc.Node,
 		zhunbei_button:cc.Node,
@@ -52,6 +52,7 @@ cc.Class({
 		this.myselfCards = new Array();
 		this.left_cards = new Array();
 		this.betPhotoArray = new Array();
+		this.suiji_qiangzhuang.active = false;
 		this.init_head_info();
 		this.initButtonEnableAfterComeInRoom();
 		this.initPlayersAndPlayer_noPower();
@@ -84,7 +85,6 @@ cc.Class({
 		
 		var lhuihe = this.huihe_label.getComponent(cc.Label);
 		lhuihe.string = this.count;
-		this.suiji_qiangzhuang.active = false;
 	},
 	initButtonEnableAfterComeInRoom(){
 		this.get_one_button("ready",true);
@@ -187,11 +187,7 @@ cc.Class({
 			}
 			left_local = player_stc.location;
 			player_stc["is_power"] = GlobalData.RunTimeParams.RoomData["is_game_" + player_stc.location];
-			if(this.zhuang_serverPosition == player_stc.location){
-				player_stc["my_gold"] = GlobalData.RunTimeParams.RoomData["zhuang_score"];
-			}else{
-				player_stc["my_gold"] = GlobalData.RunTimeParams.RoomData["left_score_" + player_stc.location];
-			}
+			player_stc["my_gold"] = GlobalData.RunTimeParams.RoomData["left_score_" + player_stc.location];
 			player_com.init(player_stc);
 			player_com.player_position = i + 1;
 			cc.log("set player_com: player_position:" + player_com.player_position + " position_server:" + player_com.position_server);
@@ -241,6 +237,7 @@ cc.Class({
 		this.zhunbei_button.active = false;
 		pomelo.request(util.getGameRoute(),{
 			process:"ready",
+			lun_zhuang_flag:GlobalData.RoomInfos.LunZhuangFlag,
 			game_type:GlobalData.RunTimeParams.RoomData.game_type,
 			location:GlobalData.RoomInfos.MySelfPlayerLocation
 		},function(data){
@@ -397,7 +394,7 @@ cc.Class({
 
 	callback_gameback(){
 		this.onExit();
-        cc.director.loadScene("WaitGameScene");
+        cc.director.loadScene("MainScene");
 	},
 
 	callback_uinfo(event,id){
@@ -596,33 +593,56 @@ cc.Class({
 			if(player_com.position_server == data.location){
 				player_com.setSpriteStatus("yizhunbei");
 				player_com.stop_timer();
+				player_com.hide_game_sprite();
 				//准备状态表示
 				break;
 			}
 		}
 	},
+	
 	onGetZhuang_function(data){
 		cc.log("pomelo onGetzhuang_function:" + JSON.stringify(data));
 		var size = cc.winSize;
-		var num1 = data.nums[0];
-		var num2 = data.nums[1];
 		this.zhuang_serverPosition = data.zhuang_local;
-		this.suiji_qiangzhuang.active = true;
+		var scores = data.scores;
 		for(var i = 0;i < this.players.length;i++){
 			var player = this.players[i];
 			var player_com = player.getComponent("tdk_player");
+			player_com.resetMoneyLabel(scores[player_com.position_server - 1]);
 			if(player_com.position_server == this.zhuang_serverPosition){
-				var yao_shaizi = cc.instantiate(GlobalData.assets["yaoshaizi"]);
-				var yao_shaizi_com = yao_shaizi.getComponent("shai_zhong_active");
-				yao_shaizi_com.init_start(null,num1,num2,player.getPosition());
-				this.node.addChild(yao_shaizi);
-				yao_shaizi.setPosition(this.node.convertToNodeSpaceAR(cc.p(size.width/2,size.height/4*1.8)));
-				var call_back_function = cc.callFunc(this.getzhuang_callback,this);
-				this.node.runAction(cc.sequence(cc.delayTime(3),call_back_function));
-				break;
+				this.sumBet = scores[player_com.position_server - 1];
 			}
 		}
+		if(GlobalData.RoomInfos.LunZhuangFlag == false){
+			var num1 = data.nums[0];
+			var num2 = data.nums[1];
+			for(var i = 0;i < this.players.length;i++){
+				var player = this.players[i];
+				var player_com = player.getComponent("tdk_player");
+				if(player_com.position_server == this.zhuang_serverPosition){
+					this.suiji_qiangzhuang.active = true;
+					var yao_shaizi = cc.instantiate(GlobalData.assets["yaoshaizi"]);
+					var yao_shaizi_com = yao_shaizi.getComponent("shai_zhong_active");
+					var movePos = player.getPosition();
+					yao_shaizi_com.init_start(null,num1,num2,movePos);
+					this.node.addChild(yao_shaizi);
+					yao_shaizi.setPosition(this.node.convertToNodeSpaceAR(cc.v2(size.width/2,size.height/4*1.8)));
+					var call_back_function = cc.callFunc(this.getzhuang_callback,this);
+					this.node.runAction(cc.sequence(cc.delayTime(3),call_back_function));
+					break;
+				}
+			}
+		}else{
+			/*轮庄 清空上一次的玩家牌*/
+			for(var i = 0;i < this.left_cards.length;i++){
+				var card = this.left_cards[i];
+				card.removeFromParent();
+			}
+			this.left_cards.splice(0,this.left_cards.length);
+			this.getzhuang_callback();
+		}
 	},
+	
 	onXiazhu_function(data){
 		cc.log("onXiazhu_function:" + JSON.stringify(data));
 		var location = data.location;
@@ -683,7 +703,10 @@ cc.Class({
 				var shaizi_2 = data["nums"][1];
 				var yao_shaizi = cc.instantiate(GlobalData.assets["yaoshaizi"]);
 				var yao_shaizi_com = yao_shaizi.getComponent("shai_zhong_active");
-				yao_shaizi_com.init_start(null,shaizi_1,shaizi_2,player.getPosition());
+				var pPos = player.getPosition();
+				var labelPos = player_com.chips_label.getPosition();
+				var movePos = cc.v2(pPos.x + labelPos.x,pPos.y + labelPos.y);
+				yao_shaizi_com.init_start(null,shaizi_1,shaizi_2,movePos);
 				this.node.addChild(yao_shaizi);
 				yao_shaizi.setPosition(this.node.convertToNodeSpaceAR(cc.v2(size.width/2,size.height/4*1.8)));
 				break;
@@ -816,6 +839,7 @@ cc.Class({
 		cc.log("onQieguo_function:" + JSON.stringify(data));
 		var size = cc.winSize;
 		var flag = data.flag;
+		GlobalData.RoomInfos.LunZhuangFlag = data.lun_zhuang;
 		if(flag == false){
 			if(GlobalData.RoomInfos.MySelfPlayerLocation != this.zhuang_serverPosition){
 				for(var i = 0;i < this.players.length;i++){
@@ -838,7 +862,7 @@ cc.Class({
 					item.push(player_item.nick_name);
 					item.push(player_item.head_img_url);
 					if(player_item.location == this.zhuang_serverPosition){
-						item.push(100);
+						item.push(GlobalData.RunTimeParams.RoomData["zhuang_score"]);
 					}else{
 						item.push(0);
 					}
@@ -875,7 +899,12 @@ cc.Class({
 			var pop_game_finish_com = pop_game_finish.getComponent("pop_game_finish");
 			this.node.addChild(pop_game_finish);
 			pop_game_finish_com.init_info(results,function(){
-				self.onExit();
+				if(GlobalData.RoomInfos.LunZhuangFlag == true){
+					self.initButtonEnableAfterComeInRoom();
+					util.show_error_info('更换庄家！');
+				}else{
+					self.onExit();
+				}
 			});
 			pop_game_finish.setPosition(this.node.convertToNodeSpaceAR(cc.v2(x,y)));
 		}
@@ -1253,6 +1282,9 @@ cc.Class({
         GlobalData.RunTimeParams.AllPlayers.splice(0,GlobalData.RunTimeParams.AllPlayers.length);
 		GlobalData.RunTimeParams.RoomData = null;
 		GlobalData.RoomInfos.TotalPlayers.splice(0,GlobalData.RoomInfos.TotalPlayers.length);
+		GlobalData.RoomInfos.LunZhuangFlag = false;
+		GlobalData.RoomInfos.ZhuangServerLocaltion = 0;
+		GlobalData.RoomInfos.MySelfPlayerLocation = -1;
 		console.log("exit from the room......");
         //释放资源
         //this.releaseMember();

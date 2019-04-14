@@ -304,7 +304,7 @@ cc.Class({
 				}else if(GlobalData.RunTimeParams.RoomData['game_type'] == 3){
 					cc.director.loadScene("LZRoomScene");
 				}else{
-					cc.director.loadScene("PJRoomScene");
+					cc.director.loadScene("SJRoomScene");
 				}
 			}else{
 				util.show_error_info(data.msg);

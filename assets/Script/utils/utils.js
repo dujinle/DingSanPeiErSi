@@ -48,9 +48,6 @@ util.getCreateRoomRoute = function(){
 	return "connector.entryHandler.create";
 }
 
-util.getEnterWaitRoomRoute = function(){
-	return "connector.entryHandler.enter_wait_room";
-}
 /*
 util.getRoomInfoRoute = function(){
 	return "connector.entryHandler.get_room";
@@ -73,26 +70,8 @@ util.getStartGameRoute = function(){
 	return "connector.entryHandler.start_game";
 }
 
-util.getDelayWaitTimeRoute = function(){
-	return "connector.entryHandler.delay_wait_time";
-}
-
-util.getDissolveRoomRoute = function(){
-	return "connector.entryHandler.dissolve_room";
-}
-
 util.getLeaveRoomRoute = function(){
 	return "connector.entryHandler.leave_room";
-}
-
-util.show_net_error = function(msg,cb){
-	var size = cc.winSize;
-	var error_tip = cc.instantiate(GlobalData.assets["pop_net_error"]);
-	var error_tip_com = error_tip.getComponent("pop_net_error");
-    error_tip_com.show_error_info(msg,cb);
-    var root_node = cc.director.getScene().getChildByName('RootNode');
-	root_node.addChild(error_tip);
-	error_tip.setPosition(root_node.convertToNodeSpaceAR(cc.v2(size.width/2,size.height/2)));
 }
 
 util.show_error_info = function(msg){
@@ -100,7 +79,7 @@ util.show_error_info = function(msg){
 	var error_tip = cc.instantiate(GlobalData.assets["PopErrorScene"]);
 	var error_tip_com = error_tip.getComponent("pop_error_info");
     error_tip_com.show_error_info(msg);
-    var root_node = cc.director.getScene().getChildByName('RootNode');
+    var root_node = GlobalData.RunTimeParams.RootNode;
 	root_node.addChild(error_tip);
 	error_tip.setPosition(root_node.convertToNodeSpaceAR(cc.v2(size.width/2,size.height/2)));
 }
@@ -110,7 +89,7 @@ util.show_isok_info = function(callback,msg){
 	var error_tip = cc.instantiate(GlobalData.assets["PopIsOkScene"]);
 	var error_tip_com = error_tip.getComponent("pop_isok_info");
 	error_tip_com.init(callback);
-	var root_node = cc.director.getScene().getChildByName('RootNode');
+	var root_node = GlobalData.RunTimeParams.RootNode;
 	root_node.addChild(error_tip);
 	error_tip.setPosition(root_node.convertToNodeSpaceAR(cc.v2(size.width/2,size.height/2)));
 	error_tip_com.show_error_info(msg);

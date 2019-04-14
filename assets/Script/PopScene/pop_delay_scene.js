@@ -12,6 +12,10 @@ cc.Class({
 			e.stopPropagation();
 		})
 	},
+	setMsg(tips){
+		var label = this.tipsLabel.getComponent(cc.Label);
+		label.string = tips;
+	},
 	onStart(time,cb){
 		this.delayTime = time;
 		this.callback = cb;

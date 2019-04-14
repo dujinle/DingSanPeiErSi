@@ -69,6 +69,10 @@ cc.Class({
 	},
 	install_chip_label(flag){
 		cc.log("install_chip_label");
+		if(this.chips_label != null){
+			this.chips_label.removeFromParent();
+			this.chips_label.destroy();
+		}
 		if(flag == true){
 			cc.log("install chips_label zhuang");
 			this.chips_label = cc.instantiate(GlobalData.assets["chip_bg_zhuang"]);
@@ -154,6 +158,7 @@ cc.Class({
 		this.game_sprite.node.active = false;
 	},
 	resetMoneyLabel(money){
+		console.log('resetMoneyLabel',money);
 		this.my_gold = money;
 		this.gold_label.string = money;
 	},
