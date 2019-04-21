@@ -99,7 +99,8 @@ var GlobalData = {
 		ZhuangServerLocaltion:0,
 		TotalPlayers:new Array(),//游戏进行中玩家的信息
 		MySelfPlayerLocation:-1,
-		LunZhuangFlag:false
+		LunZhuangFlag:false,
+		MsgUuid:null
 	},
 	//存储加载的场景和图片资源
 	assets:{},

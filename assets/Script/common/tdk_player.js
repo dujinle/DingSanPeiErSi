@@ -7,6 +7,7 @@ cc.Class({
 		my_gold:0,
 		my_chip1:0,
 		my_chip2:0,
+		pei_pai_flag:false,
 		position_server:0,
 		player_position:0,
 		is_power:0,
@@ -48,6 +49,7 @@ cc.Class({
 		if(this.is_power == 1){
 			this.setSpriteStatus("yizhunbei");
 		}
+		this.pei_pai_flag = false;
 	},
 	start_timer(){
 		var count_timer = this.counter_timer.getComponent("count_timer");
@@ -150,6 +152,7 @@ cc.Class({
 			card.destroy();
 		}
 		this.my_cards.splice(0,this.my_cards.length);
+		this.pei_pai_flag = false;
 	},
 	hide_status_sprite(){
 		this.status_sprite.node.active = false;
