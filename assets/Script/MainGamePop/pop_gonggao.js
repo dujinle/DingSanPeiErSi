@@ -13,9 +13,9 @@ cc.Class({
 		this.node.on(cc.Node.EventType.TOUCH_START,this.touchStart,this);
 		this.time_node.string = "(" + this.left_time + "s)";
 		this.schedule(this.hidde_time,1);
-		Servers.gongGaoProcess("get_gonggao",{"type":1},function(data){
+		Servers.request('gongGaoRouter',{"type":1,process:'get_gonggao'},function(data){
 			cc.log(JSON.stringify(data));
-			if(data.code == 200 && self.node){
+			if(self.node && self.node.isValid){
 				var rich_text = self.content_node.getComponent(cc.RichText);
 				rich_text.string = data.msg;
 			}

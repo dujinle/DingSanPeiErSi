@@ -40,39 +40,6 @@ util.createUUID = function () {
 	});
 	return uuid;
 }
-util.getGameRoute = function(){
-	return "game.gameHandler.game_process";
-}
-
-util.getCreateRoomRoute = function(){
-	return "connector.entryHandler.create";
-}
-
-/*
-util.getRoomInfoRoute = function(){
-	return "connector.entryHandler.get_room";
-}
-*/
-util.getEnterRoute = function(){
-	return "connector.entryHandler.enter";
-}
-
-util.getRoomInfoRoute = function(){
-	return "connector.entryHandler.get_room_info";
-}
-
-util.getRepairEnterRoomRoute = function(){
-	return "connector.entryHandler.repair_enter_room";
-}
-
-
-util.getStartGameRoute = function(){
-	return "connector.entryHandler.start_game";
-}
-
-util.getLeaveRoomRoute = function(){
-	return "connector.entryHandler.leave_room";
-}
 
 util.show_error_info = function(msg){
 	var size = cc.winSize;

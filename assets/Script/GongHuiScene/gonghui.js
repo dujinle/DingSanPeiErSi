@@ -33,8 +33,12 @@ cc.Class({
 			empty_node_com.set_text("no_g");
 			self.show_one_node("empty");
 		}else{
-			Servers.gonghuiProcess("getGonghuiGongHuiId",{"gonghui_id":GlobalData.MyUserInfo.gonghui_id},function(data){
-				if(data.code == 200 && data.msg != null){
+			var param = {
+				"gonghui_id":GlobalData.MyUserInfo.gonghui_id,
+				'process':'getGonghuiGongHuiId'
+			};
+			Servers.request('gonghuiRouter',param,function(data){
+				if(data.msg != null){
 					var gonghui_data = data.msg;
 					if(gonghui_data["player_id"] != GlobalData.MyUserInfo["id"]){
 						var my_gonghui_com = self.my_gonghui_node.getComponent("gonghui_yuan");
@@ -62,8 +66,12 @@ cc.Class({
 			empty_node_com.set_text("has_g");
 			this.show_one_node("empty");
 		}else{
-			Servers.gonghuiProcess("getGonghuiAns",{"player_id":GlobalData.MyUserInfo["id"]},function(data){
-				if(data.code == 200){
+			var param = {
+				"player_id":GlobalData.MyUserInfo["id"],
+				'process':'getGonghuiAns'
+			};
+			Servers.request('gonghuiRouter',param,function(data){
+				if(data.msg != null){
 					var gonghui_ans = data.msg;
 					if(gonghui_ans.status == 0){
 						var empty_node_com = self.empty_node.getComponent("gonghui_empty");
@@ -87,8 +95,12 @@ cc.Class({
 			empty_node_com.set_text("join_g");
 			this.show_one_node("empty");
 		}else{
-			Servers.gonghuiProcess("getGonghuiAns",{"player_id":GlobalData.MyUserInfo["id"]},function(data){
-				if(data.code == 200){
+			var param = {
+				"player_id":GlobalData.MyUserInfo["id"],
+				'process':'getGonghuiAns'
+			}
+			Servers.request('gonghuiRouter',param,function(data){
+				if(data.msg != null){
 					var gonghui_ans = data.msg;
 					if(gonghui_ans.status == 0){
 						var empty_node_com = self.empty_node.getComponent("gonghui_empty");
@@ -106,8 +118,12 @@ cc.Class({
     onLoad () {
 		var self = this;
 		GlobalData.RunTimeParams.CurrentScene = GlobalData.SCENE_TAG.GONGHUI;
-		 Servers.gonghuiProcess("getGonghuiPlayerId",{"player_id":GlobalData.MyUserInfo["id"]},function(data){
-			if(data.code == 200 && data.msg != null){
+		var param = {
+			"player_id":GlobalData.MyUserInfo["id"],
+			'process':'getGonghuiPlayerId'
+		};
+		 Servers.request("gonghuiRouter",param,function(data){
+			if(data.msg != null){
 				GlobalData.MyUserInfo["gonghui_id"] = data.msg["gonghui_id"];
 			}
 			self.my_gonghui_button_cb();

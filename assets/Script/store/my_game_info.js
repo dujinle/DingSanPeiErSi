@@ -13,13 +13,15 @@ cc.Class({
     onLoad () {
 		var self = this;
 		GlobalData.RunTimeParams.CurrentScene = GlobalData.SCENE_TAG.GAMEINFO;
-		Servers.userInfoProcess("get_player",{player_id:GlobalData.MyUserInfo["id"]},function(data){
-			if(data.code == 200){
-				for(var key in data.msg) {
-					GlobalData.MyUserInfo[key] = data.msg[key];
-				}
-				self.zhanji_button_cb();
+		var param = {
+			player_id:GlobalData.MyUserInfo["id"],
+			process:'get_player'
+		};
+		Servers.request('userInfoRouter',param,function(data){
+			for(var key in data.msg) {
+				GlobalData.MyUserInfo[key] = data.msg[key];
 			}
+			self.zhanji_button_cb();
 		});
 	},
 	zhanji_button_cb(){

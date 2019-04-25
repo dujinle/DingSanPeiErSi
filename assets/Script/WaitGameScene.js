@@ -46,57 +46,59 @@ cc.Class({
 	},
 	freshRoomView(){
 		var self = this;
-		Servers.gonghuiProcess('getGonghuiGongHuiId',{gonghui_id:GlobalData.MyUserInfo.gonghui_id},function(res){
+		var p = {
+			process:'getGonghuiGongHuiId',
+			gonghui_id:GlobalData.MyUserInfo.gonghui_id
+		}
+		Servers.request('gonghuiRouter',p,function(res){
 			console.log(res);
-			if(res.code == 200){
+			if(res.msg != null){
 				var gonghuiInfo = res.msg;
 				var param = {
 					"process":'getRoomByPlayerId',
 					"player_id":gonghuiInfo.player_id
 				};
-				pomelo.request(util.getRoomInfoRoute(), param, function(data) {
+				Servers.request('roomInfoRouter', param, function(data) {
 					cc.log(JSON.stringify(data));
-					if(data.code == 200){
-						var room_datas = data.msg;
-						for(var i = 0;i < room_datas.length;i++){
-							var data = room_datas[i];
-							if(self.roomContent.children.length > i){
-								var item = self.roomContent.children[i];
-								var itemCom = item.getComponent('roomItem');
-								itemCom.initData(i,data);
-							}else{
-								var item = cc.instantiate(GlobalData.assets['roomItem']);
-								var itemCom = item.getComponent('roomItem');
-								itemCom.initData(i,data);
-								self.roomContent.addChild(item);
-							}
-							if(GlobalData.RunTimeParams.RoomData.rid == data.rid){
-								GlobalData.RunTimeParams.RoomData = data;
-							}
+					var room_datas = data.msg;
+					for(var i = 0;i < room_datas.length;i++){
+						var data = room_datas[i];
+						if(self.roomContent.children.length > i){
+							var item = self.roomContent.children[i];
+							var itemCom = item.getComponent('roomItem');
+							itemCom.initData(i,data);
+						}else{
+							var item = cc.instantiate(GlobalData.assets['roomItem']);
+							var itemCom = item.getComponent('roomItem');
+							itemCom.initData(i,data);
+							self.roomContent.addChild(item);
 						}
-						self.init_room_pos(GlobalData.RunTimeParams.RoomData);
+						if(GlobalData.RunTimeParams.RoomData.rid == data.rid){
+							GlobalData.RunTimeParams.RoomData = data;
+						}
 					}
+					self.init_room_pos(GlobalData.RunTimeParams.RoomData);
 				});
 			}
 		});
 	},
 	initRoomScroll(){
 		var self = this;
-		Servers.gonghuiProcess('getGonghuiGongHuiId',{gonghui_id:GlobalData.MyUserInfo.gonghui_id},function(res){
+		var param = {
+			process:'getGonghuiGongHuiId',
+			gonghui_id:GlobalData.MyUserInfo.gonghui_id
+		}
+		Servers.request('gonghuiRouter',param,function(res){
 			console.log(res);
-			if(res.code == 200){
-				var gonghuiInfo = res.msg;
+			var gonghuiInfo = res.msg;
+			if(gonghuiInfo != null){
 				var param = {
 					"process":'getRoomByPlayerId',
 					"player_id":gonghuiInfo.player_id
 				};
-				pomelo.request(util.getRoomInfoRoute(), param, function(data) {
+				Servers.request('roomInfoRouter', param, function(data) {
 					//cc.log(JSON.stringify(data));
-					if(data.code == 200){
-						self.initRoomView(data.msg);
-					}else{
-						util.show_error_info(data.msg);
-					}
+					self.initRoomView(data.msg);
 				});
 			}
 		});
@@ -147,16 +149,18 @@ cc.Class({
 			var location = room_data["location" + (i + 1)];
 			if(location != null && location != "null"){
 				var player_id = location.split("*")[0];
-				Servers.userInfoProcess("get_player",{player_id:player_id},function(data){
-					if(data.code == 200){
-						if(data.msg.head_img_url != null && data.msg.head_img_url.length > 0){
-							cc.loader.load({url:data.msg.head_img_url,type:'png'},function (err, texture) {
-								var frame = new cc.SpriteFrame(texture);
-								self.choice_sprite[i].getComponent("cc.Sprite").spriteFrame = frame;
-							});
-						}else{
-							self.choice_sprite[i].getComponent("cc.Sprite").spriteFrame = GlobalData.assets["headimg"];
-						}
+				var param = {
+					process:'get_player',
+					player_id:player_id
+				};
+				Servers.request('userInfoRouter',param,function(data){
+					if(data.msg != null){
+						cc.loader.load({url:data.msg.head_img_url,type:'png'},function (err, texture) {
+							var frame = new cc.SpriteFrame(texture);
+							self.choice_sprite[i].getComponent("cc.Sprite").spriteFrame = frame;
+						});
+					}else{
+						self.choice_sprite[i].getComponent("cc.Sprite").spriteFrame = GlobalData.assets["headimg"];
 					}
 				});
 				item.set_flag(true);
@@ -182,11 +186,11 @@ cc.Class({
 			"process":'getRoomById',
 			"rid":data.rid
 		};
-		pomelo.request(util.getRoomInfoRoute(), param, function(roomRes) {
+		Servers.request('roomInfoRouter', param, function(roomRes) {
 			cc.log(JSON.stringify(roomRes));
-			if(roomRes.code == 200){
+			var room_data = roomRes.msg;
+			if(room_data != null){
 				self.roomInfo.active = true;
-				var room_data = roomRes.msg;
 				var itemCom = event.target.getComponent("roomItem");
 				itemCom.initData(itemCom.idx,room_data);
 				if(room_data.rid != GlobalData.RunTimeParams.RoomData.rid){
@@ -292,22 +296,18 @@ cc.Class({
 			"process":'getRoomById',
 			"rid":GlobalData.RunTimeParams.RoomData["rid"]
 		};
-		pomelo.request(util.getRoomInfoRoute(), param, function(data) {
+		Servers.request('roomInfoRouter', param, function(data) {
 			cc.log(JSON.stringify(data));
-			if(data.code == 200){
-				for(var key in data.msg) {
-					GlobalData.RunTimeParams.RoomData[key] = data.msg[key];
-				}
-				self.pomelo_removeListener();
-				if(GlobalData.RunTimeParams.RoomData['game_type'] == 1){
-					cc.director.loadScene("QZRoomScene");
-				}else if(GlobalData.RunTimeParams.RoomData['game_type'] == 3){
-					cc.director.loadScene("LZRoomScene");
-				}else{
-					cc.director.loadScene("SJRoomScene");
-				}
+			for(var key in data.msg) {
+				GlobalData.RunTimeParams.RoomData[key] = data.msg[key];
+			}
+			self.pomelo_removeListener();
+			if(GlobalData.RunTimeParams.RoomData['game_type'] == 1){
+				cc.director.loadScene("QZRoomScene");
+			}else if(GlobalData.RunTimeParams.RoomData['game_type'] == 3){
+				cc.director.loadScene("LZRoomScene");
 			}else{
-				util.show_error_info(data.msg);
+				cc.director.loadScene("SJRoomScene");
 			}
 		});
 	},
@@ -332,21 +332,23 @@ cc.Class({
 		//进入游戏房间，发送公告告诉准备的玩家进入游戏
 		var self = this;
 		var param = {
+			process:null,
 			rid:GlobalData.RunTimeParams.RoomData["rid"]
 		};
-		pomelo.request(util.getStartGameRoute(), param, function(data) {
+		Servers.request('startGameRouter', param, function(data) {
 			cc.log(JSON.stringify(data));
 		});
 	},
 	leave_room(rid){
 		var self = this;
 		var param = {
+			process:null,
 			rid:rid,
 			player_id:GlobalData.MyUserInfo["id"],
 			location:null
 		};
 		console.log('leave_room',param);
-		pomelo.request(util.getLeaveRoomRoute(), param, function(data) {
+		Servers.request('leaveRoomRouter', param, function(data) {
 			cc.log(JSON.stringify(data));
 			if(data.code == 200){
 				self.enterFlag = false;
@@ -368,21 +370,22 @@ cc.Class({
 				if(flag == false){
 					item.set_flag(true);
 					var param = {
+						process:null,
 						rid:GlobalData.RunTimeParams.RoomData["rid"],
 						location:index,
 						player_id:GlobalData.MyUserInfo["id"]
 					};
-					pomelo.request(util.getEnterRoute(), param, function(data) {
+					pomelo.request(Servers.routerMap['enterRoomRouter'], param, function(data) {
+						cc.log(JSON.stringify(data));
 						if(data.code == 200){
 							self.enterFlag = true;
-						}else if(data.code == 201){
+						}else if(data.code == 500){
 							util.show_error_info(data.msg);
-							self.scrollFunc({'target':self.lastRoomItem,'type':false});
 						}else{
 							item.set_flag(false);
 							util.show_error_info(data.msg);
 						}
-						cc.log(JSON.stringify(data));
+						self.scrollFunc({'target':self.lastRoomItem,'type':false});
 					});
 				}
 				break;

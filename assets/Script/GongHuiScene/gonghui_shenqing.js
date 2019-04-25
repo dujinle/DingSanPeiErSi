@@ -38,19 +38,16 @@ cc.Class({
 			return;
 		}
 		var param = {
+			'process':'shenqing',
 			"player_id":GlobalData.MyUserInfo["id"],
 			"player_name":GlobalData.MyUserInfo["nickname"],
 			"gonghui_name":this.gonghui_name,
 			"telphone":this.phone_num,
 			"level":this.level
 		};
-		Servers.gonghuiProcess("shenqing",param,function(data){
-			if(data.code == 200){
-				self.node.active = false;
-				self.pthis.add_gonghui_button_cb();
-			}else{
-				util.show_error_info(data.msg);
-			}
+		Servers.request('gonghuiRouter',param,function(data){
+			self.node.active = false;
+			self.pthis.add_gonghui_button_cb();
 		});
 	},
     onLoad () {

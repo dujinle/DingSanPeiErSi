@@ -45,32 +45,26 @@ cc.Class({
 		var size = cc.winSize;
 		var self = this;
 		var param = {
+			'process':'xuka',
 			"gonghui_id":this.data["id"],
 			"player_id":GlobalData.MyUserInfo["id"],
 			"player_name":GlobalData.MyUserInfo["nickname"],
 			"telphone":this.data["telphone"]
 		};
-		Servers.gonghuiProcess("xuka",param,function(data){
-			if(data.code == 200){
-				util.show_error_info("申请续卡已经提交，等待工作人员确认信息。");
-			}else{
-				util.show_error_info(data.msg);
-			}
+		Servers.request('gonghuiRouter',param,function(data){
+			util.show_error_info(data.msg);
 		});
 	},
 	onTijiao(){
 		var self = this;
 		var param = {
+			'process':'update_gonghui',
 			"id":this.data["id"],
 			"danjia":this.danjia_str,
 			"xuanyan":this.xuanyan_str
 		};
-		Servers.gonghuiProcess("update_gonghui",param,function(data){
-			if(data.code == 200){
-				util.show_error_info("公会信息更新完成");
-			}else{
-				util.show_error_info(data.msg);
-			}
+		Servers.request('gonghuiRouter',param,function(data){
+			util.show_error_info(data.msg);
 		});
 	},
 });

@@ -23,16 +23,13 @@ cc.Class({
 		}
 		var param = {
 			"player_id":GlobalData.MyUserInfo["id"],
-			"gonghui_id":this.gid
+			"gonghui_id":this.gid,
+			'process':'join_gonghui'
 		};
-		Servers.gonghuiProcess("join_gonghui",param,function(data){
-			if(data.code == 200){
-				self.node.active = false;
-				GlobalData.MyUserInfo["gonghui_id"] = data.msg["gonghui_id"];
-				self.pthis.my_gonghui_button_cb();
-			}else{
-				util.show_error_info("没有找到对应的公会信息");
-			}
+		Servers.request('gonghuiRouter',param,function(data){
+			self.node.active = false;
+			GlobalData.MyUserInfo["gonghui_id"] = self.gid;
+			self.pthis.my_gonghui_button_cb();
 		});
 	},
 });

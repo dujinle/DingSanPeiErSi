@@ -70,26 +70,14 @@ cc.Class({
 		//玩家断线重连需要恢复当时的状态
 		var self = this;
 		var param = {
+			'process':null,
 			"rid":GlobalData.RunTimeParams.RoomData["rid"],
 			"player_id":GlobalData.MyUserInfo["id"],
 			"uuid":GlobalData.RoomInfos.MsgUuid
 		};
-		pomelo.request(util.getRepairEnterRoomRoute(), param, function(data) {
+		Servers.request('repairEnterRoom', param, function(data) {
 			console.log(data);
 		});
-		/*
-		pomelo.request(util.getRoomInfoRoute(), param, function(data) {
-			cc.log(JSON.stringify(data));
-			if(data.code == 200){
-				for(var key in data.msg) {
-					GlobalData.RunTimeParams.RoomData[key] = data.msg[key];
-				}
-				self.init_game_status();
-			}else{
-				util.show_error_info(data.msg);
-			}
-		});
-		*/
 	},
 	init_head_info(){
 		var size = cc.winSize;
@@ -110,90 +98,6 @@ cc.Class({
 		this.qieguo_button.active = false;
 		this.buqie_button.active = false;
     },
-	
-	init_game_status(){
-		var player_com = null;
-		var scores = new Array();
-		var chips = new Array();
-		var locations = new Array();
-		var isGames = new Array();
-		var kaiPaiflag = 0;
-		for(var i = 1;i <= 4;i++){
-			scores.push(GlobalData.RunTimeParams.RoomData['left_score_' + i]);
-			locations.push(GlobalData.RunTimeParams.RoomData['location' + i]);
-			isGames.push(GlobalData.RunTimeParams.RoomData['is_game_' + i]);
-			chips.push(GlobalData.RunTimeParams.RoomData['score_' + i]);
-		}
-		console.log(JSON.stringify(isGames),JSON.stringify(locations));
-		this.sumBet = GlobalData.RunTimeParams.RoomData["zhuang_score"];
-		this.count = GlobalData.RunTimeParams.RoomData["round"];
-		this.qieguo = GlobalData.RunTimeParams.RoomData["qieguo"];
-		this.roomNum = GlobalData.RunTimeParams.RoomData["room_num"];
-        this.roomState = GlobalData.RunTimeParams.RoomData["is_gaming"];
-		this.master_name = GlobalData.RunTimeParams.RoomData["fangzhu_name"];
-		this.startDealCardPosition = GlobalData.RunTimeParams.RoomData["first_fapai"];
-		this.zhuang_serverPosition = GlobalData.RunTimeParams.RoomData["zhuang_location"];
-		this.cur_turn = GlobalData.RunTimeParams.RoomData["cur_turn"];
-		
-		for(var i = 0;i < GlobalData.RoomInfos.TotalPlayers.length;i++){
-			var player = GlobalData.RoomInfos.TotalPlayers[i];
-			player_com = player.getComponent("tdk_player");
-			var is_game = isGames[player_com.position_server];
-			cc.log("init_game_status: location:",player_com.position_server," is_power:",isGames[player_com.position_server]);
-			if(is_game == 0){
-				if(player_com.position_server == GlobalData.RoomInfos.MySelfPlayerLocation){
-					this.initButtonEnableAfterComeInRoom();
-				}
-			}else if(is_game == 1){
-				player_com.setSpriteStatus("yizhunbei");
-			}else if(is_game == 2){
-				if(player_com.position_server == GlobalData.RoomInfos.MySelfPlayerLocation){
-					var data = {
-						type:'onGetZhuang',
-						zhuang_local:GlobalData.RunTimeParams.RoomData.zhuang_location,
-						scores:scores
-					};
-					data['scores'][GlobalData.RunTimeParams.RoomData.zhuang_location - 1] = 100;
-					this.onGetZhuang_function(data);
-				}
-			}else if(is_game == 3){
-				var param = {
-					type:'onXiazhu',
-					location:player_com.position_server,
-					chips:chips[player_com.position_server]
-				};
-				this.onXiazhu_function(param);
-			}else if(is_game == 4){
-				if(player_com.position_server == GlobalData.RoomInfos.MySelfPlayerLocation){
-					this.repairFapai_function();
-				}
-			}else if(is_game == 5){
-				this.repairPeipai_function(player);
-				kaiPaiflag += 1;
-			}else if(is_game == 6){
-				if(player_com.position_server == GlobalData.RoomInfos.MySelfPlayerLocation){
-					this.repairOpenpai_function(scores);
-				}
-			}else if(is_game == 7){
-				if(player_com.position_server == GlobalData.RoomInfos.MySelfPlayerLocation){
-					this.repairQieguo_function(scores);
-				}
-			}
-		}
-				
-		cc.log("repairPeipai_function:" + this.zhuang_serverPosition  + " " + GlobalData.RoomInfos.MySelfPlayerLocation + " " + kaiPaiflag);
-		if(this.zhuang_serverPosition == GlobalData.RoomInfos.MySelfPlayerLocation
-			&& kaiPaiflag == GlobalData.RunTimeParams.RoomData.player_num - 1){
-			this.get_one_button("kaipai",true);
-		}
-		var param = {
-			"rid":GlobalData.RunTimeParams.RoomData["rid"],
-			"player_id":GlobalData.MyUserInfo["id"]
-		};
-		pomelo.request(util.getRepairEnterRoomRoute(), param, function(data) {
-			console.log(data);
-		});
-	},
 	
 	initPlayersAndPlayer_noPower(){
 		cc.log("initPlayersAndPlayer_noPower" + JSON.stringify(GlobalData.RunTimeParams.AllPlayers));
@@ -291,7 +195,7 @@ cc.Class({
 	//按钮回调函数
 	callback_zhunbei(){
 		this.zhunbei_button.active = false;
-		pomelo.request(util.getGameRoute(),{
+		Servers.request('gameRouter',{
 			process:"ready",
 			game_type:GlobalData.RunTimeParams.RoomData.game_type,
 			location:GlobalData.RoomInfos.MySelfPlayerLocation
@@ -331,7 +235,7 @@ cc.Class({
 			if(player_com.position_server == GlobalData.RoomInfos.MySelfPlayerLocation){
 				var chip1 = player_com.my_chip1;
 				var chip2 = player_com.my_chip2;
-				pomelo.request(util.getGameRoute(),{
+				Servers.request('gameRouter',{
 					process:"xiazhu",
 					chips:[chip1,chip2],
 					game_type:GlobalData.RunTimeParams.RoomData.game_type,
@@ -372,7 +276,7 @@ cc.Class({
 				mark.push(card_com.num);
 				select.push(card_com.id);
 			}
-			pomelo.request(util.getGameRoute(),{
+			Servers.request('gameRouter',{
 				process:"peipai",
 				peipai:mark,
 				select:select,
@@ -390,7 +294,7 @@ cc.Class({
 
 	callback_kaipai(){
 		this.kaipai_button.active = false;
-		pomelo.request(util.getGameRoute(),{
+		Servers.request('gameRouter',{
 			process:"open",
 			game_type:GlobalData.RunTimeParams.RoomData.game_type,
 			location:GlobalData.RoomInfos.MySelfPlayerLocation
@@ -402,7 +306,7 @@ cc.Class({
 	callback_qieguo(){
 		this.qieguo_button.active = false;
 		this.buqie_button.active = false;
-		pomelo.request(util.getGameRoute(),{
+		Servers.request('gameRouter',{
 			process:"qieguo",
 			game_type:GlobalData.RunTimeParams.RoomData.game_type,
 			location:GlobalData.RoomInfos.MySelfPlayerLocation,
@@ -415,7 +319,7 @@ cc.Class({
 	callback_buqie(){
 		this.qieguo_button.active = false;
 		this.buqie_button.active = false;
-		pomelo.request(util.getGameRoute(),{
+		Servers.request('gameRouter',{
 			process:"qieguo",
 			game_type:GlobalData.RunTimeParams.RoomData.game_type,
 			location:GlobalData.RoomInfos.MySelfPlayerLocation,
@@ -455,7 +359,7 @@ cc.Class({
 	callback_uinfo(event,id){
 		var player = this.players[id];
 		var player_com = player.getComponent("tdk_player");
-		pomelo.request(util.getGameRoute(),{
+		Servers.request('gameRouter',{
             process : 'get_user_info',
 			send_from:GlobalData.RoomInfos.MySelfPlayerLocation,
 			game_type:GlobalData.RunTimeParams.RoomData.game_type,
@@ -468,144 +372,6 @@ cc.Class({
 	showRoomMessageUpdate(){
 		this.zhuang_label.string = this.sumBet;
 		this.huihe_label.string = this.count;
-	},
-
-	repairFapai_function(){
-		this.myselfCards.splice(0,this.myselfCards.length);
-		this.myselfCards.push(JSON.parse(GlobalData.RunTimeParams.RoomData["pai1"]));
-		this.myselfCards.push(JSON.parse(GlobalData.RunTimeParams.RoomData["pai2"]));
-		this.myselfCards.push(JSON.parse(GlobalData.RunTimeParams.RoomData["pai3"]));
-		this.myselfCards.push(JSON.parse(GlobalData.RunTimeParams.RoomData["pai4"]));
-		//说明是一锅中的第二把需要把上一把的牌显示出来
-		if(this.cur_turn == 1){
-			for(var i = 1;i < 33;i++){
-				var flag = false;
-				for(var j = 0;j < this.myselfCards.length;j++){
-					var item = this.myselfCards[j];
-					for(var m = 0;m < item.length;m++){
-						if(i == item[m]){
-							flag = true;
-						}
-					}
-				}
-				if(flag == false){
-					var card = cc.instantiate(GlobalData.assets["pj_card"]);
-					var card_com = card.getComponent("pj_card");
-					card_com.initCardSprite(i);
-					card_com.sprite.runAction(cc.show());
-					card_com.sprite_back.node.runAction(cc.hide());
-					this.left_card_layout.addChild(card);
-					this.left_cards.push(card);
-				}
-			}
-			this.cur_turn == 2;
-		}
-		for(var i = 0;i < this.players.length;i++){
-			var player = this.players[i];
-			var player_com = player.getComponent("tdk_player");
-			player_com.remove_cards();
-			var card_type = this.myselfCards[player_com.position_server - 1];
-			cc.log("actionFaPai card_type:" + JSON.stringify(card_type) + " position_server:" + player_com.position_server);
-			var pai_back_size = this.pai_back_sprite.node.getContentSize();
-			
-			for(var j = 0;j < 4;j++){
-				var card = player_com.addPlayerCard();
-				var card_com = card.getComponent("pj_card");
-				if(player_com.position_server == GlobalData.RoomInfos.MySelfPlayerLocation){
-					card_com.installTouch();
-					player_com.set_card_sprite(j,card_type[j]);
-					card_com.sprite_back.node.runAction(cc.hide());
-					card_com.sprite.runAction(cc.show());
-				}
-				player_com.set_card_position(card,this.zhuang_serverPosition,j,pai_back_size);
-			}
-		}
-		/*
-		for(var i = 0;i < GlobalData.RoomInfos.TotalPlayers.length;i++){
-			var player = GlobalData.RoomInfos.TotalPlayers[i];
-			var player_com = player.getComponent("tdk_player");
-			var unselect_cards = new Array();
-			var select_cards = new Array();
-			if(player_com.is_power >= 5 && player_com.position_server != GlobalData.RoomInfos.MySelfPlayerLocation){
-				for(var j = 0;j < 4;j++){
-					var card = player_com.my_cards[j];
-					if(j < 2){
-						select_cards.push(card);
-					}else{
-						unselect_cards.push(card);
-					}
-				}
-				this.set_cards_w(player,select_cards);
-				this.set_cards_h(player,unselect_cards);
-			}
-		}
-		*/
-		this.get_one_button("peipai",true);
-	},
-
-	repairPeipai_function(player){
-		var player_com = player.getComponent("tdk_player");
-		if(player_com.pei_pai_flag == false){
-			var unselect_cards = new Array();
-			var select_cards = new Array();
-			for(var j = 0;j < 4;j++){
-				var card = player_com.my_cards[j];
-				if(j < 2){
-					select_cards.push(card);
-				}else{
-					unselect_cards.push(card);
-				}
-			}
-			player_com.set_card_head(unselect_cards,this.zhuang_serverPosition);
-			player_com.set_card_tail(select_cards,this.zhuang_serverPosition);
-			player_com.pei_pai_flag = true;
-		}
-		if(player_com.position_server == GlobalData.RoomInfos.MySelfPlayerLocation){
-			this.peipai_button.active = false;
-			this.peipai_button.getComponent("cc.Button").interactable = false;
-		}
-	},
-
-	repairOpenpai_function(scores){
-		//说明是一锅中的第二把需要把上一把的牌显示出来
-		for(var i = 0;i < this.players.length;i++){
-			var player = this.players[i];
-			var player_com = player.getComponent("tdk_player");
-			var card_type = this.myselfCards[player_com.position_server - 1];
-			for(var j = 0;j < 4;j++){
-				player_com.set_card_sprite(j,card_type[j]);
-				var card = player_com.my_cards[j];
-				var card_com = card.getComponent("pj_card");
-				card_com.sprite_back.node.runAction(cc.hide());
-				card_com.sprite.runAction(cc.show());
-			}
-		}
-		this.sumBet = this.sumBet + scores[this.zhuang_serverPosition - 1];
-		for(var i = 0;i < GlobalData.RoomInfos.TotalPlayers.length;i++){
-			var player = GlobalData.RoomInfos.TotalPlayers[i];
-			var player_com = player.getComponent("tdk_player");
-			if(player_com.position_server != this.zhuang_serverPosition){
-				if(player_com.my_gold > scores[player_com.position_server - 1]){
-					player_com.setGameStatus("loser");
-					this.actionWinnerGetBet(player_com.position_server,this.zhuang_serverPosition,true);
-				}else if(player_com.my_gold < scores[player_com.position_server - 1]){
-					player_com.setGameStatus("winner");
-					this.actionWinnerGetBet(this.zhuang_serverPosition,player_com.position_server,true);
-				}else{
-					player_com.setGameStatus("equal");
-					this.actionWinnerGetBet(0,0,false);
-				}
-			}
-			player_com.resetMoneyLabel(scores[player_com.position_server - 1]);
-		}
-	},
-
-	repairQieguo_function(scores){
-		var is_qie = false;
-		if(GlobalData.RunTimeParams.RoomData["qieguo_flag"] == 1){
-			is_qie = true;
-		}
-		this.onQieguo_function({"scores":scores,"flag":is_qie});
 	},
 
 	pomelo_on(){
@@ -892,6 +658,7 @@ cc.Class({
 					//如果是自己则执行更新游戏记录操作
 					if(player_item.location == GlobalData.RoomInfos.MySelfPlayerLocation){
 						var param = {
+							process:'update_game',
 							player_id:GlobalData.MyUserInfo["id"],
 							renshu:GlobalData.RunTimeParams.RoomData["real_num"],
 							game_status:item[3] - item[2],
@@ -900,9 +667,7 @@ cc.Class({
 							room_num:GlobalData.RunTimeParams.RoomData["room_num"],
 							use_fangka:1
 						};
-						Servers.gameInfoProcess("update_game",param,function(res){
-							
-						})
+						Servers.request('gameInfoRouter',param,function(res){});
 					}
 					results.push(item);
 				}
@@ -1041,6 +806,7 @@ cc.Class({
 			}
 		}
 	},
+	
 	onQuit_function(data){
 		cc.log("onQuit_function:"+JSON.stringify(data));
 		GlobalData.RoomInfos.MsgUuid = data.uuid;
@@ -1079,7 +845,7 @@ cc.Class({
 		}
 	},
 	actionSendGift(type,send_from,send_to){
-		pomelo.request(util.getGameRoute(),{
+		Servers.request('gameRouter',{
             process : 'send_gift',
 			game_type:GlobalData.RunTimeParams.RoomData.game_type,
 			"send_from":send_from,

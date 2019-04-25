@@ -43,11 +43,13 @@ cc.Class({
 		}else{
 			GlobalData.assets["headimg"] = self.touxiang_sprite.spriteFrame;
 		}
-		Servers.userInfoProcess("get_player",{player_id:GlobalData.MyUserInfo["id"]},function(data){
-			if(data.code == 200){
-				for(var key in data.msg) {
-					GlobalData.MyUserInfo[key] = data.msg[key];
-				}
+		var param = {
+			process:'get_player',
+			player_id:GlobalData.MyUserInfo["id"]
+		};
+		Servers.request('userInfoRouter',param,function(data){
+			for(var key in data.msg) {
+				GlobalData.MyUserInfo[key] = data.msg[key];
 			}
 		});
     },

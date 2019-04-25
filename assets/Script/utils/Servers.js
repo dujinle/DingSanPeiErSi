@@ -3,90 +3,58 @@ var gateHost       = "www.enjoymygame.com";
 var loginHost      = "www.enjoymygame.com";
 
 var gatePort       = "3014";
-var gateRouter     = "gate.gateHandler.queryEntry";
-var entryRouter    = "connector.entryHandler.entry";
-
 var loginPort      = "8210";
-var loginRouter    = "login.loginHandler.login"; //用户登录
 
-var gonghuiRouter = "user.gonghuiHandler.gonghuiProcess";
-var storeRouter = "user.storeHandler.storeProcess";
-var gameInfoRouter = "user.gameInfoHandler.gameInfoProcess";
-var gongGaoRouter = "broadcast.gonggaoHandler.gongGaoProcess";
-var userInfoRouter = "user.userHandler.userInfoProcess";
-
-var gameRouter = "game.gameHandler.gameProcess";
-
-var userRoomRouter = "user.roomHandler.getRoomInfo";
-
-var storeBuyRouter = 'user.storeHandler.buy';
-
-var feedbackRouter = 'user.userHandler.feedback';
-
-
+var routerMap = {
+	gateRouter		:	"gate.gateHandler.queryEntry",
+	entryRouter		:	"connector.entryHandler.entry",
+	createRoomRouter:	"connector.entryHandler.create",
+	enterRoomRouter	:	"connector.entryHandler.enter",
+	startGameRouter	:	"connector.entryHandler.start_game",
+	leaveRoomRouter	:	"connector.entryHandler.leave_room",
+	roomInfoRouter	:	"connector.entryHandler.get_room_info",
+	repairEnterRoom	:	"connector.entryHandler.repair_enter_room",
+	loginRouter		:	"login.loginHandler.login",
+	gonghuiRouter	:	"user.gonghuiHandler.gonghuiProcess",
+	//storeRouter		:	"user.storeHandler.storeProcess",
+	gameInfoRouter	:	"user.gameInfoHandler.gameInfoProcess",
+	gongGaoRouter	:	"broadcast.gonggaoHandler.gongGaoProcess",
+	userInfoRouter	:	"user.userHandler.userInfoProcess",
+	gameRouter		:	"game.gameHandler.game_process",
+	//userRoomRouter	:	"user.roomHandler.getRoomInfo",
+	//storeBuyRouter	: 	'user.storeHandler.buy',
+	//feedbackRouter	:	'user.userHandler.feedback'
+};
 
 var Servers = Servers || {};
 
-/***
- * 获取其他用户信息
- * @param playerId
- * @param cb
- */
-Servers.getPlayerInfo = function(playerId,cb){
-    pomelo.request(getPlayerInfo,{playerId:playerId},function(data){
-        cb(data);
-    });
-};
-/**
- *  用户from送礼给用户to
- * @param from
- * @param to
- * @param gift 礼物类型 1=gitf01 2=gitf02 3=gitf03 4=gitf04 5=gitf05
- * @param number 礼物数量
- * @param cb
- */
-Servers.presents = function(from,to,gift,number,cb){
-    pomelo.request(userPresents,{from:from,to:to,number:number},function(data){
-        cb(data);
-    });
-};
-
-Servers.storeProcess = function(process,param,cb){
-    pomelo.request(storeRouter,{process:process,data:param},function(data){
-        cb(data);
-    });
-};
-
-Servers.gonghuiProcess = function(process,param,cb){
-    pomelo.request(gonghuiRouter,{process:process,data:param},function(data){
-        cb(data);
-    });
-};
-
-Servers.gameInfoProcess = function(process,param,cb){
-    pomelo.request(gameInfoRouter,{process:process,data:param},function(data){
-        cb(data);
-    });
-};
-
-Servers.gongGaoProcess = function(process,param,cb){
-    pomelo.request(gongGaoRouter,{process:process,data:param},function(data){
-        cb(data);
-    });
-};
-
-Servers.userInfoProcess = function(process,param,cb){
-	pomelo.request(userInfoRouter,{process:process,data:param},function(data){
-        cb(data);
-    });
-};
+Servers.request = function(router,param,cb){
+	var routerHandle = routerMap[router];
+	if(routerHandle == null){
+		console.log(router,routerHandle,'没有找到请求路由');
+		util.show_error_info('没有找到请求路由');
+		//cb({code:400,msg:'没有找到请求路由'});
+	}else{
+		pomelo.request(routerHandle,param,function(data){
+			var msg = '未知错误!';
+			if(data.code == null || data.code != 200){
+				if(data.msg != null && data.msg.length > 0){
+					msg = data.msg;
+				}
+				util.show_error_info(msg);
+			}else{
+				cb(data);
+			}
+		});
+	}
+}
 
 Servers.getLogin = function(playerId,nickName,gender,img_url, cb) {
     pomelo.init({
         host: loginHost,
         port: loginPort
     }, function () {
-        pomelo.request(loginRouter, {player_id:playerId, nick_name: nickName,sex:gender,head_img:img_url}, function (data) {
+        pomelo.request(routerMap.loginRouter, {player_id:playerId, nick_name: nickName,sex:gender,head_img:img_url}, function (data) {
             cb(data);
         });
     });
@@ -105,7 +73,7 @@ Servers.getEntry = function(token,cb) {
         log:true
     }, function () {
         console.log("init gate server ok");
-        pomelo.request(gateRouter,{},function(data){
+        pomelo.request(routerMap.gateRouter,{},function(data){
             //pomelo.disconnect();
             console.log("gate info:" + JSON.stringify(data));
             var host = data.host;
@@ -115,26 +83,10 @@ Servers.getEntry = function(token,cb) {
                 port:port,
                 log:true
             },function(){
-                pomelo.request(entryRouter,{token:token},function(data){
+                pomelo.request(routerMap.entryRouter,{token:token},function(data){
                     cb(data);
                 });
             });
-        });
-    });
-};
-
-/**
- * 请求路由服务器
- */
-Servers.getGateEntry = function(cb){ pomelo.init({
-        host:gateHost,
-        port:gatePort,
-        log:true
-    }, function () {
-        console.log("init getGateEntry ok");
-        pomelo.request(gateRouter,function(data){
-            console.log(JSON.stringify(data));
-            cb(data);
         });
     });
 };
@@ -147,7 +99,7 @@ Servers.getGateEntry = function(cb){ pomelo.init({
  * @param cb code = 200
  */
 Servers.feedback = function(playerId,title,content,cb){
-    pomelo.request(feedbackRouter,{playerId:playerId,title:title,content:content},function(data){
+    pomelo.request(routerMap.feedbackRouter,{playerId:playerId,title:title,content:content},function(data){
         cb(data);
     });
 };

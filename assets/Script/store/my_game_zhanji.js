@@ -78,7 +78,7 @@ cc.Class({
                 // 如果往下滚动时item已经超出缓冲矩形，且newY未超出content上边界，
                 // 则更新item的坐标（即上移了一个offset的位置），同时更新item的显示内容
                 if (viewPos.y < -this.bufferZone && newY < 0) {
-                    items[i].setPositionY(newY);
+                    items[i].y = newY;
 					let item = items[i].getComponent('game_history_item');
                     let itemId = item.itemID - items.length; // update item id
                     item.init(itemId,this.data_list[itemId],this.pthis);
@@ -90,7 +90,7 @@ cc.Class({
                 // 如果往上滚动时item已经超出缓冲矩形，且newY未超出content下边界，
                 // 则更新item的坐标（即下移了一个offset的位置），同时更新item的显示内容
                 if (viewPos.y > this.bufferZone && newY > -this.content.height) {
-                    items[i].setPositionY(newY);
+                    items[i].y = newY;
                     let item = items[i].getComponent('game_history_item');
                     let itemId = item.itemID + items.length;
 					item.init(itemId,this.data_list[itemId],this.pthis);
@@ -112,12 +112,12 @@ cc.Class({
 		this.lose_node.getComponent("cc.Label").string = data["lose_num"];
 		this.equal_node.getComponent("cc.Label").string = parseInt(data["round_num"]) - parseInt(data["win_num"]) - parseInt(data["lose_num"]);
 		var param = {
+			process:"getGameHistoryList",
 			"player_id":data["id"],
 			"index":0,
 			"length":this.totalCount
 		};
-		Servers.gameInfoProcess("getGameHistoryList",param,function(data){
-            cc.log(data);
+		Servers.request('gameInfoRouter',param,function(data){
 			if(data.code == 200){
 				self.data_list = data.msg;
 				self.totalCount = self.data_list.length;

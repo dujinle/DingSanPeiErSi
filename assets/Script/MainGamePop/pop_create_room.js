@@ -52,36 +52,29 @@ cc.Class({
 	create_game(){
 		var self = this;
 		this.button_node.getComponent("cc.Button").interactable = false;
-		var param = {
-			renshu:this.renshu,
-			room_type:this.game_type,
-			player_id:GlobalData.MyUserInfo.id,
-			max_type:this.max_type
-		};
+		
 		if(GlobalData.MyUserInfo.gonghui_id == null){
 			util.show_error_info("您不是公会会长，无法进行房间的创建！");
 		}else{
-			Servers.gonghuiProcess('getGonghuiGongHuiId',{gonghui_id:GlobalData.MyUserInfo.gonghui_id},function(res){
-				if(res.code == 200){
-					var gonghuiInfo = res.msg;
-					if(gonghuiInfo.player_id != GlobalData.MyUserInfo.id){
-						util.show_error_info("您不是公会会长，无法进行房间的创建！");
-					}else{
-						pomelo.request(util.getCreateRoomRoute(), param, function(data) {
-							cc.log(JSON.stringify(data));
-							if(data.code != 200){
-								util.show_error_info(data.msg);
-							}else{
-								util.show_error_info("创建房间成功!");
-								GlobalData.MyUserInfo.fangka_num = GlobalData.MyUserInfo.fangka_num - 1;
-								self.close_scene();
-								return ;
-							}
-						});
-					}
-				}else{
-					util.show_error_info("您不是公会会长，无法进行房间的创建！");
-				}
+			var p = {
+				process:'checkGongHuiZhang',
+				player_id:GlobalData.MyUserInfo.id,
+				gonghui_id:GlobalData.MyUserInfo.gonghui_id
+			};
+			Servers.request('gonghuiRouter',p,function(res){
+				var param = {
+					process:null,
+					renshu:self.renshu,
+					room_type:self.game_type,
+					player_id:GlobalData.MyUserInfo.id,
+					max_type:self.max_type
+				};
+				Servers.request('createRoomRouter', param, function(data) {
+					cc.log(JSON.stringify(data));
+					util.show_error_info(data.msg);
+					GlobalData.MyUserInfo.fangka_num = GlobalData.MyUserInfo.fangka_num - 1;
+					self.close_scene();
+				});
 			});
 		}
 	},

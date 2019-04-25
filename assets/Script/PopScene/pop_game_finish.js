@@ -49,6 +49,7 @@ cc.Class({
 	callback_tuichu(){
 		var self = this;
 		var param = {
+			process:null,
 			rid:GlobalData.RunTimeParams.RoomData["rid"],
 			player_id:GlobalData.MyUserInfo["id"],
 			location:null
@@ -58,7 +59,7 @@ cc.Class({
 			this.node.destroy();
 			this.cb();
 		}else{
-			pomelo.request(util.getLeaveRoomRoute(), param, function(data) {
+			Servers.request('leaveRoomRouter', param, function(data) {
 				cc.log(JSON.stringify(data));
 				self.cb();
 				cc.director.loadScene("MainScene");
