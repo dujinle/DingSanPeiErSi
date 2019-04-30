@@ -37,7 +37,9 @@ Servers.request = function(router,param,cb){
 	}else{
 		pomelo.request(routerHandle,param,function(data){
 			var msg = '未知错误!';
-			if(data.code == null || data.code != 200){
+			if(data.code && data.code == 120){
+				console.log(data.msg);
+			}else if(data.code == null || data.code != 200){
 				if(data.msg != null && data.msg.length > 0){
 					msg = data.msg;
 				}

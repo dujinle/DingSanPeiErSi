@@ -41,8 +41,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.7078125,
-      "y": 0.7078125,
+      "x": 0.6640625,
+      "y": 0.6640625,
       "z": 1
     },
     "_quat": {
@@ -552,7 +552,7 @@
     "target": {
       "__id__": 2
     },
-    "component": "pj_game_room",
+    "component": "LZRoomScene",
     "handler": "callback_gameback",
     "customEventData": ""
   },
@@ -5565,6 +5565,7 @@
     "my_gold": 0,
     "my_chip1": 0,
     "my_chip2": 0,
+    "pei_pai_flag": false,
     "position_server": 0,
     "player_position": 0,
     "is_power": 0,
@@ -7125,6 +7126,7 @@
     "my_gold": 0,
     "my_chip1": 0,
     "my_chip2": 0,
+    "pei_pai_flag": false,
     "position_server": 0,
     "player_position": 0,
     "is_power": 0,
@@ -8631,6 +8633,7 @@
     "my_gold": 0,
     "my_chip1": 0,
     "my_chip2": 0,
+    "pei_pai_flag": false,
     "position_server": 0,
     "player_position": 0,
     "is_power": 0,
@@ -10191,6 +10194,7 @@
     "my_gold": 0,
     "my_chip1": 0,
     "my_chip2": 0,
+    "pei_pai_flag": false,
     "position_server": 0,
     "player_position": 0,
     "is_power": 0,
@@ -10721,6 +10725,9 @@
     "pai_back_sprite": {
       "__id__": 75
     },
+    "suiji_qiangzhuang": {
+      "__id__": 79
+    },
     "master_label": {
       "__id__": 18
     },
@@ -10738,9 +10745,6 @@
     },
     "left_card_layout": {
       "__id__": 76
-    },
-    "suiji_qiangzhuang": {
-      "__id__": 79
     },
     "button_layout": {
       "__id__": 51

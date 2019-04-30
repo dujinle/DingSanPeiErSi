@@ -41,7 +41,7 @@ cc.Class({
 			this.tips.active = true;
 			this.tips.getComponent(cc.Label).string = '您还没有加入任何公会，无法进行游戏，请加入公会！';
 		}
-		
+		GlobalData.RunTimeParams.RoomData = null;
 		cc.log("created_room_scene","start gointo created room scene......");
 	},
 	freshRoomView(){
@@ -222,24 +222,89 @@ cc.Class({
 	onEnterRoom_function(data){
 		var self = this;
 		cc.log("pomelo on onEnterRoom_function:" + data.location+" is ready" + this.choice_sprite.length);
-		var enter_location = data.location;
-		this.enter_player = data.player;
-		var enter_item = this.choice_sprite[enter_location - 1];
-		var item_com = enter_item.getComponent("player_select");
-		item_com.set_data(this.enter_player);
-		item_com.set_flag(true);
-		if(this.enter_player.head_img_url != null && this.enter_player.head_img_url.length > 0){
-			cc.loader.load({url:this.enter_player.head_img_url,type:'png'},function (err, texture) {
-				var frame = new cc.SpriteFrame(texture);
-				enter_item.getComponent("cc.Sprite").spriteFrame = frame;
+		var last_enter_player_id = data.player[data.location - 1];
+		var param = {
+			process:'get_player'
+		};
+		if(data.player[0] != null){
+			param['player_id'] = data.player[0];
+			Servers.request('userInfoRouter',param,function(data){
+				let enter_player = data.msg;
+				let enter_item = self.choice_sprite[0];
+				let item_com = enter_item.getComponent("player_select");
+				item_com.set_data(enter_player);
+				item_com.set_flag(true);
+				if(enter_player.head_img_url != null && enter_player.head_img_url.length > 0){
+					cc.loader.load({url:enter_player.head_img_url,type:'png'},function (err, texture) {
+						var frame = new cc.SpriteFrame(texture);
+						enter_item.getComponent("cc.Sprite").spriteFrame = frame;
+					});
+				}else{
+					enter_item.getComponent("cc.Sprite").spriteFrame = GlobalData.assets["headimg"];
+				}
 			});
-		}else{
-			enter_item.getComponent("cc.Sprite").spriteFrame = GlobalData.assets["headimg"];
 		}
-		GlobalData.RunTimeParams.RoomData['real_num'] += 1;
+		
+		if(data.player[1] != null){
+			param['player_id'] = data.player[1];
+			Servers.request('userInfoRouter',param,function(data){
+				let enter_player = data.msg;
+				let enter_item = self.choice_sprite[1];
+				let item_com = enter_item.getComponent("player_select");
+				item_com.set_data(enter_player);
+				item_com.set_flag(true);
+				if(enter_player.head_img_url != null && enter_player.head_img_url.length > 0){
+					cc.loader.load({url:enter_player.head_img_url,type:'png'},function (err, texture) {
+						var frame = new cc.SpriteFrame(texture);
+						enter_item.getComponent("cc.Sprite").spriteFrame = frame;
+					});
+				}else{
+					enter_item.getComponent("cc.Sprite").spriteFrame = GlobalData.assets["headimg"];
+				}
+			});
+		}
+		
+		if(data.player[2] != null){
+			param['player_id'] = data.player[2];
+			Servers.request('userInfoRouter',param,function(data){
+				let enter_player = data.msg;
+				let enter_item = self.choice_sprite[2];
+				let item_com = enter_item.getComponent("player_select");
+				item_com.set_data(enter_player);
+				item_com.set_flag(true);
+				if(enter_player.head_img_url != null && enter_player.head_img_url.length > 0){
+					cc.loader.load({url:enter_player.head_img_url,type:'png'},function (err, texture) {
+						var frame = new cc.SpriteFrame(texture);
+						enter_item.getComponent("cc.Sprite").spriteFrame = frame;
+					});
+				}else{
+					enter_item.getComponent("cc.Sprite").spriteFrame = GlobalData.assets["headimg"];
+				}
+			});
+		}
+		
+		if(data.player[3] != null){
+			param['player_id'] = data.player[3];
+			Servers.request('userInfoRouter',param,function(data){
+				let enter_player = data.msg;
+				let enter_item = self.choice_sprite[3];
+				let item_com = enter_item.getComponent("player_select");
+				item_com.set_data(enter_player);
+				item_com.set_flag(true);
+				if(enter_player.head_img_url != null && enter_player.head_img_url.length > 0){
+					cc.loader.load({url:enter_player.head_img_url,type:'png'},function (err, texture) {
+						var frame = new cc.SpriteFrame(texture);
+						enter_item.getComponent("cc.Sprite").spriteFrame = frame;
+					});
+				}else{
+					enter_item.getComponent("cc.Sprite").spriteFrame = GlobalData.assets["headimg"];
+				}
+			});
+		}
+		
+		GlobalData.RunTimeParams.RoomData['real_num'] = data.real_num;
 		//判断是否是自己，如果是自己则取消点击事件。
-		if(self.enter_player.id == GlobalData.MyUserInfo["id"]){
-			GlobalData.MyUserInfo["fangka_num"] = self.enter_player.fangka_num;
+		if(last_enter_player_id == GlobalData.MyUserInfo["id"]){
 			for(let i = 0; i < self.choice_sprite.length; i++){
 				var item = self.choice_sprite[i].getComponent("player_select");
 				item.set_flag(true);
@@ -257,7 +322,7 @@ cc.Class({
 				popDelayScene.removeFromParent();
 				popDelayScene.destroy();
 				//最后一个进来的 开始游戏
-				if(self.enter_player.id == GlobalData.MyUserInfo["id"]){
+				if(last_enter_player_id == GlobalData.MyUserInfo["id"]){
 					self.start_game();
 				}
 			});
@@ -268,10 +333,9 @@ cc.Class({
 		var location = data.location;
 		var room_info = data.data;
 		var player_id = data.player_id;
+		GlobalData.RunTimeParams.RoomData['real_num'] = data.real_num;
 		if(player_id == GlobalData.MyUserInfo.id){
 			this.enterFlag = false;
-		}else{
-			GlobalData.RunTimeParams.RoomData['real_num'] -= 1;
 		}
 		
 		if(location != -1){
@@ -375,17 +439,18 @@ cc.Class({
 						location:index,
 						player_id:GlobalData.MyUserInfo["id"]
 					};
-					pomelo.request(Servers.routerMap['enterRoomRouter'], param, function(data) {
+					pomelo.request(routerMap['enterRoomRouter'], param, function(data) {
 						cc.log(JSON.stringify(data));
 						if(data.code == 200){
 							self.enterFlag = true;
 						}else if(data.code == 500){
 							util.show_error_info(data.msg);
+							self.scrollFunc({'target':self.lastRoomItem,'type':false});
 						}else{
 							item.set_flag(false);
 							util.show_error_info(data.msg);
+							self.scrollFunc({'target':self.lastRoomItem,'type':false});
 						}
-						self.scrollFunc({'target':self.lastRoomItem,'type':false});
 					});
 				}
 				break;

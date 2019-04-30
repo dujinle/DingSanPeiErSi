@@ -358,6 +358,7 @@ cc.Class({
 	},
 
 	callback_gameback(){
+		return;
 		this.onExit();
         cc.director.loadScene("MainScene");
 	},
