@@ -72,7 +72,7 @@ cc.Class({
 				Servers.request('createRoomRouter', param, function(data) {
 					cc.log(JSON.stringify(data));
 					util.show_error_info(data.msg);
-					GlobalData.MyUserInfo.fangka_num = GlobalData.MyUserInfo.fangka_num - 1;
+					GlobalData.MyUserInfo.fangka_num = data.fangka_num;
 					self.close_scene();
 				});
 			});

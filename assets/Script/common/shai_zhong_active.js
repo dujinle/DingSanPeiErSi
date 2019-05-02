@@ -31,7 +31,11 @@ cc.Class({
 		this.animStatus.wrapMode = cc.WrapMode.Loop;
 		// 设置动画循环次数为2次
 		this.animStatus.repeatCount = 3;
-		
+		this.audio = this.node.getComponent(cc.AudioSource);
+		if(this.audio != null && GlobalData.AudioParams.MUSIC_KEY == 1){
+			this.audio.loop = false;
+			this.audioStatus = this.audio.play();
+		}
 	},
 	onFinished(){
 		var self = this;

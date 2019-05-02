@@ -28,10 +28,13 @@
     "_components": [
       {
         "__id__": 16
+      },
+      {
+        "__id__": 17
       }
     ],
     "_prefab": {
-      "__id__": 17
+      "__id__": 18
     },
     "_opacity": 255,
     "_color": {
@@ -567,6 +570,24 @@
     "callback": null,
     "anim": null,
     "animStatus": null,
+    "_id": ""
+  },
+  {
+    "__type__": "cc.AudioSource",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "_clip": {
+      "__uuid__": "aa4ba403-53bc-4cf0-b564-7438d404b2e3"
+    },
+    "_volume": 1,
+    "_mute": false,
+    "_loop": false,
+    "playOnLoad": false,
+    "preload": false,
     "_id": ""
   },
   {

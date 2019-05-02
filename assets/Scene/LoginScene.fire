@@ -44,8 +44,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.6640625,
-      "y": 0.6640625,
+      "x": 0.45625,
+      "y": 0.45625,
       "z": 1
     },
     "_quat": {
@@ -2457,13 +2457,16 @@
     "_children": [
       {
         "__id__": 60
+      },
+      {
+        "__id__": 62
       }
     ],
     "_active": true,
     "_level": 0,
     "_components": [
       {
-        "__id__": 62
+        "__id__": 64
       }
     ],
     "_prefab": null,
@@ -2592,6 +2595,85 @@
     "_id": "achshViQlKMLudAK3xvc+y"
   },
   {
+    "__type__": "cc.Node",
+    "_name": "audioClip",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 59
+    },
+    "_children": [],
+    "_active": true,
+    "_level": 1,
+    "_components": [
+      {
+        "__id__": 63
+      }
+    ],
+    "_prefab": null,
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 0,
+      "height": 0
+    },
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_position": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_scale": {
+      "__type__": "cc.Vec3",
+      "x": 1,
+      "y": 1,
+      "z": 1
+    },
+    "_rotationX": 0,
+    "_rotationY": 0,
+    "_quat": {
+      "__type__": "cc.Quat",
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "w": 1
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_zIndex": 0,
+    "groupIndex": 0,
+    "_id": "dbQ5RKaPxK55QMjO2oOC6b"
+  },
+  {
+    "__type__": "cc.AudioSource",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 62
+    },
+    "_enabled": true,
+    "_clip": {
+      "__uuid__": "79acc7d0-daac-4f60-84eb-6952009a8f98"
+    },
+    "_volume": 1,
+    "_mute": false,
+    "_loop": false,
+    "playOnLoad": false,
+    "preload": false,
+    "_id": "37Ya+dkolNbZoxCg6EH9M0"
+  },
+  {
     "__type__": "9fcd7Jev9JMiqFmrBsVBLAf",
     "_name": "",
     "_objFlags": 0,
@@ -2603,6 +2685,9 @@
     "audioSources": [
       {
         "__id__": 61
+      },
+      {
+        "__id__": 63
       }
     ],
     "mainAudio": {

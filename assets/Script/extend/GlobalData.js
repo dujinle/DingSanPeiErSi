@@ -2,6 +2,7 @@ var GlobalData = {
 	//音乐信息
 	AudioIdx:{
 		ClickButton:0,
+		JinBiMove:1,
 		MainAudioBg:1,
 		GameAudioBg:2
 	},
