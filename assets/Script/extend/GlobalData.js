@@ -3,6 +3,7 @@ var GlobalData = {
 	AudioIdx:{
 		ClickButton:0,
 		JinBiMove:1,
+		GameFaPai:2,
 		MainAudioBg:1,
 		GameAudioBg:2
 	},

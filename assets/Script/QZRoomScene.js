@@ -868,6 +868,9 @@ cc.Class({
 			cc.log("actionFaPai card_type:" + JSON.stringify(card_type) + " position_server:" + player_com.position_server + " local:" + local);
 			if(player_com.position_server == local){
 				var pai_back_size = this.pai_back_sprite.node.getContentSize();
+				if(GlobalData.RunTimeParams.RootNode != null){
+					GlobalData.RunTimeParams.RootNode.getComponent('root_node').play(GlobalData.AudioIdx.GameFaPai);
+				}
 				for(var j = 0;j < 4;j++){
 					var card = player_com.addPlayerCard();
 					var card_com = card.getComponent("pj_card");
@@ -962,12 +965,12 @@ cc.Class({
 			chip.setPosition(player_from.getPosition());
 			var moveBet = cc.moveTo(0.5,player_end.getPosition());
 			chip.runAction(cc.sequence(moveBet,cc.hide()));
+			if(GlobalData.RunTimeParams.RootNode != null){
+				GlobalData.RunTimeParams.RootNode.getComponent('root_node').play(GlobalData.AudioIdx.JinBiMove);
+			}
 		}
 		var callback = cc.callFunc(this.ready_next_turn,this);
 		this.node.runAction(cc.sequence(cc.delayTime(1),callback));
-		if(GlobalData.RunTimeParams.RootNode != null){
-			GlobalData.RunTimeParams.RootNode.getComponent('root_node').play(GlobalData.AudioIdx.JinBiMove);
-		}
     },
 
 	ready_next_turn(){
