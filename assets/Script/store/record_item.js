@@ -18,7 +18,8 @@ cc.Class({
 		this.order_id.getComponent("cc.Label").string = data["order_id"];
 		this.fangka_num.getComponent("cc.Label").string = data["fangka_num"];
 		this.money.getComponent("cc.Label").string = data["zongjia"];
-		this.creat_time.getComponent("cc.Label").string = data["creat_time"];
+		var date_str = util.dateftt(data["creat_time"],"yyyy-MM-dd h:m:s");
+		this.creat_time.getComponent("cc.Label").string = date_str;
 		if(data["status"] == 1){
 			this.sbutton.getComponent("cc.Button").interactable = false;
 			this.sbutton.getChildByName("label").getComponent("cc.Label").string = "完成";

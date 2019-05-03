@@ -20,17 +20,18 @@ cc.Class({
     onLoad () {
     },
 	init_update(){
+		/*
 		this.callback();
 		return;
+		*/
 		if (!cc.sys.isNative) {
 			this.callback();
 			return;
 		}
 		this.storage_path = ((jsb.fileUtils ? jsb.fileUtils.getWritablePath() : '/') + 'blackjack-remote-asset');
-		cc.log('Storage path for remote asset : ' + this.storage_path);
-		
+		console.log('Storage path for remote asset : ' + this.storage_path);
 		this.versionCompareHandle = function (versionA, versionB) {
-			cc.log("JS Custom Version Compare: version A is " + versionA + ', version B is ' + versionB);
+			console.log("JS Custom Version Compare: version A is " + versionA + ', version B is ' + versionB);
 			GlobalData.RunTimeParams.VersionNum = versionA;
 			var vA = versionA.split('.');
 			var vB = versionB.split('.');
@@ -53,11 +54,8 @@ cc.Class({
 		};
 
 		// Init with empty manifest url for testing custom manifest
-		cc.log('Local manifest URL : ' + this.manifest_url.nativeUrl);
+		console.log('Local manifest URL : ' + this.manifest_url.nativeUrl);
 		this._am = new jsb.AssetsManager("", this.storage_path, this.versionCompareHandle);
-		if (!cc.sys.ENABLE_GC_FOR_NATIVE_OBJECTS) {
-			this._am.retain();
-		}
 		// Setup the verification callback, but we don't have md5 check function yet, so only print some message
 		// Return true if the verification passed, otherwise return false
 		this._am.setVerifyCallback(function (path, asset) {
@@ -70,11 +68,11 @@ cc.Class({
 			// The size of asset file, but this value could be absent.
 			var size = asset.size;
 			if (compressed) {
-				cc.log("Verification passed : " + relativePath);
+				console.log("Verification passed : " + relativePath);
 				return true;
 			}
 			else {
-				cc.log("Verification passed : " + relativePath + ' (' + expectedMD5 + ')');
+				console.log("Verification passed : " + relativePath + ' (' + expectedMD5 + ')');
 				return true;
 			}
 		});
@@ -83,12 +81,12 @@ cc.Class({
 			// Some Android device may slow down the download process when concurrent tasks is too much.
 			// The value may not be accurate, please do more test and find what's most suitable for your game.
 			this._am.setMaxConcurrentTask(2);
-			cc.log("Max concurrent tasks count have been limited to 2");
+			console.log("Max concurrent tasks count have been limited to 2");
 		}
 		this.checkUpdate();
 	},
 	checkCb: function (event) {
-		cc.log('Code: ' + event.getEventCode());
+		console.log('Code: ' + event.getEventCode());
 		switch (event.getEventCode()){
 			case jsb.EventAssetsManager.ERROR_NO_LOCAL_MANIFEST:
 				this.precent.string = "跳过更新......";
@@ -118,24 +116,32 @@ cc.Class({
     },
 	checkUpdate(){
 		if (this._am.getState() === jsb.AssetsManager.State.UNINITED) {
-			this._am.loadLocalManifest(this.manifest_url.nativeUrl);
-		}
-		if (!this._am.getLocalManifest() || !this._am.getLocalManifest().isLoaded()) {
+            // Resolve md5 url
+            var url = this.manifest_url.nativeUrl;
+            if (cc.loader.md5Pipe) {
+                url = cc.loader.md5Pipe.transformURL(url);
+            }
+            this._am.loadLocalManifest(url);
+        }
+        if (!this._am.getLocalManifest() || !this._am.getLocalManifest().isLoaded()) {
 			this.callback();
-			return;
-		}
-		this._checkListener = new jsb.EventListenerAssetsManager(this._am, this.checkCb.bind(this));
-		cc.eventManager.addListener(this._checkListener, 1);
+            return;
+        }
+        this._am.setEventCallback(this.checkCb.bind(this));
 
-		this._am.checkUpdate();
+        this._am.checkUpdate();
     },
 	hotUpdate() {
         if (this._am) {
-            this._updateListener = new jsb.EventListenerAssetsManager(this._am, this.updateCb.bind(this));
-            cc.eventManager.addListener(this._updateListener, 1);
+			this._am.setEventCallback(this.updateCb.bind(this));
 
             if (this._am.getState() === jsb.AssetsManager.State.UNINITED) {
-                this._am.loadLocalManifest(this.manifest_url.nativeUrl);
+                // Resolve md5 url
+                var url = this.manifestUrl.nativeUrl;
+                if (cc.loader.md5Pipe) {
+                    url = cc.loader.md5Pipe.transformURL(url);
+                }
+                this._am.loadLocalManifest(url);
             }
 
             this._failCount = 0;
@@ -192,12 +198,13 @@ cc.Class({
         }
 
         if (failed) {
-            cc.eventManager.removeListener(this._updateListener);
+            this._am.setEventCallback(null);
+            this._updateListener = null;
 			this.callback();
         }
         if (needRestart) {
 			this.precent.string = "准备重新启动......";
-            cc.eventManager.removeListener(this._updateListener);
+            this._am.setEventCallback(null);
             this._updateListener = null;
             // Prepend the manifest's search path
             var searchPaths = jsb.fileUtils.getSearchPaths();
@@ -218,11 +225,8 @@ cc.Class({
     },
 	onDestroy: function () {
         if (this._updateListener) {
-            cc.eventManager.removeListener(this._updateListener);
+            this._am.setEventCallback(null);
             this._updateListener = null;
-        }
-        if (this._am && !cc.sys.ENABLE_GC_FOR_NATIVE_OBJECTS) {
-            this._am.release();
         }
     }
 });

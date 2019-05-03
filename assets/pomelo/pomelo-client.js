@@ -98,7 +98,7 @@
 	if(cc && cc.sys.os == cc.sys.OS_WINDOWS){
 		socket = new WebSocket(url);
 	}else{
-		socket = new WebSocket(url,Protocol,cc.url.raw("resources/cacert.crt"));
+		socket = new WebSocket(url,Protocol,cc.url.raw("6e/6ef29233-8166-4f8e-a52f-404c6844c304.787cb.crt"));
 	}
     socket.binaryType = 'arraybuffer';
     socket.onopen = onopen;

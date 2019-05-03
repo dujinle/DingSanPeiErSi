@@ -1,6 +1,7 @@
 # hello-world
 Hello world new project template.
-
+node ./version_generator.js -v 1.0.0 -u https://www.enjoymygame.com/pjhotupdate -s
+ build/jsb-link/ -d assets/
 构建原生应用
 android端 修改如下：
 

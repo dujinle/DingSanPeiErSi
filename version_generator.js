@@ -3,9 +3,9 @@ var path = require('path');
 var crypto = require('crypto');
 
 var manifest = {
-    packageUrl: 'http://193.112.243.189:8080/remote-assets/',
-    remoteManifestUrl: 'http://193.112.243.189:8080/remote-assets/project.manifest',
-    remoteVersionUrl: 'http://193.112.243.189:8080/remote-assets/version.manifest',
+    packageUrl: 'http://localhost/tutorial-hot-update/remote-assets/',
+    remoteManifestUrl: 'http://localhost/tutorial-hot-update/remote-assets/project.manifest',
+    remoteVersionUrl: 'http://localhost/tutorial-hot-update/remote-assets/version.manifest',
     version: '1.0.0',
     assets: {},
     searchPaths: []
@@ -43,10 +43,6 @@ while ( i < process.argv.length) {
         dest = process.argv[i+1];
         i += 2;
         break;
-	case '--help' :
-    case '-h' :
-		console.log("node version_generator.js -v 0.0.3 -u http://193.112.243.189:8080/ -s build\jsb-link\ -d assets\");
-		break;
     default :
         i++;
         break;
