@@ -622,6 +622,8 @@ cc.Class({
 				}
 			}
 		}
+		var callback = cc.callFunc(this.ready_next_turn,this);
+		this.node.runAction(cc.sequence(cc.delayTime(2),callback));
 	},
 
 	onQieguo_function(data){
@@ -969,8 +971,6 @@ cc.Class({
 				GlobalData.RunTimeParams.RootNode.getComponent('root_node').play(GlobalData.AudioIdx.JinBiMove);
 			}
 		}
-		var callback = cc.callFunc(this.ready_next_turn,this);
-		this.node.runAction(cc.sequence(cc.delayTime(1),callback));
     },
 
 	ready_next_turn(){
