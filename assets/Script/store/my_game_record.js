@@ -105,8 +105,8 @@ cc.Class({
 	init_record_info(data,pthis){
 		var self = this;
 		this.pthis = pthis;
-		this.all_num_node.getComponent("cc.Label").string = data["fangka_history"];
-		this.use_num_node.getComponent("cc.Label").string = parseInt(data["fangka_history"]) + parseInt(data["fangka_num"]);
+		this.all_num_node.getComponent("cc.Label").string = parseInt(data["fangka_history"]) + parseInt(data["fangka_num"]);
+		this.use_num_node.getComponent("cc.Label").string = data["fangka_history"];
 		this.left_num_node.getComponent("cc.Label").string = data["fangka_num"];
 		this.invalid_num_node.getComponent("cc.Label").string = data["invalid_fangka"];
 		var param = {

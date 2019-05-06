@@ -5,6 +5,7 @@ cc.Class({
        order_id:cc.Node,
 	   fangka_num:cc.Node,
 	   money:cc.Node,
+	   gold:cc.Node,
 	   creat_time:cc.Node,
 	   sbutton:cc.Node,
 	   itemID:null,
@@ -18,6 +19,7 @@ cc.Class({
 		this.order_id.getComponent("cc.Label").string = data["order_id"];
 		this.fangka_num.getComponent("cc.Label").string = data["fangka_num"];
 		this.money.getComponent("cc.Label").string = data["zongjia"];
+		this.gold.getComponent("cc.Label").string = data['gold'];
 		var date_str = util.dateftt(data["creat_time"],"yyyy-MM-dd h:m:s");
 		this.creat_time.getComponent("cc.Label").string = date_str;
 		if(data["status"] == 1){
