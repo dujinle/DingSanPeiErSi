@@ -13,7 +13,7 @@ let ThirdAPI = {
 				for(var key in localData){
 					GlobalData[key] = localData[key];
 				}
-				console.log('loadLocalData',GlobalData);
+				console.log('loadLocalData',JSON.stringify(GlobalData));
             }
         } catch (error) {
 			console.log(error);

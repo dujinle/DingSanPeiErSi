@@ -67,10 +67,10 @@ cc.Class({
 		var loadUpdateCom = this.loadUpdate.getComponent("LoadUpdateGame");
 		var loadSourcesCom = this.loadSources.getComponent("LoadSources");
 		loadUpdateCom.init(function(){
-			cc.log("update finish callback");
+			console.log("onload update finish callback");
 			self.loadUpdate.active = false;
 			loadSourcesCom.onStart(function(){
-				cc.log("load sources finish callback");
+				console.log("load sources finish callback");
 				self.loadSources.active = false;
 				self.onInitLogin();
 			});

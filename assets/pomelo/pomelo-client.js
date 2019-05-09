@@ -79,7 +79,6 @@
       send(obj);
     };
     var onmessage = function(event) {
-	  console.log("pomelo onmessage........");
       processPackage(Package.decode(event.data), cb);
       // new package arrived, update the heartbeat timeout
       if(heartbeatTimeout) {
@@ -98,7 +97,13 @@
 	if(cc && cc.sys.os == cc.sys.OS_WINDOWS){
 		socket = new WebSocket(url);
 	}else{
-		socket = new WebSocket(url,Protocol,cc.url.raw("6e/6ef29233-8166-4f8e-a52f-404c6844c304.787cb.crt"));
+		var path = cc.url.raw('resources/cacert.crt');
+		console.log('md5 qian:',path);
+		if (cc.loader.md5Pipe) {
+			path = cc.loader.md5Pipe.transformURL(path);
+			console.log('md5 hou:',path);
+		}
+		socket = new WebSocket(url,Protocol,path);
 	}
     socket.binaryType = 'arraybuffer';
     socket.onopen = onopen;

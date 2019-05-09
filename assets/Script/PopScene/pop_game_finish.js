@@ -36,12 +36,24 @@ cc.Class({
 		var elabel = item.getChildByName("elabel").getComponent("cc.Label");
 		var dlabel = item.getChildByName("dlabel").getComponent("cc.Label");
 		user_label.string = player_com[0];
+		/*修改玩家没有头像的问题*/
+		/*
 		if(player_com[1] != null){
 			cc.loader.load({url:player_com[1],type:'png'},function (err, texture) {
 				var frame = new cc.SpriteFrame(texture);
 				user_sprite.spriteFrame = frame;
 			});
 		}
+		*/
+		if(player_com[1] != null && player_com[1].length > 0){
+			cc.loader.load({url:player_com[1],type:'png'},function (err, texture) {
+				var frame = new cc.SpriteFrame(texture);
+				user_sprite.spriteFrame = frame;
+			});
+		}else{
+			user_sprite.spriteFrame = GlobalData.assets["man"];
+		}
+		
 		slabel.string = player_com[2];
 		elabel.string = player_com[3];
 		dlabel.string = player_com[3] - player_com[2];

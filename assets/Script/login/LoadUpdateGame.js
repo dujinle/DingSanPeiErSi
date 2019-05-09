@@ -90,15 +90,19 @@ cc.Class({
 		switch (event.getEventCode()){
 			case jsb.EventAssetsManager.ERROR_NO_LOCAL_MANIFEST:
 				this.precent.string = "跳过更新......";
+				console.log('checkCb 跳过更新......ERROR_NO_LOCAL_MANIFEST');
 				break;
 			case jsb.EventAssetsManager.ERROR_DOWNLOAD_MANIFEST:
 			case jsb.EventAssetsManager.ERROR_PARSE_MANIFEST:
 				this.precent.string = "跳过更新......";
+				console.log('checkCb 跳过更新......ERROR_PARSE_MANIFEST');
 				break;
 			case jsb.EventAssetsManager.ALREADY_UP_TO_DATE:
 				this.precent.string = "跳过更新......";
+				console.log('checkCb 跳过更新......ALREADY_UP_TO_DATE');
 				break;
 			case jsb.EventAssetsManager.NEW_VERSION_FOUND:
+				console.log('checkCb 开始更新......NEW_VERSION_FOUND');
 				this.precent.string = "开始更新......";
 				this.process_type = 1;
 				this.load_bar.progress = 0;
@@ -106,7 +110,7 @@ cc.Class({
 			default:
 				return;
 		}
-		cc.eventManager.removeListener(this._checkListener);
+		this._am.setEventCallback(null);
 		this._checkListener = null;
 		if(this.process_type == 1){
 			this.hotUpdate();
@@ -128,7 +132,6 @@ cc.Class({
             return;
         }
         this._am.setEventCallback(this.checkCb.bind(this));
-
         this._am.checkUpdate();
     },
 	hotUpdate() {
@@ -153,44 +156,49 @@ cc.Class({
 	updateCb(event){
         var needRestart = false;
         var failed = false;
-        switch (event.getEventCode())
-        {
+        switch (event.getEventCode()){
             case jsb.EventAssetsManager.ERROR_NO_LOCAL_MANIFEST:
                 this.precent.string = "跳过更新......";
+				console.log('updateCb 跳过更新......');
                 failed = true;
                 break;
             case jsb.EventAssetsManager.UPDATE_PROGRESSION:
                 this.load_bar.progress = event.getPercent();
                 var msg = event.getMessage();
+				console.log('updateCb 更新文件中......',event.getPercent());
                 if (msg) {
                     this.precent.string = '更新文件中.....';
-                    cc.log(event.getPercent()/100 + '% : ' + msg);
+					console.log('updateCb 更新文件中......',msg);
                 }
                 break;
             case jsb.EventAssetsManager.ERROR_DOWNLOAD_MANIFEST:
             case jsb.EventAssetsManager.ERROR_PARSE_MANIFEST:
                 this.precent.string = "跳过更新......";
+				console.log('updateCb 跳过更新......');
                 failed = true;
                 break;
             case jsb.EventAssetsManager.ALREADY_UP_TO_DATE:
                 this.precent.string = "跳过更新......";
+				console.log('updateCb 跳过更新......');
                 failed = true;
                 break;
             case jsb.EventAssetsManager.UPDATE_FINISHED:
-                this.precent.string = "跟新完成......";
+                this.precent.string = "更新完成......";
+				console.log('updateCb 更新完成......');
                 needRestart = true;
                 break;
             case jsb.EventAssetsManager.UPDATE_FAILED:
                 this.precent.string = "跳过更新......";
+				console.log('updateCb 跳过更新......');
 				failed = true;
                 break;
             case jsb.EventAssetsManager.ERROR_UPDATING:
 				this.precent.string = "跳过更新......";
-                cc.log('Asset update error: ' + event.getAssetId() + ', ' + event.getMessage());
+                console.log('Asset update error: ',event.getAssetId(),event.getMessage());
 				failed = true;
                 break;
             case jsb.EventAssetsManager.ERROR_DECOMPRESS:
-                cc.log(event.getMessage());
+                console.log(event.getMessage());
 				failed = true;
                 break;
             default:
@@ -198,30 +206,30 @@ cc.Class({
         }
 
         if (failed) {
+			console.log('update fro failed');
             this._am.setEventCallback(null);
             this._updateListener = null;
 			this.callback();
         }
         if (needRestart) {
+			console.log('准备重新启动......');
 			this.precent.string = "准备重新启动......";
             this._am.setEventCallback(null);
             this._updateListener = null;
             // Prepend the manifest's search path
             var searchPaths = jsb.fileUtils.getSearchPaths();
             var newPaths = this._am.getLocalManifest().getSearchPaths();
-            console.log(JSON.stringify(newPaths));
-            Array.prototype.unshift(searchPaths, newPaths);
+            Array.prototype.unshift.apply(searchPaths, newPaths);
             // This value will be retrieved and appended to the default search path during game startup,
             // please refer to samples/js-tests/main.js for detailed usage.
             // !!! Re-add the search paths in main.js is very important, otherwise, new scripts won't take effect.
+			console.log(JSON.stringify(searchPaths));
             cc.sys.localStorage.setItem('HotUpdateSearchPaths', JSON.stringify(searchPaths));
             jsb.fileUtils.setSearchPaths(searchPaths);
 
             cc.audioEngine.stopAll();
             cc.game.restart();
-        }else{
-			this.callback();
-		}
+        }
     },
 	onDestroy: function () {
         if (this._updateListener) {

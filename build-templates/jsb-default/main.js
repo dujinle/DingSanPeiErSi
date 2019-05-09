@@ -2,7 +2,12 @@
 if (false) {
     BK.Script.loadlib('GameRes://libs/qqplay-adapter.js');
 }
-
+if (jsb) {
+    var hotUpdateSearchPaths = localStorage.getItem('HotUpdateSearchPaths');
+    if (hotUpdateSearchPaths) {
+        jsb.fileUtils.setSearchPaths(JSON.parse(hotUpdateSearchPaths)); 
+    }
+}
 window.boot = function () {
     var settings = window._CCSettings;
     window._CCSettings = undefined;
@@ -185,11 +190,6 @@ if (false) {
     window.boot();
 }
 else if (window.jsb) {
-	var hotUpdateSearchPaths = localStorage.getItem('HotUpdateSearchPaths');
-	console.log('main',hotUpdateSearchPaths);
-	if (hotUpdateSearchPaths) {
-		jsb.fileUtils.setSearchPaths(JSON.parse(hotUpdateSearchPaths));
-	}
     require('src/settings.js');
     require('src/cocos2d-jsb.js');
     require('jsb-adapter/engine/index.js');

@@ -45,42 +45,40 @@ cc.Class({
 		cc.log("created_room_scene","start gointo created room scene......");
 	},
 	freshRoomView(){
-		var self = this;
-		var p = {
-			process:'getGonghuiGongHuiId',
-			gonghui_id:GlobalData.MyUserInfo.gonghui_id
-		}
-		Servers.request('gonghuiRouter',p,function(res){
-			console.log(res);
-			if(res.msg != null){
-				var gonghuiInfo = res.msg;
-				var param = {
-					"process":'getRoomByPlayerId',
-					"player_id":gonghuiInfo.player_id
-				};
-				Servers.request('roomInfoRouter', param, function(data) {
-					cc.log(JSON.stringify(data));
-					var room_datas = data.msg;
-					for(var i = 0;i < room_datas.length;i++){
-						var data = room_datas[i];
-						if(self.roomContent.children.length > i){
-							var item = self.roomContent.children[i];
-							var itemCom = item.getComponent('roomItem');
-							itemCom.initData(i,data);
-						}else{
-							var item = cc.instantiate(GlobalData.assets['roomItem']);
-							var itemCom = item.getComponent('roomItem');
-							itemCom.initData(i,data);
-							self.roomContent.addChild(item);
-						}
-						if(GlobalData.RunTimeParams.RoomData.rid == data.rid){
-							GlobalData.RunTimeParams.RoomData = data;
-						}
-					}
-					self.init_room_pos(GlobalData.RunTimeParams.RoomData);
-				});
+		if(GlobalData.MyUserInfo.gonghui_id != null){
+			var p = {
+				process:'getGonghuiGongHuiId',
+				gonghui_id:GlobalData.MyUserInfo.gonghui_id
 			}
-		});
+			Servers.request('gonghuiRouter',p,function(res){
+				var gonghuiInfo = res.msg;
+				if(gonghuiInfo != null){
+					var param = {
+						"process":'getRoomByPlayerId',
+						"player_id":gonghuiInfo.player_id
+					};
+					Servers.request('roomInfoRouter', param, function(data) {
+						var room_datas = data.msg;
+						for(var i = 0;i < room_datas.length;i++){
+							var data = room_datas[i];
+							if(self.roomContent.children.length > i){
+								var item = self.roomContent.children[i];
+								var itemCom = item.getComponent('roomItem');
+								itemCom.initData(i,data);
+							}else{
+								var item = cc.instantiate(GlobalData.assets['roomItem']);
+								var itemCom = item.getComponent('roomItem');
+								itemCom.initData(i,data);
+								self.roomContent.addChild(item);
+							}
+							if(GlobalData.RunTimeParams.RoomData.rid == data.rid){
+								GlobalData.RunTimeParams.RoomData = data;
+							}
+						}
+					});
+				}
+			});
+		}
 	},
 	initRoomScroll(){
 		var self = this;
@@ -154,13 +152,13 @@ cc.Class({
 					player_id:player_id
 				};
 				Servers.request('userInfoRouter',param,function(data){
-					if(data.msg != null){
+					if(data.msg != null && data.msg.head_img_url != null && data.msg.head_img_url.length > 0){
 						cc.loader.load({url:data.msg.head_img_url,type:'png'},function (err, texture) {
 							var frame = new cc.SpriteFrame(texture);
 							self.choice_sprite[i].getComponent("cc.Sprite").spriteFrame = frame;
 						});
 					}else{
-						self.choice_sprite[i].getComponent("cc.Sprite").spriteFrame = GlobalData.assets["headimg"];
+						self.choice_sprite[i].getComponent("cc.Sprite").spriteFrame = GlobalData.assets["man"];
 					}
 				});
 				item.set_flag(true);
@@ -193,8 +191,7 @@ cc.Class({
 				self.roomInfo.active = true;
 				var itemCom = event.target.getComponent("roomItem");
 				itemCom.initData(itemCom.idx,room_data);
-				if(room_data.rid != GlobalData.RunTimeParams.RoomData.rid){
-					
+				if(room_data.rid != GlobalData.RunTimeParams.RoomData.rid){	
 					if(self.enterFlag == true){
 						self.leave_room(GlobalData.RunTimeParams.RoomData.rid);
 					}
@@ -240,7 +237,7 @@ cc.Class({
 						enter_item.getComponent("cc.Sprite").spriteFrame = frame;
 					});
 				}else{
-					enter_item.getComponent("cc.Sprite").spriteFrame = GlobalData.assets["headimg"];
+					enter_item.getComponent("cc.Sprite").spriteFrame = GlobalData.assets["man"];
 				}
 			});
 		}
@@ -259,7 +256,7 @@ cc.Class({
 						enter_item.getComponent("cc.Sprite").spriteFrame = frame;
 					});
 				}else{
-					enter_item.getComponent("cc.Sprite").spriteFrame = GlobalData.assets["headimg"];
+					enter_item.getComponent("cc.Sprite").spriteFrame = GlobalData.assets["man"];
 				}
 			});
 		}
@@ -278,7 +275,7 @@ cc.Class({
 						enter_item.getComponent("cc.Sprite").spriteFrame = frame;
 					});
 				}else{
-					enter_item.getComponent("cc.Sprite").spriteFrame = GlobalData.assets["headimg"];
+					enter_item.getComponent("cc.Sprite").spriteFrame = GlobalData.assets["man"];
 				}
 			});
 		}
@@ -297,7 +294,7 @@ cc.Class({
 						enter_item.getComponent("cc.Sprite").spriteFrame = frame;
 					});
 				}else{
-					enter_item.getComponent("cc.Sprite").spriteFrame = GlobalData.assets["headimg"];
+					enter_item.getComponent("cc.Sprite").spriteFrame = GlobalData.assets["man"];
 				}
 			});
 		}

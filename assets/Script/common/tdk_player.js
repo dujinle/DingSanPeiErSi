@@ -44,7 +44,7 @@ cc.Class({
 				self.head_sprite.spriteFrame = frame;
 			});
 		}else{
-			self.head_sprite.spriteFrame = GlobalData.assets["headimg"];
+			self.head_sprite.spriteFrame = GlobalData.assets["man"];
 		}
 		if(this.is_power == 1){
 			this.setSpriteStatus("yizhunbei");

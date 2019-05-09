@@ -37,11 +37,8 @@ cc.Class({
 		if(GlobalData.MyUserInfo.headimgurl != null && GlobalData.MyUserInfo.headimgurl.length > 0){
 			cc.loader.load({url:GlobalData.MyUserInfo.headimgurl,type:'png'},function (err, texture) {
 				 var frame = new cc.SpriteFrame(texture);
-				 GlobalData.assets["headimg"] = frame;
 				 self.touxiang_sprite.spriteFrame = frame;
 			});
-		}else{
-			GlobalData.assets["headimg"] = self.touxiang_sprite.spriteFrame;
 		}
 		var param = {
 			process:'get_player',

@@ -17,7 +17,7 @@ cc.Class({
     },
 	load_update(){
 		this.load_bar.progress = this.rate/this.source_leng * 100;
-		cc.log("this.rate:" + this.rate);
+		console.log("this.rate:" + this.rate);
 		if(this.rate >= this.source_leng){
 			this.precent.string = "加载完成......";
 			this.unschedule(this.load_update);
@@ -31,7 +31,7 @@ cc.Class({
 				GlobalData.assets[assets[i].name] = assets[i];
 				self.rate = self.rate + 1;
 				self.precent.string = "加载文件中......";
-				cc.log("load res :" + assets[i].name);
+				//cc.log("load res :" + assets[i].name);
 			}
 		});
 		cc.loader.loadResDir("prefab",function (err, assets) {
@@ -39,7 +39,7 @@ cc.Class({
 				GlobalData.assets[assets[i].name] = assets[i];
 				self.rate = self.rate + 1;
 				self.precent.string = "加载文件中......";
-				cc.log("load res :" + assets[i].name);
+				//cc.log("load res :" + assets[i].name);
 			}
 		});
 	}
