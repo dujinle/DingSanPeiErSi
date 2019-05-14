@@ -228,6 +228,7 @@ cc.Class({
 	callback_queding(){
 		this.chip_layout.active = false;
 		this.chip_layout.destroy();
+		this.queding_button.getComponent(cc.Button).interactable = false;
 		this.queding_button.active = false;
 		for(var i = 0;i < GlobalData.RoomInfos.TotalPlayers.length;i++){
 			var player = GlobalData.RoomInfos.TotalPlayers[i];
@@ -249,7 +250,9 @@ cc.Class({
     },
 
 	callback_peipai(){
-		this.peipai_button.active = false;
+		this.queding_button.getComponent(cc.Button).interactable = false;
+		this.queding_button.active = false;
+		
 		var size = cc.winSize;
 		var playerPosition = -1;
 		for(var i = 0;i < GlobalData.RoomInfos.TotalPlayers.length;i++){

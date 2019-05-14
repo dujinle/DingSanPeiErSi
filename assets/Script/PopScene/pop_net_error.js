@@ -25,6 +25,7 @@ cc.Class({
 		this.delayTime -= 1;
 		this.delayLabel.getComponent(cc.Label).string = "(" + this.delayTime + "s)";
 		if(this.delayTime <= 0){
+			GlobalData.RunTimeParams.DisConnect = false;
 			this.unschedule(this.delayFunc);
 			this.node.removeFromParent();
 			this.node.destroy();

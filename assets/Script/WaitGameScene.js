@@ -23,6 +23,7 @@ cc.Class({
     },
 
     onLoad () {
+		this.enterLocation = null;
 		this.enterFlag = false;
 		this.roomInfo.active = false;
 		GlobalData.RunTimeParams.CurrentScene = GlobalData.SCENE_TAG.WAITROOM;
@@ -45,6 +46,7 @@ cc.Class({
 		cc.log("created_room_scene","start gointo created room scene......");
 	},
 	freshRoomView(){
+		var self = this;
 		if(GlobalData.MyUserInfo.gonghui_id != null){
 			var p = {
 				process:'getGonghuiGongHuiId',
@@ -219,6 +221,7 @@ cc.Class({
 	onEnterRoom_function(data){
 		var self = this;
 		cc.log("pomelo on onEnterRoom_function:" + data.location+" is ready" + this.choice_sprite.length);
+		this.enterLocation = data.location;
 		var last_enter_player_id = data.player[data.location - 1];
 		var param = {
 			process:'get_player'
@@ -335,12 +338,12 @@ cc.Class({
 			this.enterFlag = false;
 		}
 		
-		if(location != -1){
+		if(location != null){
 			var item = this.choice_sprite[location - 1];
 			var item_com = item.getComponent("player_select");
-			item.set_data(null);
-			item.set_flag(false);
 			item.getComponent("cc.Sprite").spriteFrame = GlobalData.assets["wait_" + location];
+			item_com.set_data(null);
+			item_com.set_flag(false);
 		}
 	},
 	onStartGame_function(data){
@@ -406,7 +409,7 @@ cc.Class({
 			process:null,
 			rid:rid,
 			player_id:GlobalData.MyUserInfo["id"],
-			location:null
+			location:this.enterLocation
 		};
 		console.log('leave_room',param);
 		Servers.request('leaveRoomRouter', param, function(data) {

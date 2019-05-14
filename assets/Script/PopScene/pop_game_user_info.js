@@ -20,6 +20,9 @@ cc.Class({
 
     onLoad() {
         cc.log("start go into pop game player js");
+		this.node.on(cc.Node.EventType.TOUCH_START,function(e){
+			e.stopPropagation();
+		})
     },
 	init_info(data,call_back){
 		var self = this;

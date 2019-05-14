@@ -23,9 +23,12 @@ var onReconnect = function(){
 		console.log("GlobalData.RunTimeParams.RootNode: null");
 		return;
 	}
-	var error_tip = cc.instantiate(GlobalData.assets["PopNetError"]);
-	var error_tip_com = error_tip.getComponent("pop_net_error");
-	GlobalData.RunTimeParams.RootNode.addChild(error_tip);
-	error_tip.setPosition(cc.v2(0,0));
-	error_tip_com.onStart(180,"当前网络不可用，请检查自己的网络状态",null);
+	/*如果没有进行过掉线的处理*/
+	if(GlobalData.RunTimeParams.DisConnect == false){
+		var error_tip = cc.instantiate(GlobalData.assets["PopNetError"]);
+		var error_tip_com = error_tip.getComponent("pop_net_error");
+		GlobalData.RunTimeParams.RootNode.addChild(error_tip);
+		error_tip.setPosition(cc.v2(0,0));
+		error_tip_com.onStart(180,"当前网络不可用，请检查自己的网络状态",null);
+	}
 }

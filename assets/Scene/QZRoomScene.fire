@@ -41,8 +41,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.7078125,
-      "y": 0.7078125,
+      "x": 0.5069227430555555,
+      "y": 0.5069227430555555,
       "z": 1
     },
     "_quat": {
@@ -1898,7 +1898,7 @@
       "__id__": 38
     },
     "_enabled": true,
-    "transition": 0,
+    "transition": 3,
     "pressedColor": {
       "__type__": "cc.Color",
       "r": 211,
@@ -5452,6 +5452,7 @@
     "my_gold": 0,
     "my_chip1": 0,
     "my_chip2": 0,
+    "pei_pai_flag": false,
     "position_server": 0,
     "player_position": 0,
     "is_power": 0,
@@ -7012,6 +7013,7 @@
     "my_gold": 0,
     "my_chip1": 0,
     "my_chip2": 0,
+    "pei_pai_flag": false,
     "position_server": 0,
     "player_position": 0,
     "is_power": 0,
@@ -8518,6 +8520,7 @@
     "my_gold": 0,
     "my_chip1": 0,
     "my_chip2": 0,
+    "pei_pai_flag": false,
     "position_server": 0,
     "player_position": 0,
     "is_power": 0,
@@ -10078,6 +10081,7 @@
     "my_gold": 0,
     "my_chip1": 0,
     "my_chip2": 0,
+    "pei_pai_flag": false,
     "position_server": 0,
     "player_position": 0,
     "is_power": 0,
