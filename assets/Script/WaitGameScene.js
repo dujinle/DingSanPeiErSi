@@ -3,48 +3,29 @@ cc.Class({
 
     properties: {
 		roomContent:cc.Node,
-		roomView:cc.Node,
-		roomInfo:cc.Node,
 		msage_scroll:cc.Node,
-		choice_sprite:{
-			type:cc.Node,
-			default:[]
-		},
 		//房间信息
-		roomNameNode:cc.Node,
-		roomNumNode:cc.Node,
-		fangkaNode:cc.Node,
-		modelNode:cc.Node,
-		maxNode:cc.Node,
-		tips:cc.Node,
-		lastRoomItem:null,
-		enterFlag:false,
-		player_num:0,
+		tips:cc.Label,
     },
 
     onLoad () {
-		this.enterLocation = null;
-		this.enterFlag = false;
-		this.roomInfo.active = false;
 		GlobalData.RunTimeParams.CurrentScene = GlobalData.SCENE_TAG.WAITROOM;
 		this.roomContent.removeAllChildren();
 		this.pomelo_removeListener();
 		if(GlobalData.MyUserInfo.gonghui_id != null){
-			this.tips.active = false;
+			this.tips.node.active = false;
 			this.initRoomScroll();
-			this.node.on("pressed", this.switchRadio, this);
-			this.node.on("scroll", this.scrollFunc, this);
 			this.pomelo_on();
+			this.node.on('scroll',this.scrollFunc);
 			//this.schedule(this.freshRoomView,3);
 		}else{
-			this.roomView.active = false;
-			this.roomInfo.active = false;
-			this.tips.active = true;
-			this.tips.getComponent(cc.Label).string = '您还没有加入任何公会，无法进行游戏，请加入公会！';
+			this.tips.node.active = true;
+			this.tips.string = '您还没有加入任何公会，无法进行游戏，请加入公会！';
 		}
 		GlobalData.RunTimeParams.RoomData = null;
 		cc.log("created_room_scene","start gointo created room scene......");
 	},
+	
 	freshRoomView(){
 		var self = this;
 		if(GlobalData.MyUserInfo.gonghui_id != null){
@@ -65,11 +46,11 @@ cc.Class({
 							var data = room_datas[i];
 							if(self.roomContent.children.length > i){
 								var item = self.roomContent.children[i];
-								var itemCom = item.getComponent('roomItem');
+								var itemCom = item.getComponent('room_item');
 								itemCom.initData(i,data);
 							}else{
 								var item = cc.instantiate(GlobalData.assets['roomItem']);
-								var itemCom = item.getComponent('roomItem');
+								var itemCom = item.getComponent('room_item');
 								itemCom.initData(i,data);
 								self.roomContent.addChild(item);
 							}
@@ -82,6 +63,7 @@ cc.Class({
 			});
 		}
 	},
+	
 	initRoomScroll(){
 		var self = this;
 		var param = {
@@ -103,6 +85,7 @@ cc.Class({
 			}
 		});
 	},
+	
 	initRoomView(room_datas){
 		if(room_datas == null){
 			return;
@@ -110,272 +93,41 @@ cc.Class({
 		for(var i = 0;i < room_datas.length;i++){
 			var data = room_datas[i];
 			var item = cc.instantiate(GlobalData.assets['roomItem']);
-			var itemCom = item.getComponent('roomItem');
+			var itemCom = item.getComponent('room_item');
 			itemCom.initData(i,data);
 			this.roomContent.addChild(item);
-			if(i == 0){
-				this.lastRoomItem = item;
-				//item.getComponent('roomItem').bgSprite.active = true;
-				GlobalData.RunTimeParams.RoomData = data;
-				//this.initRoomInfo(data);
-			}
 		}
 	},
-	initRoomInfo(room_data){
-		this.roomNameNode.getComponent(cc.Label).string = room_data.fangzhu_name;
-		this.roomNumNode.getComponent(cc.Label).string = room_data.room_num;
-		this.modelNode.getComponent(cc.Label).string = GlobalData.GameModel[room_data.game_type];
-		this.maxNode.getComponent(cc.Label).string = GlobalData.GameMaxType[room_data.max_type];
-		if(room_data.game_type == 1){
-			//抢庄
-			this.fangkaNode.getComponent(cc.Label).string = '庄家消费房卡';
-		}else{
-			this.fangkaNode.getComponent(cc.Label).string = '1张/人';
-		}
-		this.init_room_pos(room_data);
-	},
-	init_room_pos(room_data){
-		console.log('init_room_pos',room_data);
-		var self = this;
-		for(let i = 0; i < this.choice_sprite.length; i++){
-			var item = this.choice_sprite[i].getComponent("player_select");
-			if(i == 0){
-				if(GlobalData.RunTimeParams.RoomData.game_type == 1){
-					this.choice_sprite[i].getChildByName('zhuang').active = true;
-				}else{
-					this.choice_sprite[i].getChildByName('zhuang').active = false;
-				}
-			}
-			var location = room_data["location" + (i + 1)];
-			if(location != null && location != "null"){
-				var player_id = location.split("*")[0];
-				var param = {
-					process:'get_player',
-					player_id:player_id
-				};
-				Servers.request('userInfoRouter',param,function(data){
-					if(data.msg != null && data.msg.head_img_url != null && data.msg.head_img_url.length > 0){
-						cc.loader.load({url:data.msg.head_img_url,type:'png'},function (err, texture) {
-							var frame = new cc.SpriteFrame(texture);
-							self.choice_sprite[i].getComponent("cc.Sprite").spriteFrame = frame;
-						});
-					}else{
-						self.choice_sprite[i].getComponent("cc.Sprite").spriteFrame = GlobalData.assets["man"];
-					}
-				});
-				item.set_flag(true);
-			}else{
-				this.choice_sprite[i].getComponent("cc.Sprite").spriteFrame = GlobalData.assets["wait_" + (i+1)];
-				item.set_flag(false);
-			}
-			if(room_data["player_num"] <= room_data["real_num"]){
-				item.set_flag(true);
-			}
-		}
-	},
+
 	scrollFunc(event){
 		var self = this;
-		this.roomInfo.active = false;
-		if(GlobalData.RunTimeParams.RootNode != null){
-			if(event.type == null || event.type != false){
-				GlobalData.RunTimeParams.RootNode.getComponent('root_node').play(GlobalData.AudioIdx.ClickButton);
-			}
-		}
-		var data = event.target.getComponent("roomItem").roomInfo;
-		var param = {
-			"process":'getRoomById',
-			"rid":data.rid
-		};
-		Servers.request('roomInfoRouter', param, function(roomRes) {
-			cc.log(JSON.stringify(roomRes));
-			var room_data = roomRes.msg;
-			if(room_data != null){
-				self.roomInfo.active = true;
-				var itemCom = event.target.getComponent("roomItem");
-				itemCom.initData(itemCom.idx,room_data);
-				if(room_data.rid != GlobalData.RunTimeParams.RoomData.rid){	
-					if(self.enterFlag == true){
-						self.leave_room(GlobalData.RunTimeParams.RoomData.rid);
-					}
-					if(self.lastRoomItem != null){
-						self.lastRoomItem.getComponent("roomItem").bgSprite.active = false;
-					}
+		if(event.target){
+			var data = event.target.getComponent("room_item").roomInfo;
+			var param = {
+				"process":'getRoomById',
+				"rid":data.rid
+			};
+			Servers.request('roomInfoRouter', param, function(roomRes) {
+				cc.log(JSON.stringify(roomRes));
+				var room_data = roomRes.msg;
+				if(room_data != null){
+					var popRoom = cc.instantiate(GlobalData.assets['PopRoomScene']);
+					popRoom.getComponent('pop_room_wait').initData(room_data);
+					self.node.addChild(popRoom);
+					popRoom.setPosition(cc.v2(0,0));
 				}
-				GlobalData.RunTimeParams.RoomData = room_data;
-				self.initRoomInfo(room_data);
-				self.lastRoomItem = event.target;
-			}
-		});
+			});
+		}
 	},
+	
 	onUserBroadcast_function(data){
 		console.log("onUserBroadcast:"+JSON.stringify(data));
 		var msage_scroll_com = this.msage_scroll.getComponent("msage_scroll");
 		msage_scroll_com.set_string(data);
 	},
 	pomelo_on(){
-		pomelo.on('onStartGame',this.onStartGame_function.bind(this));
-    	pomelo.on('onEnterRoom',this.onEnterRoom_function.bind(this));
-		pomelo.on('onLeaveRoom',this.onLeaveRoom_function.bind(this));
 		pomelo.on('onActBroadcast',this.onUserBroadcast_function.bind(this));
 	},
-	onEnterRoom_function(data){
-		var self = this;
-		cc.log("pomelo on onEnterRoom_function:" + data.location+" is ready" + this.choice_sprite.length);
-		this.enterLocation = data.location;
-		var last_enter_player_id = data.player[data.location - 1];
-		var param = {
-			process:'get_player'
-		};
-		if(data.player[0] != null){
-			param['player_id'] = data.player[0];
-			Servers.request('userInfoRouter',param,function(data){
-				let enter_player = data.msg;
-				let enter_item = self.choice_sprite[0];
-				let item_com = enter_item.getComponent("player_select");
-				item_com.set_data(enter_player);
-				item_com.set_flag(true);
-				if(enter_player.head_img_url != null && enter_player.head_img_url.length > 0){
-					cc.loader.load({url:enter_player.head_img_url,type:'png'},function (err, texture) {
-						var frame = new cc.SpriteFrame(texture);
-						enter_item.getComponent("cc.Sprite").spriteFrame = frame;
-					});
-				}else{
-					enter_item.getComponent("cc.Sprite").spriteFrame = GlobalData.assets["man"];
-				}
-			});
-		}
-		
-		if(data.player[1] != null){
-			param['player_id'] = data.player[1];
-			Servers.request('userInfoRouter',param,function(data){
-				let enter_player = data.msg;
-				let enter_item = self.choice_sprite[1];
-				let item_com = enter_item.getComponent("player_select");
-				item_com.set_data(enter_player);
-				item_com.set_flag(true);
-				if(enter_player.head_img_url != null && enter_player.head_img_url.length > 0){
-					cc.loader.load({url:enter_player.head_img_url,type:'png'},function (err, texture) {
-						var frame = new cc.SpriteFrame(texture);
-						enter_item.getComponent("cc.Sprite").spriteFrame = frame;
-					});
-				}else{
-					enter_item.getComponent("cc.Sprite").spriteFrame = GlobalData.assets["man"];
-				}
-			});
-		}
-		
-		if(data.player[2] != null){
-			param['player_id'] = data.player[2];
-			Servers.request('userInfoRouter',param,function(data){
-				let enter_player = data.msg;
-				let enter_item = self.choice_sprite[2];
-				let item_com = enter_item.getComponent("player_select");
-				item_com.set_data(enter_player);
-				item_com.set_flag(true);
-				if(enter_player.head_img_url != null && enter_player.head_img_url.length > 0){
-					cc.loader.load({url:enter_player.head_img_url,type:'png'},function (err, texture) {
-						var frame = new cc.SpriteFrame(texture);
-						enter_item.getComponent("cc.Sprite").spriteFrame = frame;
-					});
-				}else{
-					enter_item.getComponent("cc.Sprite").spriteFrame = GlobalData.assets["man"];
-				}
-			});
-		}
-		
-		if(data.player[3] != null){
-			param['player_id'] = data.player[3];
-			Servers.request('userInfoRouter',param,function(data){
-				let enter_player = data.msg;
-				let enter_item = self.choice_sprite[3];
-				let item_com = enter_item.getComponent("player_select");
-				item_com.set_data(enter_player);
-				item_com.set_flag(true);
-				if(enter_player.head_img_url != null && enter_player.head_img_url.length > 0){
-					cc.loader.load({url:enter_player.head_img_url,type:'png'},function (err, texture) {
-						var frame = new cc.SpriteFrame(texture);
-						enter_item.getComponent("cc.Sprite").spriteFrame = frame;
-					});
-				}else{
-					enter_item.getComponent("cc.Sprite").spriteFrame = GlobalData.assets["man"];
-				}
-			});
-		}
-		
-		GlobalData.RunTimeParams.RoomData['real_num'] = data.real_num;
-		//判断是否是自己，如果是自己则取消点击事件。
-		if(last_enter_player_id == GlobalData.MyUserInfo["id"]){
-			for(let i = 0; i < self.choice_sprite.length; i++){
-				var item = self.choice_sprite[i].getComponent("player_select");
-				item.set_flag(true);
-			}
-		}
-		if(GlobalData.RunTimeParams.RoomData['real_num'] >= GlobalData.RunTimeParams.RoomData["player_num"]){
-			for(let i = 0; i < self.choice_sprite.length; i++){
-				var item = self.choice_sprite[i].getComponent("player_select");
-				item.set_flag(true);
-			}
-			var popDelayScene = cc.instantiate(GlobalData.assets['PopDelayScene']);
-			this.node.addChild(popDelayScene);
-			popDelayScene.setPosition(cc.v2(0,0));
-			popDelayScene.getComponent('pop_delay_scene').onStart(5,function(){
-				popDelayScene.removeFromParent();
-				popDelayScene.destroy();
-				//最后一个进来的 开始游戏
-				if(last_enter_player_id == GlobalData.MyUserInfo["id"]){
-					self.start_game();
-				}
-			});
-		}
-	},
-	onLeaveRoom_function(data){
-		console.log(data);
-		var location = data.location;
-		var room_info = data.data;
-		var player_id = data.player_id;
-		GlobalData.RunTimeParams.RoomData['real_num'] = data.real_num;
-		if(player_id == GlobalData.MyUserInfo.id){
-			this.enterFlag = false;
-		}
-		
-		if(location != null){
-			var item = this.choice_sprite[location - 1];
-			var item_com = item.getComponent("player_select");
-			item.getComponent("cc.Sprite").spriteFrame = GlobalData.assets["wait_" + location];
-			item_com.set_data(null);
-			item_com.set_flag(false);
-		}
-	},
-	onStartGame_function(data){
-		cc.log("pomelo on onStartGame_function:" + JSON.stringify(data));
-		var self = this;
-		var players = data.players;
-		GlobalData.RunTimeParams.AllPlayers.splice(0,GlobalData.RunTimeParams.AllPlayers.length);
-		for(var i = 0;i < players.length;i++){
-			if(players[i] != null && players[i] != "null"){
-				GlobalData.RunTimeParams.AllPlayers.push(players[i]);
-			}
-		}
-		var param = {
-			"process":'getRoomById',
-			"rid":GlobalData.RunTimeParams.RoomData["rid"]
-		};
-		Servers.request('roomInfoRouter', param, function(data) {
-			cc.log(JSON.stringify(data));
-			for(var key in data.msg) {
-				GlobalData.RunTimeParams.RoomData[key] = data.msg[key];
-			}
-			self.pomelo_removeListener();
-			if(GlobalData.RunTimeParams.RoomData['game_type'] == 1){
-				cc.director.loadScene("QZRoomScene");
-			}else if(GlobalData.RunTimeParams.RoomData['game_type'] == 3){
-				cc.director.loadScene("LZRoomScene");
-			}else{
-				cc.director.loadScene("SJRoomScene");
-			}
-		});
-	},
-    
 	game_back(){
 		var self = this;
 		if(GlobalData.RunTimeParams.RootNode != null){
@@ -383,10 +135,6 @@ cc.Class({
 		}
 		util.show_isok_info(function(flag){
 			if(flag == true){
-				if(self.enterFlag == true){
-					//房主打算退出房间
-					self.leave_room(GlobalData.RunTimeParams.RoomData.rid);
-				}
 				self.pomelo_removeListener();
 				cc.director.loadScene("MainScene");
 			}
@@ -419,49 +167,8 @@ cc.Class({
 			}
 		});
 	},
-	switchRadio(event) {
-		var self = this;
-		if(GlobalData.RunTimeParams.RootNode != null){
-			GlobalData.RunTimeParams.RootNode.getComponent('root_node').play(GlobalData.AudioIdx.ClickButton);
-		}
-        var index = event.target.getComponent("player_select").index;
-		var type = event.target.getComponent("player_select").type;
-		cc.log("switchRadio : index:" + index + " type:" + type);
-        for(let i = 0; i < this.choice_sprite.length; i++){
-			var item = this.choice_sprite[i].getComponent("player_select");
-            if(item.index == index){
-				var flag = item.get_flag();
-				if(flag == false){
-					item.set_flag(true);
-					var param = {
-						process:null,
-						rid:GlobalData.RunTimeParams.RoomData["rid"],
-						location:index,
-						player_id:GlobalData.MyUserInfo["id"]
-					};
-					pomelo.request(routerMap['enterRoomRouter'], param, function(data) {
-						cc.log(JSON.stringify(data));
-						if(data.code == 200){
-							self.enterFlag = true;
-						}else if(data.code == 500){
-							util.show_error_info(data.msg);
-							self.scrollFunc({'target':self.lastRoomItem,'type':false});
-						}else{
-							item.set_flag(false);
-							util.show_error_info(data.msg);
-							self.scrollFunc({'target':self.lastRoomItem,'type':false});
-						}
-					});
-				}
-				break;
-            }
-        }
-    },
 	pomelo_removeListener(){
 		cc.log("remove listener");
-        pomelo.removeListener('onStartGame');
-		pomelo.removeListener('onEnterRoom');
-        pomelo.removeListener('onLeaveRoom');
 		pomelo.removeListener('onActBroadcast');
 	},
 });
