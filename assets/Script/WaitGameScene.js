@@ -16,8 +16,8 @@ cc.Class({
 			this.tips.node.active = false;
 			this.initRoomScroll();
 			this.pomelo_on();
-			this.node.on('scroll',this.scrollFunc);
-			//this.schedule(this.freshRoomView,3);
+			this.node.on('scroll',this.scrollFunc,this);
+			this.schedule(this.freshRoomView,3);
 		}else{
 			this.tips.node.active = true;
 			this.tips.string = '您还没有加入任何公会，无法进行游戏，请加入公会！';
@@ -53,9 +53,6 @@ cc.Class({
 								var itemCom = item.getComponent('room_item');
 								itemCom.initData(i,data);
 								self.roomContent.addChild(item);
-							}
-							if(GlobalData.RunTimeParams.RoomData.rid == data.rid){
-								GlobalData.RunTimeParams.RoomData = data;
 							}
 						}
 					});
@@ -125,9 +122,11 @@ cc.Class({
 		var msage_scroll_com = this.msage_scroll.getComponent("msage_scroll");
 		msage_scroll_com.set_string(data);
 	},
+	
 	pomelo_on(){
 		pomelo.on('onActBroadcast',this.onUserBroadcast_function.bind(this));
 	},
+	
 	game_back(){
 		var self = this;
 		if(GlobalData.RunTimeParams.RootNode != null){
@@ -139,33 +138,6 @@ cc.Class({
 				cc.director.loadScene("MainScene");
 			}
 		},"你确定要退出界面吗？");
-	},
-	start_game(){
-		//进入游戏房间，发送公告告诉准备的玩家进入游戏
-		var self = this;
-		var param = {
-			process:null,
-			rid:GlobalData.RunTimeParams.RoomData["rid"]
-		};
-		Servers.request('startGameRouter', param, function(data) {
-			cc.log(JSON.stringify(data));
-		});
-	},
-	leave_room(rid){
-		var self = this;
-		var param = {
-			process:null,
-			rid:rid,
-			player_id:GlobalData.MyUserInfo["id"],
-			location:this.enterLocation
-		};
-		console.log('leave_room',param);
-		Servers.request('leaveRoomRouter', param, function(data) {
-			cc.log(JSON.stringify(data));
-			if(data.code == 200){
-				self.enterFlag = false;
-			}
-		});
 	},
 	pomelo_removeListener(){
 		cc.log("remove listener");

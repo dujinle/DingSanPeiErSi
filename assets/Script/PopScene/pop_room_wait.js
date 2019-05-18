@@ -50,14 +50,24 @@ cc.Class({
 		this.node.removeFromParent();
 		this.node.destroy();
 	},
-	
+	game_start(){
+		//进入游戏房间，发送公告告诉准备的玩家进入游戏
+		var self = this;
+		var param = {
+			process:null,
+			rid:this.roomInfo.rid
+		};
+		Servers.request('startGameRouter', param, function(data) {
+			cc.log(JSON.stringify(data));
+		});
+	},
 	init_room_pos(room_data){
 		console.log('init_room_pos',room_data);
 		var self = this;
 		for(let i = 0; i < this.choice_sprite.length; i++){
 			var item = this.choice_sprite[i].getComponent("player_select");
 			if(i == 0){
-				if(GlobalData.RunTimeParams.RoomData.game_type == 1){
+				if(this.roomInfo.game_type == 1){
 					this.choice_sprite[i].getChildByName('zhuang').active = true;
 				}else{
 					this.choice_sprite[i].getChildByName('zhuang').active = false;
@@ -175,7 +185,7 @@ cc.Class({
 			});
 		}
 		
-		GlobalData.RunTimeParams.RoomData['real_num'] = data.real_num;
+		this.roomInfo['real_num'] = data.real_num;
 		//判断是否是自己，如果是自己则取消点击事件。
 		if(last_enter_player_id == GlobalData.MyUserInfo["id"]){
 			for(let i = 0; i < self.choice_sprite.length; i++){
@@ -183,7 +193,7 @@ cc.Class({
 				item.set_flag(true);
 			}
 		}
-		if(GlobalData.RunTimeParams.RoomData['real_num'] >= GlobalData.RunTimeParams.RoomData["player_num"]){
+		if(this.roomInfo['real_num'] >= this.roomInfo["player_num"]){
 			for(let i = 0; i < self.choice_sprite.length; i++){
 				var item = self.choice_sprite[i].getComponent("player_select");
 				item.set_flag(true);
@@ -207,7 +217,7 @@ cc.Class({
 		var location = data.location;
 		var room_info = data.data;
 		var player_id = data.player_id;
-		GlobalData.RunTimeParams.RoomData['real_num'] = data.real_num;
+		this.roomInfo['real_num'] = data.real_num;
 		if(player_id == GlobalData.MyUserInfo.id){
 			this.enterFlag = false;
 		}
@@ -233,17 +243,17 @@ cc.Class({
 		}
 		var param = {
 			"process":'getRoomById',
-			"rid":GlobalData.RunTimeParams.RoomData["rid"]
+			"rid":this.roomInfo["rid"]
 		};
 		Servers.request('roomInfoRouter', param, function(data) {
 			cc.log(JSON.stringify(data));
 			for(var key in data.msg) {
-				GlobalData.RunTimeParams.RoomData[key] = data.msg[key];
+				self.roomInfo[key] = data.msg[key];
 			}
 			self.pomelo_removeListener();
-			if(GlobalData.RunTimeParams.RoomData['game_type'] == 1){
+			if(self.roomInfo['game_type'] == 1){
 				cc.director.loadScene("QZRoomScene");
-			}else if(GlobalData.RunTimeParams.RoomData['game_type'] == 3){
+			}else if(self.roomInfo['game_type'] == 3){
 				cc.director.loadScene("LZRoomScene");
 			}else{
 				cc.director.loadScene("SJRoomScene");
@@ -267,7 +277,7 @@ cc.Class({
 					item.set_flag(true);
 					var param = {
 						process:null,
-						rid:GlobalData.RunTimeParams.RoomData["rid"],
+						rid:this.roomInfo["rid"],
 						location:index,
 						player_id:GlobalData.MyUserInfo["id"]
 					};
