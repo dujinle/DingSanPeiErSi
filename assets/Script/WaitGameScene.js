@@ -139,6 +139,7 @@ cc.Class({
 			}
 		},"你确定要退出界面吗？");
 	},
+	
 	pomelo_removeListener(){
 		cc.log("remove listener");
 		pomelo.removeListener('onActBroadcast');

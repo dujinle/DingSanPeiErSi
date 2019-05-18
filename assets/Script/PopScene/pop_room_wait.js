@@ -17,12 +17,16 @@ cc.Class({
     },
 
     onLoad () {
+		this.pomelo_removeListener();
 		this.enterFlag = false;
+		this.enterLocation = -1;
 		this.node.on(cc.Node.EventType.TOUCH_START,function(e){
 			e.stopPropagation();
 		})
 		this.node.on("pressed", this.switchRadio, this);
+		this.pomelo_on();
 	},
+	
 	initData(room_data){
 		this.roomInfo = room_data;
 		this.roomNameLabel.string = room_data.fangzhu_name;
@@ -38,18 +42,42 @@ cc.Class({
 		this.init_room_pos(room_data);
 	},
 	
+	game_refresh(room_data){
+		var self = this;
+		var param = {
+			"process":'getRoomById',
+			"rid":room_data.rid
+		};
+		Servers.request('roomInfoRouter', param, function(roomRes) {
+			cc.log(JSON.stringify(roomRes));
+			var tmp_data = roomRes.msg;
+			if(tmp_data != null){
+				for(var key in tmp_data) {
+					self.roomInfo[key] = tmp_data[key];
+				}
+				self.initData(self.roomInfo);
+			}
+		});
+	},
+	
 	game_back(){
 		if(GlobalData.RunTimeParams.RootNode != null){
 			GlobalData.RunTimeParams.RootNode.getComponent('root_node').play(GlobalData.AudioIdx.ClickButton);
 		}
 		if(this.enterFlag == true){
 			//房主打算退出房间
-			this.leave_room(this.roomInfo.rid);
+			this.game_releve(this.roomInfo.rid);
 		}
 		this.pomelo_removeListener();
 		this.node.removeFromParent();
 		this.node.destroy();
 	},
+	
+	game_releve(rid){
+		var self = this;
+		});
+	},
+	
 	game_start(){
 		//进入游戏房间，发送公告告诉准备的玩家进入游戏
 		var self = this;
@@ -61,6 +89,7 @@ cc.Class({
 			cc.log(JSON.stringify(data));
 		});
 	},
+	
 	init_room_pos(room_data){
 		console.log('init_room_pos',room_data);
 		var self = this;
@@ -287,11 +316,11 @@ cc.Class({
 							self.enterFlag = true;
 						}else if(data.code == 500){
 							util.show_error_info(data.msg);
-							self.scrollFunc({'target':self.lastRoomItem,'type':false});
+							self.game_refresh(self.roomInfo);
 						}else{
 							item.set_flag(false);
 							util.show_error_info(data.msg);
-							self.scrollFunc({'target':self.lastRoomItem,'type':false});
+							self.game_refresh(self.roomInfo);
 						}
 					});
 				}
