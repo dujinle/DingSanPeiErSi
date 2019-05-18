@@ -75,6 +75,18 @@ cc.Class({
 	
 	game_releve(rid){
 		var self = this;
+		if(this.enterLocation == -1){
+			return;
+		}
+		var param = {
+			process:null,
+			rid:rid,
+			player_id:GlobalData.MyUserInfo["id"],
+			location:this.enterLocation
+		};
+		console.log('leave_room',param);
+		Servers.request('leaveRoomRouter', param, function(data) {
+			cc.log(JSON.stringify(data));
 		});
 	},
 	
