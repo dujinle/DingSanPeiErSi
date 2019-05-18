@@ -22,6 +22,10 @@ cc.Class({
 		this.delayLabel.getComponent(cc.Label).string = "(" + this.delayTime + "s)";
 		this.schedule(this.delayFunc,1);
 	},
+	onPause(cb){
+		this.unschedule(this.delayFunc);
+		cb();
+	},
 	delayFunc(){
 		this.delayTime -= 1;
 		this.delayLabel.getComponent(cc.Label).string = "(" + this.delayTime + "s)";

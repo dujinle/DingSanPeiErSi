@@ -239,15 +239,16 @@ cc.Class({
 				var item = self.choice_sprite[i].getComponent("player_select");
 				item.set_flag(true);
 			}
-			var popDelayScene = cc.instantiate(GlobalData.assets['PopDelayScene']);
-			this.node.addChild(popDelayScene);
-			popDelayScene.setPosition(cc.v2(0,0));
-			popDelayScene.getComponent('pop_delay_scene').onStart(5,function(){
-				popDelayScene.removeFromParent();
-				popDelayScene.destroy();
+			this.popDelayScene = cc.instantiate(GlobalData.assets['PopDelayScene']);
+			this.node.addChild(this.popDelayScene);
+			this.popDelayScene.setPosition(cc.v2(0,0));
+			this.popDelayScene.getComponent('pop_delay_scene').onStart(5,function(){
+				self.popDelayScene.removeFromParent();
+				self.popDelayScene.destroy();
+				self.popDelayScene = null;
 				//最后一个进来的 开始游戏
 				if(last_enter_player_id == GlobalData.MyUserInfo["id"]){
-					self.start_game();
+					self.game_start();
 				}
 			});
 		}
@@ -256,13 +257,11 @@ cc.Class({
 	onLeaveRoom_function(data){
 		console.log(data);
 		var location = data.location;
-		var room_info = data.data;
 		var player_id = data.player_id;
 		this.roomInfo['real_num'] = data.real_num;
 		if(player_id == GlobalData.MyUserInfo.id){
 			this.enterFlag = false;
 		}
-		
 		if(location != null){
 			var item = this.choice_sprite[location - 1];
 			var item_com = item.getComponent("player_select");
@@ -291,7 +290,6 @@ cc.Class({
 			for(var key in data.msg) {
 				self.roomInfo[key] = data.msg[key];
 			}
-			self.pomelo_removeListener();
 			if(self.roomInfo['game_type'] == 1){
 				cc.director.loadScene("QZRoomScene");
 			}else if(self.roomInfo['game_type'] == 3){
@@ -299,7 +297,13 @@ cc.Class({
 			}else{
 				cc.director.loadScene("SJRoomScene");
 			}
+			self.pomelo_removeListener();
 		});
+	},
+	
+	onStartFail_function(data){
+		console.log(data);
+		util.show_error_info(data.msg);
 	},
 	
 	switchRadio(event) {
@@ -345,6 +349,7 @@ cc.Class({
 		pomelo.on('onStartGame',this.onStartGame_function.bind(this));
     	pomelo.on('onEnterRoom',this.onEnterRoom_function.bind(this));
 		pomelo.on('onLeaveRoom',this.onLeaveRoom_function.bind(this));
+		pomelo.on('onStartFail',this.onStartFail_function.bind(this));
 	},
 	
 	pomelo_removeListener(){
@@ -352,6 +357,7 @@ cc.Class({
         pomelo.removeListener('onStartGame');
 		pomelo.removeListener('onEnterRoom');
         pomelo.removeListener('onLeaveRoom');
+		pomelo.removeListener('onStartFail');
 	},
     // update (dt) {},
 });
