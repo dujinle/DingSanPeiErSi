@@ -28,7 +28,7 @@ cc.Class({
 	},
 	
 	initData(room_data){
-		this.roomInfo = room_data;
+		GlobalData.RunTimeParams.RoomData = room_data;
 		this.roomNameLabel.string = room_data.fangzhu_name;
 		this.roomNumLabel.string = room_data.room_num;
 		this.modelLabel.string = GlobalData.GameModel[room_data.game_type];
@@ -53,9 +53,9 @@ cc.Class({
 			var tmp_data = roomRes.msg;
 			if(tmp_data != null){
 				for(var key in tmp_data) {
-					self.roomInfo[key] = tmp_data[key];
+					GlobalData.RunTimeParams.RoomData[key] = tmp_data[key];
 				}
-				self.initData(self.roomInfo);
+				self.initData(GlobalData.RunTimeParams.RoomData);
 			}
 		});
 	},
@@ -66,7 +66,7 @@ cc.Class({
 		}
 		if(this.enterFlag == true){
 			//房主打算退出房间
-			this.game_releve(this.roomInfo.rid);
+			this.game_releve(GlobalData.RunTimeParams.RoomData.rid);
 		}
 		this.pomelo_removeListener();
 		this.node.removeFromParent();
@@ -95,7 +95,7 @@ cc.Class({
 		var self = this;
 		var param = {
 			process:null,
-			rid:this.roomInfo.rid
+			rid:GlobalData.RunTimeParams.RoomData.rid
 		};
 		Servers.request('startGameRouter', param, function(data) {
 			cc.log(JSON.stringify(data));
@@ -108,7 +108,7 @@ cc.Class({
 		for(let i = 0; i < this.choice_sprite.length; i++){
 			var item = this.choice_sprite[i].getComponent("player_select");
 			if(i == 0){
-				if(this.roomInfo.game_type == 1){
+				if(GlobalData.RunTimeParams.RoomData.game_type == 1){
 					this.choice_sprite[i].getChildByName('zhuang').active = true;
 				}else{
 					this.choice_sprite[i].getChildByName('zhuang').active = false;
@@ -226,7 +226,7 @@ cc.Class({
 			});
 		}
 		
-		this.roomInfo['real_num'] = data.real_num;
+		GlobalData.RunTimeParams.RoomData['real_num'] = data.real_num;
 		//判断是否是自己，如果是自己则取消点击事件。
 		if(last_enter_player_id == GlobalData.MyUserInfo["id"]){
 			for(let i = 0; i < self.choice_sprite.length; i++){
@@ -234,7 +234,7 @@ cc.Class({
 				item.set_flag(true);
 			}
 		}
-		if(this.roomInfo['real_num'] >= this.roomInfo["player_num"]){
+		if(GlobalData.RunTimeParams.RoomData['real_num'] >= GlobalData.RunTimeParams.RoomData["player_num"]){
 			for(let i = 0; i < self.choice_sprite.length; i++){
 				var item = self.choice_sprite[i].getComponent("player_select");
 				item.set_flag(true);
@@ -258,7 +258,7 @@ cc.Class({
 		console.log(data);
 		var location = data.location;
 		var player_id = data.player_id;
-		this.roomInfo['real_num'] = data.real_num;
+		GlobalData.RunTimeParams.RoomData['real_num'] = data.real_num;
 		if(player_id == GlobalData.MyUserInfo.id){
 			this.enterFlag = false;
 		}
@@ -283,12 +283,12 @@ cc.Class({
 		}
 		var param = {
 			"process":'getRoomById',
-			"rid":this.roomInfo["rid"]
+			"rid":GlobalData.RunTimeParams.RoomData["rid"]
 		};
 		Servers.request('roomInfoRouter', param, function(data) {
 			cc.log(JSON.stringify(data));
 			for(var key in data.msg) {
-				self.roomInfo[key] = data.msg[key];
+				GlobalData.RunTimeParams.RoomData[key] = data.msg[key];
 			}
 			if(self.roomInfo['game_type'] == 1){
 				cc.director.loadScene("QZRoomScene");
