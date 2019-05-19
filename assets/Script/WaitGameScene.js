@@ -108,6 +108,7 @@ cc.Class({
 				cc.log(JSON.stringify(roomRes));
 				var room_data = roomRes.msg;
 				if(room_data != null){
+					//self.unschedule(self.freshRoomView);
 					var popRoom = cc.instantiate(GlobalData.assets['PopRoomScene']);
 					popRoom.getComponent('pop_room_wait').initData(room_data);
 					self.node.addChild(popRoom);

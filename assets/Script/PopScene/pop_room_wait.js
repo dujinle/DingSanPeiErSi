@@ -2,7 +2,6 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-		roomInfo:null,
 		roomNameLabel:cc.Label,
 		roomNumLabel:cc.Label,
 		fangkaLabel:cc.Label,
@@ -290,9 +289,9 @@ cc.Class({
 			for(var key in data.msg) {
 				GlobalData.RunTimeParams.RoomData[key] = data.msg[key];
 			}
-			if(self.roomInfo['game_type'] == 1){
+			if(GlobalData.RunTimeParams.RoomData['game_type'] == 1){
 				cc.director.loadScene("QZRoomScene");
-			}else if(self.roomInfo['game_type'] == 3){
+			}else if(GlobalData.RunTimeParams.RoomData['game_type'] == 3){
 				cc.director.loadScene("LZRoomScene");
 			}else{
 				cc.director.loadScene("SJRoomScene");
@@ -322,7 +321,7 @@ cc.Class({
 					item.set_flag(true);
 					var param = {
 						process:null,
-						rid:this.roomInfo["rid"],
+						rid:GlobalData.RunTimeParams.RoomData["rid"],
 						location:index,
 						player_id:GlobalData.MyUserInfo["id"]
 					};
@@ -332,11 +331,11 @@ cc.Class({
 							self.enterFlag = true;
 						}else if(data.code == 500){
 							util.show_error_info(data.msg);
-							self.game_refresh(self.roomInfo);
+							self.game_refresh(GlobalData.RunTimeParams.RoomData);
 						}else{
 							item.set_flag(false);
 							util.show_error_info(data.msg);
-							self.game_refresh(self.roomInfo);
+							self.game_refresh(GlobalData.RunTimeParams.RoomData);
 						}
 					});
 				}
