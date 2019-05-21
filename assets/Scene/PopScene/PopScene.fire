@@ -41,8 +41,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.5875,
-      "y": 0.5875,
+      "x": 0.7078125,
+      "y": 0.7078125,
       "z": 1
     },
     "_quat": {
@@ -76,13 +76,16 @@
       },
       {
         "__id__": 9
+      },
+      {
+        "__id__": 11
       }
     ],
     "_active": true,
-    "_level": 0,
+    "_level": 1,
     "_components": [
       {
-        "__id__": 11
+        "__id__": 13
       }
     ],
     "_prefab": null,
@@ -252,16 +255,16 @@
     "_parent": {
       "__id__": 2
     },
-    "_id": "6fWFJiTOJKzr0j8P61Rt92",
+    "_id": "67nmflWzZCfofHXWZyFBmK",
     "_prefab": {
       "__id__": 8
     },
-    "_name": "roomItem",
+    "_name": "PopRoomScene",
     "_active": true,
     "_position": {
       "__type__": "cc.Vec3",
-      "x": -17,
-      "y": -190,
+      "x": -766,
+      "y": 643,
       "z": 0
     },
     "_rotationX": 0,
@@ -273,9 +276,9 @@
       "__id__": 7
     },
     "asset": {
-      "__uuid__": "392dcacf-1ee7-4f01-8d5b-07d69826b352"
+      "__uuid__": "c0293928-e415-4d79-b256-d5ce55b93dec"
     },
-    "fileId": "6fWFJiTOJKzr0j8P61Rt92",
+    "fileId": "67nmflWzZCfofHXWZyFBmK",
     "sync": true
   },
   {
@@ -284,11 +287,43 @@
     "_parent": {
       "__id__": 2
     },
-    "_id": "67nmflWzZCfofHXWZyFBmK",
+    "_id": "0bYGeKgwVHM6gyRWSR0GDW",
     "_prefab": {
       "__id__": 10
     },
-    "_name": "PopRoomScene",
+    "_name": "PopGameFinish",
+    "_active": true,
+    "_position": {
+      "__type__": "cc.Vec3",
+      "x": -752,
+      "y": -107,
+      "z": 0
+    },
+    "_rotationX": 0,
+    "_rotationY": 0
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 9
+    },
+    "asset": {
+      "__uuid__": "d1fe0f8f-3a67-4c82-982d-a344c6065848"
+    },
+    "fileId": "0bYGeKgwVHM6gyRWSR0GDW",
+    "sync": true
+  },
+  {
+    "__type__": "cc.Node",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 2
+    },
+    "_id": "f6h1mVtx5LZJhHB9RDs+Xo",
+    "_prefab": {
+      "__id__": 12
+    },
+    "_name": "RoomItemLayout",
     "_active": true,
     "_position": {
       "__type__": "cc.Vec3",
@@ -302,12 +337,12 @@
   {
     "__type__": "cc.PrefabInfo",
     "root": {
-      "__id__": 9
+      "__id__": 11
     },
     "asset": {
-      "__uuid__": "c0293928-e415-4d79-b256-d5ce55b93dec"
+      "__uuid__": "739d897e-86c1-4958-9d5c-2da3cad5cca3"
     },
-    "fileId": "67nmflWzZCfofHXWZyFBmK",
+    "fileId": "f6h1mVtx5LZJhHB9RDs+Xo",
     "sync": true
   },
   {

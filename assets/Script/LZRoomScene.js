@@ -709,7 +709,7 @@ cc.Class({
 			var self = this;
 			var x = size.width/2;
 			var y = size.height/2;
-			var pop_game_finish = cc.instantiate(GlobalData.assets["pop_game_finish"]);
+			var pop_game_finish = cc.instantiate(GlobalData.assets["PopGameFinish"]);
 			var pop_game_finish_com = pop_game_finish.getComponent("pop_game_finish");
 			this.node.addChild(pop_game_finish);
 			pop_game_finish_com.init_info(results,function(){

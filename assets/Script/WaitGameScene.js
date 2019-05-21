@@ -2,6 +2,7 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
+		roomList:cc.Node,
 		roomContent:cc.Node,
 		msage_scroll:cc.Node,
 		//房间信息
@@ -10,55 +11,19 @@ cc.Class({
 
     onLoad () {
 		GlobalData.RunTimeParams.CurrentScene = GlobalData.SCENE_TAG.WAITROOM;
-		this.roomContent.removeAllChildren();
 		this.pomelo_removeListener();
+		this.roomList.getComponent('ScrollView').clear_scroll_data();
 		if(GlobalData.MyUserInfo.gonghui_id != null){
 			this.tips.node.active = false;
 			this.initRoomScroll();
 			this.pomelo_on();
 			this.node.on('scroll',this.scrollFunc,this);
-			this.schedule(this.freshRoomView,3);
 		}else{
 			this.tips.node.active = true;
 			this.tips.string = '您还没有加入任何公会，无法进行游戏，请加入公会！';
 		}
 		GlobalData.RunTimeParams.RoomData = null;
 		cc.log("created_room_scene","start gointo created room scene......");
-	},
-	
-	freshRoomView(){
-		var self = this;
-		if(GlobalData.MyUserInfo.gonghui_id != null){
-			var p = {
-				process:'getGonghuiGongHuiId',
-				gonghui_id:GlobalData.MyUserInfo.gonghui_id
-			}
-			Servers.request('gonghuiRouter',p,function(res){
-				var gonghuiInfo = res.msg;
-				if(gonghuiInfo != null){
-					var param = {
-						"process":'getRoomByPlayerId',
-						"player_id":gonghuiInfo.player_id
-					};
-					Servers.request('roomInfoRouter', param, function(data) {
-						var room_datas = data.msg;
-						for(var i = 0;i < room_datas.length;i++){
-							var data = room_datas[i];
-							if(self.roomContent.children.length > i){
-								var item = self.roomContent.children[i];
-								var itemCom = item.getComponent('room_item');
-								itemCom.initData(i,data);
-							}else{
-								var item = cc.instantiate(GlobalData.assets['roomItem']);
-								var itemCom = item.getComponent('room_item');
-								itemCom.initData(i,data);
-								self.roomContent.addChild(item);
-							}
-						}
-					});
-				}
-			});
-		}
 	},
 	
 	initRoomScroll(){
@@ -87,13 +52,7 @@ cc.Class({
 		if(room_datas == null){
 			return;
 		}
-		for(var i = 0;i < room_datas.length;i++){
-			var data = room_datas[i];
-			var item = cc.instantiate(GlobalData.assets['roomItem']);
-			var itemCom = item.getComponent('room_item');
-			itemCom.initData(i,data);
-			this.roomContent.addChild(item);
-		}
+		this.roomList.getComponent('ScrollView').setInitData(room_datas,2);
 	},
 
 	scrollFunc(event){
@@ -108,11 +67,19 @@ cc.Class({
 				cc.log(JSON.stringify(roomRes));
 				var room_data = roomRes.msg;
 				if(room_data != null){
-					//self.unschedule(self.freshRoomView);
-					var popRoom = cc.instantiate(GlobalData.assets['PopRoomScene']);
-					popRoom.getComponent('pop_room_wait').initData(room_data);
-					self.node.addChild(popRoom);
-					popRoom.setPosition(cc.v2(0,0));
+					//验证房间有效性
+					if(room_data.is_gaming != 0){
+						util.show_error_info('游戏已经开始无法进入，换个房间试试！(下拉房间列表刷新)');
+					}else if(room_data.real_num == room_data.player_num){
+						util.show_error_info('房间人数已满无法进入，换个房间试试！(下拉房间列表刷新)');
+					}else{
+						var popRoom = cc.instantiate(GlobalData.assets['PopRoomScene']);
+						popRoom.getComponent('pop_room_wait').initData(room_data);
+						self.node.addChild(popRoom);
+						popRoom.setPosition(cc.v2(0,0));
+					}
+				}else{
+					util.show_error_info('没有找到请求路由');
 				}
 			});
 		}
