@@ -3,7 +3,7 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-		itemHeight:100,
+		itemHeight:0,
 		myItem:cc.Node,
 		scrollView: {
 			default: null,
@@ -23,7 +23,6 @@ cc.Class({
 		this.items = []; // 存储实际创建的项数组
         this.updateTimer = 0;  
         this.updateInterval = 0.2;
-		this.itemHeight = 100;
         // 使用这个变量来判断滚动操作是向上还是向下
         this.lastContentPosY = 0; 
         // 设定缓冲矩形的大小为实际创建项的高度累加，当某项超出缓冲矩形时，则更新该项的显示内容

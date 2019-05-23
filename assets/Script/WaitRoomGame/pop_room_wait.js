@@ -12,21 +12,22 @@ cc.Class({
 			type:cc.Node,
 			default:[]
 		},
+		playerData:null,
 		enterFlag:false,
+		touchFlag:false,
     },
 
     onLoad () {
 		this.pomelo_removeListener();
-		this.enterFlag = false;
-		this.enterLocation = -1;
 		this.node.on(cc.Node.EventType.TOUCH_START,function(e){
 			e.stopPropagation();
 		})
-		this.node.on("pressed", this.switchRadio, this);
 		this.pomelo_on();
 	},
 	
 	initData(room_data){
+		this.enterFlag = false;
+		this.enterLocation = -1;
 		GlobalData.RunTimeParams.RoomData = room_data;
 		this.roomNameLabel.string = room_data.fangzhu_name;
 		this.roomNumLabel.string = room_data.room_num;
@@ -37,6 +38,12 @@ cc.Class({
 			this.fangkaLabel.string = '庄家消费房卡';
 		}else{
 			this.fangkaLabel.string = '1张/人';
+		}
+		this.touchFlag = false;
+		this.playerData = [null,null,null,null];
+		for(let i = 0; i < this.choice_sprite.length; i++){
+			var item = this.choice_sprite[i];
+			item.getComponent(cc.Button).interactable = false;
 		}
 		this.init_room_pos(room_data);
 	},
@@ -103,41 +110,63 @@ cc.Class({
 	
 	init_room_pos(room_data){
 		console.log('init_room_pos',room_data);
+		var fitem = this.choice_sprite[0];
+		var child_sprite = fitem.getChildByName('player_sprite');
+		if(GlobalData.RunTimeParams.RoomData.game_type == 1){
+			child_sprite.getChildByName('zhuang').active = true;
+		}else{
+			child_sprite.getChildByName('zhuang').active = false;
+		}
+		if(room_data["location1"] != null && room_data["location1"] != 'null'){
+			this.init_player_pos(this.choice_sprite[0],0,room_data["location1"].split('*')[0]);
+		}else{
+			this.init_player_pos(this.choice_sprite[0],0,null);
+		}
+		
+		if(room_data["location2"] != null && room_data["location2"] != 'null'){
+			this.init_player_pos(this.choice_sprite[1],1,room_data["location2"].split('*')[0]);
+		}else{
+			this.init_player_pos(this.choice_sprite[1],1,null);
+		}
+		
+		if(room_data["location3"] != null && room_data["location3"] != 'null'){
+			this.init_player_pos(this.choice_sprite[2],2,room_data["location3"].split('*')[0]);
+		}else{
+			this.init_player_pos(this.choice_sprite[2],2,null);
+		}
+		
+		if(room_data["location4"] != null && room_data["location4"] != 'null'){
+			this.init_player_pos(this.choice_sprite[3],3,room_data["location4"].split('*')[0]);
+		}else{
+			this.init_player_pos(this.choice_sprite[3],3,null);
+		}
+	},
+	
+	init_player_pos(item,id,player_id){
+		console.log('init_player_pos',item,id,player_id);
 		var self = this;
-		for(let i = 0; i < this.choice_sprite.length; i++){
-			var item = this.choice_sprite[i].getComponent("player_select");
-			if(i == 0){
-				if(GlobalData.RunTimeParams.RoomData.game_type == 1){
-					this.choice_sprite[i].getChildByName('zhuang').active = true;
+		var child_sprite = item.getChildByName('player_sprite');
+		if(player_id != null && player_id != "null"){
+			var param = {
+				process:'get_player',
+				player_id:player_id
+			};
+			Servers.request('userInfoRouter',param,function(data){
+				if(data.msg != null && data.msg.head_img_url != null && data.msg.head_img_url.length > 0){
+					cc.loader.load({url:data.msg.head_img_url,type:'png'},function (err, texture) {
+						var frame = new cc.SpriteFrame(texture);
+						child_sprite.getComponent("cc.Sprite").spriteFrame = frame;
+					});
 				}else{
-					this.choice_sprite[i].getChildByName('zhuang').active = false;
+					child_sprite.getComponent("cc.Sprite").spriteFrame = GlobalData.assets["man"];
 				}
-			}
-			var location = room_data["location" + (i + 1)];
-			if(location != null && location != "null"){
-				var player_id = location.split("*")[0];
-				var param = {
-					process:'get_player',
-					player_id:player_id
-				};
-				Servers.request('userInfoRouter',param,function(data){
-					if(data.msg != null && data.msg.head_img_url != null && data.msg.head_img_url.length > 0){
-						cc.loader.load({url:data.msg.head_img_url,type:'png'},function (err, texture) {
-							var frame = new cc.SpriteFrame(texture);
-							self.choice_sprite[i].getComponent("cc.Sprite").spriteFrame = frame;
-						});
-					}else{
-						self.choice_sprite[i].getComponent("cc.Sprite").spriteFrame = GlobalData.assets["man"];
-					}
-				});
-				item.set_flag(true);
-			}else{
-				this.choice_sprite[i].getComponent("cc.Sprite").spriteFrame = GlobalData.assets["wait_" + (i+1)];
-				item.set_flag(false);
-			}
-			if(room_data["player_num"] <= room_data["real_num"]){
-				item.set_flag(true);
-			}
+				self.playerData[id] = data;
+			});
+			item.getComponent(cc.Button).interactable = false;
+		}else{
+			child_sprite.getComponent("cc.Sprite").spriteFrame = GlobalData.assets["wait_" + (id+1)];
+			item.getComponent(cc.Button).interactable = true;
+			this.playerData[id] = null;
 		}
 	},
 	
@@ -146,97 +175,44 @@ cc.Class({
 		cc.log("pomelo on onEnterRoom_function:" + data.location+" is ready" + this.choice_sprite.length);
 		this.enterLocation = data.location;
 		var last_enter_player_id = data.player[data.location - 1];
-		var param = {
-			process:'get_player'
-		};
+		
 		if(data.player[0] != null){
-			param['player_id'] = data.player[0];
-			Servers.request('userInfoRouter',param,function(data){
-				let enter_player = data.msg;
-				let enter_item = self.choice_sprite[0];
-				let item_com = enter_item.getComponent("player_select");
-				item_com.set_data(enter_player);
-				item_com.set_flag(true);
-				if(enter_player.head_img_url != null && enter_player.head_img_url.length > 0){
-					cc.loader.load({url:enter_player.head_img_url,type:'png'},function (err, texture) {
-						var frame = new cc.SpriteFrame(texture);
-						enter_item.getComponent("cc.Sprite").spriteFrame = frame;
-					});
-				}else{
-					enter_item.getComponent("cc.Sprite").spriteFrame = GlobalData.assets["man"];
-				}
-			});
+			this.init_player_pos(this.choice_sprite[0],0,data.player[0]);
+		}else{
+			this.init_player_pos(this.choice_sprite[0],0,null);
 		}
 		
 		if(data.player[1] != null){
-			param['player_id'] = data.player[1];
-			Servers.request('userInfoRouter',param,function(data){
-				let enter_player = data.msg;
-				let enter_item = self.choice_sprite[1];
-				let item_com = enter_item.getComponent("player_select");
-				item_com.set_data(enter_player);
-				item_com.set_flag(true);
-				if(enter_player.head_img_url != null && enter_player.head_img_url.length > 0){
-					cc.loader.load({url:enter_player.head_img_url,type:'png'},function (err, texture) {
-						var frame = new cc.SpriteFrame(texture);
-						enter_item.getComponent("cc.Sprite").spriteFrame = frame;
-					});
-				}else{
-					enter_item.getComponent("cc.Sprite").spriteFrame = GlobalData.assets["man"];
-				}
-			});
+			this.init_player_pos(this.choice_sprite[1],1,data.player[1]);
+		}else{
+			this.init_player_pos(this.choice_sprite[1],1,null);
 		}
 		
 		if(data.player[2] != null){
-			param['player_id'] = data.player[2];
-			Servers.request('userInfoRouter',param,function(data){
-				let enter_player = data.msg;
-				let enter_item = self.choice_sprite[2];
-				let item_com = enter_item.getComponent("player_select");
-				item_com.set_data(enter_player);
-				item_com.set_flag(true);
-				if(enter_player.head_img_url != null && enter_player.head_img_url.length > 0){
-					cc.loader.load({url:enter_player.head_img_url,type:'png'},function (err, texture) {
-						var frame = new cc.SpriteFrame(texture);
-						enter_item.getComponent("cc.Sprite").spriteFrame = frame;
-					});
-				}else{
-					enter_item.getComponent("cc.Sprite").spriteFrame = GlobalData.assets["man"];
-				}
-			});
+			this.init_player_pos(this.choice_sprite[2],2,data.player[2]);
+		}else{
+			this.init_player_pos(this.choice_sprite[2],2,null);
 		}
 		
 		if(data.player[3] != null){
-			param['player_id'] = data.player[3];
-			Servers.request('userInfoRouter',param,function(data){
-				let enter_player = data.msg;
-				let enter_item = self.choice_sprite[3];
-				let item_com = enter_item.getComponent("player_select");
-				item_com.set_data(enter_player);
-				item_com.set_flag(true);
-				if(enter_player.head_img_url != null && enter_player.head_img_url.length > 0){
-					cc.loader.load({url:enter_player.head_img_url,type:'png'},function (err, texture) {
-						var frame = new cc.SpriteFrame(texture);
-						enter_item.getComponent("cc.Sprite").spriteFrame = frame;
-					});
-				}else{
-					enter_item.getComponent("cc.Sprite").spriteFrame = GlobalData.assets["man"];
-				}
-			});
+			this.init_player_pos(this.choice_sprite[3],3,data.player[3]);
+		}else{
+			this.init_player_pos(this.choice_sprite[3],3,null);
 		}
 		
 		GlobalData.RunTimeParams.RoomData['real_num'] = data.real_num;
 		//判断是否是自己，如果是自己则取消点击事件。
 		if(last_enter_player_id == GlobalData.MyUserInfo["id"]){
-			for(let i = 0; i < self.choice_sprite.length; i++){
-				var item = self.choice_sprite[i].getComponent("player_select");
-				item.set_flag(true);
+			for(let i = 0; i < this.choice_sprite.length; i++){
+				var item = this.choice_sprite[i];
+				item.getComponent(cc.Button).interactable = false;
 			}
 		}
+		//如果人数达到上限则 开始游戏
 		if(GlobalData.RunTimeParams.RoomData['real_num'] >= GlobalData.RunTimeParams.RoomData["player_num"]){
-			for(let i = 0; i < self.choice_sprite.length; i++){
-				var item = self.choice_sprite[i].getComponent("player_select");
-				item.set_flag(true);
+			for(let i = 0; i < this.choice_sprite.length; i++){
+				var item = this.choice_sprite[i];
+				item.getComponent(cc.Button).interactable = false;
 			}
 			this.popDelayScene = cc.instantiate(GlobalData.assets['PopDelayScene']);
 			this.node.addChild(this.popDelayScene);
@@ -263,10 +239,10 @@ cc.Class({
 		}
 		if(location != null){
 			var item = this.choice_sprite[location - 1];
-			var item_com = item.getComponent("player_select");
-			item.getComponent("cc.Sprite").spriteFrame = GlobalData.assets["wait_" + location];
-			item_com.set_data(null);
-			item_com.set_flag(false);
+			var child_sprite = item.getChildByName('player_sprite');
+			this.playerData[location - 1] = null;
+			child_sprite.getComponent("cc.Sprite").spriteFrame = GlobalData.assets["wait_" + location];
+			item.getComponent(cc.Button).interactable = true;
 		}
 	},
 	
@@ -305,43 +281,38 @@ cc.Class({
 		util.show_error_info(data.msg);
 	},
 	
-	switchRadio(event) {
+	switchRadio(event,customData) {
 		var self = this;
 		if(GlobalData.RunTimeParams.RootNode != null){
 			GlobalData.RunTimeParams.RootNode.getComponent('root_node').play(GlobalData.AudioIdx.ClickButton);
 		}
-        var index = event.target.getComponent("player_select").index;
-		var type = event.target.getComponent("player_select").type;
-		cc.log("switchRadio : index:" + index + " type:" + type);
-        for(let i = 0; i < this.choice_sprite.length; i++){
-			var item = this.choice_sprite[i].getComponent("player_select");
-            if(item.index == index){
-				var flag = item.get_flag();
-				if(flag == false){
-					item.set_flag(true);
-					var param = {
-						process:null,
-						rid:GlobalData.RunTimeParams.RoomData["rid"],
-						location:index,
-						player_id:GlobalData.MyUserInfo["id"]
-					};
-					pomelo.request(routerMap['enterRoomRouter'], param, function(data) {
-						cc.log(JSON.stringify(data));
-						if(data.code == 200){
-							self.enterFlag = true;
-						}else if(data.code == 500){
-							util.show_error_info(data.msg);
-							self.game_refresh(GlobalData.RunTimeParams.RoomData);
-						}else{
-							item.set_flag(false);
-							util.show_error_info(data.msg);
-							self.game_refresh(GlobalData.RunTimeParams.RoomData);
-						}
-					});
+		//屏蔽所有的点击事件 防止 玩家多次点击 产生误操作
+		if(this.touchFlag == true){
+			return;
+		}
+		var item = event.target;
+		var index = parseInt(customData);
+		if(this.enterFlag != true){
+			var param = {
+				process:null,
+				rid:GlobalData.RunTimeParams.RoomData["rid"],
+				location:index,
+				player_id:GlobalData.MyUserInfo["id"]
+			};
+			pomelo.request(routerMap['enterRoomRouter'], param, function(data) {
+				cc.log(JSON.stringify(data));
+				if(data.code == 200){
+					self.enterFlag = true;
+				}else if(data.code == 500){
+					util.show_error_info(data.msg);
+					self.game_refresh(GlobalData.RunTimeParams.RoomData);
+				}else{
+					util.show_error_info(data.msg);
+					self.game_refresh(GlobalData.RunTimeParams.RoomData);
 				}
-				break;
-            }
-        }
+				self.touchFlag = false;
+			});
+		}
     },
 	
 	pomelo_on(){

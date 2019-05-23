@@ -7,6 +7,7 @@ cc.Class({
 			default: null,
 			type: cc.ScrollView
 		},
+		itemNode:cc.Node,
 		spawnCount: 0, // 实际创建的项数量
 		totalCount: 0, // 在列表中显示的项数量
 		spacing: 0, // 项之间的间隔大小
@@ -37,7 +38,7 @@ cc.Class({
 			if(this.data_list.length <= i){
 				break;
 			}
-    		let item = cc.instantiate(GlobalData.assets["game_history_item_layout"]);
+    		let item = cc.instantiate(this.itemNode);
             this.content.addChild(item);
             // 设置该item的坐标（注意父节点content的Anchor坐标是(0.5, 1)，所以item的y坐标总是负值）
     		item.setPosition(0, -item.height * (0.5 + i) - this.spacing * (i + 1));
