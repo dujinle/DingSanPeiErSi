@@ -5,6 +5,7 @@ cc.Class({
 		gonghui_id:cc.Node,
 		gonghui_name:cc.Node,
 		gonghui_zhang:cc.Node,
+		gonghui_zhiwu:cc.Node,
 		fangka_num:cc.Node,
 		renshu:cc.Node,
 		danjia:cc.Node,

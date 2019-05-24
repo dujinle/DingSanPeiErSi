@@ -7,7 +7,6 @@ cc.Class({
 		join_gonghui_button:cc.Node,
 		game_sprite:cc.Node,
 		my_gonghui_node:cc.Node,
-		my_gonghui_zhang_node:cc.Node,
 		add_gonghui_node:cc.Node,
 		join_gonghui_node:cc.Node,
 		empty_node:cc.Node,
@@ -40,15 +39,9 @@ cc.Class({
 			Servers.request('gonghuiRouter',param,function(data){
 				if(data.msg != null){
 					var gonghui_data = data.msg;
-					if(gonghui_data["player_id"] != GlobalData.MyUserInfo["id"]){
-						var my_gonghui_com = self.my_gonghui_node.getComponent("gonghui_yuan");
-						my_gonghui_com.init(gonghui_data);
-						self.show_one_node("gonghui");
-					}else{
-						var my_gonghui_com = self.my_gonghui_zhang_node.getComponent("gonghui_zhang");
-						my_gonghui_com.init(gonghui_data);
-						self.show_one_node("gonghui_zhang");
-					}
+					var my_gonghui_com = self.my_gonghui_node.getComponent("gonghui_info");
+					my_gonghui_com.init(gonghui_data);
+					self.show_one_node("gonghui");
 				}else{
 					var empty_node_com = self.empty_node.getComponent("gonghui_empty");
 					empty_node_com.set_text("no_g");
@@ -134,7 +127,6 @@ cc.Class({
 	},
 	show_one_node(tag){
 		this.my_gonghui_node.active = false;
-		this.my_gonghui_zhang_node.active = false;
 		this.add_gonghui_node.active = false;
 		this.join_gonghui_node.active = false;
 		this.empty_node.active = false;
@@ -142,8 +134,6 @@ cc.Class({
 			this.empty_node.active = true;
 		}else if(tag == "gonghui"){
 			this.my_gonghui_node.active = true;
-		}else if(tag == "gonghui_zhang"){
-			this.my_gonghui_zhang_node.active = true;
 		}else if(tag == "add_gonghui"){
 			this.add_gonghui_node.active = true;
 		}else if(tag == "join_gonghui"){
