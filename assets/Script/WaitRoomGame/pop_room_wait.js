@@ -15,19 +15,20 @@ cc.Class({
 		playerData:null,
 		enterFlag:false,
 		touchFlag:false,
+		callback:null,
     },
 
     onLoad () {
-		this.pomelo_removeListener();
 		this.node.on(cc.Node.EventType.TOUCH_START,function(e){
 			e.stopPropagation();
 		})
 		this.pomelo_on();
 	},
 	
-	initData(room_data){
+	initData(room_data,cb){
 		this.enterFlag = false;
 		this.enterLocation = -1;
+		this.callback = cb;
 		GlobalData.RunTimeParams.RoomData = room_data;
 		this.roomNameLabel.string = room_data.fangzhu_name;
 		this.roomNumLabel.string = room_data.room_num;
@@ -46,6 +47,7 @@ cc.Class({
 			item.getComponent(cc.Button).interactable = false;
 		}
 		this.init_room_pos(room_data);
+		
 	},
 	
 	game_refresh(room_data){
@@ -250,18 +252,22 @@ cc.Class({
 		cc.log("pomelo on onStartGame_function:" + JSON.stringify(data));
 		var self = this;
 		var players = data.players;
+		GlobalData.RoomInfos.StartLocation = data.location;
 		GlobalData.RunTimeParams.AllPlayers.splice(0,GlobalData.RunTimeParams.AllPlayers.length);
 		for(var i = 0;i < players.length;i++){
 			if(players[i] != null && players[i] != "null"){
 				GlobalData.RunTimeParams.AllPlayers.push(players[i]);
 			}
 		}
+		
 		var param = {
 			"process":'getRoomById',
 			"rid":GlobalData.RunTimeParams.RoomData["rid"]
 		};
 		Servers.request('roomInfoRouter', param, function(data) {
 			cc.log(JSON.stringify(data));
+			self.pomelo_removeListener();
+			self.callback();
 			for(var key in data.msg) {
 				GlobalData.RunTimeParams.RoomData[key] = data.msg[key];
 			}
@@ -272,7 +278,6 @@ cc.Class({
 			}else{
 				cc.director.loadScene("SJRoomScene");
 			}
-			self.pomelo_removeListener();
 		});
 	},
 	

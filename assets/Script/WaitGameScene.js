@@ -74,7 +74,9 @@ cc.Class({
 						util.show_error_info('房间人数已满无法进入，换个房间试试！(下拉房间列表刷新)');
 					}else{
 						var popRoom = cc.instantiate(GlobalData.assets['PopRoomScene']);
-						popRoom.getComponent('pop_room_wait').initData(room_data);
+						popRoom.getComponent('pop_room_wait').initData(room_data,function(status){
+							self.pomelo_removeListener();
+						});
 						self.node.addChild(popRoom);
 						popRoom.setPosition(cc.v2(0,0));
 					}

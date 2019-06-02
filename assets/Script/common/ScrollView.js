@@ -15,7 +15,7 @@ cc.Class({
     },
     onLoad () {
 		this.spacing = 5;
-		this.scrollView.node.on('bounce-top',this.freshData,this);
+		//this.scrollView.node.on('bounce-top',this.freshData,this);
 	},
 	// 列表初始化
     initialize: function () {
@@ -114,6 +114,7 @@ cc.Class({
 			}
 			Servers.request('gonghuiRouter',p,function(res){
 				var gonghuiInfo = res.msg;
+				console.log(res);
 				if(gonghuiInfo != null){
 					var param = {
 						"process":'getRoomByPlayerId',

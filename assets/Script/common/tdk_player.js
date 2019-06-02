@@ -19,6 +19,7 @@ cc.Class({
 		nick_name_label:cc.Label,
 		chips_label:cc.Node,
 		gold_label:cc.Label,
+		isvalid:false,
 		my_cards:{
 			type:cc.Node,
 			default:[]
@@ -50,6 +51,7 @@ cc.Class({
 			this.setSpriteStatus("yizhunbei");
 		}
 		this.pei_pai_flag = false;
+		this.isvalid = false;
 	},
 	start_timer(){
 		var count_timer = this.counter_timer.getComponent("count_timer");
@@ -235,5 +237,6 @@ cc.Class({
 	setInvalid(){
 		this.counter_timer.active = false;
 		this.mobile_sprite.node.active = false;
+		this.isvalid = true;
 	}
 });
