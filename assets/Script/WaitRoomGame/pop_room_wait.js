@@ -63,7 +63,7 @@ cc.Class({
 				for(var key in tmp_data) {
 					GlobalData.RunTimeParams.RoomData[key] = tmp_data[key];
 				}
-				self.initData(GlobalData.RunTimeParams.RoomData);
+				self.initData(GlobalData.RunTimeParams.RoomData,self.callback);
 			}
 		});
 	},

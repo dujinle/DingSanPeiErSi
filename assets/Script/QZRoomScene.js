@@ -447,6 +447,7 @@ cc.Class({
 	onGetZhuang_function(data){
 		cc.log("pomelo onGetzhuang_function:",JSON.stringify(data));
 		GlobalData.RoomInfos.MsgUuid = data.uuid;
+		GlobalData.RoomInfos.StartLocation = data.location;
 		var size = cc.winSize;
 		this.zhuang_serverPosition = data.zhuang_local;
 		var scores = data.scores;
