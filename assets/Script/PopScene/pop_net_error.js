@@ -7,6 +7,7 @@ cc.Class({
 		delayLabel:cc.Node,
 		tipsLabel:cc.Node,
 		callback:null,
+		reConnect:false,
     },
     onLoad () {
 		this.node.on(cc.Node.EventType.TOUCH_START,function(e){
@@ -16,12 +17,14 @@ cc.Class({
 	onStart(time,message,cb){
 		this.delayTime = time;
 		this.callback = cb;
+		this.reConnect = false;
 		this.tipsLabel.getComponent(cc.Label).string = message;
 		this.delayLabel.getComponent(cc.Label).string = "(" + this.delayTime + "s)";
 		this.schedule(this.delayFunc,1);
 		GlobalData.RunTimeParams.DisConnect = true;
 	},
 	delayFunc(){
+		var self = this;
 		this.delayTime -= 1;
 		this.delayLabel.getComponent(cc.Label).string = "(" + this.delayTime + "s)";
 		if(this.delayTime <= 0){
@@ -40,12 +43,18 @@ cc.Class({
 			login_type = jsb.reflection.callStaticMethod("NativeOcClass", "getNetType");
 		}
 		
-		if(login_type != -1){
-			GlobalData.RunTimeParams.DisConnect = false;
-			this.unschedule(this.delayFunc);
-			this.node.removeFromParent();
-			this.node.destroy();
-			ThirdAPI.reConnect();
+		if(login_type != -1 && this.reConnect == false){
+			this.reConnect = true;
+			ThirdAPI.reConnect(function(res){
+				if(res == 1){
+					GlobalData.RunTimeParams.DisConnect = false;
+					this.unschedule(this.delayFunc);
+					this.node.removeFromParent();
+					this.node.destroy();
+				}else{
+					self.reConnect = false;
+				}
+			});
 		}
 	}
 });

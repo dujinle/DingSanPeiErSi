@@ -35,15 +35,17 @@ let ThirdAPI = {
             console.error(error);
         }
     },
-	reConnect:function(){
+	reConnect:function(cb){
 		if(GlobalData.RunTimeParams.CurrentScene == GlobalData.SCENE_TAG.LOAD){
 			cc.director.loadScene("LoginScene");
+			cb(1);
 			return;
 		}
 		Servers.getLogin(GlobalData.MyUserInfo['player_id'],GlobalData.MyUserInfo['nickname'],GlobalData.MyUserInfo['gender'],GlobalData.MyUserInfo['headimgurl'], function (data) {
 			console.log("get login info succ:" + JSON.stringify(data));
 			if(data.code != 200){
 				util.show_error_info(data.msg);
+				cb(-1);
 				return;
 			}
 			var token = data.token;
@@ -52,13 +54,17 @@ let ThirdAPI = {
 					util.show_error_info("重新连接成功");
 					if(GlobalData.RunTimeParams.CurrentScene == GlobalData.SCENE_TAG.MAIN){
 						console.log("主页链接成功");
+						cb(1);
 						//cc.director.loadScene("MainScene");
 					}else if(GlobalData.RunTimeParams.CurrentScene == GlobalData.SCENE_TAG.GONGHUI){
 						//cc.director.loadScene("GongHuiScene");
+						cb(1);
 					}else if(GlobalData.RunTimeParams.CurrentScene == GlobalData.SCENE_TAG.GAMEINFO){
 						//cc.director.loadScene("MyGameInfoScene");
+						cb(1);
 					}else if(GlobalData.RunTimeParams.CurrentScene == GlobalData.SCENE_TAG.WAITROOM){
 						console.log("房间列表成功");
+						cb(1);
 						//cc.director.loadScene("WaitGameScene");
 					}else if(GlobalData.RunTimeParams.CurrentScene == GlobalData.SCENE_TAG.ROOM){
 						var roomScene = cc.director.getScene().getChildByName('Canvas');
@@ -69,13 +75,16 @@ let ThirdAPI = {
 						}else{
 							roomScene.getComponent("SJRoomScene").reConnect();
 						}
+						cb(1);
 					}
 				}else{
 					util.show_error_info(data.msg);
+					cb(-1);
 				}
 			});
 		});
 	},
+	
 	disConnect:function(){
 		if(GlobalData.RunTimeParams.CurrentScene == GlobalData.SCENE_TAG.MAIN){
 			console.log("主页链接成功");

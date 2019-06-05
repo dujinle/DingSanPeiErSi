@@ -102,6 +102,10 @@ cc.Class({
 			"uuid":GlobalData.RoomInfos.MsgUuid
 		};
 		Servers.request('repairEnterRoom', param, function(data) {
+			if(data.type != null && data.type == 'exit'){
+				self.onExit();
+				cc.director.loadScene("MainScene");
+			}
 			console.log(data);
 		});
 	},
@@ -868,7 +872,7 @@ cc.Class({
 				popDelayScene.setPosition(cc.v2(0,0));
 				var popDelaySceneCom = popDelayScene.getComponent('pop_delay_scene');
 				popDelaySceneCom.setMsg("玩家 <" + player_com.nick_name + "> 断线了，请等待玩家重连");
-				popDelayScene.getComponent('pop_delay_scene').onStart(140,function(){
+				popDelayScene.getComponent('pop_delay_scene').onStart(data.delay_time,function(){
 					popDelayScene.removeFromParent();
 					popDelayScene.destroy();
 				});
