@@ -26,7 +26,6 @@ cc.Class({
 			console.log('掉线了');
 			/*如果没有进行过掉线的处理*/
 			if(GlobalData.RunTimeParams.DisConnect == false){
-				GlobalData.RunTimeParams.DisConnect = true;
 				onReconnect();
 			}
 		});

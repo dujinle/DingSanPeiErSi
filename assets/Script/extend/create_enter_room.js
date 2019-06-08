@@ -29,6 +29,6 @@ var onReconnect = function(){
 		var error_tip_com = error_tip.getComponent("pop_net_error");
 		GlobalData.RunTimeParams.RootNode.addChild(error_tip);
 		error_tip.setPosition(cc.v2(0,0));
-		error_tip_com.onStart(180,"当前网络不可用，请检查自己的网络状态",null);
+		error_tip_com.onStart(90,"当前网络不可用，请检查自己的网络状态",null);
 	}
 }

@@ -97,6 +97,7 @@ cc.Class({
 	reConnect(){
 		//玩家断线重连需要恢复当时的状态
 		var self = this;
+		this.get_one_button(null,false);
 		var param = {
 			'process':null,
 			"rid":GlobalData.RunTimeParams.RoomData["rid"],
@@ -428,6 +429,7 @@ cc.Class({
 	
 	onChangePlayer_function(data){
 		console.log('onChangePlayer_function',data);
+		GlobalData.RoomInfos.MsgUuid = data.uuid;
 		for(var i = 0;i < GlobalData.RoomInfos.TotalPlayers.length;i++){
 			var player = GlobalData.RoomInfos.TotalPlayers[i];
 			var player_com = player.getComponent("tdk_player");
@@ -957,7 +959,6 @@ cc.Class({
 	
 	onRepairEnterRoom_function(data){
 		cc.log("onRepairEnterRoom_function:"+JSON.stringify(data));
-		GlobalData.RoomInfos.MsgUuid = data.uuid;
 		var popDelayScene = this.node.getChildByName('PopDelayScene');
 		if(popDelayScene != null){
 			popDelayScene.removeFromParent();

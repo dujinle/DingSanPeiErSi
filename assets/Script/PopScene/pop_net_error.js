@@ -48,9 +48,9 @@ cc.Class({
 			ThirdAPI.reConnect(function(res){
 				if(res == 1){
 					GlobalData.RunTimeParams.DisConnect = false;
-					this.unschedule(this.delayFunc);
-					this.node.removeFromParent();
-					this.node.destroy();
+					self.unschedule(self.delayFunc);
+					self.node.removeFromParent();
+					self.node.destroy();
 				}else{
 					self.reConnect = false;
 				}

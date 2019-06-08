@@ -26,16 +26,16 @@ cc.Class({
 		this.progress_bar_boom.progress = 0;
 		this.top_precent = 0;
 		this.boom_precent = 0;
-		this.schedule(this.progress_bar,0.2);
+		this.schedule(this.progress_bar,0.1);
     },
 	progress_bar(){
 		if(this.progress_bar_boom.progress <= 1){
-			this.boom_precent = this.boom_precent + 0.04;
+			this.boom_precent = this.boom_precent + 0.01;
 			this.progress_bar_boom.progress = this.boom_precent / this.sumTime;
 			return;
 		}
 		if(this.progress_bar_top.progress <= 1){
-			this.top_precent = this.top_precent + 0.04;
+			this.top_precent = this.top_precent + 0.01;
 			this.progress_bar_top.progress = this.top_precent / this.sumTime;
 			return;
 		}

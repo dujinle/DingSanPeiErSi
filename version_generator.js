@@ -6,7 +6,7 @@ var manifest = {
     packageUrl: 'https://www.enjoymygame.com/pjhotupdate/',
     remoteManifestUrl: 'https://www.enjoymygame.com/pjhotupdate/project.manifest',
     remoteVersionUrl: 'https://www.enjoymygame.com/pjhotupdate/version.manifest',
-    version: '1.11.22',
+    version: '1.11.29',
     assets: {},
     searchPaths: []
 };

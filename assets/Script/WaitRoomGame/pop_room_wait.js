@@ -22,13 +22,13 @@ cc.Class({
 		this.node.on(cc.Node.EventType.TOUCH_START,function(e){
 			e.stopPropagation();
 		})
-		this.pomelo_on();
 	},
 	
 	initData(room_data,cb){
 		this.enterFlag = false;
 		this.enterLocation = -1;
 		this.callback = cb;
+		this.pomelo_on();
 		GlobalData.RunTimeParams.RoomData = room_data;
 		this.roomNameLabel.string = room_data.fangzhu_name;
 		this.roomNumLabel.string = room_data.room_num;
@@ -47,7 +47,6 @@ cc.Class({
 			item.getComponent(cc.Button).interactable = false;
 		}
 		this.init_room_pos(room_data);
-		
 	},
 	
 	game_refresh(room_data){
@@ -321,10 +320,15 @@ cc.Class({
     },
 	
 	pomelo_on(){
-		pomelo.on('onStartGame',this.onStartGame_function.bind(this));
-    	pomelo.on('onEnterRoom',this.onEnterRoom_function.bind(this));
-		pomelo.on('onLeaveRoom',this.onLeaveRoom_function.bind(this));
-		pomelo.on('onStartFail',this.onStartFail_function.bind(this));
+		try{
+			console.log('pomelo_on');
+			pomelo.on('onStartGame',this.onStartGame_function.bind(this));
+			pomelo.on('onEnterRoom',this.onEnterRoom_function.bind(this));
+			pomelo.on('onLeaveRoom',this.onLeaveRoom_function.bind(this));
+			pomelo.on('onStartFail',this.onStartFail_function.bind(this));
+		}catch(err){
+			console.log(err);
+		}
 	},
 	
 	pomelo_removeListener(){
