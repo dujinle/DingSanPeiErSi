@@ -1035,6 +1035,14 @@ cc.Class({
 					var card = player_com.my_cards[j].getComponent("pj_card");
 					card.sprite_back.node.runAction(backSpawn);
 					card.sprite.runAction(frontSpawn);
+					if(GlobalData.RoomInfos.PeiPaiTip != null && GlobalData.RoomInfos.StartLocation == player_com.position_server){
+						if(j + 1 == GlobalData.RoomInfos.PeiPaiTip[0]){
+							card.touch_call(null);
+						}
+						if(j + 1 == GlobalData.RoomInfos.PeiPaiTip[1]){
+							card.touch_call(null);
+						}
+					}
                 }
             }
 			//如果玩家下注满了则庄家明牌
@@ -1069,7 +1077,7 @@ cc.Class({
 		var card_com = event.target.getComponent("pj_card");
         var suit = event.target.getComponent("pj_card").suit;
 		var rank = event.target.getComponent("pj_card").rank;
-		cc.log("switchRadio : suit:" + suit + " rank:" + rank);
+		console.log("switchRadio : suit:" + suit + " rank:" + rank);
 		var player_com = null;
 		for(var i = 0;i < GlobalData.RoomInfos.TotalPlayers.length;i++){
 			var player = GlobalData.RoomInfos.TotalPlayers[i];
@@ -1178,7 +1186,7 @@ cc.Class({
 	},
 	
 	getzhuang_callback(){
-		cc.log("getzhuang_callback");
+		console.log("getzhuang_callback");
 		this.suiji_qiangzhuang.active = false;
 		var mens = ["zhuang","chumen","tianmen","momen"];
 		for(var i = 0;i < this.players.length;i++){
@@ -1190,7 +1198,7 @@ cc.Class({
 				player_com.install_chip_label(true);
 			}else{
 				var men_idx = 0;
-				cc.log("position_server:" + player_com.position_server + " zhuang_serverPosition:" + this.zhuang_serverPosition);
+				console.log("position_server:" + player_com.position_server + " zhuang_serverPosition:" + this.zhuang_serverPosition);
 				if(player_com.position_server > this.zhuang_serverPosition){
 					men_idx = player_com.position_server - this.zhuang_serverPosition;
 				}else if(player_com.position_server < this.zhuang_serverPosition){
@@ -1222,7 +1230,7 @@ cc.Class({
 	},
 	
 	silder_callback(pthis,idx,silder_progress){
-		cc.log("pj_game_scene silder1:" + silder_progress);
+		console.log("pj_game_scene silder1:" + silder_progress);
 		for(var i = 0;i < GlobalData.RoomInfos.TotalPlayers.length;i++){
 			var player = GlobalData.RoomInfos.TotalPlayers[i];
 			var player_com = player.getComponent("tdk_player");
@@ -1235,7 +1243,7 @@ cc.Class({
 	},
 	
 	pomelo_removeListener(){
-		cc.log("remove listener");
+		console.log("remove listener");
         pomelo.removeListener('onReady');
 		pomelo.removeListener('onGetZhuang');
 		pomelo.removeListener('onXiazhu');

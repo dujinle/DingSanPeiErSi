@@ -431,6 +431,7 @@ cc.Class({
 	onChangePlayer_function(data){
 		console.log('onChangePlayer_function',data);
 		GlobalData.RoomInfos.MsgUuid = data.uuid;
+		GlobalData.RoomInfos.PeiPaiTip = data.tip;
 		for(var i = 0;i < GlobalData.RoomInfos.TotalPlayers.length;i++){
 			var player = GlobalData.RoomInfos.TotalPlayers[i];
 			var player_com = player.getComponent("tdk_player");
@@ -443,6 +444,18 @@ cc.Class({
 						this.get_one_button("xiazhu",true);
 					}else if(data.status == 5){
 						this.get_one_button("peipai",true);
+						//进行配牌提示
+						for(var j = 0;j < 4;j++){
+							var card = player_com.my_cards[j].getComponent("pj_card");
+							if(GlobalData.RoomInfos.PeiPaiTip != null){
+								if(j + 1 == GlobalData.RoomInfos.PeiPaiTip[0]){
+									card.touch_call(null);
+								}
+								if(j + 1 == GlobalData.RoomInfos.PeiPaiTip[1]){
+									card.touch_call(null);
+								}
+							}
+						}
 					}
 				}
 				break;
@@ -548,6 +561,7 @@ cc.Class({
 		console.log("onShoupai:",JSON.stringify(data));
 		GlobalData.RoomInfos.MsgUuid = data.uuid;
 		GlobalData.RoomInfos.StartLocation = data.location;
+		GlobalData.RoomInfos.PeiPaiTip = data.tip;
 		//初始化myselfCards数组
 		this.myselfCards.splice(0,this.myselfCards.length);
 		this.count = data["round"];
@@ -593,7 +607,8 @@ cc.Class({
 					var flag = false;
 					var card_item = all_cards[j];
 					var card_item_com = card_item.getComponent("pj_card");
-					console.log("card_item_com id:" + card_item_com.id + " selected_cards:" + player_com.selected_cards.length);
+					card_item_com.uninstallTouch();
+					console.log("card_item_com id:",card_item_com.id," selected_cards:",player_com.selected_cards.length);
 					for(var i = 0;i < card_select_ids.length;i++){
 						if(card_item_com.id == card_select_ids[i]){
 							flag = true;
@@ -702,6 +717,9 @@ cc.Class({
 						player_com.set_chips(1,0);
 						player_com.set_chips(2,0);
 					}
+					if(player_com.position_server == GlobalData.RoomInfos.StartLocation){
+						player_com.start_timer();
+					}
 				}
 			}
 		}else{
@@ -715,6 +733,7 @@ cc.Class({
 					break;
 				}
 			}
+
 			for(var i = 0;i < GlobalData.RunTimeParams.AllPlayers.length;i++){
 				var player_item = GlobalData.RunTimeParams.AllPlayers[i];
 				if(player_item != null && player_item != "null"){
@@ -864,7 +883,7 @@ cc.Class({
 	},
 	
 	onKick_function(data){
-		console.log("onKick_function:"+JSON.stringify(data));
+		console.log("onKick_function:",JSON.stringify(data));
 		GlobalData.RoomInfos.MsgUuid = data.uuid;
 		for(var i = 0;i < GlobalData.RoomInfos.TotalPlayers.length;i++){
 			var player = GlobalData.RoomInfos.TotalPlayers[i];
@@ -885,7 +904,7 @@ cc.Class({
 	},
 	
 	onQuit_function(data){
-		console.log("onQuit_function:"+JSON.stringify(data));
+		console.log("onQuit_function:",JSON.stringify(data));
 		GlobalData.RoomInfos.MsgUuid = data.uuid;
 		var popDelayScene = this.node.getChildByName('PopDelayScene');
 		if(popDelayScene != null){
@@ -935,7 +954,7 @@ cc.Class({
 	},
 	
 	actionFaPai(pthis,fapai_order){
-		console.log("actionFaPai:" + JSON.stringify(fapai_order));
+		console.log("actionFaPai:" , JSON.stringify(fapai_order));
     	var size = cc.winSize;
 		var local = fapai_order.shift();
 		for(var i = 0;i < this.players.length;i++){
@@ -986,13 +1005,22 @@ cc.Class({
 					var card = player_com.my_cards[j].getComponent("pj_card");
 					card.sprite_back.node.runAction(backSpawn);
 					card.sprite.runAction(frontSpawn);
+					if(GlobalData.RoomInfos.PeiPaiTip != null && GlobalData.RoomInfos.StartLocation == player_com.position_server){
+						if(j + 1 == GlobalData.RoomInfos.PeiPaiTip[0]){
+							card.touch_call(null);
+						}
+						if(j + 1 == GlobalData.RoomInfos.PeiPaiTip[1]){
+							card.touch_call(null);
+						}
+					}
                 }
 				if(GlobalData.RoomInfos.StartLocation == player_com.position_server){
-					player_com.start_timer();
 					this.get_one_button("peipai",true);
 				}
-                break;
             }
+			if(GlobalData.RoomInfos.StartLocation == player_com.position_server){
+				player_com.start_timer();
+			}
         }
 	},
 

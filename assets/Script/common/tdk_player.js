@@ -7,7 +7,7 @@ cc.Class({
 		my_gold:0,
 		my_chip1:0,
 		my_chip2:0,
-		pei_pai_flag:false,
+		pei_pai_flag:0,
 		position_server:0,
 		player_position:0,
 		is_power:0,
@@ -50,7 +50,7 @@ cc.Class({
 		if(this.is_power == 1){
 			this.setSpriteStatus("yizhunbei");
 		}
-		this.pei_pai_flag = false;
+		this.pei_pai_flag = 0;
 		this.isvalid = false;
 	},
 	start_timer(){
@@ -71,6 +71,7 @@ cc.Class({
 		this.game_sprite.spriteFrame = GlobalData.assets[status];
 		this.game_sprite.node.active = true;
 	},
+	
 	install_chip_label(flag){
 		cc.log("install_chip_label");
 		if(this.chips_label != null){
@@ -103,6 +104,7 @@ cc.Class({
 			label_2.getComponent(cc.Label).string = 0;
 		}
 	},
+	
 	set_chips(idx,chip){
 		cc.log("set_chips idx:" + idx + " chip:" + chip);
 		if(idx == 1){
@@ -115,6 +117,7 @@ cc.Class({
 			this.my_chip2 = chip;
 		}
 	},
+	
 	remove_select_cards(){
 		for(var i = 0;i < this.selected_cards.length;i++){
 			var selectCard = this.selected_cards[i];
@@ -126,15 +129,9 @@ cc.Class({
 			}
 		}
 		this.selected_cards.splice(0,this.selected_cards.length);
+		this.pei_pai_flag = 0;
 	},
-	resetSelectCard(){
-		for(var i = 0;i < this.selected_cards.length;i++){
-			var card_t = this.selected_cards[i];
-			var card_com = card_t.getComponent("zhq_card");
-			card_com.menuCallbackButton();
-		}
-		this.selected_cards.splice(0,this.selected_cards.length);
-	},
+
 	addPlayerCard(){
 		var card = cc.instantiate(GlobalData.assets["pj_card"]);
 		var card_com = card.getComponent("pj_card");
@@ -143,18 +140,20 @@ cc.Class({
 		this.my_cards.push(card);
 		return card;
 	},
+	
 	set_card_sprite(idx,rank){
 		cc.log("set_card_sprite: idx" + idx + " rank:" + rank);
 		var card = this.my_cards[idx].getComponent("pj_card");
 		card.initCardSprite(rank);
 	},
+	
 	remove_cards(){
 		for(var i = 0;i < this.my_cards.length;i++){
 			var card = this.my_cards[i];
 			card.destroy();
 		}
 		this.my_cards.splice(0,this.my_cards.length);
-		this.pei_pai_flag = false;
+		this.pei_pai_flag = 0;
 	},
 	hide_status_sprite(){
 		this.status_sprite.node.active = false;
@@ -199,6 +198,9 @@ cc.Class({
 		}
 	},
 	set_card_head(cards,zhuang_serverPosition){
+		if(this.pei_pai_flag >= 1){
+			return;
+		}
 		for(var i = 0;i < cards.length;i++){
 			var card = cards[i];
 			if(this.position_server == zhuang_serverPosition){
@@ -217,8 +219,12 @@ cc.Class({
 				card.runAction(action_spawn);
 			}
 		}
+		this.pei_pai_flag += 1;
 	},
 	set_card_tail(cards,zhuang_serverPosition){
+		if(this.pei_pai_flag >= 2){
+			return;
+		}
 		for(var i = 0;i < cards.length;i++){
 			var card = cards[i];
 			if(this.position_server == zhuang_serverPosition){
@@ -233,6 +239,7 @@ cc.Class({
 				card.runAction(acMoveTo);
 			}
 		}
+		this.pei_pai_flag += 1;
 	},
 	setInvalid(){
 		this.counter_timer.active = false;

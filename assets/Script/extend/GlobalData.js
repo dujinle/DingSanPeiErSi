@@ -103,7 +103,8 @@ var GlobalData = {
 		MySelfPlayerLocation:-1,
 		LunZhuangFlag:false,
 		StartLocation:-1,
-		MsgUuid:null
+		MsgUuid:null,
+		PeiPaiTip:null,
 	},
 	//存储加载的场景和图片资源
 	assets:{},
