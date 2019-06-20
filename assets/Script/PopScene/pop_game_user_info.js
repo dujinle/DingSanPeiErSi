@@ -56,8 +56,8 @@ cc.Class({
 	},
 	button_call(event,type){
 		cc.log("button call",type);
-		this.node.active = false;
-		this.node.destroy();
 		this.call_back(type,this.send_from,this.location);
+		this.node.removeFromParent();
+		this.node.destroy();
 	},
 });

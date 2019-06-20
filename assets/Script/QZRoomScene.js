@@ -62,7 +62,6 @@ cc.Class({
 			GlobalData.RunTimeParams.RootNode.getComponent('root_node').playBg(GlobalData.AudioIdx.GameAudioBg);
 		}
 		this.pomelo_on();
-		this.init_count_timer();
 		this.initButtonEnableAfterComeInRoom();
 	},
 	init_head_info(){
@@ -83,10 +82,11 @@ cc.Class({
 		this.get_one_button(null);
 		for(var i = 0;i < GlobalData.RoomInfos.TotalPlayers.length;i++){
 			var player_com = GlobalData.RoomInfos.TotalPlayers[i].getComponent("tdk_player");
-			if(player_com.position_server == GlobalData.RoomInfos.MySelfPlayerLocation &&
-				GlobalData.RoomInfos.StartLocation == player_com.position_server){
-				this.get_one_button("ready",true);
-				break;
+			if(GlobalData.RoomInfos.StartLocation == player_com.position_server){
+				if(player_com.position_server == GlobalData.RoomInfos.MySelfPlayerLocation){
+					this.get_one_button("ready",true);
+				}
+				player_com.start_timer();
 			}
 		}
 		this.qieguo_button.active = false;
