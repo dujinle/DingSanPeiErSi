@@ -345,8 +345,8 @@ cc.Class({
 	callback_setting(){
 		var self = this;
 		var size = cc.winSize;
-		var pop_setting = cc.instantiate(GlobalData.assets["pop_setting_scene"]);
-		var pop_setting_com = pop_setting.getComponent("pop_set_scene");
+		var pop_setting = cc.instantiate(GlobalData.assets["PopSettingScene"]);
+		var pop_setting_com = pop_setting.getComponent("pop_game_setting");
 		
 		pop_setting_com.set_callback(function(index){
 			if(index == 0){
@@ -706,20 +706,23 @@ cc.Class({
 		var flag = data.flag;
 		this.get_one_button(null,false);
 		if(flag == false){
-			if(GlobalData.RoomInfos.MySelfPlayerLocation != this.zhuang_serverPosition){
-				for(var i = 0;i < this.players.length;i++){
-					var player = this.players[i];
-					var player_com = player.getComponent("tdk_player");
-					if(player_com.position_server == GlobalData.RoomInfos.MySelfPlayerLocation){
-						if(player_com.position_server == GlobalData.RoomInfos.StartLocation){
-							this.get_one_button("xiazhu",true);
-						}
+			for(var i = 0;i < this.players.length;i++){
+				var player = this.players[i];
+				var player_com = player.getComponent("tdk_player");
+				if(player_com.position_server == GlobalData.RoomInfos.MySelfPlayerLocation){
+					if(player_com.position_server == GlobalData.RoomInfos.StartLocation){
+						this.get_one_button("xiazhu",true);
+					}
+					if(player_com.position_server != this.zhuang_serverPosition){
 						player_com.set_chips(1,0);
 						player_com.set_chips(2,0);
 					}
-					if(player_com.position_server == GlobalData.RoomInfos.StartLocation){
-						player_com.start_timer();
-					}
+				}
+				if(player_com.position_server == GlobalData.RoomInfos.StartLocation){
+					player_com.start_timer();
+				}
+				if(player_com.position_server == this.zhuang_serverPosition){
+					player_com.stop_timer();
 				}
 			}
 		}else{
@@ -1116,21 +1119,22 @@ cc.Class({
 				this.buqie_button.getComponent("cc.Button").interactable = false;
 			}
 		}
-		if(GlobalData.RoomInfos.MySelfPlayerLocation != this.zhuang_serverPosition){
-			if(this.qieguo == 0){
-				for(var i = 0;i < this.players.length;i++){
-					var player = this.players[i];
-					var player_com = player.getComponent("tdk_player");
-					if(player_com.position_server == GlobalData.RoomInfos.MySelfPlayerLocation){
-						if(player_com.position_server == GlobalData.RoomInfos.StartLocation){
-							this.get_one_button("xiazhu",true);
-						}
+
+		if(this.qieguo == 0){
+			for(var i = 0;i < this.players.length;i++){
+				var player = this.players[i];
+				var player_com = player.getComponent("tdk_player");
+				if(player_com.position_server == GlobalData.RoomInfos.MySelfPlayerLocation){
+					if(player_com.position_server == GlobalData.RoomInfos.StartLocation){
+						this.get_one_button("xiazhu",true);
+					}
+					if(player_com.position_server != this.zhuang_serverPosition){
 						player_com.set_chips(1,0);
 						player_com.set_chips(2,0);
 					}
-					if(player_com.position_server == GlobalData.RoomInfos.StartLocation){
-						player_com.start_timer();
-					}
+				}
+				if(player_com.position_server == GlobalData.RoomInfos.StartLocation){
+					player_com.start_timer();
 				}
 			}
 		}
@@ -1158,25 +1162,25 @@ cc.Class({
 				player_com.install_chip_label(false);
 			}
 		}
-		if(GlobalData.RoomInfos.MySelfPlayerLocation != this.zhuang_serverPosition){
-			for(var i = 0;i < this.players.length;i++){
-				var player = this.players[i];
-				var player_com = player.getComponent("tdk_player");
-				if(player_com.position_server == GlobalData.RoomInfos.MySelfPlayerLocation){
-					if(player_com.position_server == GlobalData.RoomInfos.StartLocation){
-						this.get_one_button("xiazhu",true);
-					}
+		for(var i = 0;i < this.players.length;i++){
+			var player = this.players[i];
+			var player_com = player.getComponent("tdk_player");
+			if(player_com.position_server == GlobalData.RoomInfos.MySelfPlayerLocation){
+				if(player_com.position_server == GlobalData.RoomInfos.StartLocation){
+					this.get_one_button("xiazhu",true);
+				}
+				if(player_com.position_server != this.zhuang_serverPosition){
 					player_com.set_chips(1,0);
 					player_com.set_chips(2,0);
 				}
-				if(player_com.position_server == GlobalData.RoomInfos.StartLocation){
-					player_com.start_timer();
-				}
 			}
-		}else{
-			this.zhunbei_button.getComponent(cc.Button).interactable = false;
-			this.zhunbei_button.active = false;
+			if(player_com.position_server == GlobalData.RoomInfos.StartLocation){
+				player_com.start_timer();
+			}
 		}
+	
+		this.zhunbei_button.getComponent(cc.Button).interactable = false;
+		this.zhunbei_button.active = false;
 	},
 	
 	silder_callback(pthis,idx,silder_progress){
@@ -1185,8 +1189,10 @@ cc.Class({
 			var player = GlobalData.RoomInfos.TotalPlayers[i];
 			var player_com = player.getComponent("tdk_player");
 			if(player_com.position_server == GlobalData.RoomInfos.MySelfPlayerLocation){
-				player_com.set_chips(idx,silder_progress);
-				break;
+				if(player_com.position_server != pthis.zhuang_serverPosition){
+					player_com.set_chips(idx,silder_progress);
+					break;
+				}
 			}
 		}
 		pthis.get_one_button("queding",true);

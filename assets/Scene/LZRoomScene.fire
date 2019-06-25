@@ -41,8 +41,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.6640625,
-      "y": 0.6640625,
+      "x": 0.5694444444444444,
+      "y": 0.5694444444444444,
       "z": 1
     },
     "_quat": {
@@ -5591,6 +5591,7 @@
     "gold_label": {
       "__id__": 119
     },
+    "isvalid": false,
     "my_cards": [],
     "selected_cards": [],
     "_id": "3ft8QklSBDVKJm6RoVZbxo"
@@ -7152,6 +7153,7 @@
     "gold_label": {
       "__id__": 155
     },
+    "isvalid": false,
     "my_cards": [],
     "selected_cards": [],
     "_id": "8fkzBzDRhI0bpyfIoBwWuW"
@@ -8659,6 +8661,7 @@
     "gold_label": {
       "__id__": 191
     },
+    "isvalid": false,
     "my_cards": [],
     "selected_cards": [],
     "_id": "46yF0J46pJkILUbicornuI"
@@ -10220,6 +10223,7 @@
     "gold_label": {
       "__id__": 227
     },
+    "isvalid": false,
     "my_cards": [],
     "selected_cards": [],
     "_id": "867xnjtiZFCpiBW1sl2h2n"
