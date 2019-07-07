@@ -12,10 +12,6 @@ cc.Class({
 		totalCount: 0, // 在列表中显示的项数量
 		spacing: 0, // 项之间的间隔大小
 		data_list:null,
-		all_num_node:cc.Node,
-		use_num_node:cc.Node,
-		left_num_node:cc.Node,
-		invalid_num_node:cc.Node,
 		pthis:null,
     },
     onLoad () {
@@ -26,7 +22,7 @@ cc.Class({
 		this.items = []; // 存储实际创建的项数组
         this.updateTimer = 0;  
         this.updateInterval = 0.2;
-		this.itemHeight = 40;
+		this.itemHeight = this.itemNode.getContentSize().height;;
         // 使用这个变量来判断滚动操作是向上还是向下
         this.lastContentPosY = 0; 
         // 设定缓冲矩形的大小为实际创建项的高度累加，当某项超出缓冲矩形时，则更新该项的显示内容
@@ -106,10 +102,6 @@ cc.Class({
 	init_record_info(data,pthis){
 		var self = this;
 		this.pthis = pthis;
-		this.all_num_node.getComponent("cc.Label").string = parseInt(data["fangka_history"]) + parseInt(data["fangka_num"]);
-		this.use_num_node.getComponent("cc.Label").string = data["fangka_history"];
-		this.left_num_node.getComponent("cc.Label").string = data["fangka_num"];
-		this.invalid_num_node.getComponent("cc.Label").string = data["invalid_fangka"];
 		var param = {
 			process:"getBuyFangkaList",
 			"player_id":data["id"],
@@ -125,6 +117,10 @@ cc.Class({
 				}
 			}
 		});
+	},
+	onClose(){
+		this.node.removeFromParent();
+		this.node.destroy();
 	},
 	clear_scroll_data(){
 		if(this.items == null){

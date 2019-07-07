@@ -7,7 +7,6 @@ cc.Class({
 	   money:cc.Node,
 	   gold:cc.Node,
 	   creat_time:cc.Node,
-	   sbutton:cc.Node,
 	   itemID:null,
 	   pthis:null,
 	   data:null,
@@ -22,14 +21,6 @@ cc.Class({
 		this.gold.getComponent("cc.Label").string = data['gold'];
 		var date_str = util.dateftt(data["creat_time"],"yyyy-MM-dd h:m:s");
 		this.creat_time.getComponent("cc.Label").string = date_str;
-		if(data["status"] == 1){
-			this.sbutton.getComponent("cc.Button").interactable = false;
-			this.sbutton.getChildByName("label").getComponent("cc.Label").string = "完成";
-		}
-		if(data["status"] == 0){
-			this.sbutton.getComponent("cc.Button").interactable = true;
-			this.sbutton.getChildByName("label").getComponent("cc.Label").string = "去完成";
-		}
 	},
 	button_callback(){
 		this.pthis.node.active = false;

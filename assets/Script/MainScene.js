@@ -7,8 +7,6 @@ cc.Class({
         username_label:cc.Label,
         fangka_label:cc.Label,
 		gold:cc.Label,
-        sex_sprite:cc.Sprite,
-		exit_node:cc.Node,
 		freshTime:0,
     },
 
@@ -30,9 +28,7 @@ cc.Class({
 		this.username_label.string = GlobalData.MyUserInfo.nick_name;
         this.fangka_label.string = GlobalData.MyUserInfo.fangka_num;
 		this.gold.string = GlobalData.MyUserInfo.gold;
-		if(GlobalData.MyUserInfo.gender == 1){
-			this.sex_sprite.spriteFrame = GlobalData.assets["gender1"];
-        }
+		
 		var self = this;
 		if(GlobalData.MyUserInfo.headimgurl != null && GlobalData.MyUserInfo.headimgurl.length > 0){
 			cc.loader.load({url:GlobalData.MyUserInfo.headimgurl,type:'png'},function (err, texture) {
@@ -58,12 +54,6 @@ cc.Class({
 		}
 		this.freshTime += dt;
 	},
-	buy_fangka_scene(){
-		var size = cc.winSize;
-		this.pop_buyfangka = cc.instantiate(GlobalData.assets["PopBuyFangKaScene"]);
-		this.node.addChild(this.pop_buyfangka);
-		this.pop_buyfangka.setPosition(this.node.convertToNodeSpaceAR(cc.v2(size.width/2,size.height/2)));
-	},
 	popCreatScene(){
 		if(GlobalData.RunTimeParams.RootNode != null){
 			GlobalData.RunTimeParams.RootNode.getComponent('root_node').play(GlobalData.AudioIdx.ClickButton);
@@ -83,16 +73,35 @@ cc.Class({
 	popGonghuiScene(){
 		if(GlobalData.RunTimeParams.RootNode != null){
 			GlobalData.RunTimeParams.RootNode.getComponent('root_node').play(GlobalData.AudioIdx.ClickButton);
-			GlobalData.RunTimeParams.RootNode.getComponent('root_node').stopBg();
+			//GlobalData.RunTimeParams.RootNode.getComponent('root_node').stopBg();
 		}
-		cc.director.loadScene("GongHuiScene");
+		this.pop_gonghui_scene = cc.instantiate(GlobalData.assets["PopGongHuiScene"]);
+		this.pop_gonghui_scene.setPosition(cc.v2(0,0));
+		this.node.addChild(this.pop_gonghui_scene);
 	},
 	popMyGameScene(){
+		var self = this;
+		var size = cc.winSize;
 		if(GlobalData.RunTimeParams.RootNode != null){
 			GlobalData.RunTimeParams.RootNode.getComponent('root_node').play(GlobalData.AudioIdx.ClickButton);
-			GlobalData.RunTimeParams.RootNode.getComponent('root_node').stopBg();
+			//GlobalData.RunTimeParams.RootNode.getComponent('root_node').stopBg();
 		}
-		cc.director.loadScene("MyGameInfoScene");
+		this.pop_zhanji_scene = cc.instantiate(GlobalData.assets["PopZhanjiScene"]);
+		this.pop_zhanji_scene.setPosition(cc.v2(0,0));
+		this.node.addChild(this.pop_zhanji_scene);
+		this.pop_zhanji_scene.getComponent('my_game_zhanji').init_zhanji_info(GlobalData.MyUserInfo,this);
+	},
+	popJiaoYiScene(){
+		var self = this;
+		var size = cc.winSize;
+		if(GlobalData.RunTimeParams.RootNode != null){
+			GlobalData.RunTimeParams.RootNode.getComponent('root_node').play(GlobalData.AudioIdx.ClickButton);
+			//GlobalData.RunTimeParams.RootNode.getComponent('root_node').stopBg();
+		}
+		this.pop_jiaoyi_scene = cc.instantiate(GlobalData.assets["PopJiaoYiScene"]);
+		this.pop_jiaoyi_scene.setPosition(cc.v2(0,0));
+		this.node.addChild(this.pop_jiaoyi_scene);
+		this.pop_jiaoyi_scene.getComponent('my_game_record').init_record_info(GlobalData.MyUserInfo,this);
 	},
 	popHelpScene(){
 		if(GlobalData.RunTimeParams.RootNode != null){

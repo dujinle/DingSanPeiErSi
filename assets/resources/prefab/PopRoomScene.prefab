@@ -4480,6 +4480,7 @@
     "playerData": null,
     "enterFlag": false,
     "touchFlag": false,
+    "callback": null,
     "_id": ""
   },
   {

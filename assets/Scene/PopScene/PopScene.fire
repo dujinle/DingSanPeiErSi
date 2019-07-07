@@ -41,8 +41,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.65701904296875,
-      "y": 0.65701904296875,
+      "x": 0.7097222222222223,
+      "y": 0.7097222222222223,
       "z": 1
     },
     "_quat": {
@@ -79,13 +79,34 @@
       },
       {
         "__id__": 11
+      },
+      {
+        "__id__": 13
+      },
+      {
+        "__id__": 15
+      },
+      {
+        "__id__": 17
+      },
+      {
+        "__id__": 19
+      },
+      {
+        "__id__": 21
+      },
+      {
+        "__id__": 23
+      },
+      {
+        "__id__": 25
       }
     ],
     "_active": true,
     "_level": 1,
     "_components": [
       {
-        "__id__": 13
+        "__id__": 27
       }
     ],
     "_prefab": null,
@@ -223,9 +244,41 @@
     "_parent": {
       "__id__": 2
     },
-    "_id": "dcjBqUBEBHRJ60J7n7Vd8o",
+    "_id": "28PWJ4UIhGna/+9SFo4TEQ",
     "_prefab": {
       "__id__": 6
+    },
+    "_name": "PopJiaoYiScene",
+    "_active": true,
+    "_position": {
+      "__type__": "cc.Vec3",
+      "x": 2100,
+      "y": 383,
+      "z": 0
+    },
+    "_rotationX": 0,
+    "_rotationY": 0
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 5
+    },
+    "asset": {
+      "__uuid__": "4621e84a-d8d9-4853-a4aa-7799af6260ad"
+    },
+    "fileId": "28PWJ4UIhGna/+9SFo4TEQ",
+    "sync": true
+  },
+  {
+    "__type__": "cc.Node",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 2
+    },
+    "_id": "dcjBqUBEBHRJ60J7n7Vd8o",
+    "_prefab": {
+      "__id__": 8
     },
     "_name": "PopDelayScene",
     "_active": true,
@@ -241,7 +294,7 @@
   {
     "__type__": "cc.PrefabInfo",
     "root": {
-      "__id__": 5
+      "__id__": 7
     },
     "asset": {
       "__uuid__": "410f5923-58f6-4b40-a62f-5e86b40686da"
@@ -257,7 +310,7 @@
     },
     "_id": "67nmflWzZCfofHXWZyFBmK",
     "_prefab": {
-      "__id__": 8
+      "__id__": 10
     },
     "_name": "PopRoomScene",
     "_active": true,
@@ -273,7 +326,7 @@
   {
     "__type__": "cc.PrefabInfo",
     "root": {
-      "__id__": 7
+      "__id__": 9
     },
     "asset": {
       "__uuid__": "c0293928-e415-4d79-b256-d5ce55b93dec"
@@ -289,7 +342,7 @@
     },
     "_id": "0bYGeKgwVHM6gyRWSR0GDW",
     "_prefab": {
-      "__id__": 10
+      "__id__": 12
     },
     "_name": "PopGameFinish",
     "_active": true,
@@ -305,7 +358,7 @@
   {
     "__type__": "cc.PrefabInfo",
     "root": {
-      "__id__": 9
+      "__id__": 11
     },
     "asset": {
       "__uuid__": "d1fe0f8f-3a67-4c82-982d-a344c6065848"
@@ -321,7 +374,7 @@
     },
     "_id": "f6h1mVtx5LZJhHB9RDs+Xo",
     "_prefab": {
-      "__id__": 12
+      "__id__": 14
     },
     "_name": "RoomItemLayout",
     "_active": true,
@@ -337,12 +390,204 @@
   {
     "__type__": "cc.PrefabInfo",
     "root": {
-      "__id__": 11
+      "__id__": 13
     },
     "asset": {
       "__uuid__": "739d897e-86c1-4958-9d5c-2da3cad5cca3"
     },
     "fileId": "f6h1mVtx5LZJhHB9RDs+Xo",
+    "sync": true
+  },
+  {
+    "__type__": "cc.Node",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 2
+    },
+    "_id": "d5Xx8uTsJC3JaNeMP+cFhE",
+    "_prefab": {
+      "__id__": 16
+    },
+    "_name": "PopHelpScene",
+    "_active": true,
+    "_position": {
+      "__type__": "cc.Vec3",
+      "x": 640,
+      "y": 360,
+      "z": 0
+    },
+    "_rotationX": 0,
+    "_rotationY": 0
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 15
+    },
+    "asset": {
+      "__uuid__": "f4ed8258-67f4-4642-81c1-89d214654b2e"
+    },
+    "fileId": "d5Xx8uTsJC3JaNeMP+cFhE",
+    "sync": true
+  },
+  {
+    "__type__": "cc.Node",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 2
+    },
+    "_id": "8e0+2iAbdP87UYwxeWa00C",
+    "_prefab": {
+      "__id__": 18
+    },
+    "_name": "PopXieyiScene",
+    "_active": true,
+    "_position": {
+      "__type__": "cc.Vec3",
+      "x": 1458,
+      "y": -448,
+      "z": 0
+    },
+    "_rotationX": 0,
+    "_rotationY": 0
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 17
+    },
+    "asset": {
+      "__uuid__": "775136c8-62d4-4b77-8aa1-341065f19f8e"
+    },
+    "fileId": "8e0+2iAbdP87UYwxeWa00C",
+    "sync": true
+  },
+  {
+    "__type__": "cc.Node",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 2
+    },
+    "_id": "3eagz70aRAEKfDEUyxCXIu",
+    "_prefab": {
+      "__id__": 20
+    },
+    "_name": "PopCreatRoomScene",
+    "_active": true,
+    "_position": {
+      "__type__": "cc.Vec3",
+      "x": 640,
+      "y": 400,
+      "z": 0
+    },
+    "_rotationX": 0,
+    "_rotationY": 0
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 19
+    },
+    "asset": {
+      "__uuid__": "e09693f1-fbea-4898-8e79-9af83b8fa24b"
+    },
+    "fileId": "3eagz70aRAEKfDEUyxCXIu",
+    "sync": true
+  },
+  {
+    "__type__": "cc.Node",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 2
+    },
+    "_id": "53tT3aPGBK/ryFT0/Gkmum",
+    "_prefab": {
+      "__id__": 22
+    },
+    "_name": "PopZhanjiScene",
+    "_active": true,
+    "_position": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_rotationX": 0,
+    "_rotationY": 0
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 21
+    },
+    "asset": {
+      "__uuid__": "fa8472ee-8915-4100-b19b-0a6b59536573"
+    },
+    "fileId": "53tT3aPGBK/ryFT0/Gkmum",
+    "sync": true
+  },
+  {
+    "__type__": "cc.Node",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 2
+    },
+    "_id": "f6/v6PT7ZM1YVT4vl3V3XA",
+    "_prefab": {
+      "__id__": 24
+    },
+    "_name": "PopSettingScene",
+    "_active": true,
+    "_position": {
+      "__type__": "cc.Vec3",
+      "x": 640,
+      "y": 400,
+      "z": 0
+    },
+    "_rotationX": 0,
+    "_rotationY": 0
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 23
+    },
+    "asset": {
+      "__uuid__": "3859c0f5-10ec-486f-bd8b-8ec029c61245"
+    },
+    "fileId": "f6/v6PT7ZM1YVT4vl3V3XA",
+    "sync": true
+  },
+  {
+    "__type__": "cc.Node",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 2
+    },
+    "_id": "4bT5BWuTNBC49i+YA//JON",
+    "_prefab": {
+      "__id__": 26
+    },
+    "_name": "PopGongHuiScene",
+    "_active": true,
+    "_position": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_rotationX": 0,
+    "_rotationY": 0
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 25
+    },
+    "asset": {
+      "__uuid__": "9153f93f-5a19-4247-94fd-d796bdef10e5"
+    },
+    "fileId": "4bT5BWuTNBC49i+YA//JON",
     "sync": true
   },
   {

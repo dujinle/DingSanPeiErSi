@@ -1,0 +1,31 @@
+{
+  "ver": "2.2.0",
+  "uuid": "16de5272-c106-47b1-a91b-55c5e679f2be",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "subMetas": {
+    "加入公会按钮": {
+      "ver": "1.0.3",
+      "uuid": "a17dc9ab-25a7-4366-a6d4-cd55f22a6c8c",
+      "rawTextureUuid": "16de5272-c106-47b1-a91b-55c5e679f2be",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 200,
+      "height": 68,
+      "rawWidth": 200,
+      "rawHeight": 68,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

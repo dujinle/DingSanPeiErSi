@@ -17,10 +17,31 @@ cc.Class({
 		this.join_gonghui_button.getComponent("cc.Button").interactable = true;
 		if(tag == "gonghui"){
 			this.my_gonghui_button.getComponent("cc.Button").interactable = false;
+			this.my_gonghui_button.getChildByName('pressed').active = true;
+			this.my_gonghui_button.getChildByName('unpress').active = false;
+			
+			this.add_gonghui_button.getChildByName('pressed').active = false;
+			this.add_gonghui_button.getChildByName('unpress').active = true;
+			this.join_gonghui_button.getChildByName('pressed').active = false;
+			this.join_gonghui_button.getChildByName('unpress').active = true;
 		}else if(tag == "add_gonghui"){
 			this.add_gonghui_button.getComponent("cc.Button").interactable = false;
+			this.add_gonghui_button.getChildByName('pressed').active = true;
+			this.add_gonghui_button.getChildByName('unpress').active = false;
+			
+			this.join_gonghui_button.getChildByName('pressed').active = false;
+			this.join_gonghui_button.getChildByName('unpress').active = true;
+			this.my_gonghui_button.getChildByName('pressed').active = false;
+			this.my_gonghui_button.getChildByName('unpress').active = true;
 		}else if(tag == "join_gonghui"){
 			this.join_gonghui_button.getComponent("cc.Button").interactable = false;
+			this.join_gonghui_button.getChildByName('pressed').active = true;
+			this.join_gonghui_button.getChildByName('unpress').active = false;
+			
+			this.my_gonghui_button.getChildByName('pressed').active = false;
+			this.my_gonghui_button.getChildByName('unpress').active = true;
+			this.add_gonghui_button.getChildByName('pressed').active = false;
+			this.add_gonghui_button.getChildByName('unpress').active = true;
 		}
 	},
 	my_gonghui_button_cb(){
@@ -111,6 +132,10 @@ cc.Class({
     onLoad () {
 		var self = this;
 		GlobalData.RunTimeParams.CurrentScene = GlobalData.SCENE_TAG.GONGHUI;
+		this.my_gonghui_node.active = false;
+		this.add_gonghui_node.active = false;
+		this.join_gonghui_node.active = false;
+		this.empty_node.active = false;
 		var param = {
 			"player_id":GlobalData.MyUserInfo["id"],
 			'process':'getGonghuiPlayerId'
@@ -123,7 +148,8 @@ cc.Class({
 		 });
 	},
 	close_scene(){
-		cc.director.loadScene("MainScene");
+		this.node.removeFromParent();
+		this.node.destroy();
 	},
 	show_one_node(tag){
 		this.my_gonghui_node.active = false;

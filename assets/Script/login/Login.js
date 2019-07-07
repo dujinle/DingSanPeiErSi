@@ -10,11 +10,12 @@ cc.Class({
 		buttonLogin:cc.Node,
 		loadUpdate:cc.Node,
 		loadSources:cc.Node,
+		xieYiKuangNode:cc.Node,
     },
 	wxLogin(){
 		cc.log("wxLogin");
 		var self = this;
-		this.buttonLogin.getComponent("cc.Button").interactable = false;
+		this.buttonLogin.getComponent(cc.Button).interactable = false;
 		this.buttonFlag = true;
 		if(GlobalData.RunTimeParams.RootNode != null){
 			GlobalData.RunTimeParams.RootNode.getComponent('root_node').play(GlobalData.AudioIdx.ClickButton);
@@ -40,7 +41,7 @@ cc.Class({
 						self.onLogin();
 					}else{
 						util.show_error_info(result.errmsg);
-						self.buttonLogin.getComponent("cc.Button").interactable = true;
+						self.buttonLogin.getComponent(cc.Button).interactable = true;
 						self.buttonFlag = false;
 						self.autoLoginFlag = false;
 					}
@@ -72,7 +73,7 @@ cc.Class({
 						self.onLogin();
 					}else{
 						util.show_error_info(result.errmsg);
-						self.buttonLogin.getComponent("cc.Button").interactable = true;
+						self.buttonLogin.getComponent(cc.Button).interactable = true;
 						self.autoLoginFlag = false;
 					}
 				});
@@ -89,7 +90,7 @@ cc.Class({
 		this.loadUpdate.active = true;
 		this.loadSources.active = true;
 		this.node.on("pressed", this.switchRadio, this);
-		this.buttonLogin.getComponent("cc.Button").interactable = false;
+		this.buttonLogin.getComponent(cc.Button).interactable = false;
 		var self = this;
 		var loadUpdateCom = this.loadUpdate.getComponent("LoadUpdateGame");
 		var loadSourcesCom = this.loadSources.getComponent("LoadSources");
@@ -107,7 +108,7 @@ cc.Class({
 		var self = this;
 		this.buttonFlag = false;
 		this.autoLoginFlag = false;
-		this.buttonLogin.getComponent("cc.Button").interactable = true;
+		this.buttonLogin.getComponent(cc.Button).interactable = true;
 		/*
 		if(cc.sys.os == cc.sys.OS_WINDOWS){
 			this.buttonLogin.getComponent("cc.Button").interactable = true;
@@ -149,7 +150,7 @@ cc.Class({
 			function (data) {
 				cc.log("get login info succ:" + JSON.stringify(data));
 				if(data.code != 200){
-					self.buttonLogin.getComponent("cc.Button").interactable = true;
+					self.buttonLogin.getComponent(cc.Button).interactable = true;
 					self.buttonFlag = false;
 					self.autoLoginFlag = false;
 					return;
@@ -159,7 +160,7 @@ cc.Class({
 					if(data.code == 200){
 						self.saveUserInfo(data.player);
 					}else{
-						self.buttonLogin.getComponent("cc.Button").interactable = true;
+						self.buttonLogin.getComponent(cc.Button).interactable = true;
 						self.buttonFlag = false;
 						self.autoLoginFlag = false;
 					}
@@ -184,6 +185,16 @@ cc.Class({
 			GlobalData.RunTimeParams.XieYiSelect = true;
 		}
     },
+	switchXieYi(event){
+		var choice = this.xieYiKuangNode.getChildByName('choiced');
+		if(choice.active == true){
+			choice.active = false;
+			this.buttonLogin.getComponent(cc.Button).interactable = false;
+		}else{
+			choice.active = true;
+			this.buttonLogin.getComponent(cc.Button).interactable = true;
+		}
+	},
 	pop_user_xieyi(){
 		var size = cc.winSize;
 		this.pop_xieyi = cc.instantiate(GlobalData.assets["PopXieyiScene"]);

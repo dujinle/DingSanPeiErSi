@@ -12,14 +12,10 @@ cc.Class({
 		totalCount: 0, // 在列表中显示的项数量
 		spacing: 0, // 项之间的间隔大小
 		data_list:null,
-		jushu_node:cc.Node,
-		fenshu_node:cc.Node,
-		win_node:cc.Node,
-		lose_node:cc.Node,
-		equal_node:cc.Node,
 		pthis:null,
     },
     onLoad () {
+		console.log('onload zhanji scene');
 	},
 	// 列表初始化
     initialize: function () {
@@ -27,7 +23,8 @@ cc.Class({
 		this.items = []; // 存储实际创建的项数组
         this.updateTimer = 0;  
         this.updateInterval = 0.2;
-		this.itemHeight = 40;
+		this.spacing = 30;
+		this.itemHeight = this.itemNode.getContentSize().height;
         // 使用这个变量来判断滚动操作是向上还是向下
         this.lastContentPosY = 0;
         // 设定缓冲矩形的大小为实际创建项的高度累加，当某项超出缓冲矩形时，则更新该项的显示内容
@@ -107,11 +104,6 @@ cc.Class({
 	init_zhanji_info(data,pthis){
 		var self = this;
 		this.pthis = pthis;
-		this.jushu_node.getComponent("cc.Label").string = data["round_num"];
-		this.fenshu_node.getComponent("cc.Label").string = data["all_score"];
-		this.win_node.getComponent("cc.Label").string = data["win_num"];
-		this.lose_node.getComponent("cc.Label").string = data["lose_num"];
-		this.equal_node.getComponent("cc.Label").string = parseInt(data["round_num"]) - parseInt(data["win_num"]) - parseInt(data["lose_num"]);
 		var param = {
 			process:"getGameHistoryList",
 			"player_id":data["id"],
@@ -127,6 +119,10 @@ cc.Class({
 				}
 			}
 		});
+	},
+	onClose(){
+		this.node.removeFromParent();
+		this.node.destroy();
 	},
 	clear_scroll_data(){
 		if(this.items == null){
