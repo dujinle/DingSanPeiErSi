@@ -7,7 +7,6 @@ cc.Class({
 		fangkaLabel:cc.Label,
 		modelLabel:cc.Label,
 		maxNodeLabel:cc.Label,
-		tipsLabel:cc.Label,
 		choice_sprite:{
 			type:cc.Node,
 			default:[]

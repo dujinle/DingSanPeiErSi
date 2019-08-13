@@ -1,0 +1,31 @@
+{
+  "ver": "2.2.0",
+  "uuid": "eaee68e8-05f8-4a4e-95b8-6c1d5e1df27b",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "subMetas": {
+    "大玩家": {
+      "ver": "1.0.3",
+      "uuid": "8969b599-4613-459c-a290-26e18976672c",
+      "rawTextureUuid": "eaee68e8-05f8-4a4e-95b8-6c1d5e1df27b",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 352,
+      "height": 235,
+      "rawWidth": 352,
+      "rawHeight": 235,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

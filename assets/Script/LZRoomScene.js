@@ -16,9 +16,9 @@ cc.Class({
 		suiji_qiangzhuang:cc.Node,
 		master_label:cc.Label,
 		room_num_label:cc.Label,
-		zhuang_label:cc.Label,
+		//zhuang_label:cc.Label,
 		huihe_label:cc.Label,
-		msage_scroll:cc.Node,
+		//msage_scroll:cc.Node,
 		left_card_layout:cc.Node,
 		//buttons for game
 		button_layout:cc.Node,
@@ -74,8 +74,8 @@ cc.Class({
 		var lroom_num = this.room_num_label.getComponent(cc.Label);
 		lroom_num.string = this.roomNum;
 		
-		var lzongzhu = this.zhuang_label.getComponent(cc.Label);
-		lzongzhu.string = this.sumBet;
+		//var lzongzhu = this.zhuang_label.getComponent(cc.Label);
+		//lzongzhu.string = this.sumBet;
 		
 		var lhuihe = this.huihe_label.getComponent(cc.Label);
 		lhuihe.string = this.count;
@@ -383,7 +383,7 @@ cc.Class({
 	},
 
 	showRoomMessageUpdate(){
-		this.zhuang_label.string = this.sumBet;
+		//this.zhuang_label.string = this.sumBet;
 		this.huihe_label.string = this.count;
 	},
 
@@ -400,7 +400,7 @@ cc.Class({
 		pomelo.on('onOpen',this.onOpen_function.bind(this));
 		pomelo.on('onQieguo',this.onQieguo_function.bind(this));
 		pomelo.on('onEnd',this.onEnd_function.bind(this));
-		pomelo.on('onActBroadcast',this.onUserBroadcast_function.bind(this));
+		//pomelo.on('onActBroadcast',this.onUserBroadcast_function.bind(this));
 		pomelo.on('onKick',this.onKick_function.bind(this));
 		pomelo.on('onQuit',this.onQuit_function.bind(this));
 		pomelo.on('onChangePlayer',this.onChangePlayer_function.bind(this));
@@ -777,27 +777,6 @@ cc.Class({
 						item.push(0);
 					}
 					item.push(scores[player_item.location - 1]);
-					//如果是自己则执行更新游戏记录操作
-					if(player_item.location == GlobalData.RoomInfos.MySelfPlayerLocation){
-						var param = {
-							process:'update_game',
-							player_id:GlobalData.MyUserInfo["id"],
-							renshu:GlobalData.RunTimeParams.RoomData["real_num"],
-							game_status:item[3] - item[2],
-							status:item[3] - item[2],
-							creat_time:GlobalData.RunTimeParams.RoomData["creat_time"],
-							room_num:GlobalData.RunTimeParams.RoomData["room_num"],
-							use_fangka:1
-						};
-						if(GlobalData.RunTimeParams.RoomData["game_type"] == 1){
-							if(GlobalData.RoomInfos.MySelfPlayerLocation == this.zhuang_serverPosition){
-								param["use_fangka"] = GlobalData.RunTimeParams.RoomData["real_num"];
-							}else{
-								param["use_fangka"] = 0;
-							}
-						}
-						Servers.request('gameInfoRouter',param,function(res){});
-					}
 					results.push(item);
 				}
 			}
@@ -863,7 +842,7 @@ cc.Class({
 		var size = cc.winSize;
 		//显示玩家信息
 		if(data["send_from"] == GlobalData.RoomInfos.MySelfPlayerLocation){
-			this.uinfo = cc.instantiate(GlobalData.assets["pop_game_user"]);
+			this.uinfo = cc.instantiate(GlobalData.assets["PopGameUser"]);
 			var uinfo_com = this.uinfo.getComponent("pop_game_user_info");
 			
 			uinfo_com.init_info(data,this.actionSendGift);
@@ -1278,7 +1257,7 @@ cc.Class({
         pomelo.removeListener('onOpen');
         pomelo.removeListener('onQieguo');
         pomelo.removeListener('onEnd');
-		pomelo.removeListener('onActBroadcast');
+		//pomelo.removeListener('onActBroadcast');
 		pomelo.removeListener('onKick');
 		pomelo.removeListener('onQuit');
 		pomelo.removeListener('onChangePlayer');

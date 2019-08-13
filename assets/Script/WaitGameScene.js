@@ -4,9 +4,6 @@ cc.Class({
     properties: {
 		roomList:cc.Node,
 		roomContent:cc.Node,
-		msage_scroll:cc.Node,
-		//房间信息
-		tips:cc.Label,
     },
 
     onLoad () {
@@ -14,13 +11,10 @@ cc.Class({
 		this.pomelo_removeListener();
 		this.roomList.getComponent('ScrollView').clear_scroll_data();
 		if(GlobalData.MyUserInfo.gonghui_id != null){
-			this.tips.node.active = false;
 			this.initRoomScroll();
-			this.pomelo_on();
 			this.node.on('scroll',this.scrollFunc,this);
 		}else{
-			this.tips.node.active = true;
-			this.tips.string = '您还没有加入任何公会，无法进行游戏，请加入公会！';
+			util.show_error_info('您还没有加入任何公会，无法进行游戏，请加入公会！');
 		}
 		GlobalData.RunTimeParams.RoomData = null;
 		cc.log("created_room_scene","start gointo created room scene......");
@@ -104,8 +98,8 @@ cc.Class({
 		}
 		util.show_isok_info(function(flag){
 			if(flag == true){
-				self.pomelo_removeListener();
-				cc.director.loadScene("MainScene");
+				self.node.removeFromParent();
+				self.node.destroy();
 			}
 		},"你确定要退出界面吗？");
 	},

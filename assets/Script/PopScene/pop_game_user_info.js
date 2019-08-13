@@ -13,6 +13,7 @@ cc.Class({
 		cheer_node:cc.Node,
         vnickname_lable:cc.Label,
         vfangka_label:cc.Label,
+        vgold_label:cc.Label,
         vsex_label:cc.Label,
 		call_back:null,
 		location:null,
@@ -28,6 +29,7 @@ cc.Class({
 		var self = this;
 		this.vnickname_lable.string = data["player"].nick_name;
 		this.vfangka_label.string = data["player"].fangka_num;
+		this.vgold_label.string = data['player'].gold;
 		if(data["player"].gender == 1){
 			this.vsex_label.string = "男";
 		}else{

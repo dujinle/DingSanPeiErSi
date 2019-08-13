@@ -1,0 +1,31 @@
+{
+  "ver": "2.2.0",
+  "uuid": "e560b9f8-1f80-4aee-9c79-9e91cb1d989c",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "subMetas": {
+    "玩家背景环": {
+      "ver": "1.0.3",
+      "uuid": "53de2100-8e4a-409b-a85e-be67df57baa0",
+      "rawTextureUuid": "e560b9f8-1f80-4aee-9c79-9e91cb1d989c",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 116,
+      "height": 60,
+      "rawWidth": 116,
+      "rawHeight": 60,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

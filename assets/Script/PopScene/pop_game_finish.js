@@ -3,6 +3,8 @@ cc.Class({
 
     properties: {
 		game_sprite:cc.Node,
+		roomNum:cc.Node,
+		timeNum:cc.Node,
 		items:{
 			type:cc.Node,
 			default:[]
@@ -21,30 +23,32 @@ cc.Class({
 	init_info(players,cb){
 		this.cb = cb;
 		cc.log("pop game finish:" + JSON.stringify(players));
+		var date = new Date();
+		this.roomNum.getComponent(cc.Label).string = GlobalData.RunTimeParams.RoomData['roomNum'];
+		this.timeNum.getComponent(cc.Label).string = util.dateftt(date.getTime(),"yyyy-MM-dd h:m:s");
+		var fetchArr = [];
 		for(var i = 0;i < players.length;i++){
-			var player = players[i];
-			var item = this.items[i];
+			let player = players[i];
+			let score = player[3] - player[2];
+			fetchArr.push([player[0],player[1],score]);
+		}
+		var sortFunc = function(a,b){
+			return b[2] - a[2];
+		};
+		fetchArr.sort(sortFunc);
+		for(let i = 0;i < fetchArr.length;i++){
+			let player = fetchArr[i];
+			let item = this.items[i];
 			this.set_item_info(item,player);
 			item.active = true;
 		}
 	},
 	set_item_info(item,player_com){
-		var user_layout = item.getChildByName("user_layout");
-		var user_sprite = user_layout.getChildByName("user_sprite").getComponent("cc.Sprite");
-		var user_label = user_layout.getChildByName("user_label").getComponent("cc.Label");
-		var slabel = item.getChildByName("slabel").getComponent("cc.Label");
-		var elabel = item.getChildByName("elabel").getComponent("cc.Label");
-		var dlabel = item.getChildByName("dlabel").getComponent("cc.Label");
+		var user_sprite = item.getChildByName("atvar").getChildByName('mask').getChildByName('sprite').getComponent(cc.Sprite);
+		var user_label = item.getChildByName("user_name").getComponent(cc.Label);
+		var dlabel = item.getChildByName("user_score").getComponent(cc.Label);
 		user_label.string = player_com[0];
 		/*修改玩家没有头像的问题*/
-		/*
-		if(player_com[1] != null){
-			cc.loader.load({url:player_com[1],type:'png'},function (err, texture) {
-				var frame = new cc.SpriteFrame(texture);
-				user_sprite.spriteFrame = frame;
-			});
-		}
-		*/
 		if(player_com[1] != null && player_com[1].length > 0){
 			cc.loader.load({url:player_com[1],type:'png'},function (err, texture) {
 				var frame = new cc.SpriteFrame(texture);
@@ -53,10 +57,7 @@ cc.Class({
 		}else{
 			user_sprite.spriteFrame = GlobalData.assets["man"];
 		}
-		
-		slabel.string = player_com[2];
-		elabel.string = player_com[3];
-		dlabel.string = player_com[3] - player_com[2];
+		dlabel.string = player_com[2];
 	},
 	callback_tuichu(){
 		var self = this;

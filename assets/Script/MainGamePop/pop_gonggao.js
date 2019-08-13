@@ -16,7 +16,7 @@ cc.Class({
 		Servers.request('gongGaoRouter',{"type":1,process:'get_gonggao'},function(data){
 			cc.log(JSON.stringify(data));
 			if(self.node && self.node.isValid){
-				var rich_text = self.content_node.getComponent(cc.RichText);
+				var rich_text = self.content_node.getComponent(cc.Label);
 				rich_text.string = data.msg;
 			}
 		});
@@ -29,6 +29,11 @@ cc.Class({
 			this.node.removeFromParent();
 			this.node.destroy();
 		}
+	},
+	onClose(){
+		this.unschedule(this.hidde_time);
+		this.node.removeFromParent();
+		this.node.destroy();
 	},
 	touchStart(event){
 		var touch = event.getLocation()

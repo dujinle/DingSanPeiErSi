@@ -14,7 +14,7 @@ cc.Class({
 		spacing: 0, // 项之间的间隔大小
     },
     onLoad () {
-		this.spacing = 5;
+		this.spacing = 10;
 		//this.scrollView.node.on('bounce-top',this.freshData,this);
 	},
 	// 列表初始化
@@ -25,6 +25,7 @@ cc.Class({
         this.updateInterval = 0.2;
         // 使用这个变量来判断滚动操作是向上还是向下
         this.lastContentPosY = 0; 
+        this.itemHeight = 180;
         // 设定缓冲矩形的大小为实际创建项的高度累加，当某项超出缓冲矩形时，则更新该项的显示内容
         this.bufferZone = this.spawnCount * (this.itemHeight + this.spacing) / 2;
 		// 获取整个列表的高度
@@ -101,6 +102,7 @@ cc.Class({
 		this.data = data;
 		this.totalCount = Math.ceil(data.length/doubleFlag);
 		this.spawnCount = this.totalCount >= 8 ? 8:this.totalCount;
+		console.log(this.totalCount,this.spawnCount);
 		this.initialize();
 	},
 	

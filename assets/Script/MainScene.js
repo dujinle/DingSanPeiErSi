@@ -68,7 +68,10 @@ cc.Class({
 			GlobalData.RunTimeParams.RootNode.getComponent('root_node').play(GlobalData.AudioIdx.ClickButton);
 			GlobalData.RunTimeParams.RootNode.getComponent('root_node').stopBg();
 		}
-		cc.director.loadScene("WaitGameScene");
+		var size = cc.winSize;
+		this.pop_wait_room = cc.instantiate(GlobalData.assets["PopRoomListScene"]);
+		this.node.addChild(this.pop_wait_room);
+		this.pop_wait_room.setPosition(this.node.convertToNodeSpaceAR(cc.v2(size.width/2,size.height/2)));
 	},
 	popGonghuiScene(){
 		if(GlobalData.RunTimeParams.RootNode != null){
