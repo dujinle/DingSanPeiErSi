@@ -8,6 +8,7 @@ cc.Class({
 		autoLoginFlag:false,
 		buttonFlag:false,
 		buttonLogin:cc.Node,
+		buttonXieYi:cc.Node,
 		loadUpdate:cc.Node,
 		loadSources:cc.Node,
 		xieYiKuangNode:cc.Node,
@@ -89,8 +90,9 @@ cc.Class({
 		this.autoLoginFlag = false;
 		this.loadUpdate.active = true;
 		this.loadSources.active = true;
-		this.node.on("pressed", this.switchRadio, this);
 		this.buttonLogin.getComponent(cc.Button).interactable = false;
+		this.xieYiKuangNode.getComponent(cc.Button).interactable = false;
+		this.buttonXieYi.getComponent(cc.Button).interactable = false;
 		var self = this;
 		var loadUpdateCom = this.loadUpdate.getComponent("LoadUpdateGame");
 		var loadSourcesCom = this.loadSources.getComponent("LoadSources");
@@ -109,35 +111,8 @@ cc.Class({
 		this.buttonFlag = false;
 		this.autoLoginFlag = false;
 		this.buttonLogin.getComponent(cc.Button).interactable = true;
-		/*
-		if(cc.sys.os == cc.sys.OS_WINDOWS){
-			this.buttonLogin.getComponent("cc.Button").interactable = true;
-		}else if(cc.sys.isNative){
-			var refresh_token = GlobalData.WXLoginParams.refresh_token;
-			var app_id = wxapi.get_appid();
-			if(refresh_token == null){
-				
-				this.buttonFlag = false;
-			}else{
-				cc.log("refresh_token:" + refresh_token + "app_id"  + app_id);
-				wxapi.get_wx_ruinfo(app_id,refresh_token,function(result){
-					cc.log("get_wxuser_info:" + JSON.stringify(result));
-					if(result.openid != null){
-						GlobalData.MyUserInfo['nickname'] = result.nickname;
-						GlobalData.MyUserInfo['fangka'] = 0;
-						GlobalData.MyUserInfo['gender'] = result.sex;
-						GlobalData.MyUserInfo['player_id'] = result.unionid;
-						GlobalData.MyUserInfo['headimgurl'] = result.headimgurl;
-						self.onLogin();
-					}else{
-						util.show_error_info(result.errmsg);
-						this.buttonLogin.getComponent("cc.Button").interactable = true;
-						this.buttonFlag = false;
-					}
-				});
-			}
-		}
-		*/
+		this.xieYiKuangNode.getComponent(cc.Button).interactable = true;
+		this.buttonXieYi.getComponent(cc.Button).interactable = true;
 	},
 	onLogin(){
 		var self = this;
@@ -175,16 +150,6 @@ cc.Class({
 		GlobalData.RunTimeParams.IsLogin = true;
 		cc.director.loadScene("MainScene");
 	},
-	switchRadio(event) {
-        var item = event.target.getComponent("one_choice");
-        if(GlobalData.RunTimeParams.XieYiSelect == true){
-			item.lifeUp();
-			GlobalData.RunTimeParams.XieYiSelect = false;
-		}else{
-            item.pitchOn();
-			GlobalData.RunTimeParams.XieYiSelect = true;
-		}
-    },
 	switchXieYi(event){
 		var choice = this.xieYiKuangNode.getChildByName('choiced');
 		if(choice.active == true){

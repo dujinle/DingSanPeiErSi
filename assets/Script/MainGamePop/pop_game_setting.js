@@ -77,16 +77,5 @@ cc.Class({
         }
 		ThirdAPI.updateLocalData();
 		this.callback(1);
-    },
-    buttonChatSettingCallback(){
-		var sprite = this.choice_sprite[2];
-        if(GlobalData.AudioParams.CHAT_KEY == 0){
-			GlobalData.AudioParams.CHAT_KEY = 1;
-			sprite.spriteFrame = GlobalData.assets["set_open"];
-        }else{
-			GlobalData.AudioParams.CHAT_KEY = 0;
-			sprite.spriteFrame = GlobalData.assets["set_close"];
-        }
-		ThirdAPI.updateLocalData();
-    },
+    }
 });

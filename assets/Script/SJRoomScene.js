@@ -1142,7 +1142,8 @@ cc.Class({
 			var player = this.players[i];
 			var player_com = player.getComponent("tdk_player");
 			if(player_com.position_server == this.zhuang_serverPosition){
-				player_com.setSpriteStatus(mens[0]);
+				//player_com.setSpriteStatus(mens[0]);
+				player_com.hide_status_sprite();
 				player_com.resetMoneyLabel(this.sumBet);
 				player_com.install_chip_label(true);
 			}else{
@@ -1153,7 +1154,8 @@ cc.Class({
 				}else if(player_com.position_server < this.zhuang_serverPosition){
 					men_idx = player_com.position_server - this.zhuang_serverPosition + 4;
 				}
-				player_com.setSpriteStatus(mens[men_idx]);
+				//player_com.setSpriteStatus(mens[men_idx]);
+				player_com.hide_status_sprite();
 				player_com.install_chip_label(false);
 			}
 		}

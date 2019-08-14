@@ -10,7 +10,15 @@
   "appKey": "",
   "appSecret": "",
   "encryptJs": true,
-  "excludeScenes": [],
+  "excludeScenes": [
+    "4bd0d6b7-367d-4a6c-b25a-65ce59ffad97",
+    "a6bcc593-fe09-46ec-8ed7-87e3ded21965",
+    "a31bfca8-4f35-4bb8-94e0-4d73eff8c52e",
+    "0bc4e533-9b98-40ce-8957-b40efcb6bd33",
+    "b5b75a57-d3be-476a-9447-e69dd1db4095",
+    "1d29a30f-e1e3-4a34-85ca-f8f352c4f21e",
+    "1821f834-75dc-42fd-981a-1f85c5c840c8"
+  ],
   "fb-instant-games": {},
   "includeAnySDK": false,
   "includeSDKBox": false,

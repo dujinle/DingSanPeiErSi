@@ -54,8 +54,9 @@ cc.Class({
 		}
 		this.pei_pai_flag = 0;
 		this.isvalid = false;
-		for(var tx in this.chips_label){
-			tx.getComponent(cc.Label).string = '';
+		for(var i = 0;i < this.chips_label.length;i++){
+			let tx = this.chips_label[i];
+			tx.getComponent(cc.Label).string = '0';
 		}
 	},
 	start_timer(){
@@ -80,11 +81,13 @@ cc.Class({
 	install_chip_label(flag){
 		cc.log("install_chip_label");
 		if(flag == true){
-			for(var tx in this.chips_label){
+			for(var i = 0;i < this.chips_label.length;i++){
+				let tx = this.chips_label[i];
 				tx.getComponent(cc.Label).string = '庄';
 			}
 		}else{
-			for(var tx in this.chips_label){
+			for(var i = 0;i < this.chips_label.length;i++){
+				let tx = this.chips_label[i];
 				tx.getComponent(cc.Label).string = '0';
 			}
 		}
