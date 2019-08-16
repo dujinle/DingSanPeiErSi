@@ -18,6 +18,6 @@ cc.Class({
 			self.node.removeFromParent();
 			self.node.destroy();
 		},this);
-		this.node.runAction(cc.sequence(cc.fadeOut(3),finish));
+		this.node.runAction(cc.sequence(cc.fadeOut(2),finish));
 	},
 });

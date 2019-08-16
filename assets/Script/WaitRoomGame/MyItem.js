@@ -13,6 +13,7 @@ cc.Class({
 	},
 	initData(lid,data){
 		try{
+			lid = lid * 3;
 			var dataLeft = data[lid];
 			var dataMid = data[lid + 1];
 			var dataRight = data[lid + 2];

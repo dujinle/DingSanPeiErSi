@@ -46,7 +46,7 @@ cc.Class({
 		if(room_datas == null){
 			return;
 		}
-		this.roomList.getComponent('ScrollView').setInitData(room_datas,2);
+		this.roomList.getComponent('ScrollView').setInitData(room_datas,3);
 	},
 
 	scrollFunc(event){

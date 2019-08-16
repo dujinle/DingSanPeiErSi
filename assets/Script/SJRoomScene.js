@@ -556,7 +556,7 @@ cc.Class({
 				var yao_shaizi = cc.instantiate(GlobalData.assets["yaoshaizi"]);
 				var yao_shaizi_com = yao_shaizi.getComponent("shai_zhong_active");
 				var pPos = player.getPosition();
-				var labelPos = player_com.chips_label.getPosition();
+				var labelPos = player_com.chips_label[0].getPosition();
 				var movePos = cc.v2(pPos.x + labelPos.x,pPos.y + labelPos.y);
 				yao_shaizi_com.init_start(null,shaizi_1,shaizi_2,movePos);
 				this.node.addChild(yao_shaizi);

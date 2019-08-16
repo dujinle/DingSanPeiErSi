@@ -24,7 +24,7 @@ cc.Class({
 		this.cb = cb;
 		cc.log("pop game finish:" + JSON.stringify(players));
 		var date = new Date();
-		this.roomNum.getComponent(cc.Label).string = GlobalData.RunTimeParams.RoomData['roomNum'];
+		this.roomNum.getComponent(cc.Label).string = GlobalData.RunTimeParams.RoomData['room_num'];
 		this.timeNum.getComponent(cc.Label).string = util.dateftt(date.getTime(),"yyyy-MM-dd h:m:s");
 		var fetchArr = [];
 		for(var i = 0;i < players.length;i++){
